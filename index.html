@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyApp">
+<head >
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!--   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+	<!-- Latest compiled and minified JavaScript -->
+<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+	<link href="public/stylesheets/style.css" rel="stylesheet">
+</head>
+<body>
+<nav class=" main-menu "  ng-controller="NavigationController">
+  <div>
+  <a href="#" class="logo">Profee</a>
+    <div ng-hide="user" style="float: right">
+        <input type="text" ng-model="login.email">
+        <input type="password" ng-model="login.password">
+        <button ng-click="logUserIn()">Login</button>
+        <a ui-sref="signUp">Create User</a>
+    </div>
+    <span ng-click="logUserOut()" ng-show="user" style="float: right">Log out</span>
+  </div>
+</nav>
+<div class="main-block">
+  <div class="right-block"></div>
+  <div class="left-menu">
+    <div class="user-img" >
+      <img src="./public/images/user.jpg">
+    </div>
+    <div class="left-menu-item">
+      <i class="glyphicon glyphicon-ok-circle"></i>
+      <p>Requests</p>
+    </div>
+    <div class="left-menu-item">
+      <a ui-sref="contacts">
+        <i class="glyphicon glyphicon-wrench"></i>
+        <p>Contacts</p>
+      </a>
+    </div>
+    <div class="left-menu-item">
+      <a ui-sref="friends">
+        <i class="glyphicon glyphicon-user"></i>
+        <p>Friends</p>
+      </a>
+    </div>
+  </div>
+  <div class="main-content">
+    <div ui-view></div>
+  </div>
+</div>
+	
+</body>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-messages.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-resource.min.js"></script> -->
+<script src="/public/app.js"></script>
+<script src="/public/controllers/main.controller.js"></script>
+<script type="text/javascript" src="public/signup/signup-controller.js"></script>
+<script type="text/javascript" src="public/navigation/navigation-controller.js"></script>
+<script type="text/javascript" src="public/contacts/contacts-list.controller.js"></script>
+<script type="text/javascript" src="public/friends/friend-list.controller.js"></script>
+<script type="text/javascript" src="public/common/services/user-service.js"></script>
+</html>
