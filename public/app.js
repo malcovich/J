@@ -24,5 +24,11 @@
 					controller: "FriendsListController",
 					controllerAs: '$ctrl'
 				})
+				.state('requests', {
+					url: "/requests",
+					templateUrl: "/public/requests/list.html",
+					controller: "RequestsListController",
+					controllerAs: '$ctrl'
+				})
 		})
 }());

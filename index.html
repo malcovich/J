@@ -33,8 +33,10 @@
       <img src="./public/images/user.jpg">
     </div>
     <div class="left-menu-item">
-      <i class="glyphicon glyphicon-ok-circle"></i>
-      <p>Requests</p>
+      <a ui-sref="requests">
+        <i class="glyphicon glyphicon-ok-circle"></i>
+        <p>Requests</p>
+      </a>
     </div>
     <div class="left-menu-item">
       <a ui-sref="contacts">
@@ -68,5 +70,6 @@
 <script type="text/javascript" src="public/navigation/navigation-controller.js"></script>
 <script type="text/javascript" src="public/contacts/contacts-list.controller.js"></script>
 <script type="text/javascript" src="public/friends/friend-list.controller.js"></script>
+<script type="text/javascript" src="public/requests/requests-list.controller.js"></script>
 <script type="text/javascript" src="public/common/services/user-service.js"></script>
 </html>
