@@ -26,15 +26,16 @@ textarea {
 	border-bottom: 1px solid #ccd4d3;
 	background-color: #fff;
 }
+.main-block {
+	display: flex;
+}
 .left-menu {
 	width: 150px;
 	border-right: 1px solid #ccd4d3;
 	height: 700px;
 	background-color: #fff;
-	float: left;
 }
 .right-block {
-	float: right;
 	width: 250px;
 	border-left: 1px solid #ccd4d3;
 	height: 700px;
@@ -75,8 +76,9 @@ textarea {
 	margin-bottom: 5px;
 }
 .main-content{
-	padding: 40px 300px 50px 200px;
-	margin: 0 -250px 0 -150px;
+	padding: 40px 50px 50px 50px;
+	flex-grow: 2;
+
 }
 .page-title {
 	margin-top:0px;
@@ -118,14 +120,14 @@ textarea {
 .contact-list {
 	overflow: hidden;
 	padding: 0px;
+	display: flex;
 }
 .contact-card {
 	list-style:none;
 	width:280px;
-	float: left;
 	height:380px;
 	border-radius: 5px;
-	margin-right: 50px;
+	margin: 0 25px 25px 25px;
 	background-color:#fff;
 }
 .image-block {
@@ -152,4 +154,14 @@ textarea {
 .contact-phone {
 	font-size: 12px;
 	color:#ccd4d3;
+}
+.friends-list {
+	list-style:none;
+	padding: 0;
+}
+.friends-list li {
+	 padding: 10px 20px;
+	 background-color: #fff;
+	 margin-left: 20px;
+	 margin-bottom: 20px;
 }

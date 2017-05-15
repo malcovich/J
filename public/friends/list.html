@@ -3,9 +3,11 @@
 	<span class="btn add-new" ng-click="$ctrl.open()">Add friend</span>
 </div>
 
-<div ng-repeat="friend in friendsList">
-	{{friend.name}}
-</div>
+<ul class="friends-list">
+    <li ng-repeat="friend in $ctrl.friendsList">
+        {{friend.name}}
+    </li>
+</ul>
 
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">

@@ -2,13 +2,14 @@ angular.module('MyApp')
   .controller('FriendsListController', ['$scope', '$log', 'UserFactory', '$uibModal', '$http', function($scope, $log, UserFactory, $uibModal, $http){
   	var $ctrl = this;
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
-  	console.log('dfdf',JSON.parse(localStorage.getItem('User-Data')))
+
+  	$ctrl.friendsList = [];
+
+
 	$http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
-		console.log($ctrl.friendsList)
       	$ctrl.friendsList = res.data;
       });
 
-  	$ctrl.friendsList = [];
     $ctrl.open = function (size) {
 	    // var parentElem = parentSelector ? 
 	    //   angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
@@ -21,8 +22,8 @@ angular.module('MyApp')
 	      controllerAs: '$ctrl',
 	      size: size,
 	      resolve: {
-	        contact: function () {
-	          return $ctrl.contact;
+	        friend: function () {
+	          return $ctrl.friend;
 	        }
 	      }
 	    });

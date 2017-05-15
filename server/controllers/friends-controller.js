@@ -8,6 +8,7 @@ module.exports.add = function(req, res){
 
 module.exports.list = function(req, res){
 	Friend.find({ userId : req.param('userId')}, function (err, result) {
+		console.log(result)
        res.json(result);
     });
 }

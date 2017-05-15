@@ -3,7 +3,6 @@ angular.module('MyApp')
   	var $ctrl = this;
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
 	$http.post('/api/contact/list', {'userId': $ctrl.user._id}).then(function(res){
-      	console.log(res)
       	$ctrl.contactsList = res.data;
       });
 
@@ -28,6 +27,9 @@ angular.module('MyApp')
 
 	    modalInstance.result.then(function (ctrl) {
 	      $ctrl.contact = ctrl.contact;
+/*	    modalInstance.result.then(function (contact) {
+	      $ctrl.contact = contact;
+	      console.log($ctrl.contact)*/
 	      $ctrl.contact.userId = $ctrl.user._id;
 	      console.log( $ctrl.contact)
 	      $http.post('/api/contact/add', $ctrl.contact).then(function(res){
@@ -46,7 +48,6 @@ angular.module('MyApp').controller('ModalInstanceCtrl', function ($uibModalInsta
   
 
   $ctrl.ok = function () {
-  	console.log(2222, $ctrl)
     $uibModalInstance.close($ctrl);
   };
 
