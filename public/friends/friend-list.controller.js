@@ -2,6 +2,7 @@ angular.module('MyApp')
   .controller('FriendsListController', ['$scope', '$log', 'UserFactory', '$uibModal', '$http', function($scope, $log, UserFactory, $uibModal, $http){
   	var $ctrl = this;
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
+  	console.log('dfdf',JSON.parse(localStorage.getItem('User-Data')))
 	$http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
 		console.log($ctrl.friendsList)
       	$ctrl.friendsList = res.data;
@@ -26,8 +27,8 @@ angular.module('MyApp')
 	      }
 	    });
 
-	    modalInstance.result.then(function (friend) {
-	      $ctrl.friend = friend;
+	    modalInstance.result.then(function (ctrl) {
+	      $ctrl.friend = ctrl.friend;
 	      $ctrl.friend.userId = $ctrl.user._id;
 	      console.log($ctrl.friend)
 	      $http.post('/api/friend/add', $ctrl.friend).then(function(res){
@@ -45,7 +46,8 @@ angular.module('MyApp').controller('ModalInstanceCtrl', function ($uibModalInsta
   
 
   $ctrl.ok = function () {
-    $uibModalInstance.close($ctrl.friend);
+  	console.log(2222)
+    $uibModalInstance.close($ctrl);
   };
 
   $ctrl.cancel = function () {

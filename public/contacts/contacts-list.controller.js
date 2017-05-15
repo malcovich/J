@@ -26,9 +26,10 @@ angular.module('MyApp')
 	      }
 	    });
 
-	    modalInstance.result.then(function (contact) {
-	      $ctrl.contact = contact;
+	    modalInstance.result.then(function (ctrl) {
+	      $ctrl.contact = ctrl.contact;
 	      $ctrl.contact.userId = $ctrl.user._id;
+	      console.log( $ctrl.contact)
 	      $http.post('/api/contact/add', $ctrl.contact).then(function(res){
 	      	console.log(res)
 	      	$ctrl.contactsList.push(res)
@@ -45,8 +46,8 @@ angular.module('MyApp').controller('ModalInstanceCtrl', function ($uibModalInsta
   
 
   $ctrl.ok = function () {
-  	console.log($ctrl.contact)
-    $uibModalInstance.close($ctrl.contact);
+  	console.log(2222, $ctrl)
+    $uibModalInstance.close($ctrl);
   };
 
   $ctrl.cancel = function () {
