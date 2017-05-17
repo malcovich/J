@@ -8,6 +8,13 @@
 
 <div ng-repeat="req in $ctrl.requestsList">
 	{{req.text}}
+	{{req.requestDate | date}}
+	<span ng-click="$ctrl.deleteRequest(req._id)">delete</span>
 </div>
 
 <h4>Requests моих друзей</h4>
+
+<div ng-repeat="req in $ctrl.friendsRequestsList">
+	{{req.text}}
+	{{req.requestDate | date}}
+</div>

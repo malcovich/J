@@ -37,6 +37,7 @@ app.post('/api/friend/list', friendController.list);
 app.post('/api/requests/add', requestController.add);
 app.post('/api/requests/list', requestController.list);
 app.post('/api/requests/listFriendsRequests', requestController.listFriendsRequests);
+app.post('/api/requests/deleteRequest', requestController.deleteRequest);
 
 app.post('/api/global/add', globalController.add);
 app.get('/api/global/list', globalController.list);

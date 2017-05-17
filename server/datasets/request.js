@@ -2,5 +2,7 @@ var mongoose = require('mongoose');
 module.exports = mongoose.model('Request', {
 	text: String,
 	answerId: [String],
-	userId: String
+	requestDate: String,
+	userId: String,
+	deleted: Boolean
 }); 
