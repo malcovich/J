@@ -1,4 +1,13 @@
 <form>
+{{$ctrl.request.text}}
 	<textarea ng-model="$ctrl.request.text"></textarea>
 	<button ng-click="$ctrl.save()">Send</button>
 </form>
+
+<h4>Мои Requests</h4>
+
+<div ng-repeat="req in $ctrl.requestsList">
+	{{req.text}}
+</div>
+
+<h4>Requests моих друзей</h4>

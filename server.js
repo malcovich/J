@@ -8,6 +8,7 @@ var app = express();
 var authenticationController = require('./server/controllers/authentication-controller');
 var conatactController = require('./server/controllers/contact-controller');
 var friendController = require('./server/controllers/friends-controller');
+var requestController = require('./server/controllers/requests-controller');
 var globalController = require('./server/controllers/global-controller')
 var predefinedController = require('./server/controllers/predefined-controller')
 
@@ -32,6 +33,10 @@ app.post('/api/contact/list', conatactController.list);
 
 app.post('/api/friend/add', friendController.add);
 app.post('/api/friend/list', friendController.list);
+
+app.post('/api/requests/add', requestController.add);
+app.post('/api/requests/list', requestController.list);
+app.post('/api/requests/listFriendsRequests', requestController.listFriendsRequests);
 
 app.post('/api/global/add', globalController.add);
 app.get('/api/global/list', globalController.list);
