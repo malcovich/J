@@ -1,0 +1,19 @@
+@import 'header/_header';
+@import 'left-bar/_left-bar';
+@import 'main/_main';
+@import 'friends/_friends';
+@import 'requests/_requests';
+@import 'contacts/_contacts';
+@import '_buttons';
+
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+.main-content {
+	flex-grow: 2;
+}
+.inner-block {
+	padding: 27px;
+	background-color: #EFF3F6;
+}
+

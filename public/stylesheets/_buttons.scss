@@ -1,0 +1,16 @@
+.btn {
+	padding-left: 22px;
+	padding-right: 22px;
+	line-height: 20px;
+	display: inline-block;
+	&:hover{
+		text-decoration: none;
+	}
+}
+.green-btn {
+	background-color: #38B248;
+	color: #fff;
+	&:hover{
+		color: #fff;
+	}
+}

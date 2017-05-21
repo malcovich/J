@@ -1,0 +1,39 @@
+.contact-card {
+	width: 30%;
+	float: left;
+	overflow: hidden;
+	list-style: none;
+	padding: 30px;
+	background-color: #fff;
+	margin: 0 15px 30px 15px;
+	.header-card {
+		overflow: hidden;
+		.image-block {
+			width: 55px;
+			height: 55px;
+			border-radius: 50%;
+			overflow: hidden;
+			float: left;
+			img {
+				width: 100%;
+			}
+		}
+		.card-title {
+			padding-left: 72px;
+			.contact-name {
+				font-size: 20px;
+				color: #354052;
+				margin-bottom: 10px;
+			}
+			.contact-spec{
+				color: #7f8fa4;
+				font-size: 14px;
+			}
+		}
+	}
+}
+.contact-list {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}

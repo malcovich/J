@@ -8,13 +8,14 @@
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700&amp;subset=cyrillic-ext" rel="stylesheet">
 <!--   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 	<!-- Latest compiled and minified JavaScript -->
 <!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
 	<link href="public/stylesheets/style.css" rel="stylesheet">
 </head>
 <body>
-<nav class=" main-menu "  ng-controller="NavigationController">
+<nav class="main-menu "  ng-controller="NavigationController">
   <div>
   <a href="#" class="logo">Profee</a>
     <div ng-hide="user" style="float: right">
@@ -27,26 +28,19 @@
   </div>
 </nav>
 <div class="main-block">
-  
   <div class="left-menu">
-    <div class="user-img" >
-      <img src="./public/images/user.jpg">
-    </div>
     <div class="left-menu-item">
       <a ui-sref="requests">
-        <i class="glyphicon glyphicon-ok-circle"></i>
-        <p>Requests</p>
+        <p></i>Requests</p>
       </a>
     </div>
     <div class="left-menu-item">
       <a ui-sref="contacts">
-        <i class="glyphicon glyphicon-wrench"></i>
         <p>Contacts</p>
       </a>
     </div>
     <div class="left-menu-item">
       <a ui-sref="friends">
-        <i class="glyphicon glyphicon-user"></i>
         <p>Friends</p>
       </a>
     </div>

@@ -1,34 +1,37 @@
-
-<div class="header-block">
-	<h2 class='page-title'>Contacts list</h2>
-	<span class="btn add-new" ng-click="$ctrl.open()">Add Contact</span>
+<div class="sub-header">
+    <span class="btn green-btn add-new" ng-click="$ctrl.open()">Add Contact</span>
+    <p class="counts">{{$ctrl.contactsList.length}} contacts</p>
 </div>
+<div class="inner-block">
+  <ul class="contact-list">
+  	<li ng-repeat="contact in $ctrl.contactsList" class="contact-card">
+      <div class="header-card">
+          <div class="image-block">
+            <img src="public/images/vectorpaint.png">
+          </div>
+          <div class="card-title">
+            <h5 class="contact-name">{{contact.name}}</h5>
+            <p class="contact-spec">{{contact.spec}}</p>
+          </div>
+      </div>
+  		<div class="conatact-info">
+  			<p class="contact-phone" >{{contact.phone}}</p>
+  		</div>
+  	</li>
+  </ul>
 
-<ul class="contact-list">
-	<li ng-repeat="contact in $ctrl.contactsList" class="contact-card">
-		<div class="image-block">
-			<img src="public/images/vectorpaint.png">
-		</div>
-		<div class="conatact-info">
-			<h5 class="contact-name">{{contact.name}}</h5>
-			<p class="contact-spec">{{contact.spec}}</p>
-			<p class="contact-phone" >{{contact.phone}}</p>
-		</div>
-	</li>
-</ul>
-
-<script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Add new contact</h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-    {{$ctrl.contact}}
-       <input ng-model="$ctrl.contact.name" placeholder="Contact's name">
-       <input ng-model="$ctrl.contact.spec" placeholder="Contact's spec">
-       <input ng-model="$ctrl.contact.phone" placeholder="Contact's phone">
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-    </div>
-</script>
+  <script type="text/ng-template" id="myModalContent.html">
+      <div class="modal-header">
+          <h3 class="modal-title" id="modal-title">Add new contact</h3>
+      </div>
+      <div class="modal-body" id="modal-body">
+      {{$ctrl.contact}}
+         <input ng-model="$ctrl.contact.name" placeholder="Contact's name">
+         <input ng-model="$ctrl.contact.spec" placeholder="Contact's spec">
+         <input ng-model="$ctrl.contact.phone" placeholder="Contact's phone">
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+          <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+      </div>
+</div>

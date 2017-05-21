@@ -1,0 +1,47 @@
+.sub-header {
+	height: 50px;
+	border-bottom: 1px solid #F1F2F4;
+	padding-left: 30px;
+	overflow: hidden;
+
+	.counts {
+		color: #BFC4D0;
+		line-height: 50px;
+		float: left;
+	}
+	.add-new {
+		float:right;
+		margin-top: 8px;
+	}
+}
+.friends-list {
+	border: 1px solid #F1F2F4;
+	border-radius: 4px;
+	background-color: #fff;
+	padding: 0px;
+	margin: 0px;
+	list-style:none;
+	li {
+		padding: 7px;
+		border-bottom: 1px solid #F1F2F4;
+		overflow: hidden;
+		img {
+			width: 70px;
+			float: left;
+		}
+		.info {
+			float: left;
+			padding-left: 30px;
+			padding-top: 15px;
+		}
+		.name {
+			color: #4B5262;
+			font-weight: bold;
+			margin-bottom: 3px;
+		}
+		.phone {
+			color: #ACB3BD;
+			font-size: 12px;
+		}
+	}
+}

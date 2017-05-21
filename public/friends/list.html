@@ -1,14 +1,24 @@
-<div class="header-block">
-	<h2 class='page-title'>Friends list</h2>
-	<span class="btn add-new" ng-click="$ctrl.open()">Add friend</span>
+<div class="sub-header">
+    <span class="btn green-btn add-new" ng-click="$ctrl.open()">Add friend</span>
+    <p class="counts">{{$ctrl.friendsList.length}} friends</p>
 </div>
 
-<ul class="friends-list">
-    <li ng-repeat="friend in $ctrl.friendsList">
-        {{friend._id}}   
-        {{friend.name}}
-    </li>
-</ul>
+<div class="inner-block">
+    <ul class="friends-list">
+        <li ng-repeat="friend in $ctrl.friendsList">
+            <img src="../public/images/user.jpg">
+            <div class="info">
+                 <p class="name">
+                    {{friend.name}}
+                </p>
+                <p class="phone">+ 38 068 761 67 34</p>
+            </div>
+            <!-- {{friend._id}}    -->
+        </li>
+    </ul>
+</div>
+
+
 
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
