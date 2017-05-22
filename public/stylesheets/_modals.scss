@@ -1,0 +1,34 @@
+.modal-title{
+	color:#354052;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 24px; 
+	border-color: #e6eaee;
+}
+.modal-header {
+	padding: 30px 30px 10px 30px;
+}
+.modal-body {
+	padding: 20px 30px;
+	label {
+		display: block;
+		font-size: 14px;
+		font-weight: 600;
+		color:#7f8fa4;
+		margin: 10px 0;
+	}
+	input {
+		height:34px;
+		width: 245px;
+		border: 1px solid #dfe3e9;
+		border-radius: 4px;
+		padding: 0 10px;
+	}
+}
+.modal-dialog {
+	width:305px;
+}
+.modal-footer {
+	background-color: #f0f3f8;
+	text-align:center;
+}

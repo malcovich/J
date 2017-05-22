@@ -1,3 +1,9 @@
 .main-block {
+	min-height: 100vh;
 	display: flex;
+	flex-direction: column;
+}
+.columns{ 
+	display: flex;
+	flex:1;
 }

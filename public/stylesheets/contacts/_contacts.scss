@@ -1,16 +1,19 @@
 .contact-card {
 	width: 30%;
-	float: left;
 	overflow: hidden;
 	list-style: none;
+	flex-wrap: wrap;
+	flex: 0 1 31%;
 	padding: 30px;
 	background-color: #fff;
 	margin: 0 15px 30px 15px;
+	border: 1px solid #dfe2e5;
+	border-radius: 4px;
 	.header-card {
 		overflow: hidden;
 		.image-block {
-			width: 55px;
-			height: 55px;
+			width: 58px;
+			height: 58px;
 			border-radius: 50%;
 			overflow: hidden;
 			float: left;
@@ -24,6 +27,7 @@
 				font-size: 20px;
 				color: #354052;
 				margin-bottom: 10px;
+				font-weight: 600;
 			}
 			.contact-spec{
 				color: #7f8fa4;
@@ -31,9 +35,46 @@
 			}
 		}
 	}
+	.card-description {
+		color: #7f8fa4;
+		font-size: 14px;
+		line-height: 21px;
+		border-bottom: 1px solid #dfe2e5;
+		padding-bottom: 15px;
+	}
+	.card-short-info{
+		border-bottom: 1px solid #dfe2e5;
+		display: flex;
+	    justify-content: space-between;
+	    flex-wrap: wrap;
+	    .card-short-info-item{
+			flex: 0 1 31%;
+			h5 {
+				font-weight: 600;
+				color:#7f8fa4;
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			p{
+				color: #354052;
+				font-size: 14px;
+				font-weight: 600;
+			}
+	    }
+	}
+	.card-footer {
+		.delete-card {
+			float:right;
+			margin-top: 15px;
+			margin-bottom: -15px;
+		}
+	}
 }
 .contact-list {
 	overflow: hidden;
 	margin: 0;
 	padding: 0;
+	display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }

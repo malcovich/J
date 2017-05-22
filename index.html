@@ -28,27 +28,29 @@
   </div>
 </nav>
 <div class="main-block">
-  <div class="left-menu">
-    <div class="left-menu-item">
-      <a ui-sref="requests">
-        <p></i>Requests</p>
-      </a>
+  <div class="columns">
+    <div class="left-menu">
+      <div class="left-menu-item">
+        <a ui-sref="requests">
+          <p></i>Requests</p>
+        </a>
+      </div>
+      <div class="left-menu-item">
+        <a ui-sref="contacts">
+          <p>Contacts</p>
+        </a>
+      </div>
+      <div class="left-menu-item">
+        <a ui-sref="friends">
+          <p>Friends</p>
+        </a>
+      </div>
     </div>
-    <div class="left-menu-item">
-      <a ui-sref="contacts">
-        <p>Contacts</p>
-      </a>
+    <div class="main-content">
+      <div ui-view></div>
     </div>
-    <div class="left-menu-item">
-      <a ui-sref="friends">
-        <p>Friends</p>
-      </a>
-    </div>
+    <div class="right-block"></div>
   </div>
-  <div class="main-content">
-    <div ui-view></div>
-  </div>
-  <div class="right-block"></div>
 </div>
 	
 </body>

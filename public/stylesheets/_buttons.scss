@@ -10,7 +10,26 @@
 .green-btn {
 	background-color: #38B248;
 	color: #fff;
+	font-weight: 600;
 	&:hover{
 		color: #fff;
+	}
+}
+
+.red-btn {
+	background-color: #e53840;
+	color: #fff;
+	&:hover{
+		color: #fff;
+	}
+}
+.btn-small {
+	padding-left: 12px;
+	padding-right: 12px;
+	line-height: 15px;
+	display: inline-block;
+	font-size: 12px;
+	&:hover{
+		text-decoration: none;
 	}
 }

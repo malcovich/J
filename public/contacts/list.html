@@ -14,9 +14,31 @@
             <p class="contact-spec">{{contact.spec}}</p>
           </div>
       </div>
-  		<div class="conatact-info">
-  			<p class="contact-phone" >{{contact.phone}}</p>
-  		</div>
+      <p class="card-description">I am a highly-skilled software engineer and computer 
+        science graduate with 25 years of professional experience. 
+        Software development is my greatest skill and I have an 
+        incredible attention to detail and perseverance in getting 
+        the job done, and done well.</p>
+      <div class="card-short-info">
+        <div class="card-short-info-item">
+          <h5>Rainting</h5>
+           <p></p>
+        </div>
+        <div class="card-short-info-item">
+           <h5>Rate</h5>
+           <p>4$</p>
+        </div>
+        <div class="card-short-info-item">
+           <h5>Location</h5>
+           <p>Kiev</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="btn btn-small red-btn delete-card">Delete</span>
+      </div>
+  	<!--   <div class="conatact-info">
+      <p class="contact-phone" >{{contact.phone}}</p>
+    </div> -->
   	</li>
   </ul>
 
@@ -25,13 +47,21 @@
           <h3 class="modal-title" id="modal-title">Add new contact</h3>
       </div>
       <div class="modal-body" id="modal-body">
-      {{$ctrl.contact}}
-         <input ng-model="$ctrl.contact.name" placeholder="Contact's name">
-         <input ng-model="$ctrl.contact.spec" placeholder="Contact's spec">
-         <input ng-model="$ctrl.contact.phone" placeholder="Contact's phone">
+        <div>
+          <label for="contactsName">Name</label>
+          <input ng-model="$ctrl.contact.name" placeholder="Contact's name" id="contactsName">
+        </div>
+         <div>
+        <label for="contactsPhone">Phone</label>
+          <input ng-model="$ctrl.contact.phone" placeholder="Contact's phone" id="contactsPhone">
+        </div>  
+         <div>
+          <label for="contactsName">Specification</label>
+          <input ng-model="$ctrl.contact.spec" placeholder="Contact's name" id="contactsSpec">
+        </div>  
+         
       </div>
       <div class="modal-footer">
-          <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-          <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+          <button class="btn green-btn" type="button" ng-click="$ctrl.ok()">Save</button>
       </div>
 </div>

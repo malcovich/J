@@ -5,12 +5,13 @@
 @import 'requests/_requests';
 @import 'contacts/_contacts';
 @import '_buttons';
+@import '_modals';
 
 body{
 	font-family: 'Open Sans', sans-serif;
 }
 .main-content {
-	flex-grow: 2;
+	flex: 1;
 }
 .inner-block {
 	padding: 27px;
