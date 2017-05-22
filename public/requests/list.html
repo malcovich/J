@@ -1,4 +1,3 @@
-
 <div class="inner-block">
 	<div class="form-block">
 		<form>
@@ -8,20 +7,36 @@
 	</div>
 
 	<div class="requests-block">
-			<uib-tabset active="active" class="request-tabs">
-   				<uib-tab index="0" heading="Мои запросы">
-   					<div ng-repeat="req in $ctrl.requestsList" class="my-request">
-						<h3>{{req.text}}</h3>
-						<span class="date-request"><i class="glyphicon glyphicon-calendar"></i>{{req.requestDate | date}}</span>
-						<span ng-click="$ctrl.deleteRequest(req._id)">delete</span>
-					</div>
-   				</uib-tab>
-   				<uib-tab index="1" heading="Запросы друзей">
-   					<div ng-repeat="req in $ctrl.friendsRequestsList">
-						{{req.text}}
-						{{req.requestDate | date}}
-					</div>
-   				</uib-tab>
-   			</uib-tabset>
+		<uib-tabset active="active" class="request-tabs">
+				<uib-tab index="0" heading="Мои запросы">
+					<div ng-repeat="req in $ctrl.requestsList" class="my-request">
+					<h3>{{req.text}}</h3>
+					<span class="date-request"><i class="glyphicon glyphicon-calendar"></i>{{req.requestDate | date}}</span>
+					<span ng-click="$ctrl.deleteRequest(req._id)">delete</span>
+				</div>
+				</uib-tab>
+				<uib-tab index="1" heading="Запросы друзей">
+					<div ng-repeat="req in $ctrl.friendsRequestsList">
+					{{req.text}}
+					{{req.requestDate | date}}
+					<span ng-click="$ctrl.showModal(req._id)">Ответить</span>
+				</div>
+				</uib-tab>
+			</uib-tabset>
 	</div>
 </div>
+
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Add new friend</h3>
+    </div>
+    <div class="modal-body" id="modal-body">{{$ctrl.reqId}}
+       <input ng-model="$ctrl.friend.name" placeholder="Friend's name">
+       <input ng-model="$ctrl.friend.phone" placeholder="Friend's phone">
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>
+</script>

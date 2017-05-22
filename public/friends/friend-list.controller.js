@@ -8,6 +8,7 @@ angular.module('MyApp')
 
 	$http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
       	$ctrl.friendsList = res.data;
+      	console.log($ctrl.friendsList)
       });
 
     $ctrl.open = function (size) {
@@ -47,7 +48,6 @@ angular.module('MyApp').controller('ModalInstanceCtrl', function ($uibModalInsta
   
 
   $ctrl.ok = function () {
-  	console.log(2222)
     $uibModalInstance.close($ctrl);
   };
 

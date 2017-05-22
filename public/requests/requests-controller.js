@@ -5,7 +5,7 @@ angular.module('MyApp')
   	$ctrl.friendsRequestsList = [];
 
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
-	$http.post('/api/requests/list', {'userId': $ctrl.user._id}).then(function(res){
+	  $http.post('/api/requests/list', {'userId': $ctrl.user._id}).then(function(res){
       	$ctrl.requestsList = res.data;
     });
 
@@ -14,8 +14,8 @@ angular.module('MyApp')
     });
 
   	$ctrl.save = function(){
-/*  		$ctrl.request.userId = '59198f2dd114d349cc06d240';*/
-  		$ctrl.request.userId = $ctrl.user._id;
+   		$ctrl.request.userId = '5914c111bef45904e0478f1a';
+  		// $ctrl.request.userId = $ctrl.user._id;
   		$ctrl.request.requestDate = new Date();
   		$http.post('/api/requests/add', $ctrl.request).then(function(res){
 	      	$ctrl.requestsList.push(res)
@@ -23,10 +23,51 @@ angular.module('MyApp')
   	}
 
   	$ctrl.deleteRequest = function(id){
-  		console.log(id)
 		$http.post('/api/requests/deleteRequest', {'requestId': id}).then(function(res){
-			console.log(id)
 	    });
-  	}
+  	};
+
+    $ctrl.showModal = function(id_req){
+      var modalInstance = $uibModal.open({
+        animation: $ctrl.animationsEnabled,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'myModalContent.html',
+        controller: 'ModalInstanceCtrl',
+        controllerAs: '$ctrl',
+        resolve: {
+          reqId: function(){
+            console.log(id_req)
+            return id_req;
+          },
+          friend: function () {
+            return $ctrl.friend;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (ctrl) {
+        // $ctrl.friend = ctrl.friend;
+        // $ctrl.friend.userId = $ctrl.user._id;
+        console.log(id_req)
+      //   $http.post('/api/friend/add', $ctrl.friend).then(function(res){
+      //     $ctrl.friendsList.push(res)
+      //   });
+      // }, function () {
+      //   $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
 	
 }]);
+
+angular.module('MyApp').controller('ModalInstanceCtrl', function ($uibModalInstance, reqId) {
+  var $ctrl = this;
+  $ctrl.ok = function () {
+    $uibModalInstance.close($ctrl);
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
+

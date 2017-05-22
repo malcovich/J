@@ -197,6 +197,10 @@
   justify-content: space-between;
   flex-wrap: wrap; }
 
+@media (max-width: 1500px) {
+  .contact-card {
+    flex: 0 1 47%; } }
+
 .btn {
   padding-left: 22px;
   padding-right: 22px;
