@@ -19,7 +19,7 @@
 					<div ng-repeat="req in $ctrl.friendsRequestsList">
 					{{req.text}}
 					{{req.requestDate | date}}
-					<span ng-click="$ctrl.showModal(req._id)">Ответить</span>
+					<a ui-sref="request({reqId: req._id})">Ответить</a>
 				</div>
 				</uib-tab>
 			</uib-tabset>

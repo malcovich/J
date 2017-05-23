@@ -30,5 +30,11 @@
 					controller: "RequestsListController",
 					controllerAs: '$ctrl'
 				})
+				.state('request', {
+					url: "/requests/:reqId",
+					templateUrl: "/public/requests/request.html",
+					controller: "RequestController",
+					controllerAs: '$ctrl'
+				})
 		})
 }());
