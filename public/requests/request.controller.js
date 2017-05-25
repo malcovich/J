@@ -11,7 +11,7 @@ angular.module('MyApp')
     });
 
     $http.post('/api/request/all', {'userId': $ctrl.user._id}).then(function(res){
-      $ctrl.allRequests res.data;
+      $ctrl.allRequests =  res.data;
     })
   	$ctrl.save = function(){
 /*   		$ctrl.request.userId = '5914c111bef45904e0478f1a';*/

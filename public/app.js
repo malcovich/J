@@ -20,7 +20,7 @@
 				})
 				.state('contact', {
 					url: "/contacts/details",
-					tamplateUrl: "/public/contacts/contact-details.html",
+					templateUrl: "/public/contacts/contact-details.html",
 					controller: "ContactDetailsController",
 					controllerAs: '$ctrl'
 				})
