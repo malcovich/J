@@ -4,6 +4,7 @@ angular.module('MyApp')
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
 	$http.post('/api/contact/list', {'userId': $ctrl.user._id}).then(function(res){
       	$ctrl.contactsList = res.data;
+      	console.log('list', res.data)
       });
 
   	$ctrl.contactsList = [];

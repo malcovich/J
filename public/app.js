@@ -18,6 +18,12 @@
 					controller: "ContactsListController",
 					controllerAs: '$ctrl'
 				})
+				.state('contact', {
+					url: "/contacts/details",
+					tamplateUrl: "/public/contacts/contact-details.html",
+					controller: "ContactDetailsController",
+					controllerAs: '$ctrl'
+				})
 				.state('friends', {
 					url: "/friends",
 					templateUrl: "/public/friends/list.html",

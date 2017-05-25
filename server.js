@@ -7,6 +7,7 @@ var multipartMiddleware = multipart();
 var app = express();
 var authenticationController = require('./server/controllers/authentication-controller');
 var conatactController = require('./server/controllers/contact-controller');
+var conatactDetailsController = require('./server/controllers/contact-controller');
 var friendController = require('./server/controllers/friends-controller');
 var requestController = require('./server/controllers/requests-controller');
 var globalController = require('./server/controllers/global-controller')
