@@ -10,6 +10,10 @@ angular.module('MyApp')
         $ctrl.request = res.data[0];
     });
 
+    $http.post('/api/contact/all',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
+        $ctrl.allContatcts = res.data;
+    });
+
     $http.post('/api/request/all', {'userId': $ctrl.user._id}).then(function(res){
       $ctrl.allRequests =  res.data;
     })

@@ -21,7 +21,6 @@ module.exports.list = function(req, res){
 }
 
 module.exports.getItem = function(req, res){
-	console.log(req.param('reqId'))
 	Request.find({_id : req.param('reqId')}, function (err, result) {
        res.json(result);
     });
