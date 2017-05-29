@@ -12,11 +12,12 @@ angular.module('MyApp')
 
     $http.post('/api/contact/all',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
         $ctrl.allContatcts = res.data;
+        console.log($ctrl.allContatcts)
     });
 
-    $http.post('/api/request/all', {'userId': $ctrl.user._id}).then(function(res){
+    /*$http.post('/api/request/all', {'userId': $ctrl.user._id}).then(function(res){
       $ctrl.allRequests =  res.data;
-    })
+    })*/
   	$ctrl.save = function(){
 /*   		$ctrl.request.userId = '5914c111bef45904e0478f1a';*/
   		$ctrl.request.userId = $ctrl.user._id;
@@ -27,10 +28,7 @@ angular.module('MyApp')
   	}
 
   	$ctrl.openModalfromNet = function (size) {
-      // var parentElem = parentSelector ? 
-      //   angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
       var modalInstance = $uibModal.open({
-        animation: $ctrl.animationsEnabled,
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
         templateUrl: 'myModalContent.html',
@@ -38,8 +36,8 @@ angular.module('MyApp')
         controllerAs: '$ctrl',
         size: size,
         resolve: {
-          friend: function () {
-            return $ctrl.friend;
+          contacts: function () {
+            return $ctrl.allContatcts;
           }
         }
       });
@@ -61,7 +59,7 @@ angular.module('MyApp')
 angular.module('MyApp').controller('ModalInstanceCtrl', function ($uibModalInstance) {
   var $ctrl = this;
   
-
+  console.log('2',$ctrl, $ctrl.contacts)
   $ctrl.ok = function () {
     $uibModalInstance.close($ctrl);
   };

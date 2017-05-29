@@ -31,7 +31,8 @@ angular.module('MyApp')
 /*	    modalInstance.result.then(function (contact) {
 	      $ctrl.contact = contact;
 	      console.log($ctrl.contact)*/
-	      $ctrl.contact.userId = $ctrl.user._id;
+	      /*$ctrl.contact.userId = $ctrl.user._id;*/
+	      $ctrl.contact.userId = '59198f2dd114d349cc06d240';
 	      console.log( $ctrl.contact)
 	      $http.post('/api/contact/add', $ctrl.contact).then(function(res){
 	      	console.log(res)

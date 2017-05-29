@@ -14,9 +14,10 @@
     <div class="modal-header">
         <h3 class="modal-title" id="modal-title">Add new friend</h3>
     </div>
-    <div class="modal-body" id="modal-body">{{$ctrl.reqId}}
-       <input ng-model="$ctrl.friend.name" placeholder="Friend's name">
-       <input ng-model="$ctrl.friend.phone" placeholder="Friend's phone">
+    <div class="modal-body" id="modal-body">        
+    {{$ctrl.contacts}}
+    <div ng-repeat="item in $ctrl.contacts">
+    {{item}}
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
