@@ -24,7 +24,6 @@ module.exports.all = function(req, res){
        			}
        			reslt[item.userId].push(item);
        		})
-       		console.log('1',result, reslt)
 	        res.json(reslt);
 	    });
     });

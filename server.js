@@ -41,6 +41,8 @@ app.post('/api/requests/list', requestController.list);
 app.post('/api/requests/item', requestController.getItem);
 app.post('/api/requests/listFriendsRequests', requestController.listFriendsRequests);
 app.post('/api/requests/deleteRequest', requestController.deleteRequest);
+app.post('/api/requests/saveAnswer', requestController.saveAnswer);
+app.post('/api/requests/getAnswer', requestController.getAnswer);
 
 app.post('/api/global/add', globalController.add);
 app.get('/api/global/list', globalController.list);

@@ -12,7 +12,10 @@ angular.module('MyApp')
 
     $http.post('/api/contact/all',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
         $ctrl.allContatcts = res.data;
-        console.log($ctrl.allContatcts)
+    });
+    $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
+        $ctrl.myAnswer = res.data;
+        $ctrl.selectedContacts = res.data[0].contacts;
     });
 
     /*$http.post('/api/request/all', {'userId': $ctrl.user._id}).then(function(res){
@@ -43,11 +46,23 @@ angular.module('MyApp')
       });
 
       modalInstance.result.then(function (ctrl) {
-        $ctrl.friend = ctrl.friend;
-        $ctrl.friend.userId = $ctrl.user._id;
-        console.log($ctrl.friend)
-        $http.post('/api/friend/add', $ctrl.friend).then(function(res){
-          $ctrl.friendsList.push(res)
+        $ctrl.selectedContacts = [];
+        var contactsId = []
+        for(friend in ctrl.contacts){
+          ctrl.contacts[friend].forEach(function(contact){
+            if(contact.selected){
+              $ctrl.selectedContacts.push(contact)
+              contactsId.push(contact._id)
+            };
+          });
+        };
+        var answer = {
+          'requestId': $stateParams.reqId,
+          'userId': $ctrl.user._id,
+          'contacts' :contactsId
+        }
+        $http.post('/api/requests/saveAnswer', answer).then(function(){
+          console.log('Save');
         });
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
@@ -56,10 +71,10 @@ angular.module('MyApp')
 	
 }]);
 
-angular.module('MyApp').controller('ModalInstanceCtrl', function ($uibModalInstance) {
+angular.module('MyApp').controller('ModalInstanceCtrl',  function ($uibModalInstance,contacts) {
   var $ctrl = this;
+  $ctrl.contacts = contacts;
   
-  console.log('2',$ctrl, $ctrl.contacts)
   $ctrl.ok = function () {
     $uibModalInstance.close($ctrl);
   };
