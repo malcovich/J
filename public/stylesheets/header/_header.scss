@@ -17,8 +17,13 @@
 	margin-left: 30px;
 	display: block;
 	color: #354052;
+	width: 400px;
+	float:left;
 	&:hover {
 		color: #354052;
 		text-decoration: none;
 	}
+}
+.user-block {
+	float:right;
 }

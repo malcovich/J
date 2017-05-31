@@ -1,52 +1,50 @@
 <div class="inner-block">
 	<div class="request-block">
-		<div class="reqest-header">
-			<h4>{{$ctrl.request.text}}</h4>
+		<div class="request-header">
+            <div  class="request-autor">
+                <img src="public/images/vectorpaint.png" alt="">
+            </div>
+            <div class="request-autor-info">
+                <h4>{{$ctrl.request.text}}</h4>
+                <p>{{$ctrl.request.requestDate}}</p>
+            </div>
 		</div>
 		<div class="request-body">
-			<span ng-click="$ctrl.openModalfromNet()">Выбрать из сети</span>
-			<span>Предложить новый контакт</span>
+            <p class="request-text">{{$ctrl.request.text}}</p>
+            <div ng-hide="$ctrl.request.userId == $ctrl.user._id">
+                <p class="titleForContacs" ng-show="$ctrl.selectedContacts.length > 0">Вы предложили {{$ctrl.selectedContacts.length}} контакта:</p>
+                <div ng-hide="$ctrl.selectedContacts.length > 0">
+        			<span ng-click="$ctrl.openModalfromNet()">Выбрать из сети</span>
+        			<span>Предложить новый контакт</span>
+                </div>
+                <div class="my-answer">
+                    <ul class="contact-list">
+                        <li ng-repeat="contact in $ctrl.selectedContacts" class="contact-card">
+                          <div class="header-card">
+                              <div class="image-block">
+                                <img src="public/images/vectorpaint.png">
+                              </div>
+                              <div class="card-title">
+                                <h5 class="contact-name">{{contact.name}}</h5>
+                                <p class="contact-spec">{{contact.spec}}</p>
+                              </div>
+                          </div>
+                        <!--   <div class="conatact-info">
+                          <p class="contact-phone" >{{contact.phone}}</p>
+                        </div> -->
+                        </li>
+                      </ul>
+                </div>
+            </div>
+            <div ng-show="$ctrl.request.userId == $ctrl.user._id">
+                <div ng-repeat="answer in $ctrl.allAnswers">
+                    <div ng-repeat="contact in answer.contacts">
+                        {{contact.name}}
+                    </div>
+                </div>
+            </div>
 		</div>
-        <div class="my-answer">
-            <ul class="contact-list">
-                <li ng-repeat="contact in $ctrl.selectedContacts" class="contact-card">
-                  <div class="header-card">
-                      <div class="image-block">
-                        <img src="public/images/vectorpaint.png">
-                      </div>
-                      <div class="card-title">
-                        <h5 class="contact-name">{{contact.name}}</h5>
-                        <p class="contact-spec">{{contact.spec}}</p>
-                      </div>
-                  </div>
-                  <p class="card-description">I am a highly-skilled software engineer and computer 
-                    science graduate with 25 years of professional experience. 
-                    Software development is my greatest skill and I have an 
-                    incredible attention to detail and perseverance in getting 
-                    the job done, and done well.</p>
-                  <div class="card-short-info">
-                    <div class="card-short-info-item">
-                      <h5>Rainting</h5>
-                       <p></p>
-                    </div>
-                    <div class="card-short-info-item">
-                       <h5>Rate</h5>
-                       <p>4$</p>
-                    </div>
-                    <div class="card-short-info-item">
-                       <h5>Location</h5>
-                       <p>Kiev</p>
-                    </div>
-                  </div>
-                  <div class="card-footer">
-                    <span class="btn btn-small red-btn delete-card">Delete</span>
-                  </div>
-                <!--   <div class="conatact-info">
-                  <p class="contact-phone" >{{contact.phone}}</p>
-                </div> -->
-                </li>
-              </ul>
-        </div>
+        
 	</div>
 </div>
 

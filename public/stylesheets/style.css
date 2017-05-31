@@ -16,10 +16,15 @@
   font-weight: 600;
   margin-left: 30px;
   display: block;
-  color: #354052; }
+  color: #354052;
+  width: 400px;
+  float: left; }
   .logo:hover {
     color: #354052;
     text-decoration: none; }
+
+.user-block {
+  float: right; }
 
 .left-menu {
   width: 250px;
@@ -130,6 +135,59 @@
     .my-request .date-request i {
       display: inline-block;
       margin-right: 4px; }
+
+.request-block {
+  border: 1px solid #dfe2e5; }
+  .request-block .request-header {
+    overflow: hidden;
+    background-color: #fff;
+    padding: 19px 30px;
+    border-bottom: 1px solid #dfe2e5; }
+    .request-block .request-header h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #354052; }
+    .request-block .request-header .request-autor {
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+      float: left;
+      border-radius: 50%; }
+      .request-block .request-header .request-autor img {
+        width: 100%; }
+    .request-block .request-header .request-autor-info {
+      float: left;
+      margin-left: 18px; }
+  .request-block .request-body {
+    padding: 25px 30px;
+    background-color: #fafbfc; }
+    .request-block .request-body .titleForContacs {
+      margin: 15px 0; }
+    .request-block .request-body .request-text {
+      padding: 0 30px 25px 30px;
+      margin: 0 -30px;
+      border-bottom: 1px solid #dfe2e5;
+      font-size: 14px;
+      color: #354052; }
+    .request-block .request-body .contact-card {
+      padding: 10px 30px;
+      flex: 0 1 49%;
+      margin: 0; }
+      .request-block .request-body .contact-card .header-card .image-block {
+        width: 40px;
+        height: 40px; }
+      .request-block .request-body .contact-card .card-title {
+        float: left;
+        overflow: hidden;
+        padding-left: 14px; }
+        .request-block .request-body .contact-card .card-title .contact-name {
+          float: left;
+          font-size: 14px;
+          color: #354052;
+          line-height: 22px; }
+        .request-block .request-body .contact-card .card-title .contact-spec {
+          float: left;
+          margin: 10px 25px; }
 
 .contact-card {
   width: 30%;

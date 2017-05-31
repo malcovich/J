@@ -3,11 +3,18 @@ angular.module('MyApp')
   	var $ctrl = this;
     $ctrl.requestsList = [];
   	$ctrl.allRequests = [];
+    /*id =591c7028ad30f137f06c8559*/
 
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
 
     $http.post('/api/requests/item', {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
         $ctrl.request = res.data[0];
+        if($ctrl.user._id == $ctrl.request.userId){
+          $http.post('/api/requests/getAllAnswers', {'reqId': $stateParams.reqId}).then(function(res){
+              $ctrl.allAnswers = res.data;
+              console.log($ctrl.allAnswers)
+          }); 
+        }
     });
 
     $http.post('/api/contact/all',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
@@ -15,8 +22,9 @@ angular.module('MyApp')
     });
     $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
         $ctrl.myAnswer = res.data;
-        $ctrl.selectedContacts = res.data[0].contacts;
+        $ctrl.selectedContacts = res.data[0] ? res.data[0].contacts: [];
     });
+
 
     /*$http.post('/api/request/all', {'userId': $ctrl.user._id}).then(function(res){
       $ctrl.allRequests =  res.data;

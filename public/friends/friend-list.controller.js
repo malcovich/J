@@ -4,7 +4,7 @@ angular.module('MyApp')
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
 
   	$ctrl.friendsList = [];
-
+  	console.log($ctrl.user._id)
 
 	$http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
       	$ctrl.friendsList = res.data;

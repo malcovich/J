@@ -12,20 +12,21 @@ module.exports.add = function(req, res){
 }
 
 module.exports.list = function(req, res){
-	Request.find({ $and: [ {userId : req.param('userId')}, {deleted: false}]}, function (err, result) {
+	console.log(req.param('userId'))
+	Request.find({userId : req.param('userId')}, {deleted: false}, function (err, result) {
        res.json(result);
     });
 }
 
 module.exports.getItem = function(req, res){
-	Request.find({_id : req.param('reqId')}, function (err, result) {
+	Request.find({_id : req.param('reqId')}).exec(function (err, result) {
        res.json(result);
     });
 }
 
 module.exports.listFriendsRequests = function(req, res){
 	Friend.find({ userId : req.param('userId')}, function (err, result) {
-		var ids = result.map(function(item){return item._id});
+		var ids = result.map(function(item){return item.friendId});
 		Request.find({ userId :  {$in: ids}}, function (err, result) {
 	       res.json(result);
 	    });
@@ -62,4 +63,9 @@ module.exports.getAnswer = function(req, res){
 		    res.json(result);
 		}); 
 }
-
+module.exports.getAllAnswers = function(req, res){
+	Answer.find({requestId: req.param('reqId')}).populate('contacts').populate('userId')
+		.exec(function(err, result) {
+		    res.json(result);
+		}); 
+}

@@ -16,14 +16,15 @@
 <body>
 <nav class="main-menu "  ng-controller="NavigationController">
   <div>
-  <a href="#" class="logo">Profee</a>
+ 
     <div ng-hide="user" style="float: right">
         <input type="text" ng-model="login.email">
         <input type="password" ng-model="login.password">
         <button ng-click="logUserIn()">Login</button>
         <a ui-sref="signUp">Create User</a>
     </div>
-    <span ng-click="logUserOut()" ng-show="user" style="float: right">Log out</span>
+    <span ng-click="logUserOut()" ng-show="user"  class="user-block">Log out</span>
+     <a href="#" class="logo">Profee</a>
   </div>
 </nav>
 <div class="main-block">

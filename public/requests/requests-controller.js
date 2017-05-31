@@ -3,12 +3,17 @@ angular.module('MyApp')
   	var $ctrl = this;
 
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
-
-	 
+   
+    $ctrl.requestsList = [];
+    $http.post('/api/requests/list', {'userId': $ctrl.user._id}).then(function(res){
+      $ctrl.requestsList = res.data;
+    });
 
     $http.post('/api/requests/listFriendsRequests', {'userId': $ctrl.user._id}).then(function(res){
-    	$ctrl.friendsRequestsList = res.data;
+      $ctrl.friendsRequestsList = res.data;
     });
+
+  
 
   	$ctrl.save = function(){
 /*   		$ctrl.request.userId = '5914c111bef45904e0478f1a';*/
