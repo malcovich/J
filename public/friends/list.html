@@ -5,7 +5,7 @@
 
 <div class="inner-block">
     <ul class="friends-list">
-        <li ng-repeat="friend in $ctrl.friendsList">
+        <li ng-repeat="friend in $ctrl.friendsList" ui-sref="friend({id : friend._id})">
             <img src="../public/images/user.jpg">
             <div class="info">
                  <p class="name">

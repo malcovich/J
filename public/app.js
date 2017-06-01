@@ -30,6 +30,12 @@
 					controller: "FriendsListController",
 					controllerAs: '$ctrl'
 				})
+				.state('friend', {
+					url: "/friends/:id",
+					templateUrl: "/public/friends/item.html",
+					controller: "FriendController",
+					controllerAs: '$ctrl'
+				})
 				.state('requests', {
 					url: "/requests",
 					templateUrl: "/public/requests/list.html",
