@@ -6,5 +6,5 @@ module.exports = mongoose.model('Contact', {
 	place: String,
 	raiting: String,
 	description: String,
-	userId: String
+	userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 }); 

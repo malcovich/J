@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Friend = require('../datasets/friend');
+var Contact = require('../datasets/contact');
 module.exports.add = function(req, res){
 	var friend = new Friend(req.body);
 	friend.save();
@@ -10,6 +11,15 @@ module.exports.list = function(req, res){
 	Friend.find({ userId : req.param('userId')}, function (err, result) {
 		console.log(result)
        res.json(result);
+    });
+}
+
+module.exports.item = function(req, res){
+	Friend.find({ _id : req.param('id')}).populate('friendId').exec(function (err, result) {
+		Contact.find({ userId: result[0].friendId}).exec(function (err, contacts) {
+			console.log(result)
+        	res.json({'friend': result, 'contacts':contacts });
+		});
     });
 }
 

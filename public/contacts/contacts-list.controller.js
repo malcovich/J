@@ -1,12 +1,18 @@
 angular.module('MyApp')
-  .controller('ContactsListController', ['$scope', '$log', 'UserFactory', '$uibModal', '$http', function($scope, $log, UserFactory, $uibModal, $http){
+  .controller('ContactsListController', ['$scope', '$log', 'UserFactory', '$uibModal', '$http','$state', function($scope, $log, UserFactory, $uibModal, $http, $state){
   	var $ctrl = this;
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
-	$http.post('/api/contact/list', {'userId': $ctrl.user._id}).then(function(res){
-      	$ctrl.contactsList = res.data;
-      });
 
-  	$ctrl.contactsList = [];
+  	if (!$ctrl.user){
+  		$state.go('main');
+  	}else {
+  		$ctrl.contactsList = [];
+
+		$http.post('/api/contact/list', {'userId': $ctrl.user._id}).then(function(res){
+	      	$ctrl.contactsList = res.data;
+	    });
+	}
+
     $ctrl.open = function (size) {
 	    // var parentElem = parentSelector ? 
 	    //   angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;

@@ -1,18 +1,21 @@
 angular.module('MyApp')
-  .controller('RequestsListController', ['$scope', '$log', 'UserFactory', '$uibModal', '$http', '$stateParams', function($scope, $log, UserFactory, $uibModal, $http, $stateParams){
+  .controller('RequestsListController', ['$scope', 'UserFactory', '$http', '$stateParams','$state', function($scope, UserFactory, $http, $stateParams, $state){
   	var $ctrl = this;
 
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
+    if (!$ctrl.user){
+      $state.go('main');
+    }else {
    
-    $ctrl.requestsList = [];
-    $http.post('/api/requests/list', {'userId': $ctrl.user._id}).then(function(res){
-      $ctrl.requestsList = res.data;
-    });
+      $ctrl.requestsList = [];
+      $http.post('/api/requests/list', {'userId': $ctrl.user._id}).then(function(res){
+        $ctrl.requestsList = res.data;
+      });
 
-    $http.post('/api/requests/listFriendsRequests', {'userId': $ctrl.user._id}).then(function(res){
-      $ctrl.friendsRequestsList = res.data;
-    });
-
+      $http.post('/api/requests/listFriendsRequests', {'userId': $ctrl.user._id}).then(function(res){
+        $ctrl.friendsRequestsList = res.data;
+      });
+    }
   
 
   	$ctrl.save = function(){

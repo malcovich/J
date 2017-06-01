@@ -35,6 +35,7 @@ app.post('/api/contact/all', conatactController.all);
 
 app.post('/api/friend/add', friendController.add);
 app.post('/api/friend/list', friendController.list);
+app.post('/api/friend/item', friendController.item);
 
 app.post('/api/requests/add', requestController.add);
 app.post('/api/requests/list', requestController.list);

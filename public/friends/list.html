@@ -25,11 +25,11 @@
         <h3 class="modal-title" id="modal-title">Add new friend</h3>
     </div>
     <div class="modal-body" id="modal-body">
-       <input ng-model="$ctrl.friend.name" placeholder="Friend's name">
-       <input ng-model="$ctrl.friend.phone" placeholder="Friend's phone">
+       <input ng-model="vm.friend.name" placeholder="Friend's name">
+       <input ng-model="vm.friend.phone" placeholder="Friend's phone">
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
     </div>
 </script>

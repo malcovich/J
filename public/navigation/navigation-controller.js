@@ -20,7 +20,7 @@
 				UserFactory.setUser(undefined);
 				$scope.user = undefined
 				$scope.$broadcast('userLogout');
-				$state.go('landing');
+				$state.go('main');
 			}
 		}])
 }())
