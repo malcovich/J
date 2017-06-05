@@ -17,23 +17,23 @@
         			<span ng-click="$ctrl.openModalfromNet()">Выбрать из сети</span>
         			<span>Предложить новый контакт</span>
                 </div>
-                <div class="my-answer">
-                    <ul class="contact-list">
-                        <li ng-repeat="contact in $ctrl.selectedContacts" class="contact-card">
-                          <div class="header-card">
-                              <div class="image-block">
-                                <img src="public/images/vectorpaint.png">
+                <div>
+                    <p ng-click="$ctrl.openModalfromNet()">Редактировать</p>
+                    <div class="my-answer">
+                        <ul class="contact-list">
+                            <li ng-repeat="contact in $ctrl.selectedContacts" class="contact-card">
+                              <div class="header-card">
+                                  <div class="image-block">
+                                    <img src="public/images/vectorpaint.png">
+                                  </div>
+                                  <div class="card-title">
+                                    <h5 class="contact-name">{{contact.name}}</h5>
+                                    <p class="contact-spec">{{contact.spec}}</p>
+                                  </div>
                               </div>
-                              <div class="card-title">
-                                <h5 class="contact-name">{{contact.name}}</h5>
-                                <p class="contact-spec">{{contact.spec}}</p>
-                              </div>
-                          </div>
-                        <!--   <div class="conatact-info">
-                          <p class="contact-phone" >{{contact.phone}}</p>
-                        </div> -->
-                        </li>
-                      </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div ng-show="$ctrl.request.userId == $ctrl.user._id">
@@ -55,7 +55,7 @@
     <div class="modal-body" id="modal-body">        
     <div >
     <uib-accordion>
-        <div uib-accordion-group class="panel-default" heading='te' ng-repeat=" item in $ctrl.contacts">
+        <div uib-accordion-group class="panel-default" heading='te' ng-repeat=" item in vm.contacts">
             <ul>
                 <li ng-repeat="p in  item ">
                     <input type="checkbox" ng-model="p.selected">
@@ -66,7 +66,7 @@
     </uib-accordion>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
     </div>
 </script>

@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('RequestsListController', ['$scope', 'UserFactory', '$http', '$stateParams','$state', function($scope, UserFactory, $http, $stateParams, $state){
+  .controller('RequestsListController', ['$scope', 'UserFactory', '$http', '$stateParams','$state','ModalFactory', function($scope, UserFactory, $http, $stateParams, $state,ModalFactory){
   	var $ctrl = this;
 
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
@@ -25,11 +25,23 @@ angular.module('MyApp')
   		$http.post('/api/requests/add', $ctrl.request).then(function(res){
 	      	$ctrl.requestsList.push(res)
 	    });
-  	}
+  	};
 
   	$ctrl.deleteRequest = function(id){
-  		$http.post('/api/requests/deleteRequest', {'requestId': id}).then(function(res){});
+  		$http.post('/api/requests/deleteRequest', {'requestId': id}).then(function(res){
+        $ctrl.requestsList.forEach(function(item, k){
+          if(item._id == id){
+            $ctrl.requestsList.splice(k,1)
+          }
+        })
+      });
   	};
+
+    $ctrl.change = function(request){
+      ModalFactory.editRequest('myModalContent.html', 'ModalInstanceEditRequestCtrl',request).then(function(ctrl){
+        console.log(ctrl.request)
+      })
+    };
 	
 }]);
 

@@ -13,6 +13,7 @@
 					<h3 ui-sref="request({reqId: req._id})">{{req.text}}</h3>
 					<span class="date-request"><i class="glyphicon glyphicon-calendar"></i>{{req.requestDate | date}}</span>
 					<span ng-click="$ctrl.deleteRequest(req._id)">delete</span>
+					<span ng-click="$ctrl.change(req)">Редактировать</span>
 				</div>
 				</uib-tab>
 				<uib-tab index="1" heading="Запросы друзей">
@@ -29,14 +30,13 @@
 
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Add new friend</h3>
+        <h3 class="modal-title" id="modal-title">Отредактируйте ваш запрос</h3>
     </div>
-    <div class="modal-body" id="modal-body">{{$ctrl.reqId}}
-       <input ng-model="$ctrl.friend.name" placeholder="Friend's name">
-       <input ng-model="$ctrl.friend.phone" placeholder="Friend's phone">
+    <div class="modal-body" id="modal-body">
+      <textarea class="text-area" ng-model="vm.request.text">{{vm.request.text}}</textarea>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
     </div>
 </script>

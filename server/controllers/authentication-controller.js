@@ -1,9 +1,14 @@
 var mongoose = require('mongoose');
 var User = require('../datasets/users');
+var Contact = require('../datasets/contact');
 module.exports.signup = function(req, res){
-	var user = new User(req.body);
-	user.save();
+	if(req.body.role == "customer"){
+		var user = new User(req.body);
+		user.save();
+	}else {
 
+	}
+	
 	res.json(req.body);
 }
 
@@ -16,4 +21,11 @@ module.exports.login = function(req,res){
 			res.json(results[0])
 		}
 	})
+}
+
+module.exports.updateProfile = function(req, res){
+	User.findByIdAndUpdate(req.body._id , {'name': req.body.name}, {new: true},function(err, u) {
+		console.log('u',u)
+	  	if (err) {throw err;}else {res.json(u)}
+	});
 }

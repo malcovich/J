@@ -28,6 +28,7 @@ app.get('/', function(req, res){
 
 app.post('/api/user/signup', authenticationController.signup)
 app.post('/api/user/login', authenticationController.login)
+app.post('/api/user/updateProfile', authenticationController.updateProfile)
 
 app.post('/api/contact/add', conatactController.add);
 app.post('/api/contact/list', conatactController.list);

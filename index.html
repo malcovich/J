@@ -23,7 +23,10 @@
         <button ng-click="logUserIn()">Login</button>
         <a ui-sref="signUp">Create User</a>
     </div>
-    <span ng-click="logUserOut()" ng-show="user"  class="user-block">Log out</span>
+    <div class="user-block">
+      <span ng-click="logUserOut()" ng-show="user"  class="">Log out</span>
+      <span ui-sref="profile">{{user.name}} @</span>
+    </div>
      <a href="#" class="logo">Profee</a>
   </div>
 </nav>
@@ -43,6 +46,16 @@
       <div class="left-menu-item">
         <a ui-sref="friends">
           <p>Friends</p>
+        </a>
+      </div>
+       <div class="left-menu-item">
+        <a ui-sref="worker(user._id)">
+          <p>Page for user</p>
+        </a>
+      </div>
+      <div class="left-menu-item">
+        <a ui-sref="workerAdmin">
+          <p>Admin</p>
         </a>
       </div>
     </div>
@@ -71,7 +84,12 @@
 <script type="text/javascript" src="public/friends/friend.controller.js"></script>
 <script type="text/javascript" src="public/requests/requests-controller.js"></script>
 <script type="text/javascript" src="public/requests/request.controller.js"></script>
+<script type="text/javascript" src="public/profile/profile.controller.js"></script>
+<script type="text/javascript" src="public/workers/worker.controller.js"></script>
+<script type="text/javascript" src="public/workers/worker-admin.controller.js"></script>
 <script type="text/javascript" src="public/controllers/modal.controller.js"></script>
+<script type="text/javascript" src="public/controllers/modal-request.controller.js"></script>
+<script type="text/javascript" src="public/controllers/modal-edit-request.controller.js"></script>
 <script type="text/javascript" src="public/common/services/user-service.js"></script>
 <script type="text/javascript" src="public/common/services/modal-service.js"></script>
 </html>

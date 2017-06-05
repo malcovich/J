@@ -49,19 +49,19 @@
       <div class="modal-body" id="modal-body">
         <div>
           <label for="contactsName">Name</label>
-          <input ng-model="$ctrl.contact.name" placeholder="Contact's name" id="contactsName">
+          <input ng-model="vm.contact.name" placeholder="Contact's name" id="contactsName">
         </div>
          <div>
         <label for="contactsPhone">Phone</label>
-          <input ng-model="$ctrl.contact.phone" placeholder="Contact's phone" id="contactsPhone">
+          <input ng-model="vm.contact.phone" placeholder="Contact's phone" id="contactsPhone">
         </div>  
          <div>
           <label for="contactsName">Specification</label>
-          <input ng-model="$ctrl.contact.spec" placeholder="Contact's name" id="contactsSpec">
+          <input ng-model="vm.contact.spec" placeholder="Contact's name" id="contactsSpec">
         </div>  
          
       </div>
       <div class="modal-footer">
-          <button class="btn green-btn" type="button" ng-click="$ctrl.ok()">Save</button>
+          <button class="btn green-btn" type="button" ng-click="vm.ok()">Save</button>
       </div>
 </div>

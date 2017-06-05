@@ -13,6 +13,36 @@ angular.module('MyApp').factory('ModalFactory', function($uibModal) {
         };
 
         return $uibModal.open(options).result;
+    };
+
+    service.openRequestModal = function(template, controller, contacts){
+        var options = {
+            templateUrl: template,
+            controller: controller,
+            controllerAs: 'vm',
+            backdrop: 'static',
+            resolve: {
+                contacts : function(){
+                    return contacts
+                }
+            }
+        }
+        return $uibModal.open(options).result;
+    }
+
+    service.editRequest = function(template, controller, request){
+        var options = {
+            templateUrl: template,
+            controller: controller,
+            controllerAs: 'vm',
+            backdrop: 'static',
+            resolve: {
+                request : function(){
+                    return request
+                }
+            }
+        }
+        return $uibModal.open(options).result;
     }
 
   	return service;

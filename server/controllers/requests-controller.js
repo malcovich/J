@@ -3,7 +3,6 @@ var Request = require('../datasets/request');
 var Friend = require('../datasets/friend');
 var Answer = require('../datasets/answer');
 var Constact = require('../datasets/contact');
-var Az = require('az');
 module.exports.add = function(req, res){
 	var request = new Request(req.body);
 	request.deleted = false;
@@ -13,7 +12,8 @@ module.exports.add = function(req, res){
 
 module.exports.list = function(req, res){
 	console.log(req.param('userId'))
-	Request.find({userId : req.param('userId')}, {deleted: false}, function (err, result) {
+	Request.find({$and : [{userId : req.param('userId')}, {deleted: false}]}, function (err, result) {
+		console.log(result)
        res.json(result);
     });
 }
@@ -27,7 +27,7 @@ module.exports.getItem = function(req, res){
 module.exports.listFriendsRequests = function(req, res){
 	Friend.find({ userId : req.param('userId')}, function (err, result) {
 		var ids = result.map(function(item){return item.friendId});
-		Request.find({ userId :  {$in: ids}}, function (err, result) {
+		Request.find({$and :[{ userId :  {$in: ids}}, {'deleted': false}]}, function (err, result) {
 	       res.json(result);
 	    });
 
@@ -35,7 +35,8 @@ module.exports.listFriendsRequests = function(req, res){
 }
 
 module.exports.deleteRequest = function(req, res){
-	Request.findByIdAndUpdate(req.body.requestId , { deleted: true }, function(err, user) {
+	Request.findByIdAndUpdate(req.body.requestId , { 'deleted': true }, {new :true}, function(err, request) {
+		res.json(request)
 	  if (err) throw err;
 	});
 }

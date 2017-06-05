@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('ContactsListController', ['$scope', '$log', 'UserFactory', '$uibModal', '$http','$state','ModalFactory', function($scope, $log, UserFactory, $uibModal, $http, $state, ModalFactory){
+  .controller('WorkerAdminController', ['$scope', '$log', 'UserFactory', '$http', '$state', 'ModalFactory', function($scope, $log, UserFactory, $http, $state, ModalFactory){
   	var $ctrl = this;
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
 

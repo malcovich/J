@@ -1,5 +1,6 @@
 <div class="row">
-	<div class="col-sm-6 col-sm-offset-3">
+	<input type="checkbox" ng-model="showCustomer" ng-change="!showCustomer">
+	<div class="col-sm-6 col-sm-offset-3" ng-show="showCustomer">
 		<div class="row">
 			<strong>Email Address:</strong>
 			<input type="text" ng-model="newUser.email" class="form-control">
@@ -14,5 +15,23 @@
 		</div>
 
 		<button ng-click="createUser()">Submit</button>
+	</div>
+
+	<div class="col-sm-6 col-sm-offset-3" ng-hide="showCustomer">
+		New Contacts
+		<div class="row">
+			<strong>Name contact:</strong>
+			<input type="text" ng-model="newContact.name" class="form-control">
+		</div>
+
+		<div class="row">
+			<strong>Email Address:</strong>
+			<input type="text" ng-model="newContact.email" class="form-control">
+		</div>
+		<div class="row">
+			<strong>Password:</strong>
+			<input type="password" ng-model="newContact.password" class="form-control">
+		</div>
+		<button ng-click="createContact()">Submit</button>
 	</div>
 </div>

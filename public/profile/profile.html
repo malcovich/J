@@ -1,0 +1,10 @@
+<div ng-hide="$ctrl.change">
+	<h4>{{$ctrl.user.email}}</h4>
+	{{$ctrl.user.name}}
+	<span ng-click="$ctrl.change = true">Изменить</span>
+</div>
+<div class="user-form" ng-show="$ctrl.change">
+	<input type="text" ng-model="$ctrl.copyUser.name" placeholder="Name">
+	<span class="btn green-btn" ng-click="$ctrl.updateUser()"> Save </span>
+	<span ng-click="$ctrl.change = false">Cansel</span>
+</div>

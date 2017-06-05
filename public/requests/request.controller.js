@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('RequestController', ['$scope', '$log', 'UserFactory', '$uibModal', '$http', '$stateParams', function($scope, $log, UserFactory, $uibModal, $http, $stateParams){
+  .controller('RequestController', ['$scope', '$log', 'UserFactory', '$uibModal', '$http', '$stateParams', 'ModalFactory', function($scope, $log, UserFactory, $uibModal, $http, $stateParams,ModalFactory){
   	var $ctrl = this;
     $ctrl.requestsList = [];
   	$ctrl.allRequests = [];
@@ -23,6 +23,14 @@ angular.module('MyApp')
     $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
         $ctrl.myAnswer = res.data;
         $ctrl.selectedContacts = res.data[0] ? res.data[0].contacts: [];
+        $ctrl.selectedContacts.forEach(function(contact){
+          $ctrl.allContatcts[contact.userId].forEach(function(selected){
+            if (selected._id == contact._id){
+              selected.selected = true;
+            } 
+          })
+        })
+        console.log($ctrl.selectedContacts)
     });
 
 
@@ -39,21 +47,8 @@ angular.module('MyApp')
   	}
 
   	$ctrl.openModalfromNet = function (size) {
-      var modalInstance = $uibModal.open({
-        ariaLabelledBy: 'modal-title',
-        ariaDescribedBy: 'modal-body',
-        templateUrl: 'myModalContent.html',
-        controller: 'ModalInstanceCtrl',
-        controllerAs: '$ctrl',
-        size: size,
-        resolve: {
-          contacts: function () {
-            return $ctrl.allContatcts;
-          }
-        }
-      });
-
-      modalInstance.result.then(function (ctrl) {
+      console.log($ctrl.allContatcts)
+      ModalFactory.openRequestModal('myModalContent.html', 'ModalInstanceRequestCtrl', $ctrl.allContatcts).then(function(ctrl){
         $ctrl.selectedContacts = [];
         var contactsId = []
         for(friend in ctrl.contacts){
@@ -72,9 +67,7 @@ angular.module('MyApp')
         $http.post('/api/requests/saveAnswer', answer).then(function(){
           console.log('Save');
         });
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
+      })
     };
 	
 }]);

@@ -1,6 +1,6 @@
-angular.module('MyApp').controller('ModalInstanceCtrl',  function ($uibModalInstance) {
+angular.module('MyApp').controller('ModalInstanceRequestCtrl',  function ($uibModalInstance, contacts) {
   var $ctrl = this;
-  // $ctrl.contacts = contacts;
+  $ctrl.contacts = contacts;
   $ctrl.ok = function () {
     $uibModalInstance.close($ctrl);
   };

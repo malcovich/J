@@ -7,6 +7,12 @@
 					templateUrl: "/public/views/home.html",
 					controller: "MainCtrl"
 				})
+				.state('profile', {
+					url: "/profile",
+					templateUrl: "/public/profile/profile.html",
+					controller: "ProfileCtrl",
+					controllerAs: '$ctrl'
+				})
 				.state('signUp', {
 					url: "/signup",
 					templateUrl: "/public/signup/signup.html",
@@ -46,6 +52,18 @@
 					url: "/requests/:reqId",
 					templateUrl: "/public/requests/request.html",
 					controller: "RequestController",
+					controllerAs: '$ctrl'
+				})
+				.state('worker', {
+					url: "/worker/:id",
+					templateUrl: "/public/workers/worker.html",
+					controller: "WorkerController",
+					controllerAs: '$ctrl'
+				})
+				.state('workerAdmin', {
+					url: "/admin",
+					templateUrl: "/public/workers/admin.html",
+					controller: "WorkerAdminController",
 					controllerAs: '$ctrl'
 				})
 		})
