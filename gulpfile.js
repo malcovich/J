@@ -1,6 +1,9 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var clean = require('gulp-clean');
 
 gulp.task('sass', function() {
   gulp.src('public/stylesheets/style.scss')
@@ -12,6 +15,14 @@ gulp.task('sass', function() {
 /*gulp.task('watch', function() {
   gulp.watch('public/stylesheets/*.scss', ['sass']);
 });*/
+
+gulp.task('scripts', function() {
+    gulp.src('./public/build/*', {read: false})
+        .pipe(clean());
+    gulp.src('./public/**/*.js')
+    .pipe(concat('script.js'))
+    .pipe(gulp.dest('./public/build/'));
+});
 
 gulp.task('watch', function() {
   return gulp
@@ -25,4 +36,4 @@ gulp.task('watch', function() {
     });
 });
 
-gulp.task('default', ['sass', 'watch']);
+gulp.task('default', ['sass', 'watch', 'scripts']);

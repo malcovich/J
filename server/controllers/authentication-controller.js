@@ -13,11 +13,13 @@ module.exports.signup = function(req, res){
 }
 
 module.exports.login = function(req,res){
+	console.log('!!!1', req.body)
 	User.find(req.body,function(err,results){
 		if (err){
 			console.log(err);
 		}; 
 		if (results && results.length === 1) {
+			console.log(results[0])
 			res.json(results[0])
 		}
 	})

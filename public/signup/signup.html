@@ -35,3 +35,28 @@
 		<button ng-click="createContact()">Submit</button>
 	</div>
 </div>
+</div>
+
+<script type="text/ng-template" id="login.html">
+    <div class="sign-in-modal"> 
+    	<div class="logo-modal">
+    		<img src="public/images/1.png" alt="">
+    	</div>
+		<div class="left-block">
+			<h3>Sign In</h3>
+			<label for="email">Email Address</label>
+			<input type="text" id="email" placeholder="Email" ng-model="vm.login.email">
+			<label for="password">Password</label>
+			<input type="pasword" id="password" placeholder="Password" ng-model="vm.login.password">
+			<button class="green-btn btn" ng-click="vm.ok()">Sign in</button>
+			<div class="line"></div>
+			<button class="btn" ng-click="vm.createAccount()">Create Account</button>
+		</div>
+		<div class="right-block">
+			<img src="public/images/2.jpg" alt="">
+			<div class="overlay"></div>
+			<h4>Welcome to Profee!</h4>
+		</div>
+    </div>
+</script>
+>>>>>>> 9cda450a828be02ba4d2d87fe35ae29769bbd34d
