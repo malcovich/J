@@ -259,6 +259,11 @@
   .contact-card {
     flex: 0 1 47%; } }
 
+.login_btn {
+  position: absolute;
+  top: 30px;
+  right: 50px; }
+
 .btn {
   padding-left: 22px;
   padding-right: 22px;
@@ -314,12 +319,70 @@
     border-radius: 4px;
     padding: 0 10px; }
 
+.login .modal-dialog {
+  width: 820px; }
+
 .modal-dialog {
   width: 305px; }
 
 .modal-footer {
   background-color: #f0f3f8;
   text-align: center; }
+
+.sign-in-modal {
+  width: 820px;
+  overflow: hidden; }
+  .sign-in-modal .left-block {
+    float: left;
+    padding: 55px 30px 30px 30px;
+    width: 340px; }
+    .sign-in-modal .left-block h3 {
+      font-size: 24px;
+      margin: 0 0 30px 0;
+      color: #354052; }
+    .sign-in-modal .left-block label {
+      width: 100%;
+      font-size: 14px;
+      color: #7f8fa4;
+      font-weight: 600;
+      margin-bottom: 10px; }
+    .sign-in-modal .left-block input {
+      width: 100%;
+      border: 1px solid #dfe3e9;
+      height: 34px;
+      border-radius: 3px;
+      margin-bottom: 20px;
+      color: #354052;
+      padding: 0 15px; }
+    .sign-in-modal .left-block .btn {
+      width: 100%; }
+    .sign-in-modal .left-block .line {
+      border-top: 1px solid #e6eaee;
+      margin: 20px 0; }
+  .sign-in-modal .right-block {
+    float: left;
+    width: 480px;
+    overflow: hidden;
+    position: relative; }
+    .sign-in-modal .right-block img {
+      margin-left: -70px;
+      height: 425px; }
+    .sign-in-modal .right-block .overlay {
+      position: absolute;
+      background-color: rgba(106, 112, 112, 0.8);
+      width: 100%;
+      height: 425px;
+      top: 0;
+      left: 0; }
+    .sign-in-modal .right-block h4 {
+      position: absolute;
+      color: #fff;
+      bottom: 20px;
+      left: 30px; }
+  .sign-in-modal .logo-modal {
+    position: absolute;
+    left: 30px;
+    top: -22px; }
 
 body {
   font-family: 'Open Sans', sans-serif; }

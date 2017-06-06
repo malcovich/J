@@ -14,55 +14,18 @@
 	<link href="public/stylesheets/style.css" rel="stylesheet">
 </head>
 <body>
-<nav class="main-menu "  ng-controller="NavigationController">
-  <div>
- 
-    <div ng-hide="user" style="float: right">
-        <input type="text" ng-model="login.email">
-        <input type="password" ng-model="login.password">
-        <button ng-click="logUserIn()">Login</button>
-        <a ui-sref="signUp">Create User</a>
-    </div>
-    <span ng-click="logUserOut()" ng-show="user"  class="user-block">Log out</span>
-     <a href="#" class="logo">Profee</a>
-  </div>
-</nav>
-<div class="main-block">
-  <div class="columns">
-    <div class="left-menu">
-      <div class="left-menu-item">
-        <a ui-sref="requests">
-          <p></i>Requests</p>
-        </a>
-      </div>
-      <div class="left-menu-item">
-        <a ui-sref="contacts">
-          <p>Contacts</p>
-        </a>
-      </div>
-      <div class="left-menu-item">
-        <a ui-sref="friends">
-          <p>Friends</p>
-        </a>
-      </div>
-    </div>
-    <div class="main-content">
-      <div ui-view></div>
-    </div>
-    <div class="right-block"></div>
-  </div>
-</div>
+<div ui-view></div>
 	
 </body>
 <script src="scripts/angular.min.js"></script>
 <script type="text/javascript" src="scripts/angular-ui-router.js"></script>
 <script type="text/javascript" src="scripts/ui-bootstrap.min.js"></script>
 <script type="text/javascript" src="scripts/ui-bootstrap-tpls.min.js"></script>
-<script type="text/javascript" src="public/build/script.js"></script>
+<!-- <script type="text/javascript" src="public/build/script.js"></script> -->
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-messages.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-resource.min.js"></script> -->
-<!-- <script src="/public/app.js"></script>
+ <script src="/public/app.js"></script>
 <script src="/public/controllers/main.controller.js"></script>
 <script type="text/javascript" src="public/signup/signup-controller.js"></script>
 <script type="text/javascript" src="public/navigation/navigation-controller.js"></script>
@@ -72,7 +35,10 @@
 <script type="text/javascript" src="public/friends/friend.controller.js"></script>
 <script type="text/javascript" src="public/requests/requests-controller.js"></script>
 <script type="text/javascript" src="public/requests/request.controller.js"></script>
+<script type="text/javascript" src="public/landing/landing.controller.js"></script>
 <script type="text/javascript" src="public/controllers/modal.controller.js"></script>
 <script type="text/javascript" src="public/common/services/user-service.js"></script>
 <script type="text/javascript" src="public/common/services/modal-service.js"></script>
-</html> -->
+<!-- worker -->
+<script type="text/javascript" src="public/worker/worker.controller.js"></script>
+</html>

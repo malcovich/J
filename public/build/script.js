@@ -3,49 +3,55 @@
 		.config(function($stateProvider){
 			$stateProvider
 				.state('main', {
-					url: "/",
+					url: "/main",
 					templateUrl: "/public/views/home.html",
 					controller: "MainCtrl"
 				})
-				.state('signUp', {
+				.state('main.signUp', {
 					url: "/signup",
 					templateUrl: "/public/signup/signup.html",
 					controller: "SignUpController"
 				})
-				.state('contacts', {
+				.state('main.contacts', {
 					url: "/contacts",
 					templateUrl: "/public/contacts/list.html",
 					controller: "ContactsListController",
 					controllerAs: '$ctrl'
 				})
-				.state('contact', {
+				.state('main.contact', {
 					url: "/contacts/details",
 					templateUrl: "/public/contacts/contact-details.html",
 					controller: "ContactDetailsController",
 					controllerAs: '$ctrl'
 				})
-				.state('friends', {
+				.state('main.friends', {
 					url: "/friends",
 					templateUrl: "/public/friends/list.html",
 					controller: "FriendsListController",
 					controllerAs: '$ctrl'
 				})
-				.state('friend', {
+				.state('main.friend', {
 					url: "/friends/:id",
 					templateUrl: "/public/friends/item.html",
 					controller: "FriendController",
 					controllerAs: '$ctrl'
 				})
-				.state('requests', {
+				.state('main.requests', {
 					url: "/requests",
 					templateUrl: "/public/requests/list.html",
 					controller: "RequestsListController",
 					controllerAs: '$ctrl'
 				})
-				.state('request', {
+				.state('main.request', {
 					url: "/requests/:reqId",
 					templateUrl: "/public/requests/request.html",
 					controller: "RequestController",
+					controllerAs: '$ctrl'
+				})
+				.state('landing', {
+					url: "/",
+					templateUrl: "/public/landing/landing.html",
+					controller: "LandingController",
 					controllerAs: '$ctrl'
 				})
 		})
@@ -189,6 +195,21 @@ angular.module('MyApp').controller('ModalInstanceCtrl',  function ($uibModalInst
     $uibModalInstance.dismiss('cancel');
   };
 });
+angular.module('MyApp')
+  .controller('LandingController', ['$scope', '$http', '$stateParams', '$log','$state', function($scope, $http, $stateParams, $log,$state){
+  	var user = JSON.parse(localStorage.getItem('User-Data'));
+  	console.log(user)
+	if (user){
+  		$state.go('main');
+  	}
+	/*$ctrl.contact = {
+		name: 'Test',
+		surname: 'Testenko',
+		id: 123,
+	};*/
+
+}]);
+
 (function(){
 	angular.module('MyApp')
 		.controller('NavigationController', ['$scope','$http','$state', 'UserFactory',  function($scope, $http, $state, UserFactory){
@@ -212,6 +233,23 @@ angular.module('MyApp').controller('ModalInstanceCtrl',  function ($uibModalInst
 				$scope.user = undefined
 				$scope.$broadcast('userLogout');
 				$state.go('main');
+			}
+		}])
+}())
+(function(){
+	angular.module('MyApp')
+		.controller('SignUpController', ['$scope', '$state', '$http', function($scope, $state, $http){
+			var url  = 'api/user/signup';
+			$scope.createUser = function(){
+				$http({
+					method :'POST', 
+					url : url,
+					data : $scope.newUser
+				}).then(function(res){
+					console.log(res)
+				},function(error){
+					console.log(error)
+				});
 			}
 		}])
 }())
@@ -345,23 +383,6 @@ angular.module('MyApp')
 
 
 
-(function(){
-	angular.module('MyApp')
-		.controller('SignUpController', ['$scope', '$state', '$http', function($scope, $state, $http){
-			var url  = 'api/user/signup';
-			$scope.createUser = function(){
-				$http({
-					method :'POST', 
-					url : url,
-					data : $scope.newUser
-				}).then(function(res){
-					console.log(res)
-				},function(error){
-					console.log(error)
-				});
-			}
-		}])
-}())
 angular.module('MyApp').factory('ModalFactory', function($uibModal) {
 	var service = {};
 	service.user = localStorage.getItem('User-Data');

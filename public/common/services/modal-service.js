@@ -8,6 +8,7 @@ angular.module('MyApp').factory('ModalFactory', function($uibModal) {
             controller: controller,
             controllerAs: 'vm',
             resolve,
+            windowClass : "login",
             backdrop: 'static',
             keyboard: false,
         };

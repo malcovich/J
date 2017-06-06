@@ -1,9 +1,38 @@
-<div class="container">
-	<div class="row">
-		<h4 class="user-name" ng-show="user">
-			{{user.email}}
-		</h4>
-		<p ng-hide="user"> Залогинтесь или <span ui-sref="signUp">создайте аккаунт</span></p>
-	</div>
-
+<nav class="main-menu "  ng-controller="NavigationController">
+  <div>
+ 
+    <div ng-hide="user" style="float: right">
+        <input type="text" ng-model="login.email">
+        <input type="password" ng-model="login.password">
+        <button ng-click="logUserIn()">Login</button>
+        <a ui-sref="main.signUp">Create User</a>
+    </div>
+    <span ng-click="logUserOut()" ng-show="user"  class="user-block">Log out</span>
+     <a href="#" class="logo">Profee</a>
+  </div>
+</nav>
+<div class="main-block">
+  <div class="columns">
+    <div class="left-menu">
+      <div class="left-menu-item">
+        <a ui-sref="main.requests">
+          <p></i>Requests</p>
+        </a>
+      </div>
+      <div class="left-menu-item">
+        <a ui-sref="main.contacts">
+          <p>Contacts</p>
+        </a>
+      </div>
+      <div class="left-menu-item">
+        <a ui-sref="main.friends">
+          <p>Friends</p>
+        </a>
+      </div>
+    </div>
+    <div class="main-content">
+      <div ui-view></div>
+    </div>
+    <div class="right-block"></div>
+  </div>
 </div>
