@@ -1,7 +1,7 @@
 <img src="./public/images/l.jpg" alt="" style="width: 100%">
 <span  class="login_btn" ng-click="$ctrl.open()">Войти</span>
 
-<script type="text/ng-template" id="myModalContent.html">
+<script type="text/ng-template" id="login.html">
     <div class="sign-in-modal"> 
     	<div class="logo-modal">
     		<img src="public/images/1.png" alt="">
@@ -14,7 +14,7 @@
 			<input type="pasword" id="password" placeholder="Password" ng-model="vm.login.password">
 			<button class="green-btn btn" ng-click="vm.ok()">Sign in</button>
 			<div class="line"></div>
-			<button class="btn" ui-sref="main.signUp">Create Account</button>
+			<button class="btn" ng-click="vm.createAccount()">Create Account</button>
 		</div>
 		<div class="right-block">
 			<img src="public/images/2.jpg" alt="">

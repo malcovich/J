@@ -2,15 +2,14 @@ angular.module('MyApp').factory('ModalFactory', function($uibModal) {
 	var service = {};
 	service.user = localStorage.getItem('User-Data');
 
-	service.open =  function (template, controller, resolve = {}, windowSize = 'sm') {
+	service.open =  function (template, controller, resolve = {}, windowSize = 'sm', parentSelector) {
+        var parentElem = parentSelector ? angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var options = {
             templateUrl: template,
             controller: controller,
             controllerAs: 'vm',
-            resolve,
             windowClass : "login",
-            backdrop: 'static',
-            keyboard: false,
+            appendTo: parentElem
         };
 
         return $uibModal.open(options).result;

@@ -26,9 +26,13 @@ angular.module('MyApp')
   	}
 }]);
 
-angular.module('MyApp').controller('ModalInstanceCtrl1', function ($uibModalInstance) {
+angular.module('MyApp').controller('ModalInstanceCtrl1', function ($uibModalInstance, $state) {
   var $ctrl = this;
 
+  /*$document.on('click', function(event) {
+      $uibModalInstance.dismiss('cancel');
+  });
+*/
   $ctrl.ok = function () {
     $uibModalInstance.close($ctrl);
   };
@@ -36,4 +40,9 @@ angular.module('MyApp').controller('ModalInstanceCtrl1', function ($uibModalInst
   $ctrl.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
+
+  $ctrl.createAccount = function(){
+    $uibModalInstance.close($ctrl);
+    $state.go('signUp')
+  }
 });

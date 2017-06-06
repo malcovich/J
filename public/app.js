@@ -7,8 +7,8 @@
 					templateUrl: "/public/views/home.html",
 					controller: "MainCtrl"
 				})
-				.state('main.signUp', {
-					url: "/signup",
+				.state('signUp', {
+					url: "signup",
 					templateUrl: "/public/signup/signup.html",
 					controller: "SignUpController"
 				})
