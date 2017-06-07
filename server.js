@@ -35,6 +35,9 @@ app.post('/api/user/updateProfile', authenticationController.updateProfile)
 app.post('/api/contact/add', conatactController.add);
 app.post('/api/contact/list', conatactController.list);
 app.post('/api/contact/all', conatactController.all);
+app.post('/api/contact/item', conatactController.getItem);
+app.post('/api/contact/itemFull', conatactController.getFullItem);
+app.post('/api/contact/verifyContact', conatactController.verifyContact);
 
 app.post('/api/friend/add', friendController.add);
 app.post('/api/friend/list', friendController.list);

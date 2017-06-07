@@ -13,6 +13,39 @@ module.exports.list = function(req, res){
     });
 }
 
+module.exports.getItem = function(req, res){
+	var userId = req.body.userId;
+	Contact.find({_id : req.param('_id')}).populate('verifyContact').exec(function (err, result) {
+		var contact = result[0]
+		if (result[0].userId.indexOf(userId) != -1) {
+			if (result[0].phone){
+				var phone = result[0].phone.replace(/ /g,'');  
+				Contact.find({'phone' : phone}, function(err,result){
+					res.json({'contact' : contact, 'hypothesis' : result})
+				})
+			}
+		}else {
+			res.json(result);
+		}
+    });
+}
+module.exports.getFullItem = function(req, res){
+	var userId = req.body.userId;
+	Contact.find({_id : req.param('_id')}).populate('userId').exec(function (err, result) {
+			res.json(result);
+    });
+}
+
+module.exports.verifyContact = function(req, res) {
+	Contact.findByIdAndUpdate(req.body.id , {'verifyContact': req.body.verifyId}, {new: true},function(err, u) {
+		var  cont = u;
+		Contact.findByIdAndUpdate(req.body.verifyId , { $push: { 'userId': req.body.userId }}, {new: true},function(err, u) {
+			console.log('u',u)
+		  	if (err) {throw err;}else {res.json(cont)}
+		});
+	});
+}
+
 module.exports.all = function(req, res){
 	Friend.find({ userId : req.param('userId')}, function (err, result) {
         var friendsIds = result.map(function(i){ return i._id})

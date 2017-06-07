@@ -1,2 +1,11 @@
-sdfsdfsdf
-{{$ctrl.contact}}
+<div class="contact-right-block">
+	<div ng-repeat="verifyContact in $ctrl.verifyContacts">
+		<p>{{verifyContact.name}}</p>
+		<span ng-click="$ctrl.replaceWithVerify(verifyContact._id)">Заменить</span>
+	</div>
+</div>
+<div class="contact-left-block">
+	<div class="inner-block">
+		{{$ctrl.contact.name}}
+	</div>
+</div>

@@ -1,26 +1,41 @@
 <nav class="main-menu "  ng-controller="NavigationController">
   <div>
     <span ng-click="logUserOut()" ng-show="user"  class="user-block">Log out</span>
+    <span   class="user-block" ui-sref="main.profile">{{user.name}}</span>
      <a href="#" class="logo">Profee</a>
   </div>
 </nav>
 <div class="main-block">
   <div class="columns">
     <div class="left-menu">
-      <div class="left-menu-item">
-        <a ui-sref="main.requests">
-          <p></i>Requests</p>
-        </a>
+      <div ng-show="user.type == 'Customer'">
+        <div class="left-menu-item">
+          <a ui-sref="main.requests">
+            <p></i>Requests</p>
+          </a>
+        </div>
+        <div class="left-menu-item">
+          <a ui-sref="main.contacts">
+            <p>Contacts</p>
+          </a>
+        </div>
+        <div class="left-menu-item">
+          <a ui-sref="main.friends">
+            <p>Friends</p>
+          </a>
+        </div>
       </div>
-      <div class="left-menu-item">
-        <a ui-sref="main.contacts">
-          <p>Contacts</p>
-        </a>
-      </div>
-      <div class="left-menu-item">
-        <a ui-sref="main.friends">
-          <p>Friends</p>
-        </a>
+      <div ng-show="user.type == 'Worker'">
+          <div class="left-menu-item">
+            <a ui-sref="main.worker">
+              <p>Worker</p>
+            </a>
+          </div>
+          <div class="left-menu-item">
+            <a ui-sref="main.workerAdmin">
+              <p>Admin</p>
+            </a>
+          </div>
       </div>
     </div>
     <div class="main-content">

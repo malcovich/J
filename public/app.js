@@ -13,7 +13,7 @@
 					templateUrl: "/public/views/home.html",
 					controller: "MainCtrl"
 				})
-				.state('profile', {
+				.state('main.profile', {
 					url: "/profile",
 					templateUrl: "/public/profile/profile.html",
 					controller: "ProfileCtrl",
@@ -32,7 +32,7 @@
 					controllerAs: '$ctrl'
 				})
 				.state('main.contact', {
-					url: "/contacts/details",
+					url: "/contacts/:id",
 					templateUrl: "/public/contacts/contact-details.html",
 					controller: "ContactDetailsController",
 					controllerAs: '$ctrl'

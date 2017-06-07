@@ -10,7 +10,7 @@
 		<uib-tabset active="active" class="request-tabs">
 				<uib-tab index="0" heading="Мои запросы">
 					<div ng-repeat="req in $ctrl.requestsList" class="my-request">
-					<h3 ui-sref="request({reqId: req._id})">{{req.text}}</h3>
+					<h3 ui-sref="main.request({reqId: req._id})">{{req.text}}</h3>
 					<span class="date-request"><i class="glyphicon glyphicon-calendar"></i>{{req.requestDate | date}}</span>
 					<span ng-click="$ctrl.deleteRequest(req._id)">delete</span>
 					<span ng-click="$ctrl.change(req)">Редактировать</span>

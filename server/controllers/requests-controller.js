@@ -12,7 +12,7 @@ module.exports.add = function(req, res){
 
 module.exports.list = function(req, res){
 	console.log(req.param('userId'))
-	Request.find({$and : [{userId : req.param('userId')}, {deleted: false}]}, function (err, result) {
+	Request.find({userId : req.param('userId')}, {deleted: false}, function (err, result) {
 		console.log(result)
        res.json(result);
     });

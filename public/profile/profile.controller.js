@@ -7,14 +7,14 @@ angular.module('MyApp')
   	if (!$ctrl.user){
   		$state.go('main');
   	}else {
-  			console.log($ctrl.user)
-
   		$ctrl.updateUser  =  function(){
   			$http.post('/api/user/updateProfile', $ctrl.copyUser).then(function(res){
+          res.data.type = $ctrl.copyUser.type;
+          console.log(res.data)
   				localStorage.setItem('User-Data', JSON.stringify(res.data));
-  				$ctrl.user = res.data;
+          $ctrl.user = res.data;
   				$ctrl.change = false;
   			})
   		}
-	}
+	  }
 }]);

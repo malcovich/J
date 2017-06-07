@@ -1,1 +1,6 @@
 <h3>Admin {{$ctrl.user.name}}</h3>
+<ul>
+	<li ng-repeat="user in $ctrl.contact.userId">
+		{{user.name}}
+	</li>
+</ul>

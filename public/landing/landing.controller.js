@@ -14,7 +14,7 @@ angular.module('MyApp')
 					UserFactory.setUser(res.data.user);
 					$scope.$broadcast('userLogined');
 					$scope.user = res.data.user;
-          if (res.data.type = "Woker"){
+          if (res.data.type == "Woker"){
             $state.go("main.worker",{'id':res.data.user._id});
           }else{
             $state.go('main');

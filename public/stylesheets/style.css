@@ -259,6 +259,11 @@
   .contact-card {
     flex: 0 1 47%; } }
 
+.contact-right-block {
+  float: right;
+  width: 325px;
+  background: #fff; }
+
 .login_btn {
   position: absolute;
   top: 30px;
