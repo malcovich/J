@@ -1,13 +1,14 @@
 (function(){
 	angular.module('MyApp')
 		.controller('SignUpController', ['$scope', '$state', '$http', function($scope, $state, $http){
-			$scope.showCustomer = true;
+			var $ctrl = this
+			$ctrl.showCustomer = true;
 			var url  = 'api/user/signup';
-			$scope.createUser = function(){
+			 $ctrl.createUser = function(){
 				$http({
 					method :'POST', 
 					url : url,
-					data : $scope.newUser
+					data :  $ctrl.newUser
 				}).then(function(res){
 					console.log(res)
 				},function(error){
@@ -15,13 +16,13 @@
 				});
 			}
 
-			$scope.createContact = function(){
+			 $ctrl.createContact = function(){
 				$http({
 					method :'POST', 
-					url : url,
-					data : $scope.newContact
+					url : 'api/contact/signup',
+					data :  $ctrl.newContact
 				}).then(function(res){
-					console.log(res)
+					$state.go('main.worker')
 				},function(error){
 					console.log(error)
 				});

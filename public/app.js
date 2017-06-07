@@ -2,6 +2,12 @@
 	angular.module('MyApp', ['ui.router', 'ui.bootstrap'])
 		.config(function($stateProvider){
 			$stateProvider
+				.state('landing', {
+					url: "/",
+					templateUrl: "/public/landing/landing.html",
+					controller: "LandingController",
+					controllerAs: '$ctrl'
+				})
 				.state('main', {
 					url: "/main",
 					templateUrl: "/public/views/home.html",
@@ -14,9 +20,10 @@
 					controllerAs: '$ctrl'
 				})
 				.state('signUp', {
-					url: "signup",
+					url: "/signup",
 					templateUrl: "/public/signup/signup.html",
-					controller: "SignUpController"
+					controller: "SignUpController",
+					controllerAs: '$ctrl'
 				})
 				.state('main.contacts', {
 					url: "/contacts",
@@ -54,28 +61,16 @@
 					controller: "RequestController",
 					controllerAs: '$ctrl'
 				})
-				.state('worker', {
-					url: "/worker/:id",
+				.state('main.worker', {
+					url: "/worker",
 					templateUrl: "/public/workers/worker.html",
 					controller: "WorkerController",
 					controllerAs: '$ctrl'
 				})
-				.state('workerAdmin', {
+				.state('main.workerAdmin', {
 					url: "/admin",
 					templateUrl: "/public/workers/admin.html",
 					controller: "WorkerAdminController",
-					controllerAs: '$ctrl'
-				})
-				.state('landing', {
-					url: "/",
-					templateUrl: "/public/landing/landing.html",
-					controller: "LandingController",
-					controllerAs: '$ctrl'
-				})
-				.state('main.worker', {
-					url: "/",
-					templateUrl: "/public/worker/main.html",
-					controller: "WorkerController",
 					controllerAs: '$ctrl'
 				})
 		})

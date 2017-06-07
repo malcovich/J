@@ -4,7 +4,7 @@ angular.module('MyApp')
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
 
   	if (!$ctrl.user){
-  		$state.go('main');
+  		$state.go('landing');
   	}else {
   		$ctrl.friendsList = [];
 

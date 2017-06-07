@@ -28,6 +28,7 @@ app.get('/', function(req, res){
 //Auther
 
 app.post('/api/user/signup', authenticationController.signup)
+app.post('/api/contact/signup', authenticationController.signupContact)
 app.post('/api/user/login', authenticationController.login)
 app.post('/api/user/updateProfile', authenticationController.updateProfile)
 

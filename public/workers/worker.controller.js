@@ -2,7 +2,7 @@ angular.module('MyApp')
   .controller('WorkerController', ['$scope', '$log', 'UserFactory', '$http', '$state', 'ModalFactory', function($scope, $log, UserFactory, $http, $state, ModalFactory){
   	var $ctrl = this;
   	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
-
+  	console.log($ctrl.user)
   	if (!$ctrl.user){
   		$state.go('main');
   	}else {

@@ -2,25 +2,31 @@ var mongoose = require('mongoose');
 var User = require('../datasets/users');
 var Contact = require('../datasets/contact');
 module.exports.signup = function(req, res){
-	if(req.body.role == "customer"){
-		var user = new User(req.body);
-		user.save();
-	}else {
+	var user = new User(req.body);
+	user.save();
+	res.json(req.body);
+}
 
-	}
-	
+module.exports.signupContact = function(req, res){
+	var contact = new Contact(req.body);
+	contact.save();
 	res.json(req.body);
 }
 
 module.exports.login = function(req,res){
-	console.log('!!!1', req.body)
 	User.find(req.body,function(err,results){
+		console.log('results', results)
 		if (err){
-			console.log(err);
+			console.log('wew')
 		}; 
 		if (results && results.length === 1) {
-			console.log(results[0])
-			res.json(results[0])
+			res.json({user:results[0], type: "Customer"})
+		}else {
+			Contact.find(req.body,function(err,results){
+				if (results && results.length === 1) {
+					res.json({user:results[0], type: "Worker"})
+				}
+			})
 		}
 	})
 }
