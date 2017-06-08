@@ -1,0 +1,8 @@
+<div class="inner-block">
+	<h4>Messages:</h4>
+	<ul>
+		<li ng-repeat="mes in $ctrl.messages" ui-sref="main.message({id: mes._id})">
+			{{mes.contactId.name}}
+		</li>
+	</ul>
+</div>

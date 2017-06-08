@@ -1,0 +1,13 @@
+<div class="inner-block">
+	<h4>{{$ctrl.message.contactId.name}}</h4>
+	<ul>
+		<li ng-repeat="mes in $ctrl.message.list" >
+			{{mes.date|date}}
+			{{mes.text}}
+		</li>
+	</ul>
+	<div>
+		<textarea ng-model="$ctrl.newMessage" class="text-area"></textarea>
+		<span class="btn green-btn" ng-click=$ctrl.postMessage()>save</span>
+	</div>
+</div>

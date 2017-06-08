@@ -6,18 +6,78 @@
 </div>
 <div class="contact-left-block">
 	<div class="inner-block">
-		{{$ctrl.contact.name}}
-		<div class="comment-block">
-			<textarea class="text-area" ng-model="$ctrl.comment.text"></textarea>
-			<span class="btn green-btn" ng-click="$ctrl.addComment()">Add</span>
+		<div class="contact-information">
+			<div class="other-info">
+				<span class="contact-raiting" style="color:{{$ctrl.rColor}}">{{$ctrl.raiting}}/5</span>
+				<p class="raiting-description">оценка <b>{{$ctrl.raitingList.length}}</b> пользователей</p>
+			</div>
+			<div class="contact-photo">
+				<img src="public/images/3.jpg">	
+			</div>
+			<div class="contact-text-info">
+				<h1>{{$ctrl.contact.name}}</h1>
+				<p class="contact-spesalition">{{$ctrl.contact.spec}}</p>
+				<div class="contact-phone">
+					<p >тел: {{$ctrl.contact.phone}}</p>
+				</div>
+				<div class="buttons-block">
+					<span class="btn green-btn" ng-click="$ctrl.opentMessageModal()"> Написать сообщение</span>
+				</div>
+			</div>
 		</div>
-		<h4>Comments:</h4>
-		<div ng-repeat="comment in $ctrl.comments">
-			{{comment.text}}
+
+		<div class="tab-block">
+			<uib-tabset active="active" class="request-tabs">
+				<uib-tab index="0" heading="Описание">
+					<div ng-repeat="req in $ctrl.requestsList" class="my-request">
+					<h3 ui-sref="main.request({reqId: req._id})">{{req.text}}</h3>
+					<span class="date-request"><i class="glyphicon glyphicon-calendar"></i>{{req.requestDate | date}}</span>
+					<span ng-click="$ctrl.deleteRequest(req._id)">delete</span>
+					<span ng-click="$ctrl.change(req)">Редактировать</span>
+				</div>
+				</uib-tab>
+				<uib-tab index="1" heading="Отзывы пользователей">
+				<div>	
+					<div class="comment-block">
+						<textarea class="text-area" ng-model="$ctrl.comment.text"></textarea>
+						<span class="btn green-btn" ng-click="$ctrl.addComment()">Add</span>
+					</div>
+
+					<div class="comment-item" ng-repeat="comment in $ctrl.comments">
+						<div class="comment-user">
+							<div class="image-user">
+								<img src="public/images/user.jpg" alt="">
+							</div>
+							<div class="comment-info">
+								<a class="comment-user-name">{{comment.userId.name}}</a>
+								<span class="comment-date">{{comment.date | date}}</span>
+							</div>
+						</div>
+						<div class="comment-text">
+							<p>{{comment.text}}</p>
+						</div>
+					</div>
+				</div>
+				</uib-tab>
+			</uib-tabset>
+
 		</div>
+		
+		
 		<h4>Raiting: {{$ctrl.raiting}}</h4>
 		<input type="number" name="" value="5" ng-model="$ctrl.newRaiting.raiting">
 		<span class="btn green-btn" ng-click="$ctrl.saveRaiting()">save raiting</span>
 	</div>
-	
 </div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-body" id="modal-body">
+    	<p>Сообщение:</p>
+      <textarea class="text-area" ng-model="vm.text"></textarea>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+    </div>
+</script>
+

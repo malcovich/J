@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('ContactDetailsController', ['$scope', '$http', '$stateParams', '$log', function($scope, $http, $stateParams, $log){
+  .controller('ContactDetailsController', ['$scope', '$http', '$stateParams', '$log','ModalFactory', function($scope, $http, $stateParams, $log, ModalFactory){
 	var $ctrl = this;
 	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
 	var originalId = $stateParams.id;
@@ -22,6 +22,11 @@ angular.module('MyApp')
                 totalRaiting += raiting.raiting;
             });
             $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length;
+            if ($ctrl.raiting >= 4){
+                $ctrl.rColor = '#38B248';
+            }else if($ctrl.raiting >= 3 && $ctrl.raiting < 4){
+                $ctrl.rColor = '#f7981c';
+            }
         })
     });
 
@@ -47,6 +52,26 @@ angular.module('MyApp')
         $http.post('/api/contact/addRaiting', $ctrl.newRaiting).then(function(res){
 
         })
+    }
+
+    $ctrl.opentMessageModal = function(){
+        ModalFactory.open('myModalContent.html', 'ModalInstanceCtrl').then(function(ctrl){
+            console.log(ctrl)
+            var message = {
+                "userId" : $ctrl.user._id,
+                "contactId" : $ctrl.contact._id,
+                "message" :{
+                    "text" : ctrl.text,
+                    "date" : new Date(),
+                    "author" : $ctrl.user._id
+                }
+            }
+            $http.post('/api/messages/addMessage', message).then(function(res){
+
+            });
+        }, function () {
+              console.info('Modal dismissed at: ' + new Date());
+        });
     }
 
 }]);

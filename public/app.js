@@ -73,5 +73,17 @@
 					controller: "WorkerAdminController",
 					controllerAs: '$ctrl'
 				})
+				.state('main.messages', {
+					url: "/messages",
+					templateUrl: "/public/messages/list.html",
+					controller: "MessagesController",
+					controllerAs: '$ctrl'
+				})
+				.state('main.message', {
+					url: "/messages/:id",
+					templateUrl: "/public/messages/item.html",
+					controller: "MessageController",
+					controllerAs: '$ctrl'
+				})
 		})
 }());

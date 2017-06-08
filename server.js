@@ -10,8 +10,7 @@ var conatactController = require('./server/controllers/contact-controller');
 var conatactDetailsController = require('./server/controllers/contact-controller');
 var friendController = require('./server/controllers/friends-controller');
 var requestController = require('./server/controllers/requests-controller');
-var globalController = require('./server/controllers/global-controller')
-var predefinedController = require('./server/controllers/predefined-controller')
+var messagesController = require('./server/controllers/messages-controller');
 
 mongoose.connect('mongodb://localhost:27017/profee');
 app.use(bodyParser.json());
@@ -26,6 +25,7 @@ app.get('/', function(req, res){
 });
 
 //Auther
+
 
 app.post('/api/user/signup', authenticationController.signup)
 app.post('/api/contact/signup', authenticationController.signupContact)
@@ -43,6 +43,10 @@ app.post('/api/contact/commentsList', conatactController.commentsList);
 app.post('/api/contact/addRaiting', conatactController.addRaiting);
 app.post('/api/contact/raitingList', conatactController.raitingList);
 
+app.post('/api/messages/addMessage', messagesController.addMessage);
+app.post('/api/messages/list', messagesController.list);
+app.post('/api/messages/item', messagesController.item);
+
 app.post('/api/friend/add', friendController.add);
 app.post('/api/friend/list', friendController.list);
 app.post('/api/friend/item', friendController.item);
@@ -55,15 +59,6 @@ app.post('/api/requests/deleteRequest', requestController.deleteRequest);
 app.post('/api/requests/saveAnswer', requestController.saveAnswer);
 app.post('/api/requests/getAnswer', requestController.getAnswer);
 app.post('/api/requests/getAllAnswers', requestController.getAllAnswers);
-
-app.post('/api/global/add', globalController.add);
-app.get('/api/global/list', globalController.list);
-app.get('/api/global', globalController.item);
-
-app.post('/api/predefined/addPhoto', multipartMiddleware, predefinedController.addPhoto);
-app.post('/api/predefined/add', predefinedController.add);
-
-app.get('/api/predefined/list', predefinedController.getList);
 
 app.listen('3000', function(){
 	console.log("Port")
