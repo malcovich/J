@@ -38,6 +38,10 @@ app.post('/api/contact/all', conatactController.all);
 app.post('/api/contact/item', conatactController.getItem);
 app.post('/api/contact/itemFull', conatactController.getFullItem);
 app.post('/api/contact/verifyContact', conatactController.verifyContact);
+app.post('/api/contact/addComment', conatactController.addComment);
+app.post('/api/contact/commentsList', conatactController.commentsList);
+app.post('/api/contact/addRaiting', conatactController.addRaiting);
+app.post('/api/contact/raitingList', conatactController.raitingList);
 
 app.post('/api/friend/add', friendController.add);
 app.post('/api/friend/list', friendController.list);

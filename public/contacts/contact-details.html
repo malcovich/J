@@ -7,5 +7,17 @@
 <div class="contact-left-block">
 	<div class="inner-block">
 		{{$ctrl.contact.name}}
+		<div class="comment-block">
+			<textarea class="text-area" ng-model="$ctrl.comment.text"></textarea>
+			<span class="btn green-btn" ng-click="$ctrl.addComment()">Add</span>
+		</div>
+		<h4>Comments:</h4>
+		<div ng-repeat="comment in $ctrl.comments">
+			{{comment.text}}
+		</div>
+		<h4>Raiting: {{$ctrl.raiting}}</h4>
+		<input type="number" name="" value="5" ng-model="$ctrl.newRaiting.raiting">
+		<span class="btn green-btn" ng-click="$ctrl.saveRaiting()">save raiting</span>
 	</div>
+	
 </div>

@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Contact = require('../datasets/contact');
 var Friend = require('../datasets/friend');
+var Comment = require('../datasets/Comment');
+var Raiting = require('../datasets/Raiting');
 module.exports.add = function(req, res){
 	var contact = new Contact(req.body);
 	contact.save();
@@ -44,6 +46,27 @@ module.exports.verifyContact = function(req, res) {
 		  	if (err) {throw err;}else {res.json(cont)}
 		});
 	});
+}
+
+module.exports.addComment = function(req, res){
+	var comment = new Comment(req.body);
+	comment.save();
+	res.json(req.body);
+}
+module.exports.commentsList = function(req, res){
+	Comment.find({ "contactId" : req.param('id')}).populate('userId').exec(function (err, result) {
+       res.json(result);
+    });
+}
+module.exports.raitingList = function(req, res){
+	Raiting.find({ "contactId" : req.param('id')}).populate('userId').exec(function (err, result) {
+       res.json(result);
+    });
+}
+module.exports.addRaiting = function(req, res){
+	var raiting = new Raiting(req.body);
+	raiting.save();
+	res.json(req.body);
 }
 
 module.exports.all = function(req, res){
