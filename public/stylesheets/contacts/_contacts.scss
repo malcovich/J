@@ -136,6 +136,16 @@
 		}
 		.raiting-description {
 			text-align: center;
+			margin-bottom: 12px;
+			.your-raiting{
+				font-size: 18px;
+			}
+		}
+		.raiting-form {
+			padding: 0 30px;
+		}
+		.raiting-input{
+			width:60px;
 		}
 	}
 }
@@ -151,10 +161,25 @@
 	.tab-pane {
 		background: #fff;
 		padding: 30px;
+		.sorry-text {
+			text-align: center;
+			padding: 40px 0;
+			line-height: 30px;
+			color: #c2cad4;
+			span {
+				color: #65bcfb;
+				text-decoration: underline;
+				cursor: pointer;
+				&:hover {
+					text-decoration: none;
+				};
+			}
+		}
 	}
 	.comment-item{
 		border: 1px solid #dfe2e5;
 		overflow: hidden;
+		margin-bottom: 15px;
 		.comment-user {
 			overflow: hidden;
 			padding: 10px 20px;
@@ -190,6 +215,23 @@
 		.comment-text{
 			margin: 20px;
 			font-size: 15px;
+		}
+
+	}
+	.comments-header {
+		overflow: hidden;
+		margin-bottom: 15px;
+		.showHideAddCommentBlock{
+			float:right;
+			color:#f7bf47;
+			cursor: pointer;
+			line-height: 29px;
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+		h4{
+			float: left;
 		}
 	}
 	

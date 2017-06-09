@@ -300,7 +300,14 @@
       font-weight: 700;
       text-align: center; }
     .contact-information .other-info .raiting-description {
-      text-align: center; }
+      text-align: center;
+      margin-bottom: 12px; }
+      .contact-information .other-info .raiting-description .your-raiting {
+        font-size: 18px; }
+    .contact-information .other-info .raiting-form {
+      padding: 0 30px; }
+    .contact-information .other-info .raiting-input {
+      width: 60px; }
 
 .tab-block {
   margin-top: 30px; }
@@ -312,9 +319,21 @@
   .tab-block .tab-pane {
     background: #fff;
     padding: 30px; }
+    .tab-block .tab-pane .sorry-text {
+      text-align: center;
+      padding: 40px 0;
+      line-height: 30px;
+      color: #c2cad4; }
+      .tab-block .tab-pane .sorry-text span {
+        color: #65bcfb;
+        text-decoration: underline;
+        cursor: pointer; }
+        .tab-block .tab-pane .sorry-text span:hover {
+          text-decoration: none; }
   .tab-block .comment-item {
     border: 1px solid #dfe2e5;
-    overflow: hidden; }
+    overflow: hidden;
+    margin-bottom: 15px; }
     .tab-block .comment-item .comment-user {
       overflow: hidden;
       padding: 10px 20px;
@@ -344,6 +363,18 @@
     .tab-block .comment-item .comment-text {
       margin: 20px;
       font-size: 15px; }
+  .tab-block .comments-header {
+    overflow: hidden;
+    margin-bottom: 15px; }
+    .tab-block .comments-header .showHideAddCommentBlock {
+      float: right;
+      color: #f7bf47;
+      cursor: pointer;
+      line-height: 29px; }
+      .tab-block .comments-header .showHideAddCommentBlock:hover {
+        text-decoration: underline; }
+    .tab-block .comments-header h4 {
+      float: left; }
 
 .login_btn {
   position: absolute;

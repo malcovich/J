@@ -3,9 +3,11 @@ angular.module('MyApp')
 	var $ctrl = this;
 	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
 	var originalId = $stateParams.id;
+    $ctrl.showHideAddCommentBlock = false;
 	$http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res){
         
         if (res.data.contact.verifyContact){
+            $ctrl.contactVerifyed = true;
         	$ctrl.contact = res.data.contact.verifyContact
         }
         else {
@@ -20,6 +22,9 @@ angular.module('MyApp')
             var totalRaiting = 0;
             $ctrl.raitingList.forEach(function(raiting){
                 totalRaiting += raiting.raiting;
+                if (raiting.userId._id == $ctrl.user._id){
+                    $ctrl.yourRaiting = raiting.raiting;
+                }
             });
             $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length;
             if ($ctrl.raiting >= 4){
