@@ -12,6 +12,13 @@ var friendController = require('./server/controllers/friends-controller');
 var requestController = require('./server/controllers/requests-controller');
 var messagesController = require('./server/controllers/messages-controller');
 
+/*app.use(function(req, res, next) { //allow cross origin requests
+    res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+    res.header("Access-Control-Allow-Origin", "http://localhost");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+*/
 mongoose.connect('mongodb://localhost:27017/profee');
 app.use(bodyParser.json());
 app.use(multipartMiddleware)
@@ -30,7 +37,8 @@ app.get('/', function(req, res){
 app.post('/api/user/signup', authenticationController.signup)
 app.post('/api/contact/signup', authenticationController.signupContact)
 app.post('/api/user/login', authenticationController.login)
-app.post('/api/user/updateProfile', authenticationController.updateProfile)
+app.post('/api/user/updateProfile', authenticationController.updateProfile);
+app.post('/api/user/addPhoto', multipartMiddleware, authenticationController.addPhoto);
 
 app.post('/api/contact/add', conatactController.add);
 app.post('/api/contact/list', conatactController.list);
@@ -59,6 +67,21 @@ app.post('/api/requests/deleteRequest', requestController.deleteRequest);
 app.post('/api/requests/saveAnswer', requestController.saveAnswer);
 app.post('/api/requests/getAnswer', requestController.getAnswer);
 app.post('/api/requests/getAllAnswers', requestController.getAllAnswers);
+
+/*var storage = multer.diskStorage({ //multers disk storage settings
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+    }
+});*/
+/*console.log(storage.getDestination())
+var upload = multer({ //multer settings
+                storage: storage
+            }).single('file');*/
+     
 
 app.listen('3000', function(){
 	console.log("Port")

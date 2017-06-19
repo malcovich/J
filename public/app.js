@@ -1,5 +1,5 @@
 (function(){
-	angular.module('MyApp', ['ui.router', 'ui.bootstrap'])
+	angular.module('MyApp', ['ui.router', 'ui.bootstrap', 'ngFileUpload'])
 		.config(function($stateProvider){
 			$stateProvider
 				.state('landing', {

@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<div  class="user-img">
-				<img src="../public/images/vectorpaint1.png" alt="">
+				<img ng-src="{{$ctrl.user.img}}" alt="">
 					
 				</div>
 			</div>
@@ -18,5 +18,26 @@
 				</div>
 			</div>
 		</div>
+		<div class="btn green-btn" ngf-select ng-model="$ctrl.file" name="file" ngf-pattern="'image/*'"
+        ngf-accept="'image/*'" >Select image</div>
+        </div>
+		<!-- <form  ng-controller="MyCtrl as up" name="up.upload_form" enctype="multipart/form-data">
+		                Single Image with validations
+		            <input 
+		               type="file" 
+		               ngf-select 
+		               ng-model="up.file" 
+		               name="file" 
+		               ngf-pattern="'image/*'"
+		               accept="image/*" 
+		               ngf-max-size="20MB" 
+		               />
+		            Image thumbnail: <img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+		            <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+		            <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+		            {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+		            <button type="submit" ng-click="up.submit()">submit</button>
+		            <p>{{up.progress}}
+		        </form> -->
 	</div>
 </div>
