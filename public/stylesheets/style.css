@@ -385,7 +385,8 @@
   padding-left: 22px;
   padding-right: 22px;
   line-height: 20px;
-  display: inline-block; }
+  display: inline-block;
+  background-color: #dbdbdb; }
   .btn:hover {
     text-decoration: none; }
 
@@ -437,6 +438,21 @@ input {
   color: #2ca0f7;
   text-decoration: underline;
   line-height: 38px; }
+
+.inner-profile {
+  background: #fff;
+  padding: 30px; }
+  .inner-profile .user-img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 8px solid #eff3f6; }
+    .inner-profile .user-img img {
+      height: 100%;
+      margin-left: -7px; }
+  .inner-profile .user-info-block {
+    margin-left: 20px; }
 
 .modal-title {
   color: #354052;

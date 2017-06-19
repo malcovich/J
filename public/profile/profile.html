@@ -1,10 +1,22 @@
-<div ng-hide="$ctrl.change">
-	<h4>{{$ctrl.user.email}}</h4>
-	{{$ctrl.user.name}}
-	<span ng-click="$ctrl.change = true">Изменить</span>
-</div>
-<div class="user-form" ng-show="$ctrl.change">
-	<input type="text" ng-model="$ctrl.copyUser.name" placeholder="Name">
-	<span class="btn green-btn" ng-click="$ctrl.updateUser()"> Save </span>
-	<span ng-click="$ctrl.change = false">Cansel</span>
+<div class="inner-block">
+	<div class="inner-profile">
+		<div class="row">
+			<div class="col-lg-3">
+				<div  class="user-img">
+				<img src="../public/images/vectorpaint1.png" alt="">
+					
+				</div>
+			</div>
+			<div class="col-lg-9">
+				<div class="user-info-block">
+					<label for="name">Фамилия/Имя</label>
+					<input type="text" id="name" ng-model="$ctrl.user.name">
+					<label for="email">Email</label>
+					<input type="text" id="email" ng-model="$ctrl.user.email">
+					<span class="btn green-btn" ng-click="$ctrl.updateUser()"> Save </span>
+					<span ng-click="$ctrl.change = false" class="btn">Cansel</span>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
