@@ -1,9 +1,24 @@
 <nav class="main-menu "  ng-controller="NavigationController">
-  <div>
-    <span ng-click="logUserOut()" ng-show="user"  class="user-block">Log out</span>
-    <span   class="user-block" ui-sref="main.profile">{{user.name}}</span>
-     <a href="#" class="logo">Profee</a>
+  <div class="header-user">
+    <div class="user-header-image">
+      <img src="../public/images/vectorpaint1.png" alt="">
+    </div>
+    <!-- <span ng-click="logUserOut()" ng-show="user"  class="user-block">Log out</span> -->
+    <span uib-dropdown on-toggle="toggled(open)" class="user-block">
+      <a href id="simple-dropdown" uib-dropdown-toggle >
+       {{user.name}}<i class="caret"></i>
+      </a>
+      <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+        <li>
+          <a ui-sref="main.profile">Профайл</a>
+          
+        </li>
+        <li><a ng-click="logUserOut()">Выйти</a></li>
+      </ul>
+    </span>
   </div>
+     <a href="#" class="logo">Profee</a>
+
 </nav>
 <div class="main-block">
   <div class="columns">

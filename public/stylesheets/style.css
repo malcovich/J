@@ -23,8 +23,27 @@
     color: #354052;
     text-decoration: none; }
 
-.user-block {
+.header-user {
+  padding: 15px 30px 0 0;
   float: right; }
+  .header-user .user-header-image {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    float: left; }
+    .header-user .user-header-image img {
+      height: 100%;
+      margin-left: -2px; }
+  .header-user .user-block {
+    float: left;
+    color: #2399f1;
+    margin: 10px 5px 0 10px; }
+    .header-user .user-block .dropdown-menu {
+      right: 0 !important;
+      left: auto;
+      top: 160%; }
 
 .left-menu {
   width: 250px;
