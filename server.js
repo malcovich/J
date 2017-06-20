@@ -11,6 +11,7 @@ var conatactDetailsController = require('./server/controllers/contact-controller
 var friendController = require('./server/controllers/friends-controller');
 var requestController = require('./server/controllers/requests-controller');
 var messagesController = require('./server/controllers/messages-controller');
+var searchController = require('./server/controllers/search-controller');
 
 /*app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
@@ -32,7 +33,6 @@ app.get('/', function(req, res){
 });
 
 //Auther
-
 
 app.post('/api/user/signup', authenticationController.signup)
 app.post('/api/contact/signup', authenticationController.signupContact)
@@ -68,20 +68,7 @@ app.post('/api/requests/saveAnswer', requestController.saveAnswer);
 app.post('/api/requests/getAnswer', requestController.getAnswer);
 app.post('/api/requests/getAllAnswers', requestController.getAllAnswers);
 
-/*var storage = multer.diskStorage({ //multers disk storage settings
-    destination: function (req, file, cb) {
-        cb(null, './uploads/')
-    },
-    filename: function (req, file, cb) {
-        var datetimestamp = Date.now();
-        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
-    }
-});*/
-/*console.log(storage.getDestination())
-var upload = multer({ //multer settings
-                storage: storage
-            }).single('file');*/
-     
+app.post('/api/search', searchController.search);
 
 app.listen('3000', function(){
 	console.log("Port")

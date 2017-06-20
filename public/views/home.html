@@ -3,7 +3,6 @@
     <div class="user-header-image">
       <img src="../public/images/vectorpaint1.png" alt="">
     </div>
-    <!-- <span ng-click="logUserOut()" ng-show="user"  class="user-block">Log out</span> -->
     <span uib-dropdown on-toggle="toggled(open)" class="user-block">
       <a href id="simple-dropdown" uib-dropdown-toggle >
        {{user.name}}<i class="caret"></i>
@@ -17,9 +16,13 @@
       </ul>
     </span>
   </div>
-     <a href="#" class="logo">Profee</a>
-
+  <form ng-submit="goToSearch()" class="header-search" ng-controller="searchController">
+    <input type="text"  placeholder="Search" ng-model="query">
+    <button type="submit"></button>
+  </form>
+  <a href="#" class="logo">Profee</a>
 </nav>
+<!-- main Block -->
 <div class="main-block">
   <div class="columns">
     <div class="left-menu">

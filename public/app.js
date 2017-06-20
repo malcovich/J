@@ -85,5 +85,11 @@
 					controller: "MessageController",
 					controllerAs: '$ctrl'
 				})
+				.state('main.search', {
+					url: "/search?q",
+					templateUrl: "/public/search/results.html",
+					controller: "searchController",
+					controllerAs: '$ctrl'
+				})
 		})
 }());
