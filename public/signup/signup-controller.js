@@ -1,19 +1,21 @@
 (function(){
 	angular.module('MyApp')
-		.controller('SignUpController', ['$scope', '$state', '$http', function($scope, $state, $http){
+		.controller('SignUpController', ['$scope', '$state', '$http','$rootScope', '$location', '$localStorage', 'AuthFactory', function($scope, $state, $http,$rootScope, $location, $localStorage,AuthFactory){
 			var $ctrl = this
 			$ctrl.showCustomer = true;
-			var url  = 'api/user/signup';
-			 $ctrl.createUser = function(){
-				$http({
-					method :'POST', 
-					url : url,
-					data :  $ctrl.newUser
-				}).then(function(res){
-					console.log(res)
-				},function(error){
-					console.log(error)
-				});
+
+			$ctrl.createUser = function(){
+				var formData = {
+	                email: this.newUser.email,
+	                password: this.newUser.password,
+	                role : 'customer'
+	            }
+	            AuthFactory.save(formData).then(function(res) {
+	            	if (res.data.type){
+	            		$localStorage.token = res.data.token;
+	                	$state.go('main')
+	            	}
+	            })
 			}
 
 			 $ctrl.createContact = function(){

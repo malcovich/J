@@ -1,6 +1,6 @@
 (function(){
-	angular.module('MyApp', ['ui.router', 'ui.bootstrap', 'ngFileUpload'])
-		.config(function($stateProvider){
+	angular.module('MyApp', ['ui.router', 'ui.bootstrap', 'ngFileUpload','ngStorage',])
+		.config(function($stateProvider, $httpProvider){
 			$stateProvider
 				.state('landing', {
 					url: "/",
@@ -23,6 +23,12 @@
 					url: "/signup",
 					templateUrl: "/public/signup/signup.html",
 					controller: "SignUpController",
+					controllerAs: '$ctrl'
+				})
+				.state('login', {
+					url: "/login",
+					templateUrl: "/public/login/login.html",
+					controller: "LandingController",
 					controllerAs: '$ctrl'
 				})
 				.state('main.contacts', {
@@ -91,5 +97,24 @@
 					controller: "searchController",
 					controllerAs: '$ctrl'
 				})
+
+			$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
+	            return {
+	                'request': function (config) {
+	                    config.headers = config.headers || {};
+	                    if ($localStorage.token) {
+	                        config.headers.Authorization = 'Bearer ' + $localStorage.token;
+	                    }
+	                    return config;
+	                },
+	                'responseError': function(response) {
+	                    if(response.status === 401 || response.status === 403) {
+	                        $location.path('/login');
+	                    }
+	                    return $q.reject(response);
+	                }
+	            };
+	        }]);
+
 		})
 }());
