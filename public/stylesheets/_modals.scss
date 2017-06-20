@@ -10,7 +10,7 @@
 }
 .modal-body {
 	padding: 20px 30px;
-	label {
+	.modal-label {
 		display: block;
 		font-size: 14px;
 		font-weight: 600;
@@ -23,6 +23,13 @@
 		border: 1px solid #dfe3e9;
 		border-radius: 4px;
 		padding: 0 10px;
+
+		&[type=checkbox] {
+			height: 14px;
+			width: 14px;
+			border-radius: 2px;
+			border: 1px solid #dfe3e9;
+		}
 	}
 }
 .login {

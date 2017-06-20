@@ -499,7 +499,7 @@ input {
 
 .modal-body {
   padding: 20px 30px; }
-  .modal-body label {
+  .modal-body .modal-label {
     display: block;
     font-size: 14px;
     font-weight: 600;
@@ -511,6 +511,11 @@ input {
     border: 1px solid #dfe3e9;
     border-radius: 4px;
     padding: 0 10px; }
+    .modal-body input[type=checkbox] {
+      height: 14px;
+      width: 14px;
+      border-radius: 2px;
+      border: 1px solid #dfe3e9; }
 
 .login .modal-dialog {
   width: 820px; }

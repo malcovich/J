@@ -48,22 +48,22 @@
       </div>
       <div class="modal-body" id="modal-body">
         <div>
-          <label for="contactsName">Name</label>
+          <label class="modal-label" for="contactsName">Name</label>
           <input ng-model="vm.contact.name" placeholder="Contact's name" id="contactsName">
         </div>
          <div>
-        <label for="contactsPhone">Phone</label>
+        <label class="modal-label" for="contactsPhone">Phone</label>
           <input ng-model="vm.contact.phone" placeholder="Contact's phone" id="contactsPhone">
         </div>  
          <div>
-          <label for="contactsName">Specification</label>
+          <label class="modal-label" for="contactsName">Specification</label>
           <input ng-model="vm.contact.spec" placeholder="Contact's name" id="contactsSpec">
         </div>
-          <div class="checkbox">
-            <label>
-              <input ng-model="vm.contact.hidden" type="checkbox"> Hidden
-            </label>
-          </div>  
+        <div class="checkbox">
+          <label class="radio-label">
+            <input ng-model="vm.contact.hidden" type="checkbox">Hidden
+          </label>
+        </div>  
          
       </div>
       <div class="modal-footer">
