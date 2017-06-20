@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 module.exports = mongoose.model('Contact', {
+	/*name: {type:String, text: true},*/
 	name: String,
 	email: String,
 	password : String,
-	spec: String,
+	spec: {type:String, text: true},
 	phone: String,
 	place: String,
 	raiting: String,

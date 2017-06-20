@@ -3,21 +3,15 @@ var Contact = require('../datasets/contact');
 var User = require('../datasets/users');
 
 module.exports.search = function(req, res){
-	var regex = new RegExp('req.body.q', 'i');  // 'i' makes it case insensitive
-    
-	User.find({ $text: { $search: req.body.q }}, function (err, result) {
+     var q = req.body.q
+	User.find({ $text: { $search: q }}, function (err, result) {
 		console.log(result)
-		res.json(result);
-     //    var friendsIds = result.map(function(i){ return i._id})
-     //   	Contact.find({$or:[{ userId :  {$in: friendsIds}}, {userId :  req.param('userId')}]}, function (err, result) {
-     //   		var reslt = {}
-     //   		result.forEach(function(item){
-     //   			if(!reslt[item.userId]){
-     //   				reslt[item.userId] = [];
-     //   			}
-     //   			reslt[item.userId].push(item);
-     //   		})
-	    //     res.json(reslt);
-	    // });
+          var search = {};
+          search.users = result;
+       	Contact.find({ $text: { $search: q }}, function (err, contacts) {
+               console.log(contacts)
+               search.contacts = contacts;
+	          res.json(search);
+	    });
     });
 }

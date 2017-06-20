@@ -16,7 +16,7 @@ angular.module('MyApp')
         })
 
         $ctrl.updateUser  =  function(){
-          $http.post('/api/user/updateProfile', $ctrl.copyUser).then(function(res){
+          $http.post('/api/user/updateProfile', $ctrl.user).then(function(res){
             $ctrl.user = res.data;
             $ctrl.change = false;
           });
