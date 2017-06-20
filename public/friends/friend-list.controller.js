@@ -3,29 +3,27 @@ angular.module('MyApp')
   	var $ctrl = this;
   	AuthFactory.me().then(function(res){
         $ctrl.user = res.data.data;
-     
+    	if (!$ctrl.user){
+    		$state.go('landing');
+    	}else {
+    		$ctrl.friendsList = [];
 
-  	if (!$ctrl.user){
-  		$state.go('landing');
-  	}else {
-  		$ctrl.friendsList = [];
+  		$http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
+  	      	$ctrl.friendsList = res.data;
+  	    });
+    	}
 
-		$http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
-	      	$ctrl.friendsList = res.data;
-	    });
-  	}
-
-  	$ctrl.open = function(){
-  		ModalFactory.open('myModalContent.html', 'ModalInstanceCtrl1').then(function(ctrl){
-  			$ctrl.friend = ctrl.friend;
-		    $ctrl.friend.userId = $ctrl.user._id;
-		    $http.post('/api/friend/add', $ctrl.friend).then(function(res){
-		      $ctrl.friendsList.push(res)
-		    });
-		    }, function () {
-		      console.info('Modal dismissed at: ' + new Date());
-		    });
-  	}
+    	$ctrl.open = function(){
+    		ModalFactory.open('myModalContent.html', 'ModalInstanceCtrl1').then(function(ctrl){
+    			$ctrl.friend = ctrl.friend;
+  		    $ctrl.friend.userId = $ctrl.user._id;
+  		    $http.post('/api/friend/add', $ctrl.friend).then(function(res){
+  		      $ctrl.friendsList.push(res)
+  		    });
+  		    }, function () {
+  		      console.info('Modal dismissed at: ' + new Date());
+  		    });
+    	}
   })
 }]);
 
