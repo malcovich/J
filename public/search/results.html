@@ -1,1 +1,14 @@
-res
+<div class="inner-block">
+	<div ng-show="$ctrl.searchResut.users.length > 0 || $ctrl.searchResut.contacts.length > 0">
+		<h3>Результаты поиска по запросу "{{$ctrl.q}}":</h3>
+		<ul class="user-results-list">
+			<li ng-repeat="user in $ctrl.searchResut.users">
+				<div class="user-img"><img ng-src="{{user.img}}" alt=""></div>
+				<p class="user-name">{{user.name}}</p>
+			</li>
+		</ul>
+	</div>
+	<div ng-show="($ctrl.searchResut.users.length == 0) && ($ctrl.searchResut.contacts.length == 0)">
+		<h3>К сожалению, по ваше запросу ничего не найдено</h3>
+	</div>
+</div>

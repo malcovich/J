@@ -1,12 +1,12 @@
 (function(){
 	angular.module('MyApp')
 		.controller('searchController', ['$scope', '$state', '$http','$stateParams', function($scope, $state, $http,$stateParams){
-			$scope.goToSearch = function(){
-				$state.go('main.search', {'q': $scope.query})
-			}
+			$ctrl = this;
+			
 			if($stateParams.q != undefined){
+				$ctrl.q = $stateParams.q;
 				$http.post('/api/search',{'q': $stateParams.q}).then(function(res){
-					console.log('res',res)
+					$ctrl.searchResut = res.data;
 				})
 			}
 		}])

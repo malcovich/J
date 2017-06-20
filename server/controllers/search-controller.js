@@ -3,7 +3,7 @@ var Contact = require('../datasets/contact');
 var User = require('../datasets/users');
 
 module.exports.search = function(req, res){
-     var q = req.body.q
+    var q = req.body.q
 	User.find({ $text: { $search: q }}, function (err, result) {
 		console.log(result)
           var search = {};

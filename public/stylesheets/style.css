@@ -487,6 +487,29 @@ input {
   .inner-profile .user-info-block {
     margin-left: 20px; }
 
+.user-results-list {
+  list-style: none;
+  background-color: #fff;
+  padding: 15px 30px 15px 30px;
+  margin: 0; }
+  .user-results-list li {
+    overflow: hidden;
+    padding: 15px 0 15px 0;
+    border-bottom: 1px solid #E6EAEE; }
+    .user-results-list li .user-img {
+      width: 70px;
+      height: 70px;
+      overflow: hidden;
+      float: left; }
+      .user-results-list li .user-img img {
+        width: 100%; }
+    .user-results-list li .user-name {
+      float: left;
+      margin-left: 30px;
+      font-size: 18px;
+      line-height: 70px;
+      color: #354052; }
+
 .modal-title {
   color: #354052;
   font-weight: 600;

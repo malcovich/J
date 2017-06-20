@@ -7,5 +7,10 @@
 			$scope.logUserOut = function(){
 				AuthFactory.logout();
 			}
+			$scope.goToSearch = function(){
+				console.log('e',$scope.query)
+				$state.go('main.search', {'q': $scope.query})
+			}
+
 		}])
 }())
