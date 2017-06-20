@@ -58,7 +58,12 @@
          <div>
           <label for="contactsName">Specification</label>
           <input ng-model="vm.contact.spec" placeholder="Contact's name" id="contactsSpec">
-        </div>  
+        </div>
+          <div class="checkbox">
+            <label>
+              <input ng-model="vm.contact.hidden" type="checkbox"> Hidden
+            </label>
+          </div>  
          
       </div>
       <div class="modal-footer">
