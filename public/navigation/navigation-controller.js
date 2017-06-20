@@ -1,15 +1,11 @@
 (function(){
 	angular.module('MyApp')
-		.controller('NavigationController', ['$scope','$http','$state', 'UserFactory',  function($scope, $http, $state, UserFactory){
-
-			$scope.user = JSON.parse(localStorage.getItem('User-Data'));
-
+		.controller('NavigationController', ['$scope','$http','$state', 'AuthFactory',  function($scope, $http, $state, AuthFactory){
+			AuthFactory.me().then(function(res){
+	  			$scope.user = res.data.data;
+	  		})
 			$scope.logUserOut = function(){
-				localStorage.removeItem('User-Data');
-				UserFactory.setUser(undefined);
-				$scope.user = undefined
-				$scope.$broadcast('userLogout');
-				$state.go('landing');
+				AuthFactory.logout();
 			}
 		}])
 }())

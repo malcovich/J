@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
+var jwt = require("jsonwebtoken");
 
 var app = express();
 var authenticationController = require('./server/controllers/authentication-controller');
@@ -20,6 +21,15 @@ var searchController = require('./server/controllers/search-controller');
     next();
 });
 */
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    next();
+});
+/*var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
+                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };     
+mongoose.connect('mongodb://localhost:27017/profee',options);*/
 mongoose.connect('mongodb://localhost:27017/profee');
 app.use(bodyParser.json());
 app.use(multipartMiddleware)
@@ -68,7 +78,42 @@ app.post('/api/requests/saveAnswer', requestController.saveAnswer);
 app.post('/api/requests/getAnswer', requestController.getAnswer);
 app.post('/api/requests/getAllAnswers', requestController.getAllAnswers);
 
+     
 app.post('/api/search', searchController.search);
+var User = require('./server/datasets/users');
+app.get('/api/me', ensureAuthorized, function(req, res) {
+    console.log(req.token)
+    User.findOne({token: req.token}, function(err, user) {
+        console.log(user)
+        if (err) {
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+        } else {
+            res.json({
+                type: true,
+                data: user
+            });
+        }
+    });
+});
+function ensureAuthorized(req, res, next) {
+    var bearerToken;
+    var bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== 'undefined') {
+        var bearer = bearerHeader.split(" ");
+        bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.send(403);
+    }
+}
+
+process.on('uncaughtException', function(err) {
+    console.log(err);
+});
 
 app.listen('3000', function(){
 	console.log("Port")

@@ -1,7 +1,9 @@
 angular.module('MyApp')
-  .controller('FriendsListController', ['$scope', 'UserFactory', '$uibModal', '$http','$state', 'ModalFactory', function($scope, UserFactory, $uibModal, $http, $state, ModalFactory){
+  .controller('FriendsListController', ['$scope', 'UserFactory', '$uibModal', '$http','$state', 'ModalFactory','AuthFactory', function($scope, UserFactory, $uibModal, $http, $state, ModalFactory,AuthFactory){
   	var $ctrl = this;
-  	$ctrl.user = JSON.parse(localStorage.getItem('User-Data'));
+  	AuthFactory.me().then(function(res){
+        $ctrl.user = res.data.data;
+     
 
   	if (!$ctrl.user){
   		$state.go('landing');
@@ -24,6 +26,7 @@ angular.module('MyApp')
 		      console.info('Modal dismissed at: ' + new Date());
 		    });
   	}
+  })
 }]);
 
 angular.module('MyApp').controller('ModalInstanceCtrl1', function ($uibModalInstance, $state) {

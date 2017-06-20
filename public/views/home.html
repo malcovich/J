@@ -5,7 +5,7 @@
     </div>
     <span uib-dropdown on-toggle="toggled(open)" class="user-block">
       <a href id="simple-dropdown" uib-dropdown-toggle >
-       {{user.name}}<i class="caret"></i>
+       {{user.name || user.email}}<i class="caret"></i>
       </a>
       <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
         <li>
@@ -26,7 +26,7 @@
 <div class="main-block">
   <div class="columns">
     <div class="left-menu">
-      <div ng-show="user.type == 'Customer'">
+      <div ng-show="user.role == 'customer'">
         <div class="left-menu-item">
           <a ui-sref="main.requests">
             <p></i>Requests</p>
