@@ -1,6 +1,7 @@
 angular.module('MyApp')
   .controller('FriendsListController', ['$scope', 'UserFactory', '$uibModal', '$http','$state', 'ModalFactory','AuthFactory', function($scope, UserFactory, $uibModal, $http, $state, ModalFactory,AuthFactory){
   	var $ctrl = this;
+
   	AuthFactory.me().then(function(res){
         $ctrl.user = res.data.data;
     	if (!$ctrl.user){
@@ -10,9 +11,25 @@ angular.module('MyApp')
 
   		$http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
   	      	$ctrl.friendsList = res.data;
+            var userID = $ctrl.user._id;
+            var list = $ctrl.friendsList;
+            
+            for (var i = 0; i < list.length; i++) {
+                var friendID = [];
+                
+                if (list.useridinvite = userID) {
+                    friendID == list[i].useridaccept;
+                    console.log("xx ", list[i].useridaccept)
+                } else {
 
-  	    });
-    	}
+                }
+              }
+              console.log("list", list);
+              console.log("userID", userID);
+      	    });
+        	}
+
+
 
     	$ctrl.open = function(){
     		ModalFactory.open('myModalContent.html', 'ModalInstanceCtrl1').then(function(ctrl){
@@ -26,12 +43,6 @@ angular.module('MyApp')
   		    });
     	}
 
-      var userID = $ctrl.user;
-      var current = $ctrl;
-      
-      console.log("current", current);
-
-      console.log("id233", userID);
   })
 }]);
 

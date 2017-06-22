@@ -10,7 +10,7 @@ module.exports.add = function(req, res){
 }
 
 module.exports.list = function(req,res) {
-	Friend.find({$and: [ {$or: [ {_idmy : req.param('userId')} , {_idfriend : req.param('userID')} ]} , { accepted: true }]}).populate('_idfriend').populate('_idmy').exec(function (err, result) { 
+	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: true }]}).populate('_idfriend').populate('_idmy').exec(function (err, result) { 
 		console.log(result)
     	res.json(result);
 	});
