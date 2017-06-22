@@ -1,16 +1,14 @@
 <div class="sub-header">
-    <span class="btn green-btn add-new" ng-click="$ctrl.open()">Add friend</span>
     <p class="counts">{{$ctrl.friendsList.length}} friends</p>
 </div>
 
 <div class="inner-block">
     <ul class="friends-list">
-        {{$ctrl}}
-        <li ng-repeat="friend in $ctrl.friendsList" ui-sref="main.friend({id : friend._id})">
+        <li ng-repeat="friend in $ctrl.friendsList">
             <img src="../public/images/user.jpg">
             <div class="info">
-                 <p class="name">
-                    {{friend.useridinvite.name || friend.useridinvite.email}}
+                 <p class="name" ui-sref="main.friend({id : friend._id})" style="cursor: pointer;">
+                    {{friend.name || friend.email}}
                 </p>
                 <p class="phone">{{friend.phone}}</p>
             </div>
