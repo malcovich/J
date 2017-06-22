@@ -10,6 +10,7 @@ angular.module('MyApp')
 
   		$http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
   	      	$ctrl.friendsList = res.data;
+
   	    });
     	}
 
@@ -24,6 +25,13 @@ angular.module('MyApp')
   		      console.info('Modal dismissed at: ' + new Date());
   		    });
     	}
+
+      var userID = $ctrl.user;
+      var current = $ctrl;
+      
+      console.log("current", current);
+
+      console.log("id233", userID);
   })
 }]);
 

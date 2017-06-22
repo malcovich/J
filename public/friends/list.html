@@ -5,11 +5,12 @@
 
 <div class="inner-block">
     <ul class="friends-list">
+        {{$ctrl}}
         <li ng-repeat="friend in $ctrl.friendsList" ui-sref="main.friend({id : friend._id})">
             <img src="../public/images/user.jpg">
             <div class="info">
                  <p class="name">
-                    {{friend.name || friend.email}}
+                    {{friend._idfriend.name || friend._idfriend.email}}
                 </p>
                 <p class="phone">{{friend.phone}}</p>
             </div>
