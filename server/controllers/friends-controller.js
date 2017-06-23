@@ -23,14 +23,33 @@ module.exports.list = function(req,res) {
     });
 }
 */
-module.exports.item = function(req, res){
+module.exports.item = function(req, res) {
+
+	User.find({_id: req.body.friendId}).exec(function (err, result) {
+		Contact.find({ userId: result[0]._id}).exec(function (err, contacts) {
+			console.log(result)
+        	res.json({'friend': result, 'contacts': contacts });
+		});
+	});
+}
+
+/*module.exports.item = function(req, res){
 	Friend.find({ _id : req.param('id')}).populate('_idmy').populate('_idfriend').exec(function (err, result) {
 		Contact.find({ userId: result[0].friendId1}).exec(function (err, contacts) {
 			console.log(result)
         	res.json({'friend': result, 'contacts':contacts });
 		});
+
+				Contact.find({ $or:[ {userId: result[0].useridinvite} , {userId: result[0].useridaccept} ]}).exec(function (err, contacts) {
+			console.log(result)
+        	res.json({'friend': result, 'contacts':contacts });
+		});
+
+.populate('useridinvite').populate('useridaccept').exec(function(err, result)
+
+
     });
-}
+}*/
 
 module.exports.login = function(req,res){
 	User.find(req.body,function(err,results){

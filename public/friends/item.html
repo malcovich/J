@@ -1,4 +1,7 @@
-{{$ctrl.friend.friendId2}}
-<ul>
-	<li ng-repeat="contacts in $ctrl.friend.friendId2">{{contacts.email}}</li>
+<h2>Friend details</h2>
+<p>{{$ctrl.contactList.friend.email}}</p>
+{{$ctrl.contactList}}
+<p>Friend contacts</p>
+<ul >
+	<li ng-repeat="contacts in $ctrl.contactList.contacts">{{contacts.name}}</li>
 </ul>
