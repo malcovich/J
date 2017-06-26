@@ -8,7 +8,6 @@ var jwt = require("jsonwebtoken");
 var app = express();
 var authenticationController = require('./server/controllers/authentication-controller');
 var conatactController = require('./server/controllers/contact-controller');
-var conatactDetailsController = require('./server/controllers/contact-controller');
 var friendController = require('./server/controllers/friends-controller');
 var requestController = require('./server/controllers/requests-controller');
 var messagesController = require('./server/controllers/messages-controller');

@@ -68,7 +68,7 @@ module.exports.login = function(req,res){
 	})*/
 
     User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
-        console.log(req.body)
+        console.log(req.body, user, err)
         if (err) {
             res.json({
                 type: false,
