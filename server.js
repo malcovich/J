@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };     
 mongoose.connect('mongodb://localhost:27017/profee',options);*/
 /*mongoose.connect('mongodb://localhost:27017/profee');*/
-mongoose.connect('mongodb://dmitriy.vertiy@gmail.com:FCDinamoKiev1927@ds139352.mlab.com:39352/heroku_fbhj1m5n');
+mongoose.connect('mongodb://dddd:FCDinamoKiev1927@ds139352.mlab.com:39352/heroku_fbhj1m5n');
 app.use(bodyParser.json());
 app.use(multipartMiddleware)
 app.use('/public', express.static( __dirname + "/public"));
