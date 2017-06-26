@@ -78,6 +78,7 @@ app.post('/api/requests/saveAnswer', requestController.saveAnswer);
 app.post('/api/requests/getAnswer', requestController.getAnswer);
 app.post('/api/requests/getAllAnswers', requestController.getAllAnswers);
 
+app.set('port', (process.env.PORT || 5000));
      
 app.post('/api/search', searchController.search);
 var User = require('./server/datasets/users');
@@ -115,6 +116,6 @@ process.on('uncaughtException', function(err) {
     console.log(err);
 });
 
-app.listen('3000', function(){
-	console.log("Port")
+app.listen(app.get('port'), function(){
+	console.log("Port",app.get('port'))
 });
