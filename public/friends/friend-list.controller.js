@@ -18,9 +18,9 @@ angular.module('MyApp')
 
       for (var i = 0; i < $ctrl.friendsList.length; i++) {
         if ($ctrl.friendsList[i].useridaccept._id == userID) {
-          friendsList.splice(i, i, $ctrl.friendsList[i].useridinvite);
+          friendsList.splice(i, 1, $ctrl.friendsList[i].useridinvite);
         } else {
-          friendsList.splice(i, i, $ctrl.friendsList[i].useridaccept);
+          friendsList.splice(i, 1, $ctrl.friendsList[i].useridaccept);
         }
       }
       $ctrl.friendsList = friendsList;

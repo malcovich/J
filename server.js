@@ -8,7 +8,6 @@ var jwt = require("jsonwebtoken");
 var app = express();
 var authenticationController = require('./server/controllers/authentication-controller');
 var conatactController = require('./server/controllers/contact-controller');
-var conatactDetailsController = require('./server/controllers/contact-controller');
 var friendController = require('./server/controllers/friends-controller');
 var requestController = require('./server/controllers/requests-controller');
 var messagesController = require('./server/controllers/messages-controller');
@@ -30,7 +29,8 @@ app.use(function(req, res, next) {
 /*var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };     
 mongoose.connect('mongodb://localhost:27017/profee',options);*/
-mongoose.connect('mongodb://localhost:27017/profee');
+/*mongoose.connect('mongodb://localhost:27017/profee');*/
+mongoose.connect('mongodb://admin:admin@ds139352.mlab.com:39352/heroku_fbhj1m5n');
 app.use(bodyParser.json());
 app.use(multipartMiddleware)
 app.use('/public', express.static( __dirname + "/public"));
@@ -78,6 +78,7 @@ app.post('/api/requests/saveAnswer', requestController.saveAnswer);
 app.post('/api/requests/getAnswer', requestController.getAnswer);
 app.post('/api/requests/getAllAnswers', requestController.getAllAnswers);
 
+app.set('port', (process.env.PORT || 5000));
      
 app.post('/api/search', searchController.search);
 var User = require('./server/datasets/users');
@@ -115,6 +116,6 @@ process.on('uncaughtException', function(err) {
     console.log(err);
 });
 
-app.listen('3000', function(){
-	console.log("Port")
+app.listen(app.get('port'), function(){
+	console.log("Port",app.get('port'))
 });

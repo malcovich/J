@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var Contact = require('../datasets/contact');
 var Friend = require('../datasets/friend');
-var Comment = require('../datasets/Comment');
-var Raiting = require('../datasets/Raiting');
+var Comment = require('../datasets/comment');
+var Raiting = require('../datasets/raiting');
 module.exports.add = function(req, res){
 	var contact = new Contact(req.body);
 	contact.save();
@@ -72,13 +72,13 @@ module.exports.addRaiting = function(req, res){
 module.exports.all = function(req, res){
 	Friend.find({ userId : req.param('userId')}, function (err, result) {
         var friendsIds = result.map(function(i){ return i._id})
-       	Contact.find({$or:[{ userId :  {$in: friendsIds}}, {userId :  req.param('userId')}]}, function (err, result) {
+       	Contact.find({$or:[{ userId :  {$in: friendsIds}}, {userId :  req.param('userId')}]}).populate('userId').exec(function (err, result) {
        		var reslt = {}
        		result.forEach(function(item){
-       			if(!reslt[item.userId]){
-       				reslt[item.userId] = [];
+       			if(!reslt[item.userId[0]._id]){
+       				reslt[item.userId[0]._id] = [];
        			}
-       			reslt[item.userId].push(item);
+       			reslt[item.userId[0]._id].push(item);
        		})
 	        res.json(reslt);
 	    });
