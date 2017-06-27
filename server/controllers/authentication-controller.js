@@ -12,6 +12,7 @@ module.exports.signup = function(req, res){
 	res.json(req.body);*/
 
     User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
+        console.log(user, req.body)
         if (err) {
             res.json({
                 type: false,
@@ -92,14 +93,74 @@ module.exports.login = function(req,res){
 }
 
 module.exports.updateProfile = function(req, res){
-	User.findByIdAndUpdate(req.body._id , {'name': req.body.name}, {new: true},function(err, u) {
-		console.log('u',u)
-	  	if (err) {throw err;}else {res.json(u)}
+    User.findByIdAndUpdate(req.body._id , req.body, {new: true},function(err, u) {
+        console.log('u',u)
+        if (err) {throw err;}else {res.json(u)}
+    });
+}
+module.exports.findByContactsList = function(req, res){
+    var contacts = req.body;
+    console.log(contacts)
+    var phones = [];
+    var names = [];
+    var emails = [];
+
+    contacts.forEach(function(contact){
+        if (contact.phones != null) {
+            contact.phones.forEach(function(i){
+                phones.push(i);
+            })
+        }
+        if(contact.emails != null){
+            emails.push(contact.emails)
+        }
+        names.push(contact.displayName)
+    })
+
+    
+
+    var users = [];
+	User.find({$or : [{'name': {$in: names}}]},function(err, byName) {
+        console.log('byName', byName)
+        console.log('---------------------------')
+        if (emails.length > 0){
+                User.find({$or : [{'email': {$in: emails}}]},function(err, byEmail) {
+                console.log('byEmail', byEmail)
+                console.log('---------------------------')
+                User.find({$or : [{'phone': {$in: phones}}]},function(err, byPhone) {
+                    console.log('byPhone', byPhone)
+                    console.log('---------------------------')
+                    var users = [].concat(byName,byEmail, byPhone)
+                    // var obj = {};
+
+                    // for ( var i=0, len = users.length; i < len; i++ )
+                    //     obj[users[i]['_id']] = users[i];
+
+                    // users = new Array();
+                    // for ( var key in obj )
+                    //     users.push(obj[key]);
+                });
+            });
+        }else {
+             User.find({'phone': {$in: phones}},function(err, byPhone) {
+                console.log('byPhone', byPhone)
+                console.log('---------------------------')
+                var users = [].concat(byName, byPhone)
+                var obj = {};
+                for ( var i=0, len = users.length; i < len; i++ )
+                    obj[users[i]['_id']] = users[i];
+
+                users = new Array();
+                for ( var key in obj )
+                    users.push(obj[key]);
+                res.json(users)
+            });
+        }
+	  
 	});
 }
 
 module.exports.addPhoto = function(req, res){
-    console.log(req.body.id)
     var file = req.files.file;
     var tempPath = file.path;
     function guid() {
@@ -114,7 +175,6 @@ module.exports.addPhoto = function(req, res){
 
     var newName =  guid() + file.name;
     var target_path = 'public/uploads/' + newName;
-
     
     // move the file from the temporary location to the intended location
     fs.rename(tempPath, target_path, function(err) {

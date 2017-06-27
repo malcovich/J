@@ -49,6 +49,7 @@ app.post('/api/contact/signup', authenticationController.signupContact)
 app.post('/api/user/login', authenticationController.login)
 app.post('/api/user/updateProfile', authenticationController.updateProfile);
 app.post('/api/user/addPhoto', multipartMiddleware, authenticationController.addPhoto);
+app.post('/api/user/findByContactsList', authenticationController.findByContactsList);
 
 app.post('/api/contact/add', conatactController.add);
 app.post('/api/contact/list', conatactController.list);

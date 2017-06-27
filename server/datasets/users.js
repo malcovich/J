@@ -5,5 +5,7 @@ module.exports = mongoose.model('User', {
 	img:String,
 	name: {type:String,text: true},
 	role: String,
-	token:String
+	token:String,
+	phone : String,
+	hardNumber: Boolean
 }); 
