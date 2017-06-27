@@ -13,6 +13,11 @@
 					templateUrl: "/public/views/home.html",
 					controller: "MainCtrl"
 				})
+				.state('main.feed', {
+					url: "/feed",
+					templateUrl: "/public/views/feed.html",
+					controller: "FeedCtrl"
+				})
 				.state('main.profile', {
 					url: "/profile",
 					templateUrl: "/public/profile/profile.html",

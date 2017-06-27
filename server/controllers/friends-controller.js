@@ -11,11 +11,20 @@ module.exports.add = function(req, res){
 
 module.exports.list = function(req,res) {
 	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: true }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
-		console.log(result)
     	res.json(result);
 	});
 }
 
+module.exports.listFriendsRequests = function(req,res) {
+	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
+    	res.json(result);
+	});
+}
+module.exports.accept = function(req,res) {
+	Friend.findByIdAndUpdate(req.body._id, {accepted: true}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
+    	res.json(result);
+	});
+}
 /*module.exports.list = function(req, res){
 	Friend.find({ friendId1 : req.param('userId')}, function (err, result) {
 		console.log(result)
