@@ -1,7 +1,18 @@
-<h2>Friend details</h2>
-<p>{{$ctrl.contactList.friend.email}}</p>
-{{$ctrl.contactList}}
-<p>Friend contacts</p>
-<ul >
-	<li ng-repeat="contacts in $ctrl.contactList.contacts">{{contacts.name}}</li>
-</ul>
+<div class="inner-block">
+	<p>{{$ctrl.contactList.friend[0].email}}</p>
+	<p>{{$ctrl.contactList.contacts.length}} contacts</p>
+	{{$ctrl.contactList.contacts}}
+	<ul class="contact-list">
+		<li class="contact-card" ng-repeat="contacts in $ctrl.contactList.contacts">{{contacts}}
+			<div class="header-card">
+			  <div class="image-block">
+			    <img src="{{contacts.img || 'public/images/vectorpaint1.png'}}">
+			  </div>
+			  <div class="card-title">
+			    <h5 class="contact-name">{{contacts.name}}</h5>
+			    <p class="contact-spec">{{contacts.spec}}</p>
+			  </div>
+			</div>
+		</li>
+	</ul>
+</div>
