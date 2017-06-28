@@ -36,11 +36,22 @@ module.exports.item = function(req, res) {
 
 	User.find({_id: req.body.friendId}).exec(function (err, result) {
 		Contact.find({ userId: result[0]._id}).exec(function (err, contacts) {
-			console.log(result)
-        	res.json({'friend': result[0], 'contacts': contacts });
+			Friend.find({$and: [ {$or: [ {useridinvite : req.body.friendId} , {useridaccept : req.body.friendId} ]} , { accepted: true }]}).populate('useridinvite').populate('useridaccept').exec(function (err, friends) { 
+	    		res.json({'friend': result[0], 'contacts': contacts, 'friends': friends });
+			});
 		});
+
 	});
 }
+
+module.exports.deleteFriend = function(req, res){
+	Friend.findByIdAndUpdate(req.body.friendId , { 'deleted': true }, {new:true}, function(err, request) {
+		console.log("request", request)
+		res.json(request)
+	  	if (err) throw err;
+	});
+}
+
 
 /*module.exports.item = function(req, res){
 	Friend.find({ _id : req.param('id')}).populate('_idmy').populate('_idfriend').exec(function (err, result) {

@@ -1,18 +1,35 @@
-<div class="inner-block">
-	<p>{{$ctrl.contactList.friend[0].email}}</p>
-	<p>{{$ctrl.contactList.contacts.length}} contacts</p>
-	{{$ctrl.contactList.contacts}}
-	<ul class="contact-list">
-		<li class="contact-card" ng-repeat="contacts in $ctrl.contactList.contacts">{{contacts}}
-			<div class="header-card">
-			  <div class="image-block">
-			    <img src="{{contacts.img || 'public/images/vectorpaint1.png'}}">
-			  </div>
-			  <div class="card-title">
-			    <h5 class="contact-name">{{contacts.name}}</h5>
-			    <p class="contact-spec">{{contacts.spec}}</p>
-			  </div>
-			</div>
-		</li>
-	</ul>
+<div class="inner-block container-fliud">
+	<h5 class="clearfix">
+		<span>{{$ctrl.friendInfo.friend.email}}</span>
+		<span class="btn btn-danger pull-right" ng-click="$ctrl.deleteFriend($ctrl.friendInfo.friend._id)">delete from friends</span>
+	</h5>
+
+
+	<div class="row">
+		<div class="col-xs-6">
+			<p>{{$ctrl.friendInfo.contacts.length}} contacts</p>
+			<ul class="">
+				<li class="tile-list-items" ng-repeat="contacts in $ctrl.friendInfo.contacts">
+				  	<div class="image-block pull-left">
+				    	<img src="{{contacts.img || '/public/images/vectorpaint1.png'}}">
+				  	</div>
+			    	<h5 class="contact-name">{{contacts.name}}</h5>
+			    	<p class="contact-spec">{{contacts.spec}}</p>
+				</li>
+			</ul>
+		</div>
+		<div class="col-xs-6">
+			<p>{{$ctrl.friendInfo.friends.length}} friends</p>
+
+			<ul class="">
+				<li class="tile-list-items" ng-repeat="friends in $ctrl.friendInfo.friends">
+				  	<div class="image-block pull-left">
+				    	<img src="{{contacts.img || '/public/images/vectorpaint1.png'}}">
+				  	</div>
+			    	<h5 class="contact-name">{{friends.name}}</h5>
+			    	<p class="contact-spec">{{friends.spec}}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>

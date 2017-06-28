@@ -75,6 +75,7 @@ app.post('/api/friend/list', friendController.list);
 app.post('/api/friend/item', friendController.item);
 app.post('/api/friend/listFriendsRequests', friendController.listFriendsRequests);
 app.post('/api/friend/accept', friendController.accept);
+app.post('/api/friend/deleteFriend', friendController.deleteFriend);
 
 app.post('/api/requests/add', requestController.add);
 app.post('/api/requests/list', requestController.list);

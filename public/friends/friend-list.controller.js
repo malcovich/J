@@ -13,6 +13,7 @@ angular.module('MyApp')
       var userID = $ctrl.user._id;
 
       console.log("userid ", userID)
+      console.log("object ", $ctrl)
 
       var friendsList = [];
 

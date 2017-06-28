@@ -45,3 +45,22 @@
 		}
 	}
 }
+
+.tile-list-items {
+	background-color: #fff;
+	padding: 10px 16px;
+	margin-bottom: 16px;
+	overflow: hidden;
+	display: block;
+	position: relative;
+}
+
+.image-block {
+	height: 70px;
+	width: auto;
+	margin-right: 16px;
+
+	img {
+		height: 100%;
+	}
+}

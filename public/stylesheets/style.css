@@ -67,6 +67,10 @@
   border-right: 1px solid #dfe2e5;
   padding-top: 35px; }
 
+ul {
+  margin: 0;
+  padding: 0; }
+
 .main-block {
   min-height: 100vh;
   display: flex;
@@ -114,6 +118,21 @@
     .friends-list li .phone {
       color: #ACB3BD;
       font-size: 12px; }
+
+.tile-list-items {
+  background-color: #fff;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  display: block;
+  position: relative; }
+
+.image-block {
+  height: 70px;
+  width: auto;
+  margin-right: 16px; }
+  .image-block img {
+    height: 100%; }
 
 .form-block {
   padding: 27px;
