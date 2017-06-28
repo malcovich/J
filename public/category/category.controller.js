@@ -16,8 +16,7 @@ angular.module('MyApp')
 		    	$ctrl.contactsList = []
 		    	$http.post('/api/categories/list', {'userId': $ctrl.user._id}).then(function(res){
 			      	$ctrl.listCategories = res.data;
-			   		console.log($ctrl.listCategories)
-				    ModalFactory.openAddContactModal('addContact.html', 'addContact', $ctrl.listCategories, $ctrl.category).then(function(ctrl){
+				    ModalFactory.openAddContactModal('addContact.html', 'addContact', $ctrl.listCategories, $ctrl.category.category).then(function(ctrl){
 					    $ctrl.contact = ctrl.contact;
 					    $http.post('/api/contact/add', $ctrl.contact).then(function(res){
 				      		$ctrl.contactsList.push(res)

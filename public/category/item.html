@@ -1,10 +1,27 @@
-{{$ctrl.category.category.title}}
-<div class="btn green-btn" ng-click="$ctrl.addContact()">Add contact</div>
-<div ng-repeat="contact in $ctrl.category.contacts">
-  {{contact.name}}
+<div class="sub-header">
+  <span class="btn green-btn add-new" ng-click="$ctrl.addContact()">Добавить</span>
+  <h4 class="small-title">{{$ctrl.category.category.title}}</h4>
+</div>
+
+<ul class="breadcrumbs">
+  <li><i class="fa fa-home" aria-hidden="true"></i></li>
+  <li>-</li>
+  <li><span ui-sref="main.categories">Категории</span></li>
+</ul>
+<div class="category-contacts-list">
+  <div ng-repeat="contact in $ctrl.category.contacts" class="contact-item" ui-sref="main.contact({id:contact._id})"> 
+    <div class="contact-item-img">
+      <img ng-src="{{contacts.img || '/public/images/vectorpaint1.png'}}">
+    </div>
+    <div class="contact-item-info">
+      <h4>{{contact.name}}</h4>
+      <p>{{contact.spec}}</p>
+    </div>
+  </div>
 </div>
 
 
+<!--modal-->
 <script type="text/ng-template" id="addContact.html">
     <div class="modal-header">
         <h3 class="modal-title" id="modal-title">Add new contact</h3>

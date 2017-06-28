@@ -1,4 +1,14 @@
-categories
-<div ng-repeat="category in $ctrl.categories" ui-sref="main.category({id:category._id})">
-	{{category.title}}
+<div class="inner-block">
+	<div class="list-categories">
+		<div ng-repeat="category in $ctrl.categories" ui-sref="main.category({id:category._id})" class="category">
+			<div class="category-img-block">
+				<img ng-src="/public/images/{{category.img}}" alt="">
+			</div>
+			<div class="category-info">
+				<h3>
+					{{category.title}}
+				</h3>
+			</div>
+		</div>
+	</div>
 </div>
