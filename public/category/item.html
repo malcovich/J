@@ -1,1 +1,39 @@
-{{$ctrl.category.title}}
+{{$ctrl.category.category.title}}
+<div class="btn green-btn" ng-click="$ctrl.addContact()">Add contact</div>
+<div ng-repeat="contact in $ctrl.category.contacts">
+  {{contact.name}}
+</div>
+
+
+<script type="text/ng-template" id="addContact.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Add new contact</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <div>
+          <label class="modal-label" for="contactsName">Name</label>
+          <input ng-model="vm.contact.name" placeholder="Contact's name" id="contactsName">
+        </div>
+         <div>
+        <label class="modal-label" for="contactsPhone">Phone</label>
+          <input ng-model="vm.contact.phone" placeholder="Contact's phone" id="contactsPhone">
+        </div> 
+          <div>
+        <label class="modal-label" for="contactsPhone">Category</label>
+            <select ng-options="category as category.title for category in vm.categories " ng-model="vm.selected"></select>
+        </div> 
+       <div>
+          <label class="modal-label" for="contactsName">Specification</label>
+          <input ng-model="vm.contact.spec" placeholder="Contact's Specification" id="contactsSpec">
+        </div>
+        <div class="checkbox">
+          <label class="radio-label">
+            <input ng-model="vm.contact.hidden" type="checkbox">Hidden
+          </label>
+        </div>  
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+    </div>
+</script>

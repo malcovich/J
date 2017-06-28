@@ -30,6 +30,25 @@ angular.module('MyApp').factory('ModalFactory', function($uibModal) {
         return $uibModal.open(options).result;
     }
 
+    service.openAddContactModal = function(template, controller, categories, selected){
+        console.log("service", categories)
+        var options = {
+            templateUrl: template,
+            controller: controller,
+            controllerAs: 'vm',
+            backdrop: 'static',
+            resolve: {
+                categories : function(){
+                    return categories
+                },
+                selected : function(){
+                    return selected
+                }
+            }
+        }
+        return $uibModal.open(options).result;
+    }
+
     service.editRequest = function(template, controller, request){
         var options = {
             templateUrl: template,
