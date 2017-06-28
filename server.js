@@ -12,6 +12,7 @@ var friendController = require('./server/controllers/friends-controller');
 var requestController = require('./server/controllers/requests-controller');
 var messagesController = require('./server/controllers/messages-controller');
 var searchController = require('./server/controllers/search-controller');
+var categoriesController = require('./server/controllers/categories-controller');
 
 /*app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
@@ -49,6 +50,7 @@ app.post('/api/contact/signup', authenticationController.signupContact)
 app.post('/api/user/login', authenticationController.login)
 app.post('/api/user/updateProfile', authenticationController.updateProfile);
 app.post('/api/user/addPhoto', multipartMiddleware, authenticationController.addPhoto);
+app.post('/api/user/findByContactsList', authenticationController.findByContactsList);
 
 app.post('/api/contact/add', conatactController.add);
 app.post('/api/contact/list', conatactController.list);
@@ -65,9 +67,14 @@ app.post('/api/messages/addMessage', messagesController.addMessage);
 app.post('/api/messages/list', messagesController.list);
 app.post('/api/messages/item', messagesController.item);
 
+app.post('/api/categories/list', categoriesController.list);
+app.post('/api/categories/item', categoriesController.item);
+
 app.post('/api/friend/add', friendController.add);
 app.post('/api/friend/list', friendController.list);
 app.post('/api/friend/item', friendController.item);
+app.post('/api/friend/listFriendsRequests', friendController.listFriendsRequests);
+app.post('/api/friend/accept', friendController.accept);
 
 app.post('/api/requests/add', requestController.add);
 app.post('/api/requests/list', requestController.list);

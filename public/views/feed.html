@@ -1,0 +1,9 @@
+<div class="inner-block">
+	list
+	<div class="friends-request-list">
+		<div class="" ng-repeat="req in listRequest">
+			<span style="float: right" class="btn green-btn" ng-click="accept(req._id)">Подтвердить</span>
+			<p>{{req.useridinvite.name || req.useridinvite.email}}</p>
+		</div>
+	</div>
+</div>

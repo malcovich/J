@@ -20,7 +20,7 @@
     <input type="text"  placeholder="Search" ng-model="query">
     <button type="submit"></button>
   </form>
-  <a href="#" class="logo">Profee</a>
+  <a href="#" class="logo"></a>
 </nav>
 <!-- main Block -->
 <div class="main-block">
@@ -28,12 +28,17 @@
     <div class="left-menu">
       <div ng-show="user.role == 'customer'">
         <div class="left-menu-item">
+          <a ui-sref="main.feed">
+            <p></i>Feeds</p>
+          </a>
+        </div>
+        <div class="left-menu-item">
           <a ui-sref="main.requests">
             <p></i>Requests</p>
           </a>
         </div>
         <div class="left-menu-item">
-          <a ui-sref="main.contacts">
+          <a ui-sref="main.categories">
             <p>Contacts</p>
           </a>
         </div>

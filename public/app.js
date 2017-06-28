@@ -13,6 +13,11 @@
 					templateUrl: "/public/views/home.html",
 					controller: "MainCtrl"
 				})
+				.state('main.feed', {
+					url: "/feed",
+					templateUrl: "/public/views/feed.html",
+					controller: "FeedCtrl"
+				})
 				.state('main.profile', {
 					url: "/profile",
 					templateUrl: "/public/profile/profile.html",
@@ -31,12 +36,25 @@
 					controller: "LandingController",
 					controllerAs: '$ctrl'
 				})
+				.state('main.categories', {
+					url: "/categories",
+					templateUrl: "/public/category/list.html",
+					controller: "CategoryListController",
+					controllerAs: '$ctrl'
+				})
+				.state('main.category', {
+					url: "/categories/:id",
+					templateUrl: "/public/category/item.html",
+					controller: "CategoryController",
+					controllerAs: '$ctrl'
+				})
 				.state('main.contacts', {
 					url: "/contacts",
 					templateUrl: "/public/contacts/list.html",
 					controller: "ContactsListController",
 					controllerAs: '$ctrl'
 				})
+
 				.state('main.contact', {
 					url: "/contacts/:id",
 					templateUrl: "/public/contacts/contact-details.html",
@@ -115,6 +133,5 @@
 	                }
 	            };
 	        }]);
-
 		})
 }());

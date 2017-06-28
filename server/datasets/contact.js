@@ -10,6 +10,7 @@ module.exports = mongoose.model('Contact', {
 	raiting: String,
 	description: String,
 	hidden: Boolean,
+	category :  {type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
 	verifyContact : {type: mongoose.Schema.Types.ObjectId, ref: 'Contact'},
 	userId: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 }); 
