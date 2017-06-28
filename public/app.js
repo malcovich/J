@@ -36,12 +36,25 @@
 					controller: "LandingController",
 					controllerAs: '$ctrl'
 				})
+				.state('main.categories', {
+					url: "/categories",
+					templateUrl: "/public/category/list.html",
+					controller: "CategoryListController",
+					controllerAs: '$ctrl'
+				})
+				.state('main.category', {
+					url: "/categories/:id",
+					templateUrl: "/public/category/item.html",
+					controller: "CategoryController",
+					controllerAs: '$ctrl'
+				})
 				.state('main.contacts', {
 					url: "/contacts",
 					templateUrl: "/public/contacts/list.html",
 					controller: "ContactsListController",
 					controllerAs: '$ctrl'
 				})
+
 				.state('main.contact', {
 					url: "/contacts/:id",
 					templateUrl: "/public/contacts/contact-details.html",

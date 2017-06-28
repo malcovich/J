@@ -37,7 +37,7 @@ module.exports.item = function(req, res) {
 	User.find({_id: req.body.friendId}).exec(function (err, result) {
 		Contact.find({ userId: result[0]._id}).exec(function (err, contacts) {
 			console.log(result)
-        	res.json({'friend': result, 'contacts': contacts });
+        	res.json({'friend': result[0], 'contacts': contacts });
 		});
 	});
 }
