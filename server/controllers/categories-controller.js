@@ -17,8 +17,10 @@ module.exports.list = function(req, res){
 module.exports.item = function(req, res){
 	var userId = req.body.userId;
 	var categoryId = req.body.id;
-	Category.find({_id : categoryId}).exec(function (err, result) {
-		res.json(result[0]);
+	Category.find({_id : categoryId}).exec(function (err, category) {
+		Contact.find({category: categoryId}).exec(function(err, contacts){
+			res.json({"contacts" : contacts,"category": category[0]});
+		})
     });
 }
 
