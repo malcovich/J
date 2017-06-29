@@ -65,7 +65,7 @@ module.exports.saveAnswer = function(req, res){
 }
 
 module.exports.getAnswer = function(req, res){
-	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: req.param('reqId')}]}).populate('contacts')
+	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: req.param('reqId')}]}).populate('contacts').populate('userId')
 		.exec(function(err, result) {
 			console.log(result)
 		    res.json(result);

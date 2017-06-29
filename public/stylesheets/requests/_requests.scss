@@ -150,18 +150,20 @@
 	}
 }
 
+
 .request-block {
+	overflow:hidden;
 	border: 1px solid #dfe2e5;
+	.req-user-name{
+		font-size: 21px;
+	}
 	.request-header{
 		overflow:hidden;
+		width:35%;
+		float:left;
 		background-color : #fff;
 		padding: 19px 30px;
-		border-bottom: 1px solid #dfe2e5;
-		h4 {
-			margin: 0;
-			font-size : 16px;
-			color: #354052;
-		}
+		
 		.request-autor{
 			width: 40px;
 			height: 40px;
@@ -177,8 +179,22 @@
 			margin-left: 18px;
 		}
 	}
+	.date-request {
+		color: #7c8ca5;
+		font-size: 11px;
+		display: block;
+		margin-bottom: 20px;
+		i {
+			display: inline-block;
+			margin-right: 4px;
+		}
+	}
 	.request-body {
+		float:left;
+		width:65%;
+		height: 140px;
 		padding: 25px 30px;
+		border-left: 1px solid #dfe2e5;
 		background-color: #fafbfc;
 		.titleForContacs{
 			margin: 15px 0;
@@ -186,34 +202,20 @@
 		.request-text{
 			padding: 0 30px 25px 30px;
 			margin: 0 -30px;
-			border-bottom : 1px solid #dfe2e5;
-			font-size: 14px;
+			font-size: 16px;
+			font-style: italic;
 			color: #354052;
 		}
 
-		.contact-card {
-			padding : 10px 30px;
-			flex: 0 1 49%;
-			margin : 0;
-			.header-card .image-block{
-				width: 40px;
-				height: 40px;
-			}
-			.card-title {
-				float:left;
-				overflow: hidden;
-				padding-left: 14px;
-				.contact-name {
-					float: left;
-					font-size :14px;
-					color: #354052;
-					line-height : 22px;
-				}
-				.contact-spec {
-					float: left;
-					margin: 10px 25px;
-				}
-			}
-		}
+		
+	}
+}
+.my-answer {
+	padding-top:20px;
+	.contact-card {
+		margin-left: 0
+	}
+	.contact-card:nth(3n){
+		margin-right : 0;
 	}
 }
