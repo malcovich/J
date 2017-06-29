@@ -29,14 +29,21 @@ angular.module('MyApp')
     			if ($ctrl.friendData.deleted == true) {
 				  $state.go('main.friends');
     			}
-	          // $ctrl.requestsList.forEach(function(item, k){
-	          //   if(item._id == id){
-	          //     $ctrl.requestsList.splice(k,1)
-	          //   }
-	          // })
 	          console.log(res);
 	        });
     	};
+
+    	$ctrl.addToFrined = function(id){
+		  var data = {
+		    useridinvite: $ctrl.user._id,
+		    useridaccept: id,
+		    accepted: false
+		  }
+		  $http.post('/api/friend/add', data).then(function(res){
+		  	alert("request sended");
+		  	$ctrl.requestsend = true;
+		  })
+		}
 	});
 }]);
 
