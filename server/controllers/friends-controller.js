@@ -16,7 +16,7 @@ module.exports.list = function(req,res) {
 }
 
 module.exports.listFriendsRequests = function(req,res) {
-	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: false }, { deleted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
+	Friend.find({$and: [  {useridaccept : req.param('userId')} , { accepted: false }, { deleted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
     	res.json(result);
 	});
 }
