@@ -11,7 +11,9 @@
                     {{friend.name || friend.email}}
                 </p>
                 <p class="phone">{{friend.phone}}</p>
+                
             </div>
+            <span class="btn btn-danger pull-right" ng-click="$ctrl.deleteFriend(friend._id)">delete from friends</span>
             <!-- {{friend._id}}    -->
         </li>
     </ul>

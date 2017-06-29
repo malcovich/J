@@ -28,7 +28,15 @@ angular.module('MyApp')
     });
   }
 
-
+  $ctrl.deleteFriend = function(id){
+    var params = {'friendId': id, 'userId': $ctrl.user._id}
+      $http.post('/api/friend/deleteFriend', params).then(function(res){
+      $ctrl.friendData = res.data;
+      if ($ctrl.friendData.deleted == true) {
+        $state.reload();
+      }
+    });
+  };
 
 /*  function for add friend by button
 
