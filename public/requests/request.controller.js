@@ -11,41 +11,30 @@ angular.module('MyApp')
       $http.post('/api/requests/item', {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
           $ctrl.request = res.data[0];
           if($ctrl.user._id == $ctrl.request.userId){
+
             $http.post('/api/requests/getAllAnswers', {'reqId': $stateParams.reqId}).then(function(res){
                 $ctrl.allAnswers = res.data;
-                console.log($ctrl.allAnswers)
+                console.log( $ctrl.allAnswers)
             }); 
           }
       });
 
       $http.post('/api/contact/all',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
-            $ctrl.data = res.data;
-            $ctrl.allContatcts = [];
+        $ctrl.allContatcts =  res.data;;   
+     
+
+        $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
+            $ctrl.myAnswer = res.data;
             console.log(res.data)
-            for(i in $ctrl.data){
-              console.log('sdfdsf',i, $ctrl.data[i][0].userId[0].name)
-              var friend = $ctrl.data[i][0].userId[0].name
-              if ($ctrl.data[i][0].userId[0]._id == $ctrl.user._id){
-                 $ctrl.allContatcts.push({title: 'Ваши професионалы', contacts : $ctrl.data[i]})
-              }
-              else {
-                $ctrl.allContatcts.push({friend: $ctrl.data[i]})
-              }
-            }
-            console.log($ctrl.allContatcts)
-              
-      });
-      $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
-          $ctrl.myAnswer = res.data;
-          $ctrl.selectedContacts = res.data[0] ? res.data[0].contacts: [];
-          $ctrl.selectedContacts.forEach(function(contact){
-            $ctrl.allContatcts[contact.userId].forEach(function(selected){
-              if (selected._id == contact._id){
-                selected.selected = true;
-              } 
+            $ctrl.selectedContacts = res.data[0] ? res.data[0].contacts: [];
+            $ctrl.selectedContacts.forEach(function(contact){
+              $ctrl.allContatcts[res.data[0].userId.name].forEach(function(selected){
+                if (selected._id == contact._id){
+                  selected.selected = true;
+                } 
+              })
             })
-          })
-          console.log($ctrl.selectedContacts)
+        });
       });
 
 
@@ -78,9 +67,10 @@ angular.module('MyApp')
             'userId': $ctrl.user._id,
             'contacts' :contactsId
           }
-          $http.post('/api/requests/saveAnswer', answer).then(function(){
-            console.log('Save');
-          });
+
+             $http.post('/api/requests/saveAnswer', answer).then(function(){
+              console.log('Save');
+            });
         })
       };
     });

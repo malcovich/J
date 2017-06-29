@@ -70,15 +70,25 @@ module.exports.addRaiting = function(req, res){
 }
 
 module.exports.all = function(req, res){
-	Friend.find({ userId : req.param('userId')}, function (err, result) {
+	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: true }]}).populate('useridaccept').populate('useridinvite').exec(function (err, result) {
+        for (var i = 0; i < result.length; i++) {
+	        if (result[i].useridaccept._id ==  req.param('userId')) {
+	          result.splice(i, 1, result[i].useridinvite);
+	        } else {
+	          result.splice(i, 1, result[i].useridaccept);
+	        }
+      	}
         var friendsIds = result.map(function(i){ return i._id})
-       	Contact.find({$or:[{ userId :  {$in: friendsIds}}, {userId :  req.param('userId')}]}).populate('userId').exec(function (err, result) {
+        friendsIds.push(req.param('userId'))
+        console.log(friendsIds)
+       	Contact.find({ userId :  {$in: friendsIds}}).populate('userId').exec(function (err, result) {
        		var reslt = {}
+        	console.log(result)
        		result.forEach(function(item){
-       			if(!reslt[item.userId[0]._id]){
-       				reslt[item.userId[0]._id] = [];
+       			if(!reslt[item.userId[0].name]){
+       				reslt[item.userId[0].name] = [];
        			}
-       			reslt[item.userId[0]._id].push(item);
+       			reslt[item.userId[0].name].push(item);
        		})
 	        res.json(reslt);
 	    });

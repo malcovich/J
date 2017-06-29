@@ -1,42 +1,33 @@
 <div class="inner-block">
 	<div class="request-block">
 		<div class="request-header">
-            <div  class="request-autor">
-                <img src="public/images/vectorpaint.png" alt="">
+            <div class="request-avtor-img">
+                <img ng-src="{{$ctrl.request.userId.img}}" alt="">
             </div>
             <div class="request-autor-info">
-                <h4>{{$ctrl.request.text}}</h4>
-                <p>{{$ctrl.request.requestDate | date}}</p>
-            </div>
-		</div>
-		<div class="request-body">
-            <p class="request-text">{{$ctrl.request.text}}</p>
-            <div ng-hide="$ctrl.request.userId._id == $ctrl.user._id">
-                <p class="titleForContacs" ng-show="$ctrl.selectedContacts.length > 0">Вы предложили {{$ctrl.selectedContacts.length}} контакта:</p>
-                <div ng-hide="$ctrl.selectedContacts.length > 0">
-        			<span ng-click="$ctrl.openModalfromNet()">Выбрать из сети</span>
-        			<span>Предложить новый контакт</span>
+                <h4 class="req-user-name">{{$ctrl.request.userId.name}}</h4>
+                <span class="date-request"><i class="glyphicon glyphicon-calendar"></i>{{$ctrl.request.requestDate | date}}</span>
+                <div ng-show="$ctrl.user._id == ctrl.request.userId._id">
+                    <span ng-click="$ctrl.change(req)" class="btn edit">Редактировать</span>
+                    <span ng-click="$ctrl.deleteRequest(req._id)" class="btn delete">Удалить</span>
                 </div>
-                <div>
-                    <p ng-click="$ctrl.openModalfromNet()">Редактировать</p>
-                    <div class="my-answer">
-                        <ul class="contact-list">
-                            <li ng-repeat="contact in $ctrl.selectedContacts" class="contact-card">
-                              <div class="header-card">
-                                  <div class="image-block">
-                                    <img src="public/images/vectorpaint.png" >
-                                  </div>
-                                  <div class="card-title">
-                                    <h5 class="contact-name">{{contact.name}}</h5>
-                                    <p class="contact-spec">{{contact.spec}}</p>
-                                  </div>
-                              </div>
-                            </li>
-                        </ul>
+                <div ng-hide="$ctrl.user._id == ctrl.request.userId._id">
+                   
+                    <div ng-hide="$ctrl.selectedContacts.length > 0">
+                        <span ng-click="$ctrl.openModalfromNet()">Выбрать из сети</span>
+                    </div>
+                    <div>
+                        <p class="titleForContacs" ng-show="$ctrl.selectedContacts.length > 0">Вы предложили {{$ctrl.selectedContacts.length}} контакта:</p>
+                        <p ng-click="$ctrl.openModalfromNet()" ng-show="$ctrl.selectedContacts.length > 0">Редактировать</p>
+
                     </div>
                 </div>
             </div>
 
+		</div>
+		<div class="request-body">
+            <p class="request-text">"{{$ctrl.request.text}}"</p>
+           
             <div ng-show="$ctrl.request.userId._id == $ctrl.user._id">
                 <div ng-repeat="answer in $ctrl.allAnswers">
                     <div ng-repeat="contact in answer.contacts">
@@ -46,30 +37,63 @@
             </div>
 		</div>
         
-	</div>
 </div>
 
-<!-- modal -->
-
-<script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Add new friend</h3>
+<!-- <div class="category-contacts-list" ng-hide="$ctrl.request.userId._id == $ctrl.user._id">
+  <div ng-repeat="contact in $ctrl.category.contacts" class="contact-item" ui-sref="main.contact({id:contact._id})"> 
+    <div class="contact-item-img">
+      <img ng-src="{{contacts.img || '/public/images/vectorpaint1.png'}}">
     </div>
-    <div class="modal-body" id="modal-body">        
+    <div class="contact-item-info">
+      <h4>{{contact.name}}</h4>
+      <p>{{contact.spec}}</p>
+    </div>
+  </div>
+</div>
+ -->
     <div >
-    <uib-accordion>
-        <div uib-accordion-group class="panel-default" heading='te' ng-repeat=" item in vm.contacts">
-            <ul>
-                <li ng-repeat="p in  item ">
-                    <input type="checkbox" ng-model="p.selected">
-                    <p>{{p.name}}</p>
+        <div class="my-answer">
+            <ul class="contact-list">
+                <li ng-repeat="contact in $ctrl.selectedContacts" class="contact-card">
+                  <div class="header-card">
+                      <div class="image-block">
+                        <img src="public/images/vectorpaint.png" >
+                      </div>
+                      <div class="card-title">
+                        <h5 class="contact-name">{{contact.name}}</h5>
+                        <p class="contact-spec">{{contact.spec}}</p>
+                      </div>
+                  </div>
                 </li>
             </ul>
         </div>
-    </uib-accordion>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+</div>
+        
+<!-- modal -->
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="add-contact-to-request">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Специалисты вашей сети:</h3>
+        </div>
+        <div class="modal-body" id="modal-body">        
+        <div >
+        <uib-accordion>
+            <div uib-accordion-group class="panel-default" heading='{{key}}' ng-repeat=" (key,item) in vm.contacts">
+                <ul class="contact-list">
+                    <li ng-repeat="p in  item ">
+                        <input type="checkbox" ng-model="p.selected">
+                        <p class="contact-name">{{p.name}} - {{p.spec}}</p>
+                    </li>
+                </ul>
+            </div>
+        </uib-accordion>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+        </div>
     </div>
+   
 </script>

@@ -113,3 +113,29 @@
 		top: -22px;
 	}
 }
+
+.add-contact-to-request {
+	.modal-body{
+		padding: 0;
+	}
+	.panel-default>.panel-heading{
+		background-image: none;
+	}
+	.panel-open .panel-body{
+		padding-left: 40px;
+	}
+	.contact-list{
+		list-style: none;
+		li{
+			min-width: 80%;
+			overflow: hidden;
+		}
+		.contact-name {
+			float:left;
+			margin-left: 10px;
+		}
+	}
+	input[type="checkbox"] {
+		float: left;
+	}
+}
