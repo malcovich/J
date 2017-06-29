@@ -8,6 +8,7 @@
 				var formData = {
 	                email: this.newUser.email,
 	                password: this.newUser.password,
+	                name: this.newUser.name,
 	                role : 'customer'
 	            }
 	            AuthFactory.save(formData).then(function(res) {

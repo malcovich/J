@@ -29,6 +29,7 @@ module.exports.signup = function(req, res){
                 userModel.email = req.body.email;
                 userModel.password = req.body.password;
                 userModel.role = req.body.role;
+                userModel.name = req.body.name;
                 userModel.save(function(err, user) {
                     user.token = jwt.sign(user, process.env.JWT_SECRET);
                     user.save(function(err, user1) {
