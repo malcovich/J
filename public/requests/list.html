@@ -1,8 +1,9 @@
 <div class="inner-block">
-	<div class="form-block">
+	<div class="form-block request-form">
+		<h2>Спросите друзей о нужном специалисте:</h2>
 		<form>
 			<textarea ng-model="$ctrl.request.text" class="text-area"></textarea>
-			<button ng-click="$ctrl.save()" class="btn green-btn">Send</button>
+			<button ng-click="$ctrl.save()" class="btn green-btn fr">Send</button>
 		</form>
 	</div>
 
@@ -10,18 +11,44 @@
 		<uib-tabset active="active" class="request-tabs">
 			<uib-tab index="0" heading="Мои запросы">
 				<div ng-repeat="req in $ctrl.requestsList" class="my-request">
-				<h3 ui-sref="main.request({reqId: req._id})">{{req.text}}</h3>
-				<span class="date-request"><i class="glyphicon glyphicon-calendar"></i>{{req.requestDate | date}}</span>
-				<span ng-click="$ctrl.deleteRequest(req._id)">delete</span>
-				<span ng-click="$ctrl.change(req)">Редактировать</span>
-			</div>
+					<div class="req-buttons">
+						<span ng-click="$ctrl.change(req)" class="btn edit">Редактировать</span>
+						<span ng-click="$ctrl.deleteRequest(req._id)" class="btn delete">Удалить</span>
+					</div>
+					<div class="request-avtor-img">
+						<img ng-src="{{req.userId.img}}" alt="">
+					</div>
+					<div class="request-main-info">
+						<div class="req-user-info">
+							<h4 class="req-user-name">{{req.userId.name}}</h4>
+							<span class="date-request"><i class="glyphicon glyphicon-calendar"></i>{{req.requestDate | date}}</span>
+						</div>
+						<div class="req-text" ui-sref="main.request({reqId: req._id})">
+							<p>{{req.text}}</p>
+						</div>
+						
+					</div>
+				</div>
 			</uib-tab>
 			<uib-tab index="1" heading="Запросы друзей">
-				<div ng-repeat="req in $ctrl.friendsRequestsList">
-				{{req.text}}
-				{{req.requestDate | date}}
-				<a ui-sref="main.request({reqId: req._id})">Ответить</a>
-			</div>
+				<div ng-repeat="req in $ctrl.friendsRequestsList" class="my-request">
+					<div class="req-buttons">
+						<span ui-sref="main.request({reqId: req._id})" class="btn edit">Ответить</span>
+					</div>
+					<div class="request-avtor-img">
+						<img ng-src="{{req.userId.img}}" alt="">
+					</div>
+					<div class="request-main-info">
+						<div class="req-user-info">
+							<h4 class="req-user-name">{{req.userId.name}}</h4>
+							<span class="date-request"><i class="glyphicon glyphicon-calendar"></i>{{req.requestDate | date}}</span>
+						</div>
+						<div class="req-text" ui-sref="main.request({reqId: req._id})">
+							<p>{{req.text}}</p>
+						</div>
+						
+					</div>
+				</div>
 			</uib-tab>
 		</uib-tabset>
 	</div>

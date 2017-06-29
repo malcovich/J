@@ -161,6 +161,14 @@ ul {
   border-radius: 4px;
   border: 2px solid #F1F2F4; }
 
+.request-form {
+  overflow: hidden; }
+  .request-form .text-area {
+    margin-bottom: 10px; }
+  .request-form h2 {
+    margin: 0 0 10px 0;
+    font-size: 21px; }
+
 .request-tabs ul.nav-tabs {
   padding-left: 10px;
   padding-right: 10px;
@@ -185,16 +193,77 @@ ul {
       background-color: #fff;
       border: 0; }
 
+.request-avtor-img {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-right: 20px; }
+  .request-avtor-img img {
+    width: 100%; }
+
+.request-main-info {
+  margin: -20px 120px -20px 120px;
+  border-left: 1px solid #F1F2F4;
+  height: 140px; }
+  .request-main-info .req-user-info {
+    padding-top: 15px;
+    padding-left: 20px;
+    background-color: #fafbfc;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #F1F2F4; }
+    .request-main-info .req-user-info .date-request {
+      display: inline-block;
+      margin-bottom: 5px; }
+
+.req-buttons {
+  float: right;
+  width: 120px;
+  padding-left: 20px;
+  border-left: 1px solid #F1F2F4;
+  height: 100px; }
+  .req-buttons .delete {
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    font-size: 12px;
+    background-color: #de3c1f;
+    color: #fff; }
+    .req-buttons .delete:hover {
+      color: #fff; }
+  .req-buttons .edit {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100%;
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: #fff;
+    background-color: #1f96ee; }
+    .req-buttons .edit:hover {
+      color: #fff; }
+
+.req-text {
+  color: #7c8ca5;
+  font-size: 13px;
+  font-style: italic;
+  padding: 20px 20px 10px 20px; }
+
+.req-user-name {
+  font-size: 16px;
+  color: #354052;
+  margin-bottom: 5px;
+  margin-top: 0;
+  font-weight: 500; }
+
 .my-request {
   padding: 17px 27px;
-  border: 1px solid #F1F2F4; }
-  .my-request h3 {
-    font-size: 15px;
-    margin-top: 0px;
-    margin-bottom: 3px; }
+  border: 1px solid #F1F2F4;
+  overflow: hidden;
+  margin: 10px 0; }
   .my-request .date-request {
-    color: #B9BFCA;
-    font-size: 13px; }
+    color: #7c8ca5;
+    font-size: 11px; }
     .my-request .date-request i {
       display: inline-block;
       margin-right: 4px; }
@@ -513,8 +582,8 @@ ul {
   margin-bottom: 20px; }
   .contact-item .contact-item-img {
     float: left;
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     margin-right: 20px; }
     .contact-item .contact-item-img img {
       width: 100%; }
@@ -737,3 +806,7 @@ body {
 .inner-block {
   padding: 27px;
   background-color: #EFF3F6; }
+
+/* */
+.fr {
+  float: right; }
