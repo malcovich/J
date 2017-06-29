@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('FriendController', ['$scope', '$log', 'AuthFactory', '$uibModal', '$http',  '$stateParams', function($scope, $log, AuthFactory, $uibModal, $http, $stateParams){
+  .controller('FriendController', ['$scope', '$log', 'AuthFactory', '$state','$uibModal', '$http',  '$stateParams', function($scope, $log, AuthFactory, $state,$uibModal, $http, $stateParams){
   	var $ctrl = this;
   	console.log($ctrl)
   	AuthFactory.me().then(function(res){
@@ -23,8 +23,12 @@ angular.module('MyApp')
 	    });
 
     	$ctrl.deleteFriend = function(id){
-    		console.log('apds', id)
-    		$http.post('/api/friend/deleteFriend', {'friendId': id}).then(function(res){
+    		var params = {'friendId': id, 'userId': $ctrl.user._id}
+    		$http.post('/api/friend/deleteFriend', params).then(function(res){
+    			$ctrl.friendData = res.data;
+    			if ($ctrl.friendData.deleted == true) {
+				  $state.go('main.friends');
+    			}
 	          // $ctrl.requestsList.forEach(function(item, k){
 	          //   if(item._id == id){
 	          //     $ctrl.requestsList.splice(k,1)

@@ -10,13 +10,13 @@ module.exports.add = function(req, res){
 }
 
 module.exports.list = function(req,res) {
-	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: true }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
+	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: true } , { deleted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
     	res.json(result);
 	});
 }
 
 module.exports.listFriendsRequests = function(req,res) {
-	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
+	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: false }, { deleted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
     	res.json(result);
 	});
 }
@@ -36,7 +36,7 @@ module.exports.item = function(req, res) {
 
 	User.find({_id: req.body.friendId}).exec(function (err, result) {
 		Contact.find({ userId: result[0]._id}).exec(function (err, contacts) {
-			Friend.find({$and: [ {$or: [ {useridinvite : req.body.friendId} , {useridaccept : req.body.friendId} ]} , { accepted: true }]}).populate('useridinvite').populate('useridaccept').exec(function (err, friends) { 
+			Friend.find({$and: [ {$or: [ {useridinvite : req.body.friendId} , {useridaccept : req.body.friendId} ]} , { accepted: true } , { deleted: false } ]}).populate('useridinvite').populate('useridaccept').exec(function (err, friends) { 
 	    		res.json({'friend': result[0], 'contacts': contacts, 'friends': friends });
 			});
 		});
@@ -45,9 +45,8 @@ module.exports.item = function(req, res) {
 }
 
 module.exports.deleteFriend = function(req, res){
-	Friend.findByIdAndUpdate(req.body.friendId , { 'deleted': true }, {new:true}, function(err, request) {
-		console.log("request", request)
-		res.json(request)
+	Friend.findOneAndUpdate({$or: [ {$and:[{'useridinvite': req.body.friendId}, {'useridaccept': req.body.userId}]} , {$and:[{'useridinvite': req.body.userId}, {'useridaccept': req.body.friendId}]} ]}, {$set:{deleted: 'true'}}, {new: true},function(err, result) {
+		res.json(result)
 	  	if (err) throw err;
 	});
 }
