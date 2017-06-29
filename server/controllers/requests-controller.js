@@ -11,8 +11,7 @@ module.exports.add = function(req, res){
 }
 
 module.exports.list = function(req, res){
-	console.log(req.param('userId'))
-	Request.find({userId : req.param('userId')}, {deleted: false}, function (err, result) {
+	Request.find({userId : req.param('userId')}, {deleted: false}).populate("userId").exec(function (err, result) {
        res.json(result);
     });
 }
@@ -25,7 +24,8 @@ module.exports.getItem = function(req, res){
 }
 
 module.exports.listFriendsRequests = function(req, res){
-	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: true }]}, function (err, result) {
+	//need add new params DELETED: FALSE
+	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: true }]}).populate('useridaccept').populate('useridinvite').exec(function (err, result) {
 		for (var i = 0; i < result.length; i++) {
 	        if (result[i].useridaccept._id ==  req.param('userId')) {
 	          result.splice(i, 1, result[i].useridinvite);

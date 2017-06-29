@@ -20,6 +20,16 @@
 .request-tabs  {
 	
 }
+.request-form{
+	overflow: hidden;
+	.text-area {
+	margin-bottom: 10px;
+	}
+	h2{
+		margin: 0 0 10px 0;
+		font-size:21px;
+	}
+}
 .request-tabs  ul{
 	&.nav-tabs{
 		padding-left: 10px;
@@ -54,18 +64,85 @@
 		}
 	}
 }
-
+.request-avtor-img {
+	border-radius :50%;
+	overflow:hidden;
+	width: 100px;
+	height: 100px;
+	float:left;
+	margin-right: 20px;
+	img {
+		width: 100%;
+	}
+}
+.request-main-info {
+	margin: -20px 120px -20px 120px;
+	border-left: 1px solid #F1F2F4;
+	height: 140px;
+	.req-user-info{
+		padding-top:15px;
+		padding-left:20px;
+		background-color: #fafbfc;
+		margin-bottom: 0px;
+		border-bottom: 1px solid #F1F2F4;
+		.date-request {
+			display: inline-block;
+			margin-bottom: 5px;
+		}
+	}
+}
+.req-buttons {
+	float: right;
+	width: 120px;
+	padding-left: 20px;
+	border-left: 1px solid #F1F2F4;
+	height: 100px;
+	.delete {
+		width: 100%;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		font-size: 12px;
+		background-color:#de3c1f;
+		color: #fff;
+		&:hover{
+			color: #fff;
+		};
+	}
+	.edit {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		width: 100%;
+		font-size: 12px;
+		margin-bottom: 20px;
+		color: #fff;
+		background-color:#1f96ee;
+		&:hover{
+			color: #fff;
+		};
+	}
+}
+.req-text {
+	color: #7c8ca5;
+	font-size: 13px;
+	font-style: italic;
+	padding: 20px 20px 10px 20px; 
+}
+.req-user-name {
+	font-size: 16px;
+	color: #354052;
+	margin-bottom: 5px;
+	margin-top: 0;
+	font-weight: 500;
+}
 .my-request {
 	padding: 17px 27px;
 	border: 1px solid #F1F2F4;
-	h3 {
-		font-size: 15px;
-		margin-top: 0px;
-		margin-bottom: 3px;
-	}
+	overflow: hidden;
+	margin: 10px 0;
+	
 	.date-request {
-		color: #B9BFCA;
-		font-size: 13px;
+		color: #7c8ca5;
+		font-size: 11px;
 		i {
 			display: inline-block;
 			margin-right: 4px;

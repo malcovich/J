@@ -5,6 +5,10 @@ angular.module('MyApp')
   			$http.post('/api/friend/listFriendsRequests',{userId: $scope.user._id}).then(function(res){
   				$scope.listRequest = res.data;
   			})
+
+  			$scope.$on("setTitle",function (event, data) {
+  				$scope.title = data.title;
+			});
   			
   		})
     

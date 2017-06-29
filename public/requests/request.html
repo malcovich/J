@@ -6,12 +6,12 @@
             </div>
             <div class="request-autor-info">
                 <h4>{{$ctrl.request.text}}</h4>
-                <p>{{$ctrl.request.requestDate}}</p>
+                <p>{{$ctrl.request.requestDate | date}}</p>
             </div>
 		</div>
 		<div class="request-body">
             <p class="request-text">{{$ctrl.request.text}}</p>
-            <div ng-hide="$ctrl.request.userId == $ctrl.user._id">
+            <div ng-hide="$ctrl.request.userId._id == $ctrl.user._id">
                 <p class="titleForContacs" ng-show="$ctrl.selectedContacts.length > 0">Вы предложили {{$ctrl.selectedContacts.length}} контакта:</p>
                 <div ng-hide="$ctrl.selectedContacts.length > 0">
         			<span ng-click="$ctrl.openModalfromNet()">Выбрать из сети</span>
@@ -36,7 +36,8 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="$ctrl.request.userId == $ctrl.user._id">
+
+            <div ng-show="$ctrl.request.userId._id == $ctrl.user._id">
                 <div ng-repeat="answer in $ctrl.allAnswers">
                     <div ng-repeat="contact in answer.contacts">
                         {{contact.name}}
@@ -47,6 +48,8 @@
         
 	</div>
 </div>
+
+<!-- modal -->
 
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
