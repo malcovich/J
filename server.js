@@ -53,6 +53,7 @@ app.post('/api/user/addPhoto', multipartMiddleware, authenticationController.add
 app.post('/api/user/findByContactsList', authenticationController.findByContactsList);
 
 app.post('/api/contact/add', conatactController.add);
+app.post('/api/contact/addExist', conatactController.addExist);
 app.post('/api/contact/list', conatactController.list);
 app.post('/api/contact/all', conatactController.all);
 app.post('/api/contact/item', conatactController.getItem);

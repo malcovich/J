@@ -18,10 +18,10 @@ angular.module('MyApp')
 			      $ctrl.listCategories = res.data;
 				    ModalFactory.openAddContactModal('addContact.html', 'addContact', $ctrl.listCategories, $ctrl.category.category).then(function(ctrl){
               $ctrl.contact = ctrl.contact;
-					    $ctrl.contact.userId = $ctrl.user._id;
-              console.log($ctrl.contact)
+					    $ctrl.contact.userId = [$ctrl.user._id];
 					    $http.post('/api/contact/add', $ctrl.contact).then(function(res){
-				      		$ctrl.contactsList.push(res)
+                  console.log($ctrl.category.contacts)
+				      		$ctrl.category.contacts.push(res.data)
 				      	});
 					   }, function () {
 					    console.info('Modal dismissed at: ' + new Date());

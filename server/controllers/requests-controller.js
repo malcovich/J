@@ -2,16 +2,21 @@ var mongoose = require('mongoose');
 var Request = require('../datasets/request');
 var Friend = require('../datasets/friend');
 var Answer = require('../datasets/answer');
+var User = require('../datasets/users');
 var Constact = require('../datasets/contact');
 module.exports.add = function(req, res){
 	var request = new Request(req.body);
 	request.deleted = false;
-	request.save();
-	res.json(req.body);
+	request.save(function(err,result){
+		User.find({_id :request.userId}).exec(function(err,user){
+			result.userId = user;
+			res.json({request: request, user :user});
+		})
+	});
 }
 
 module.exports.list = function(req, res){
-	Request.find({userId : req.param('userId')}, {deleted: false}).populate("userId").exec(function (err, result) {
+	Request.find({$and :[{userId : req.param('userId')}, {deleted: false}]}).populate("userId").exec(function (err, result) {
        res.json(result);
     });
 }
@@ -57,7 +62,6 @@ module.exports.saveAnswer = function(req, res){
 		else{ 
 			var newAnswer = new Answer(req.body);
 			newAnswer.requestId = req.body.reqId;
-			console.log('!',newAnswer)
 			newAnswer.save();
 			res.json(req.body);
 		}

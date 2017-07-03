@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('ProfileCtrl', ['$scope', '$log', 'AuthFactory', '$uibModal', '$http','$state','ModalFactory','Upload', function($scope, $log, AuthFactory, $uibModal, $http, $state, ModalFactory,Upload){
+  .controller('ProfileCtrl', ['$rootScope','$scope', '$log', 'AuthFactory', '$uibModal', '$http','$state','ModalFactory','Upload', function($rootScope,$scope, $log, AuthFactory, $uibModal, $http, $state, ModalFactory,Upload){
   	var $ctrl = this;
 
     AuthFactory.me().then(function(res){
@@ -19,6 +19,7 @@ angular.module('MyApp')
           $http.post('/api/user/updateProfile', $ctrl.user).then(function(res){
             $ctrl.user = res.data;
             $ctrl.change = false;
+            $rootScope.$emit('changeProfile', {user: $ctrl.user })
           });
         };
 
@@ -30,7 +31,8 @@ angular.module('MyApp')
               data: {'id': $ctrl.user._id},
               file: $ctrl.file
             }).success(function(data){
-              console.log(data)
+              $ctrl.user = data;
+              $rootScope.$emit('changeProfile', {user: $ctrl.user })
               // $scope.newPredefined.img = data.img
             }).error(function(error){
               console.log(error)

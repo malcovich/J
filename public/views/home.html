@@ -1,7 +1,7 @@
 <nav class="main-menu "  ng-controller="NavigationController">
   <div class="header-user">
     <div class="user-header-image">
-      <img src="../public/images/vectorpaint1.png" alt="">
+      <img ng-src="{{user.img}}" alt="">
     </div>
     <span uib-dropdown on-toggle="toggled(open)" class="user-block">
       <a href id="simple-dropdown" uib-dropdown-toggle >

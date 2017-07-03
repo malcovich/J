@@ -24,7 +24,10 @@ angular.module('MyApp')
     		$ctrl.request.userId = $ctrl.user._id;
     		$ctrl.request.requestDate = new Date();
     		$http.post('/api/requests/add', $ctrl.request).then(function(res){
-  	      	$ctrl.requestsList.push(res)
+            var requestRes =  res.data.request
+            requestRes.userId = res.data.user[0];
+            console.log($ctrl.requestsList,requestRes)
+  	      	$ctrl.requestsList.push(requestRes)
   	    });
     	};
 

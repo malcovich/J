@@ -9,12 +9,22 @@
 			</div>
 			<div class="col-lg-9">
 				<div class="user-info-block">
-					<label for="name">Фамилия/Имя</label>
-					<input type="text" id="name" ng-model="$ctrl.user.name">
-					<label for="email">Email</label>
-					<input type="text" id="email" ng-model="$ctrl.user.email">
-					<span class="btn green-btn" ng-click="$ctrl.updateUser()"> Save </span>
-					<span ng-click="$ctrl.change = false" class="btn">Cansel</span>
+					<div class="row">
+						<label for="name">Фамилия/Имя</label>
+						<input type="text" id="name" ng-model="$ctrl.user.name">
+					</div>
+					<div class="row">
+						<label for="email">Email</label>
+						<input type="text" id="email" ng-model="$ctrl.user.email">
+					</div>
+					<div class="row">
+						<label for="phone">Phone</label>
+						<input type="text" id="phone" ng-model="$ctrl.user.phone">
+					</div>
+					<div class="row ">
+						<span class="btn green-btn" ng-click="$ctrl.updateUser()"> Save </span>
+						<span ng-click="$ctrl.change = false" class="btn">Cansel</span>
+					</div>
 				</div>
 			</div>
 		</div>

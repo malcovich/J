@@ -6,7 +6,15 @@ var Raiting = require('../datasets/raiting');
 module.exports.add = function(req, res){
 	var contact = new Contact(req.body);
 	contact.save();
+	console.log(contact)
 	res.json(req.body);
+}
+module.exports.addExist = function(req, res){
+	console.log(req.body.userId, req.body.id)
+	Contact.findByIdAndUpdate(req.body.id , { $push: { 'userId': req.body.userId }}, {new: true},function(err, u) {
+		console.log(u)
+		res.json(u)
+	});
 }
 
 module.exports.list = function(req, res){
