@@ -7,12 +7,12 @@ angular.module('MyApp')
         $ctrl.showHideAddCommentBlock = false;
     	$http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res){
             console.log(res.data)
-            if (res.data[0].verifyContact){
+            if (res.data.contact.verifyContact){
                 $ctrl.contactVerifyed = true;
             	$ctrl.contact = res.data.verifyContact
             }
             else {
-            	$ctrl.contact = res.data[0];
+            	$ctrl.contact = res.data.contact;
             }
             $ctrl.verifyContacts = res.data.hypothesis;
             $http.post('/api/contact/commentsList', {id:$ctrl.contact._id}).then(function(res){
