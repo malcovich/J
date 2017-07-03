@@ -50,13 +50,15 @@ module.exports.deleteRequest = function(req, res){
 
 module.exports.saveAnswer = function(req, res){
 	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: req.param('reqId')}]}).exec(function(err, answer){
-		if (answer){
-			answer.contacts = req.param.contacts
-			answer.save();
+		if (answer.length > 0){
+			answer[0].contacts = req.param('contacts')
+			answer[0].save();
 		}
 		else{ 
-			var answer = new Answer(req.body);
-			answer.save();
+			var newAnswer = new Answer(req.body);
+			newAnswer.requestId = req.body.reqId;
+			console.log('!',newAnswer)
+			newAnswer.save();
 			res.json(req.body);
 		}
 	})

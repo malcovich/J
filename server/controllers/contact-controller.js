@@ -80,13 +80,9 @@ module.exports.all = function(req, res){
         var friendsIds = result.map(function(i){ return i._id})
         friendsIds.push(req.param('userId'))
        	Contact.find({ userId :  {$in: friendsIds}}).populate('userId').exec(function (err, result) {
-
        		var reslt = {}
        		if (result.length > 0){
        			result.forEach(function(item){
-       				console.log('----------------------------')
-		       		console.log('RESULT',item)
-		       		console.log('----------------------------')
 	       			if(!reslt[item.userId.name]){
 	       				reslt[item.userId.name] = [];
 	       			}
