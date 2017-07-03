@@ -20,7 +20,7 @@ angular.module('MyApp')
       });
 
       $http.post('/api/contact/all',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
-        $ctrl.allContatcts =  res.data;;   
+          $ctrl.allContatcts =  res.data;;   
      
 
         $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
@@ -63,7 +63,7 @@ angular.module('MyApp')
             });
           };
           var answer = {
-            'requestId': $stateParams.reqId,
+            'reqId': $stateParams.reqId,
             'userId': $ctrl.user._id,
             'contacts' :contactsId
           }

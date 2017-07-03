@@ -48,20 +48,19 @@ module.exports.deleteRequest = function(req, res){
 	});
 }
 
-module.exports.login = function(req,res){
-	User.find(req.body,function(err,results){
-		if (err){
-			console.log(err);
-		}; 
-		if (results && results.length === 1) {
-			res.json(results[0])
+module.exports.saveAnswer = function(req, res){
+	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: req.param('reqId')}]}).exec(function(err, answer){
+		if (answer){
+			answer.contacts = req.param.contacts
+			answer.save();
+		}
+		else{ 
+			var answer = new Answer(req.body);
+			answer.save();
+			res.json(req.body);
 		}
 	})
-}
-module.exports.saveAnswer = function(req, res){
-	var answer = new Answer(req.body);
-	answer.save();
-	res.json(req.body);
+
 }
 
 module.exports.getAnswer = function(req, res){

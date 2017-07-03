@@ -42,7 +42,6 @@ module.exports.verifyContact = function(req, res) {
 	Contact.findByIdAndUpdate(req.body.id , {'verifyContact': req.body.verifyId}, {new: true},function(err, u) {
 		var  cont = u;
 		Contact.findByIdAndUpdate(req.body.verifyId , { $push: { 'userId': req.body.userId }}, {new: true},function(err, u) {
-			console.log('u',u)
 		  	if (err) {throw err;}else {res.json(cont)}
 		});
 	});
@@ -80,16 +79,20 @@ module.exports.all = function(req, res){
       	}
         var friendsIds = result.map(function(i){ return i._id})
         friendsIds.push(req.param('userId'))
-        console.log(friendsIds)
        	Contact.find({ userId :  {$in: friendsIds}}).populate('userId').exec(function (err, result) {
+
        		var reslt = {}
-        	console.log(result)
-       		result.forEach(function(item){
-       			if(!reslt[item.userId[0].name]){
-       				reslt[item.userId[0].name] = [];
-       			}
-       			reslt[item.userId[0].name].push(item);
-       		})
+       		if (result.length > 0){
+       			result.forEach(function(item){
+       				console.log('----------------------------')
+		       		console.log('RESULT',item)
+		       		console.log('----------------------------')
+	       			if(!reslt[item.userId.name]){
+	       				reslt[item.userId.name] = [];
+	       			}
+	       			reslt[item.userId.name].push(item);
+	       		})
+       		}
 	        res.json(reslt);
 	    });
     });

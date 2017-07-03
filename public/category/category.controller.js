@@ -8,16 +8,18 @@ angular.module('MyApp')
 	  	}else {
 	  		$ctrl.category = [];
 			$http.post('/api/categories/item', {'userId': $ctrl.user._id, 'id': $stateParams.id}).then(function(res){
-		      	$ctrl.category = res.data;
-		    });
+		    $ctrl.category = res.data;
+		  });
 
 		    $ctrl.addContact = function(){
 		    	$ctrl.listCategories = [];
 		    	$ctrl.contactsList = []
 		    	$http.post('/api/categories/list', {'userId': $ctrl.user._id}).then(function(res){
-			      	$ctrl.listCategories = res.data;
+			      $ctrl.listCategories = res.data;
 				    ModalFactory.openAddContactModal('addContact.html', 'addContact', $ctrl.listCategories, $ctrl.category.category).then(function(ctrl){
-					    $ctrl.contact = ctrl.contact;
+              $ctrl.contact = ctrl.contact;
+					    $ctrl.contact.userId = $ctrl.user._id;
+              console.log($ctrl.contact)
 					    $http.post('/api/contact/add', $ctrl.contact).then(function(res){
 				      		$ctrl.contactsList.push(res)
 				      	});
