@@ -9,40 +9,34 @@ angular.module('MyApp')
       $ctrl.user = res.data.data;
 
       $http.post('/api/requests/item', {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
-          $ctrl.request = res.data[0];
-          if($ctrl.user._id == $ctrl.request.userId){
+        $ctrl.request = res.data[0];
+        if($ctrl.user._id == $ctrl.request.userId){
 
-            $http.post('/api/requests/getAllAnswers', {'reqId': $stateParams.reqId}).then(function(res){
-                $ctrl.allAnswers = res.data;
-                console.log( $ctrl.allAnswers)
-            }); 
-          }
+          $http.post('/api/requests/getAllAnswers', {'reqId': $stateParams.reqId}).then(function(res){
+              $ctrl.allAnswers = res.data;
+          }); 
+        }
       });
 
       $http.post('/api/contact/all',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
-          $ctrl.allContatcts =  res.data;
-     
+        $ctrl.allContatcts =  res.data;
 
         $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
-            $ctrl.myAnswer = res.data;
-            console.log(res.data)
-            $ctrl.selectedContacts = res.data[0] ? res.data[0].contacts: [];
-            $ctrl.selectedContacts.forEach(function(contact){
-              $ctrl.allContatcts[res.data[0].userId.name].forEach(function(selected){
-                if (selected._id == contact._id){
-                  selected.selected = true;
-                } 
-              })
+          $ctrl.myAnswer = res.data;
+
+          $ctrl.selectedContacts = res.data[0] ? res.data[0].contacts: [];
+
+          $ctrl.selectedContacts.forEach(function(contact){
+            $ctrl.allContatcts.forEach(function(selected){
+              if (selected._id == contact._id){
+                selected.selected = true;
+              } 
             })
+          })
         });
       });
 
-
-      /*$http.post('/api/request/all', {'userId': $ctrl.user._id}).then(function(res){
-        $ctrl.allRequests =  res.data;
-      })*/
     	$ctrl.save = function(){
-  /*   		$ctrl.request.userId = '5914c111bef45904e0478f1a';*/
     		$ctrl.request.userId = $ctrl.user._id;
     		$ctrl.request.requestDate = new Date();
     		$http.post('/api/requests/add', $ctrl.request).then(function(res){

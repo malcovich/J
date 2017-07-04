@@ -79,16 +79,11 @@
         </div>
         <div class="modal-body" id="modal-body">        
         <div >
-        <uib-accordion>
-            <div uib-accordion-group class="panel-default" heading='{{key}}' ng-repeat=" (key,item) in vm.contacts">
-                <ul class="contact-list">
-                    <li ng-repeat="p in  item ">
+                    <li ng-repeat="p in  vm.contacts ">
                         <input type="checkbox" ng-model="p.selected">
                         <p class="contact-name">{{p.name}} - {{p.spec}}</p>
                     </li>
                 </ul>
-            </div>
-        </uib-accordion>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
