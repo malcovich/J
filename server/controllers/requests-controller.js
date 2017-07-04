@@ -22,7 +22,6 @@ module.exports.list = function(req, res){
 }
 
 module.exports.getItem = function(req, res){
-	console.log(req.param('reqId'))
 	Request.find({_id : req.param('reqId')}).populate('userId').exec(function (err, request) {
        res.json(request);
     });
@@ -54,25 +53,31 @@ module.exports.deleteRequest = function(req, res){
 }
 
 module.exports.saveAnswer = function(req, res){
-	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: req.param('reqId')}]}).exec(function(err, answer){
+	var requestId = req.param('requestId')
+	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: requestId}]}).exec(function(err, answer){
+		console.log(answer)
 		if (answer.length > 0){
 			answer[0].contacts = req.param('contacts')
-			answer[0].save();
+			answer[0].save(function(err,ans){
+				res.json({data:ans});
+			});
 		}
 		else{ 
+			console.log("REEEEEEEE",req.body.requestId, req.body.userId, req.body.contacts)
+
 			var newAnswer = new Answer(req.body);
-			newAnswer.requestId = req.body.reqId;
-			newAnswer.save();
-			res.json(req.body);
+			newAnswer.save(function(err, ans){
+				res.json({data:ans});
+			});
+			
 		}
 	})
 
 }
 
 module.exports.getAnswer = function(req, res){
-	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: req.param('reqId')}]}).populate('contacts').populate('userId')
+	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: req.param('reqId')}]}).populate('contacts')
 		.exec(function(err, result) {
-			console.log(result)
 		    res.json(result);
 		}); 
 }

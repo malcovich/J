@@ -6,13 +6,10 @@ var Raiting = require('../datasets/raiting');
 module.exports.add = function(req, res){
 	var contact = new Contact(req.body);
 	contact.save();
-	console.log(contact)
 	res.json(req.body);
 }
 module.exports.addExist = function(req, res){
-	console.log(req.body.userId, req.body.id)
 	Contact.findByIdAndUpdate(req.body.id , { $push: { 'userId': req.body.userId }}, {new: true},function(err, u) {
-		console.log(u)
 		res.json(u)
 	});
 }
@@ -85,19 +82,11 @@ module.exports.all = function(req, res){
 	          result.splice(i, 1, result[i].useridaccept);
 	        }
       	}
+      	var friendsObj = result;
         var friendsIds = result.map(function(i){ return i._id})
         friendsIds.push(req.param('userId'))
-       	Contact.find({ userId :  {$in: friendsIds}}).populate('userId').exec(function (err, result) {
-       		var reslt = {}
-       		if (result.length > 0){
-       			result.forEach(function(item){
-	       			if(!reslt[item.userId.name]){
-	       				reslt[item.userId.name] = [];
-	       			}
-	       			reslt[item.userId.name].push(item);
-	       		})
-       		}
-	        res.json(reslt);
+       	Contact.find({ userId : {$in: friendsIds}}).populate('userId').exec(function (err, result) {
+	        res.json(result);
 	    });
     });
 }

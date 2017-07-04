@@ -20,7 +20,7 @@ angular.module('MyApp')
       });
 
       $http.post('/api/contact/all',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
-          $ctrl.allContatcts =  res.data;;   
+          $ctrl.allContatcts =  res.data;
      
 
         $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
@@ -54,14 +54,13 @@ angular.module('MyApp')
         ModalFactory.openRequestModal('myModalContent.html', 'ModalInstanceRequestCtrl', $ctrl.allContatcts).then(function(ctrl){
           $ctrl.selectedContacts = [];
           var contactsId = []
-          for(friend in ctrl.contacts){
-            ctrl.contacts[friend].forEach(function(contact){
+
+            ctrl.contacts.forEach(function(contact){
               if(contact.selected){
                 $ctrl.selectedContacts.push(contact)
                 contactsId.push(contact._id)
               };
             });
-          };
           var answer = {
             'reqId': $stateParams.reqId,
             'userId': $ctrl.user._id,
