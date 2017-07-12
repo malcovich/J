@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('FeedCtrl', ['$scope', '$log',  '$http','AuthFactory', 'user', function($scope, $log, $http, AuthFactory, user) {
+  .controller('FeedCtrl', ['$scope', '$log',  '$http', 'user', function($scope, $log, $http, user) {
   			$scope.user = user.data;
   			$http.post('/api/friend/listFriendsRequests',{userId: $scope.user._id}).then(function(res,err){
   				$scope.listRequest = res.data;

@@ -1,6 +1,6 @@
 angular.module('MyApp')
   .controller('MainCtrl', ['$scope', '$log', '$http','user', function($scope, $log, $http, user) {
-		$scope.user = res.data;
+		$scope.user = user.data;
 
 		$http.post('/api/friend/listFriendsRequests',{userId: $scope.user._id}).then(function(res){
 			$scope.listRequest = res.data;
