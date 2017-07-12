@@ -5,8 +5,23 @@ var User = require('../datasets/users');
 
 module.exports.add = function(req, res){
 	var friend = new Friend(req.body);
-	friend.save();
-	res.json(req.body);
+	Friend.find({$and: [ {$or: [ {useridinvite : friend.useridinvite} , {useridaccept : friend.useridinvite} ]} , {$or: [ {useridinvite : friend.useridaccept} , {useridaccept : friend.useridaccept} ]},{ deleted: false }]}).exec(function (err, result) { 
+    	
+    	if (result.length === 0) {
+			friend.save();
+			res.json(friend);
+			console.log("friendfriend", friend)
+    	} else {
+    		if (result.accepted === true) {
+	    		console.log("you alredy accepted friend");
+	    		result.sendreq == false;
+	    		res.json(result[0]);
+	    	} else {
+	    		console.log("you alredy requested friend");
+	    		res.json(result[0]);
+	    	}
+    	}
+	});
 }
 
 module.exports.list = function(req,res) {
@@ -23,7 +38,7 @@ module.exports.listFriendsRequests = function(req,res) {
 	});
 }
 module.exports.accept = function(req,res) {
-	Friend.findByIdAndUpdate(req.body._id, {accepted: true}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
+	Friend.findByIdAndUpdate(req.body._id,{"$set": {"accepted": true, "sendreq": false }}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
     	res.json(result);
 	});
 }
@@ -40,6 +55,7 @@ module.exports.item = function(req, res) {
 
 module.exports.deleteFriend = function(req, res){
 	Friend.findOneAndUpdate({$or: [ {$and:[{'useridinvite': req.body.friendId}, {'useridaccept': req.body.userId}]} , {$and:[{'useridinvite': req.body.userId}, {'useridaccept': req.body.friendId}]} ]}, {$set:{deleted: 'true'}}, {new: true},function(err, result) {
+		console.log("del res", result)
 		res.json(result)
 	  	if (err) throw err;
 	});

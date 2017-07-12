@@ -24,8 +24,11 @@ angular.module('MyApp')
 
     	$ctrl.deleteFriend = function(id){
     		var params = {'friendId': id, 'userId': $ctrl.user._id}
+			console.log("param",params);
+
     		$http.post('/api/friend/deleteFriend', params).then(function(res){
     			$ctrl.friendData = res.data;
+
     			if ($ctrl.friendData.deleted == true) {
 				  $state.go('main.friends');
     			}
@@ -37,11 +40,14 @@ angular.module('MyApp')
 		  var data = {
 		    useridinvite: $ctrl.user._id,
 		    useridaccept: id,
-		    accepted: false
+		    accepted: false,
+		    deleted: false,
+		    sendreq: true
 		  }
 		  $http.post('/api/friend/add', data).then(function(res){
+
+		  	console.log("res", res)
 		  	alert("request sended");
-		  	$ctrl.requestsend = true;
 		  })
 		}
 	});

@@ -17,9 +17,21 @@
 					var data = {
 						useridinvite: $ctrl.user._id,
 						useridaccept: id,
-						accepted: false
+						accepted: false,
+						deleted: false,
+						sendreq: true
 					}
 					$http.post('/api/friend/add', data).then(function(res){
+						var request = res.data;
+						if (request.accepted === false && request.sendreq === true) {
+							console.log ("you just send request, button change to cancel request");
+						} 
+						if (request.accepted === true && request.sendreq === false) {
+							console.log ("button its your friend");
+						} 
+						if (request.accepted === false && request.sendreq === false) {
+							console.log ("button add to friend");
+						}
 						console.log(res)
 					})
 				}

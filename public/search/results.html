@@ -3,7 +3,7 @@
 		<h3>Результаты поиска по запросу "{{$ctrl.q}}":</h3>
 		<ul class="user-results-list">
 			<li ng-repeat="user in $ctrl.searchResut.users">
-				<div class="btn green-btn" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить</div>
+				<div class="btn green-btn" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить </div>
 				<div class="user-img"><img ng-src="{{user.img}}" alt=""></div>
 				<p class="user-name">{{user.name}}</p>
 			</li>
