@@ -1,12 +1,11 @@
 angular.module('MyApp')
-  .controller('RequestController', ['$scope', '$log', 'AuthFactory', '$uibModal', '$http', '$stateParams', 'ModalFactory', function($scope, $log, AuthFactory, $uibModal, $http, $stateParams,ModalFactory){
+  .controller('RequestController', ['$scope', '$log', 'user', '$uibModal', '$http', '$stateParams', 'ModalFactory', function($scope, $log, user, $uibModal, $http, $stateParams,ModalFactory){
   	var $ctrl = this;
     $ctrl.requestsList = [];
   	$ctrl.allRequests = [];
     /*id =591c7028ad30f137f06c8559*/
 
-  	AuthFactory.me().then(function(res){
-      $ctrl.user = res.data.data;
+      $ctrl.user = user.data;
 
       $http.post('/api/requests/item', {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
         $ctrl.request = res.data[0];
@@ -66,7 +65,6 @@ angular.module('MyApp')
             });
         })
       };
-    });
 	
 }]);
 

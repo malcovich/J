@@ -1,9 +1,7 @@
 angular.module('MyApp')
-  .controller('RequestsListController', ['$scope', 'AuthFactory', '$http', '$stateParams','$state','ModalFactory', function($scope, AuthFactory, $http, $stateParams, $state,ModalFactory){
+  .controller('RequestsListController', ['$scope', 'user', '$http', '$stateParams','$state','ModalFactory', function($scope, user, $http, $stateParams, $state,ModalFactory){
   	var $ctrl = this;
-
-    AuthFactory.me().then(function(res){
-      $ctrl.user = res.data.data;
+      $ctrl.user = user.data;
       if (!$ctrl.user){
         $state.go('main');
       }else {
@@ -46,8 +44,6 @@ angular.module('MyApp')
           console.log(ctrl.request)
         })
       };
-    });
-	
 }]);
 
 

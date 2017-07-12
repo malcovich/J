@@ -46,6 +46,12 @@ angular.module('MyApp').factory('AuthFactory', function($http, $localStorage, $s
     service.me =  function(success, error) {
         return $http.get('/api/me/')
     },
+    service.setUser = function(user){
+        this.user = user;
+    },
+    service.getUser = function(){
+        return this.user;
+    }
     service.logout =  function(success) {
         changeUser({});
         delete $localStorage.token;

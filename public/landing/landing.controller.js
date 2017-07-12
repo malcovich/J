@@ -14,8 +14,8 @@ angular.module('MyApp')
           if (res.type == false) {
               alert(res.data)    
           } else {
-              $localStorage.token = res.data.token;
-              $state.go("main");    
+            $localStorage.token = res.data.token;
+            $state.go("main.feed");    
           }
         })
 		  };

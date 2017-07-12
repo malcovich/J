@@ -1,9 +1,7 @@
 angular.module('MyApp')
-.controller('FriendsListController', ['$scope', 'UserFactory', '$uibModal', '$http','$state', 'ModalFactory','AuthFactory', function($scope, UserFactory, $uibModal, $http, $state, ModalFactory,AuthFactory){
- var $ctrl = this;
-
- AuthFactory.me().then(function(res){
-  $ctrl.user = res.data.data;
+.controller('FriendsListController', ['$scope',  '$uibModal', '$http','$state', 'ModalFactory','user', function($scope,  $uibModal, $http, $state, ModalFactory,user){
+  var $ctrl = this;
+  $ctrl.user = user.data;
   if (!$ctrl.user){
     $state.go('landing');
   }else {
@@ -52,7 +50,6 @@ $ctrl.open = function(){
   });
   }*/
 
-})
 }]);
 
 angular.module('MyApp').controller('ModalInstanceCtrl1', function ($uibModalInstance, $state) {

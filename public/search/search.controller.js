@@ -1,9 +1,8 @@
 (function(){
 	angular.module('MyApp')
-		.controller('searchController', ['$scope', '$state', '$http','$stateParams', 'AuthFactory', function($scope, $state, $http,$stateParams, AuthFactory){
+		.controller('searchController', ['$scope', '$state', '$http','$stateParams', 'user', function($scope, $state, $http,$stateParams, user){
 			$ctrl = this;
-			AuthFactory.me().then(function(res){
-      			$ctrl.user = res.data.data;
+      			$ctrl.user = user.data;
 
 				if($stateParams.q != undefined){
 					$ctrl.q = $stateParams.q;
@@ -42,6 +41,5 @@
 						console.log(res)
 					})
 				}
-			})
 		}])
 }())

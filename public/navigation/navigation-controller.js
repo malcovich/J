@@ -1,9 +1,7 @@
 (function(){
 	angular.module('MyApp')
-		.controller('NavigationController', ['$rootScope','$scope','$http','$state', 'AuthFactory',  function($rootScope, $scope, $http, $state, AuthFactory){
-			AuthFactory.me().then(function(res){
-	  			$scope.user = res.data.data;
-	  		})
+		.controller('NavigationController', ['$rootScope','$scope','$http','$state', 'user',  function($rootScope, $scope, $http, $state, user){
+	  		$scope.user = user.data;
 			$scope.logUserOut = function(){
 				AuthFactory.logout();
 			}

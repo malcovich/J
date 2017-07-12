@@ -1,9 +1,8 @@
 angular.module('MyApp')
-  .controller('ProfileCtrl', ['$rootScope','$scope', '$log', 'AuthFactory', '$uibModal', '$http','$state','ModalFactory','Upload', function($rootScope,$scope, $log, AuthFactory, $uibModal, $http, $state, ModalFactory,Upload){
+  .controller('ProfileCtrl', ['$rootScope','$scope', '$log', 'user', '$uibModal', '$http','$state','ModalFactory','Upload', function($rootScope,$scope, $log, user, $uibModal, $http, $state, ModalFactory,Upload){
   	var $ctrl = this;
 
-    AuthFactory.me().then(function(res){
-      $ctrl.user = res.data.data;
+      $ctrl.user = user.data;
       $ctrl.copyUser = angular.copy($ctrl.user);
 
       if ( !$ctrl.user ){
@@ -40,7 +39,6 @@ angular.module('MyApp')
           }
         };
       };
-    });
 }]);
 
      

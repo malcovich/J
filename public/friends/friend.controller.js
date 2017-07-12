@@ -1,9 +1,7 @@
 angular.module('MyApp')
-  .controller('FriendController', ['$scope', '$log', 'AuthFactory', '$state','$uibModal', '$http',  '$stateParams', function($scope, $log, AuthFactory, $state,$uibModal, $http, $stateParams){
+  .controller('FriendController', ['$scope', '$log', 'user', '$state','$uibModal', '$http',  '$stateParams', function($scope, $log, user, $state,$uibModal, $http, $stateParams){
   	var $ctrl = this;
-  	console.log($ctrl)
-  	AuthFactory.me().then(function(res){
-        $ctrl.user = res.data.data;
+        $ctrl.user = user.data;
 		$http.post('/api/friend/item', {'friendId': $stateParams.id}).then(function(res){
 	      	$ctrl.friendInfo = res.data;
 	      	var userId =  $ctrl.user._id;
@@ -50,6 +48,5 @@ angular.module('MyApp')
 		  	alert("request sended");
 		  })
 		}
-	});
 }]);
 
