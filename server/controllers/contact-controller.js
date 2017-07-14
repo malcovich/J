@@ -13,6 +13,12 @@ module.exports.addExist = function(req, res){
 		res.json(u)
 	});
 }
+module.exports.deleteExist = function(req, res){
+	console.log(req)
+	Contact.findByIdAndUpdate(req.body.id , { $pull: { 'userId': req.body.userId }}, {new: true},function(err, u) {
+		res.json(u)
+	});
+}
 
 module.exports.list = function(req, res){
 	Contact.find({ userId : req.param('userId')}, function (err, result) {

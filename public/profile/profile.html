@@ -31,23 +31,14 @@
 		<div class="btn green-btn" ngf-select ng-model="$ctrl.file" name="file" ngf-pattern="'image/*'"
         ngf-accept="'image/*'" >Select image</div>
         </div>
-		<!-- <form  ng-controller="MyCtrl as up" name="up.upload_form" enctype="multipart/form-data">
-		                Single Image with validations
-		            <input 
-		               type="file" 
-		               ngf-select 
-		               ng-model="up.file" 
-		               name="file" 
-		               ngf-pattern="'image/*'"
-		               accept="image/*" 
-		               ngf-max-size="20MB" 
-		               />
-		            Image thumbnail: <img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
-		            <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-		            <i ng-show="up.upload_form.file.$error.maxSize">File too large 
-		            {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-		            <button type="submit" ng-click="up.submit()">submit</button>
-		            <p>{{up.progress}}
-		        </form> -->
+		<div >
+			<input type="file" img-cropper-fileread image="$ctrl.cropper.sourceImage" />
+			<div>
+	        <canvas width="500" height="300" id="canvas" image-cropper image="$ctrl.cropper.sourceImage" cropped-image="$ctrl.cropper.croppedImage" crop-width="200" crop-height="200" keep-aspect="true" min-width="100" min-width="100"  touch-radius="30" crop-area-bounds="bounds"></canvas>
+	        </div>
+	        <div>Cropped Image (Left: {{$ctrl.bounds.left}} Right: {{$ctrl.bounds.right}} Top: {{$ctrl.bounds.top}} Bottom: {{$ctrl.bounds.bottom}})</div>
+	        <div ng-show="$ctrl.cropper.croppedImage!=null"><img ng-src="{{$ctrl.cropper.croppedImage}}" /></div>
+		</div>
+
 	</div>
 </div>

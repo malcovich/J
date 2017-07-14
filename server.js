@@ -54,6 +54,7 @@ app.post('/api/user/findByContactsList', authenticationController.findByContacts
 
 app.post('/api/contact/add', conatactController.add);
 app.post('/api/contact/addExist', conatactController.addExist);
+app.post('/api/contact/deleteExist', conatactController.deleteExist);
 app.post('/api/contact/list', conatactController.list);
 app.post('/api/contact/all', conatactController.all);
 app.post('/api/contact/item', conatactController.getItem);

@@ -2,6 +2,15 @@ angular.module('MyApp')
   .controller('ProfileCtrl', ['$rootScope','$scope', '$log', 'user', '$uibModal', '$http','$state','ModalFactory','Upload', function($rootScope,$scope, $log, user, $uibModal, $http, $state, ModalFactory,Upload){
   	var $ctrl = this;
 
+    $ctrl.cropper = {};
+    $ctrl.cropper.sourceImage = null;
+    $ctrl.cropper.croppedImage   = null;
+    $ctrl.bounds = {};
+    $ctrl.bounds.left = 0;
+    $ctrl.bounds.right = 0;
+    $ctrl.bounds.top = 0;
+    $ctrl.bounds.bottom = 0;
+
       $ctrl.user = user.data;
       $ctrl.copyUser = angular.copy($ctrl.user);
 
@@ -11,7 +20,7 @@ angular.module('MyApp')
         $scope.$watch(function(){
             return $ctrl.file;
         }, function(){
-            $ctrl.upload($scope.file)
+            $ctrl.upload($ctrl.cropper.croppedImage)
         })
 
         $ctrl.updateUser  =  function(){
