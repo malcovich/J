@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
 });
 
 
-process.env.TMPDIR = '/public/uploads';
+process.env.TMPDIR = '/public/uploads/';
 /*var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };     
 mongoose.connect('mongodb://localhost:27017/profee',options);*/
