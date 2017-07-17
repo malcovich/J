@@ -2,6 +2,7 @@ angular.module('MyApp')
   .controller('CategoryController', ['$scope', '$log', 'user', '$uibModal', '$http','$state','$stateParams','ModalFactory', function($scope, $log, user, $uibModal, $http, $state, $stateParams, ModalFactory){
   	var $ctrl = this;
     $ctrl.user = user.data;
+    $ctrl.r = 4;
   	if (!$ctrl.user){
   		$state.go('main');
   	}else {
@@ -59,3 +60,4 @@ angular.module('MyApp').controller('addContact', function ($uibModalInstance, $s
     $state.go('signUp')
   }
 });
+

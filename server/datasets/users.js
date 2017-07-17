@@ -7,5 +7,11 @@ module.exports = mongoose.model('User', {
 	role: String,
 	token:String,
 	phone : String,
-	hardNumber: Boolean
+	hardNumber: Boolean,
+	bounds : {
+		top: String,
+		left: String,
+		right: String,
+		bottom: String
+	}
 }); 

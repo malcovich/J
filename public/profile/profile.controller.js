@@ -7,9 +7,7 @@ angular.module('MyApp')
     $ctrl.cropper.croppedImage   = null;
     $ctrl.bounds = {};
     $ctrl.bounds.left = 0;
-    $ctrl.bounds.right = 0;
     $ctrl.bounds.top = 0;
-    $ctrl.bounds.bottom = 0;
 
       $ctrl.user = user.data;
       $ctrl.copyUser = angular.copy($ctrl.user);
@@ -17,12 +15,16 @@ angular.module('MyApp')
       if (!$ctrl.user ){
         $state.go('main');
       } else {
+        if ($ctrl.user.bounds){
+            $ctrl.cropper.sourceImage = $ctrl.user.img;
+            $ctrl.bounds = $ctrl.user.bounds;
+        }
 
-        
         $scope.$watch(function(){
             return $ctrl.file;
         }, function(){
-            $ctrl.upload($ctrl.cropper.croppedImage)
+          console.log( $ctrl.bounds)
+            $ctrl.upload($ctrl.file)
         })
 
         $ctrl.updateUser  =  function(){
@@ -38,9 +40,10 @@ angular.module('MyApp')
             Upload.upload({
               url: '/api/user/addPhoto',
               method :'POST',
-              data: {'id': $ctrl.user._id},
+              data: {'id': $ctrl.user._id, 'bounds' : $ctrl.bounds},
               file: $ctrl.file
             }).success(function(data){
+              console.log(data)
               $ctrl.user = data;
               $rootScope.$emit('changeProfile', {user: $ctrl.user })
               // $scope.newPredefined.img = data.img

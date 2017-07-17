@@ -3,8 +3,8 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<div  class="user-img">
-				<img ng-src="{{$ctrl.user.img}}" alt="">
-					
+				<img ng-src="{{$ctrl.cropper.croppedImage}}" alt="">
+				<
 				</div>
 			</div>
 			<div class="col-lg-9">
@@ -34,10 +34,8 @@
 		<div >
 			<input type="file" img-cropper-fileread image="$ctrl.cropper.sourceImage" />
 			<div>
-	        <canvas width="500" height="300" id="canvas" image-cropper image="$ctrl.cropper.sourceImage" cropped-image="$ctrl.cropper.croppedImage" crop-width="200" crop-height="200" keep-aspect="true" min-width="100" min-width="100"  touch-radius="30" crop-area-bounds="bounds"></canvas>
+	        <canvas width="500" height="300" id="canvas" image-cropper image="$ctrl.cropper.sourceImage" cropped-image="$ctrl.cropper.croppedImage" crop-width="200" crop-height="200" keep-aspect="true" min-width="100" min-width="100"  touch-radius="30" crop-area-bounds="$ctrl.bounds"></canvas>
 	        </div>
-	        <div>Cropped Image (Left: {{$ctrl.bounds.left}} Right: {{$ctrl.bounds.right}} Top: {{$ctrl.bounds.top}} Bottom: {{$ctrl.bounds.bottom}})</div>
-	        <div ng-show="$ctrl.cropper.croppedImage!=null"><img ng-src="{{$ctrl.cropper.croppedImage}}" /></div>
 		</div>
 
 	</div>

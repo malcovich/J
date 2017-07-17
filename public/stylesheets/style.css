@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .main-menu {
   height: 70px;
   border-bottom: 1px solid #dfe2e5; }
@@ -320,6 +321,73 @@ ul {
     margin-left: 0; }
   .my-answer .contact-card:nth(3n) {
     margin-right: 0; }
+
+.sub-header.category {
+  background: #eff6f6;
+  margin-bottom: 30px;
+  height: auto; }
+  .sub-header.category .btn {
+    font-size: 13px;
+    padding: 10px 25px;
+    margin-right: 30px;
+    margin-top: 20px;
+    font-weight: bold; }
+  .sub-header.category .small-title {
+    padding-top: 18px;
+    padding-bottom: 17px;
+    color: #588386;
+    font-size: 21px;
+    font-weight: normal;
+    text-transform: initial; }
+
+.contact-icon-type {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 5px;
+  margin-top: 5px; }
+  .contact-icon-type.orange {
+    background: #ffd200; }
+
+table.list-contacts {
+  width: 100%; }
+  table.list-contacts thead {
+    border-bottom: 1px solid #eeeeee; }
+  table.list-contacts tbody tr:nth-child(2) {
+    background: #fafbfb; }
+  table.list-contacts tr {
+    height: 62px;
+    color: #c0c7c7; }
+    table.list-contacts tr td, table.list-contacts tr th {
+      font-weight: normal;
+      font-size: 15px;
+      line-height: 62px; }
+    table.list-contacts tr td {
+      font-size: 16px;
+      color: #5e6d75; }
+    table.list-contacts tr .type {
+      padding-left: 20px;
+      width: 85px; }
+    table.list-contacts tr .category {
+      width: 250px; }
+    table.list-contacts tr .spec {
+      width: 300px; }
+    table.list-contacts tr .raiting {
+      width: 250px; }
+    table.list-contacts tr .name {
+      width: 390px; }
+      table.list-contacts tr .name .contact-img {
+        margin-top: 6px;
+        width: 50px;
+        height: 50px;
+        display: block;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 1px solid #eee;
+        float: left; }
+        table.list-contacts tr .name .contact-img img {
+          width: 100%; }
 
 .contact-card {
   width: 30%;
@@ -831,3 +899,116 @@ body {
 /* */
 .fr {
   float: right; }
+
+/* <input-star></input-star> directive */
+.angular-input-stars {
+  display: inline-block;
+  padding: 0;
+  margin-left: -5px;
+  list-style: none; }
+
+.angular-input-stars > li {
+  font-size: 17px;
+  display: inline-block;
+  padding-right: 2px;
+  padding-left: 2px;
+  cursor: pointer; }
+
+.angular-input-stars > li i.readonly {
+  cursor: not-allowed; }
+
+.angular-input-stars > li .active {
+  color: #FDE35E;
+  text-shadow: black 0 0 1px, 0 0 1px; }
+
+.angular-input-stars > li .active.angular-input-stars-hover {
+  text-shadow: black 0 0 3px; }
+
+.switcher {
+  display: inline-block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; }
+
+.switcher-label {
+  font-size: .9em; }
+
+.switcher-label.false {
+  color: #e35144; }
+
+.switcher-label,
+.switcher-line {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer; }
+
+.switcher-line {
+  position: relative;
+  width: 40px;
+  height: 2em;
+  margin: 0 8px; }
+
+.switcher-line:before {
+  content: '';
+  display: block;
+  vertical-align: middle;
+  width: 100%;
+  height: 6px;
+  background: #8ca0ad;
+  background-image: linear-gradient(#8ca0ad, #cad6de); }
+
+.switcher-line:before, .switcher-line:after {
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  border-radius: 10em;
+  transition: all 300ms ease; }
+
+.switcher-line:after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid #c9d1d6;
+  box-shadow: 0 1px 2px rgba(97, 126, 147, 0.5);
+  left: 0; }
+
+.switcher input {
+  display: none !important; }
+
+.switcher.active .switcher-line:after {
+  transform: translateY(-50%) translateX(-100%);
+  left: 100%; }
+
+.switcher.active .switcher-label.true {
+  color: #4ecb32; }
+
+.switcher.active .switcher-label.false {
+  color: inherit; }
+
+.switcher.disabled {
+  opacity: .7; }
+
+/* bar height */
+.styled .switcher-line:before {
+  height: 20px; }
+
+/* bar backgrounds */
+.styled .switcher-line:before {
+  background: #588386;
+  content: "Да"; }
+
+.styled .active .switcher-line:before {
+  background: #e1e4e3;
+  content: "Нет";
+  color: #788181; }
+
+/* icons opacity */
+.styled .switcher-label.false,
+.styled .active .switcher-label.true {
+  opacity: 1; }
+
+.styled .switcher-label.true,
+.styled .active .switcher-label.false {
+  opacity: .4; }

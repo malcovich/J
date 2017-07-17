@@ -1,15 +1,15 @@
-<div class="sub-header">
+<div class="sub-header category">
   <span class="btn green-btn add-new" ng-click="$ctrl.addContact()">Добавить</span>
   <h4 class="small-title">{{$ctrl.category.category.title}}</h4>
 </div>
 
-<ul class="breadcrumbs">
+<!-- <ul class="breadcrumbs">
   <li><i class="fa fa-home" aria-hidden="true"></i></li>
   <li>-</li>
   <li><span ui-sref="main.categories">Категории</span></li>
-</ul>
+</ul> -->
 <div class="category-contacts-list">
-  <div ng-repeat="contact in $ctrl.category.contacts" class="contact-item" ui-sref="main.contact({id:contact._id})"> 
+ <!--  <div ng-repeat="contact in $ctrl.category.contacts" class="contact-item" ui-sref="main.contact({id:contact._id})"> 
     <div class="contact-item-img">
       <img ng-src="{{contacts.img || '/public/images/vectorpaint1.png'}}">
     </div>
@@ -17,7 +17,46 @@
       <h4>{{contact.name}}</h4>
       <p>{{contact.spec}}</p>
     </div>
-  </div>
+  </div> -->
+
+  <table class="list-contacts">
+    <thead>
+      <tr>
+          <th class="type">Тип</th>
+          <th class="name">Имя</th>
+          <th class="category">Категория</th>
+          <th class="spec">Специализация</th>
+          <th class="raiting">Рейтинг</th>
+          <th class="hidden-type">Публичный</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="contact in $ctrl.category.contacts" >
+        <td class="type"><span class="contact-icon-type orange"></span></td>
+        <td class="name" ui-sref="main.contact({id:contact._id})">
+          <div class="contact-img"><img ng-src="{{contacts.img || '/public/images/vectorpaint1.png'}}"></div>{{contact.name}}</td>
+        <td >{{$ctrl.category.category.title}}</td>
+        <td>{{contact.spec}}</td>
+        <td><input-stars
+            max="5"
+            icon-base="fa fa-fw"
+            icon-empty="fa-star-o"
+            icon-full="fa-star" 
+            icon-hover-full="fa-star" 
+            ng-attr-readonly= true 
+            ng-model="$ctrl.r"
+            ></input-stars></td>
+        <td><switcher class="styled"
+                      ng-model="style"
+                      ng-change="onChange(newValue, oldValue)"
+                      true-label=""
+                      false-label="">
+            </switcher>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+            
 </div>
 
 

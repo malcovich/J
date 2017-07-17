@@ -162,9 +162,10 @@ module.exports.findByContactsList = function(req, res){
 }
 
 module.exports.addPhoto = function(req, res){
-    console.log('erwre',req.files.file)
+    console.log(req.body.img)
     var file = req.files.file;
     var tempPath = file.path;
+    var RES = res;
     function guid() {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
@@ -179,22 +180,19 @@ module.exports.addPhoto = function(req, res){
     var target_path = 'public/uploads/' + newName;
     
     // move the file from the temporary location to the intended location
-    console.log(file)
-    mv(tempPath, target_path, function(err, res) {
-        if (err)
-          return res.status(500).send(err);
-
-        User.findByIdAndUpdate(req.body.id , {'img': target_path}, {new: true},function(err, u) {
-            if (err) {throw err;}else {res.json(u)}
+    mv(tempPath, target_path, function(err) {
+        User.findByIdAndUpdate(req.body.id , {'img': target_path , 'bounds' : req.body.bounds}, {new: true},function(err, u) {
+            console.log('1',u)
+            if (err) {throw err;}else {RES.json(u)}
         });
       });
-    fs.rename(tempPath, target_path, function(err) {
+    /*fs.rename(tempPath, target_path, function(err) {
         if (err) throw err;
         // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
         fs.unlink(tempPath, function() {
             if (err) throw err;
            
         });
-    });
+    });*/
 }
 
