@@ -14,9 +14,11 @@ angular.module('MyApp')
       $ctrl.user = user.data;
       $ctrl.copyUser = angular.copy($ctrl.user);
 
-      if ( !$ctrl.user ){
+      if (!$ctrl.user ){
         $state.go('main');
       } else {
+
+        
         $scope.$watch(function(){
             return $ctrl.file;
         }, function(){

@@ -162,6 +162,7 @@ module.exports.findByContactsList = function(req, res){
 }
 
 module.exports.addPhoto = function(req, res){
+    console.log('erwre',req.files.file)
     var file = req.files.file;
     var tempPath = file.path;
     function guid() {

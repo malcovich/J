@@ -27,6 +27,9 @@ app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
 });
+
+
+process.env.TMPDIR = '/public/uploads';
 /*var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };     
 mongoose.connect('mongodb://localhost:27017/profee',options);*/
