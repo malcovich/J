@@ -11,33 +11,53 @@
                     <span ng-click="$ctrl.change(req)" class="btn edit">Редактировать</span>
                     <span ng-click="$ctrl.deleteRequest(req._id)" class="btn delete">Удалить</span>
                 </div>
-                <div ng-hide="$ctrl.user._id == ctrl.request.userId._id">
-                   
-                    <div ng-hide="$ctrl.selectedContacts.length > 0">
-                        <span ng-click="$ctrl.openModalfromNet()">Выбрать из сети</span>
-                    </div>
-                    <div>
-                        <p class="titleForContacs" ng-show="$ctrl.selectedContacts.length > 0">Вы предложили {{$ctrl.selectedContacts.length}} контакта:</p>
-                        <p ng-click="$ctrl.openModalfromNet()" ng-show="$ctrl.selectedContacts.length > 0">Редактировать</p>
-
-                    </div>
+                <div ng-hide="$ctrl.user._id == $ctrl.request.userId._id">
+                        <span ng-click="$ctrl.openModalfromNet()" class="btn green-btn">Выбрать из сети</span>
                 </div>
             </div>
 
 		</div>
 		<div class="request-body">
             <p class="request-text">"{{$ctrl.request.text}}"</p>
-           
-            <div ng-show="$ctrl.request.userId._id == $ctrl.user._id">
-                <div ng-repeat="answer in $ctrl.allAnswers">
-                    <div ng-repeat="contact in answer.contacts">
-                        {{contact.name}}
-                    </div>
-                </div>
-            </div>
 		</div>
-        
-</div>
+    </div>
+    <div class="my-answer" ng-show="$ctrl.request.userId._id == $ctrl.user._id">
+        <table class="list-contacts">
+            <thead>
+              <tr>
+                  <th class="type">Тип</th>
+                  <th class="name">Имя специалиста</th>
+                  <th class="category">Категория</th>
+                  <th class="spec">Специализация</th>
+                  <th class="raiting">Рейтинг</th>
+                  <th class="raiting">Кто рекомендует</th>
+                  
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in $ctrl.allContatctsFromAnsers" ng-hide="$ctrl.allAnswers.length == 0">
+                <td class="type"><span class="contact-icon-type orange"></span></td>
+                <td class="name" ui-sref="main.contact({id:item.contact._id})">
+                  <div class="contact-img"><img ng-src="{{item.contact.img || '/public/images/vectorpaint1.png'}}"></div>{{item.contact.name}}</td>
+                <td >{{item.contact.category[0].title}}</td>
+                <td>{{item.contact.spec}}</td>
+                <td><input-stars
+                    max="5"
+                    icon-base="fa fa-fw"
+                    icon-empty="fa-star-o"
+                    icon-full="fa-star" 
+                    icon-hover-full="fa-star" 
+                    ng-attr-readonly= true 
+                    ng-model="$ctrl.r"
+                    ></input-stars></td>
+                    <td>{{item.user.name}}</td>
+              </tr>
+              <tr  ng-show="$ctrl.allAnswers.length == 0">
+                  <td class="no-answers" colspan="6">На данный момент вам еще не порекомендовали специалиста</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
 
 <!-- <div class="category-contacts-list" ng-hide="$ctrl.request.userId._id == $ctrl.user._id">
   <div ng-repeat="contact in $ctrl.category.contacts" class="contact-item" ui-sref="main.contact({id:contact._id})"> 
@@ -52,20 +72,38 @@
 </div>
  -->
     <div >
-        <div class="my-answer">
-            <ul class="contact-list">
-                <li ng-repeat="contact in $ctrl.selectedContacts" class="contact-card">
-                  <div class="header-card">
-                      <div class="image-block">
-                        <img src="public/images/vectorpaint.png" >
-                      </div>
-                      <div class="card-title">
-                        <h5 class="contact-name">{{contact.name}}</h5>
-                        <p class="contact-spec">{{contact.spec}}</p>
-                      </div>
-                  </div>
-                </li>
-            </ul>
+         <h4  ng-hide="$ctrl.request.userId._id == $ctrl.user._id">Вы рекомендуете:</h4>
+        <div class="my-answer" ng-hide="$ctrl.request.userId._id == $ctrl.user._id">
+            <table class="list-contacts">
+                <thead>
+                  <tr>
+                      <th class="type">Тип</th>
+                      <th class="name">Имя</th>
+                      <th class="category">Категория</th>
+                      <th class="spec">Специализация</th>
+                      <th class="raiting">Рейтинг</th>
+                      
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="contact in $ctrl.selectedContacts" >
+                    <td class="type"><span class="contact-icon-type orange"></span></td>
+                    <td class="name" ui-sref="main.contact({id:contact._id})">
+                      <div class="contact-img"><img ng-src="{{contacts.img || '/public/images/vectorpaint1.png'}}"></div>{{contact.name}}</td>
+                    <td >{{$ctrl.category.category.title}}</td>
+                    <td>{{contact.spec}}</td>
+                    <td><input-stars
+                        max="5"
+                        icon-base="fa fa-fw"
+                        icon-empty="fa-star-o"
+                        icon-full="fa-star" 
+                        icon-hover-full="fa-star" 
+                        ng-attr-readonly= true 
+                        ng-model="$ctrl.r"
+                        ></input-stars></td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
     </div>
 </div>

@@ -23,12 +23,16 @@ angular.module('MyApp')
                 console.log($ctrl.category.contacts)
 			      		$ctrl.category.contacts.push(res.data)
 			      	});
-				   }, function () {
+				    }, function () {
 				    console.info('Modal dismissed at: ' + new Date());
-				});
-			});
+				  });
+			  });
+		  }
 		}
-		}
+
+    $ctrl.changeHiddenStatus = function(contact){
+      $http.post("/api/contact/changeHiddenStatus", {id: contact._id, hidden: !contact.hidden })
+    }
 }]);
 
 angular.module('MyApp').controller('addContact', function ($uibModalInstance, $state, categories, selected) {

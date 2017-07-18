@@ -1,6 +1,11 @@
 <div class="sub-header category">
   <span class="btn green-btn add-new" ng-click="$ctrl.addContact()">Добавить</span>
   <h4 class="small-title">{{$ctrl.category.category.title}}</h4>
+  <div class="counters-contacts">
+    <div class="counter all">Специалистов: <span>{{$ctrl.category.contacts.length}}</span></div>
+    <div class="counter verificated">Зарегистрированых специалистов: <span>0</span></div>
+    <div class="counter users">Добавленых пользователем специалистов: <span>{{$ctrl.category.contacts.length}}</span></div>
+  </div>
 </div>
 
 <!-- <ul class="breadcrumbs">
@@ -47,10 +52,10 @@
             ng-model="$ctrl.r"
             ></input-stars></td>
         <td><switcher class="styled"
-                      ng-model="style"
-                      ng-change="onChange(newValue, oldValue)"
-                      true-label=""
-                      false-label="">
+                      ng-model="contact.hidden"
+                      ng-change="$ctrl.changeHiddenStatus(contact)"
+                      true-label="Да"
+                      false-label="Нет">
             </switcher>
         </td>
       </tr>

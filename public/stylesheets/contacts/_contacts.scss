@@ -1,22 +1,57 @@
 
-.sub-header.category{
+.sub-header.category, .sub-header.request-page{
 	background: #eff6f6;
-	margin-bottom:30px;
 	height: auto;
 	.btn{
 		font-size: 13px;
 	    padding: 10px 25px;
 	    margin-right: 30px;
-	    margin-top: 20px;
+	    margin-top: 40px;
 	    font-weight: bold;
 	}
 	.small-title {
 		padding-top: 18px;
-		padding-bottom: 17px;
+		padding-bottom: 7px;
 		color: #588386;
 		font-size: 21px;
 		font-weight: normal;
 		text-transform: initial;
+	}
+	.counters-contacts{	
+		padding-bottom: 25px;
+		overflow: hidden;
+		.counter {
+			float: left;
+			margin-right: 25px;
+			color: #588386;
+			&.all {
+				span {
+					color: #588386;
+					border: 2px solid #588386;
+				}
+			}
+			&.verificated {
+				span {
+					color: #1ea318;
+					border: 2px solid #1ea318;
+				}
+			}
+			&.users {
+				span {
+					color: #ffd200;
+					border: 2px solid #ffd200;
+				}
+			}
+			span {
+				display: inline-block;
+				border-radius: 50%;
+				height: 20px;
+				min-width: 21px;
+				text-align: center;
+				line-height: 17px;
+				margin-left: 5px;
+			}
+		}
 	}
 }
 .contact-icon-type{
@@ -31,6 +66,7 @@
 }	
 table.list-contacts {
 	width: 100%;
+	margin-top:30px;
 	thead {
 		border-bottom : 1px solid #eeeeee;
 	}
@@ -66,6 +102,7 @@ table.list-contacts {
 		}
 		.name {
 			width: 390px;
+			cursor: pointer;
 			.contact-img {
 				margin-top: 6px;
 				width: 50px;

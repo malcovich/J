@@ -5,7 +5,7 @@ angular.module('MyApp')
       if (!$ctrl.user){
         $state.go('main');
       }else {
-     
+        $ctrl.showAdd = true;
         $ctrl.requestsList = [];
         $http.post('/api/requests/list', {'userId': $ctrl.user._id}).then(function(res){
           $ctrl.requestsList = res.data;

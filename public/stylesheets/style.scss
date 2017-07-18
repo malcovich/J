@@ -26,6 +26,9 @@ body{
 .fr {
 	float: right;
 }
+.ml-15 {
+	margin-left: 15px;
+}
 
 /* <input-star></input-star> directive */
 .angular-input-stars {
@@ -82,7 +85,7 @@ body{
 	transform:  translateY(-50%) translateX(-100%);
 	left: 100%; 
 }
-.switcher.active .switcher-label.true { color: #4ecb32; }
+.switcher.active .switcher-label.true { color: #788181; font-weight: bold;}
 .switcher.active .switcher-label.false { color: inherit; }
 
 .switcher.disabled { opacity: .7; }
@@ -91,8 +94,8 @@ body{
 /* bar height */
 .styled .switcher-line:before { height: 20px; }
 /* bar backgrounds */
-.styled         .switcher-line:before { background: #588386; content: "Да";}
-.styled .active .switcher-line:before { background: #e1e4e3; content: "Нет"; color: #788181;}
+.styled         .switcher-line:before { background: #e1e4e3; }
+.styled .active .switcher-line:before { background: #588386; }
 /* icons opacity */
 .styled         .switcher-label.false,
 .styled .active .switcher-label.true { opacity: 1; }

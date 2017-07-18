@@ -62,6 +62,7 @@ app.post('/api/contact/deleteExist', conatactController.deleteExist);
 app.post('/api/contact/list', conatactController.list);
 app.post('/api/contact/all', conatactController.all);
 app.post('/api/contact/item', conatactController.getItem);
+app.post('/api/contact/changeHiddenStatus', conatactController.changeHiddenStatus);
 app.post('/api/contact/itemFull', conatactController.getFullItem);
 app.post('/api/contact/verifyContact', conatactController.verifyContact);
 app.post('/api/contact/addComment', conatactController.addComment);

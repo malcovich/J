@@ -6,16 +6,33 @@ angular.module('MyApp')
     /*id =591c7028ad30f137f06c8559*/
 
       $ctrl.user = user.data;
+      $http.post('/api/categories/list').then(function(res){
+        $ctrl.categories = res.data;
+      })
+
 
       $http.post('/api/requests/item', {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
         $ctrl.request = res.data[0];
-        if($ctrl.user._id == $ctrl.request.userId){
+        if($ctrl.user._id == $ctrl.request.userId._id){
 
           $http.post('/api/requests/getAllAnswers', {'reqId': $stateParams.reqId}).then(function(res){
               $ctrl.allAnswers = res.data;
+              $ctrl.allContatctsFromAnsers = [];
+              $ctrl.allAnswers.forEach(function(answer){
+                answer.contacts.forEach(function(contact){
+                  contact.category = $ctrl.categories.filter(function(item){
+                    if (item._id == contact.category) return item
+                  })
+                  $ctrl.allContatctsFromAnsers.push({
+                    'user' :answer.userId,
+                    'contact' : contact
+                  });
+                })
+              })
           }); 
         }
       });
+
 
       $http.post('/api/contact/all',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
         $ctrl.allContatcts =  res.data;
@@ -55,7 +72,7 @@ angular.module('MyApp')
               };
             });
           var answer = {
-            'reqId': $stateParams.reqId,
+            'requestId': $stateParams.reqId,
             'userId': $ctrl.user._id,
             'contacts' :contactsId
           }

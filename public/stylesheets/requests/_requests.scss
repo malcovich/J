@@ -1,3 +1,70 @@
+.request{
+	width: 50%;
+	float:left;
+	padding: 15px 30px 15px 30px;
+	.request-inner{
+		border: 1px solid #dfe2e5;
+	}
+	.request-header{
+		padding: 25px 25px 0 25px;
+		overflow: hidden;
+		.request-autor-img{
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			overflow: hidden;
+			float: left;
+			margin-right: 10px;
+			img {
+				max-width: 100%;
+			}
+		}
+		.request-autor-name{
+			float: left;
+			line-height: 45px;
+			color: #b4b7c6;
+		}
+		.request-date{
+			float: right;
+			text-transform: uppercase;
+			background-color: #f8f9fe;
+			padding: 6px 12px;
+			border-radius:12px;
+			font-size: 12px;
+			font-weight: bold;
+			color: #aeb2c1;
+		}
+	}
+	.request-body{
+		padding:  18px 25px;
+		color: #6b6f81;
+		font-size: 18px;
+		font-weight: 500;
+		letter-spacing: 0.9px;
+	}
+	.request-footer{
+		background-color: #fbfcfe;
+		border-top: 1px solid #f2f3f7;
+		padding: 10px 25px;
+		overflow: hidden;
+		.delete {
+			float: right;
+			color: #b4b7c6;
+			cursor: pointer;
+		}
+	}
+}
+.request:nth-child(2n){
+	padding-left : 0;
+}
+.request-list {
+	overflow: hidden;
+}
+
+.sub-header.request-page {
+	border: none;
+	min-height: 80px;
+}
 .form-block {
 	padding: 27px;
 	background-color: #fff;
@@ -22,6 +89,7 @@
 }
 .request-form{
 	overflow: hidden;
+	padding: 10px 30px;
 	.text-area {
 	margin-bottom: 10px;
 	}
@@ -32,23 +100,31 @@
 }
 .request-tabs  ul{
 	&.nav-tabs{
-		padding-left: 10px;
+		background-color: #eff6f6;
+		padding-left: 30px;
 		padding-right: 10px;
 		padding-top: 5px;
+		margin-bottom: 15px;
 	}
 	li {
+		margin-bottom: -2px !important;
 		&.active, &:focus {
+			margin-right: 40px;
 			a {
 				border: 0px;
-				
+				background-color: #eff6f6;
+				font-size: 14px;
+				padding: 10px 0;
+				color: #588386;
 				&:hover, &:focus {
 					border: 0 !important;
+					background-color: #eff6f6;
 				}
 			}
 			margin-bottom: 0px;
 			border: 0;
 			border-bottom: 2px solid #1F97EE !important;
-				margin-bottom: -1px !important;
+			margin-bottom: -2px !important;
 		}
 		margin-bottom: 0px;
 		border: 0;
@@ -56,12 +132,18 @@
 		a { 
 			border: 0;
 			color: #B9BFCA;
+			font-size: 14px;
+				padding: 10px 0;
 			&:hover {
-				background-color: #fff;
-				border: 0;
+				color: #588386;
+				background-color: #eff6f6;
+				border-bottom: 2px solid #1F97EE !important;
 			}
 			
 		}
+	}
+	li.active:nth-child(2n) {
+		margin-left: 40px;
 	}
 }
 .request-avtor-img {
@@ -211,11 +293,16 @@
 	}
 }
 .my-answer {
-	padding-top:20px;
+	background-color: #fff;
+	margin-top:20px;
 	.contact-card {
 		margin-left: 0
 	}
 	.contact-card:nth(3n){
 		margin-right : 0;
 	}
+}
+.no-answers{
+	width: 100%;
+	text-align: center;
 }

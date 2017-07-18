@@ -54,8 +54,9 @@ module.exports.deleteRequest = function(req, res){
 
 module.exports.saveAnswer = function(req, res){
 	var requestId = req.param('requestId')
+	console.log('sdfsf',requestId )
 	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: requestId}]}).exec(function(err, answer){
-		console.log(answer)
+		console.log('ansver',answer)
 		if (answer.length > 0){
 			answer[0].contacts = req.param('contacts')
 			answer[0].save(function(err,ans){

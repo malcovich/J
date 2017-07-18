@@ -20,6 +20,13 @@ module.exports.deleteExist = function(req, res){
 	});
 }
 
+module.exports.changeHiddenStatus = function(req, res){
+	Contact.findByIdAndUpdate(req.body.id , { hidden : req.body.hidden}, {new: true},function(err, u) {
+		res.json(u)
+	});
+}
+
+
 module.exports.list = function(req, res){
 	Contact.find({ userId : req.param('userId')}, function (err, result) {
        res.json(result);
