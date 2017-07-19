@@ -16,9 +16,11 @@ angular.module('MyApp')
 	    	$ctrl.contactsList = []
 	    	$http.post('/api/categories/list', {'userId': $ctrl.user._id}).then(function(res){
 		      $ctrl.listCategories = res.data;
+
 			    ModalFactory.openAddContactModal('addContact.html', 'addContact', $ctrl.listCategories, $ctrl.category.category).then(function(ctrl){
             $ctrl.contact = ctrl.contact;
-				    $ctrl.contact.userId = [$ctrl.user._id];
+            $ctrl.contact.userId = [$ctrl.user._id];
+				    $ctrl.contact.raiting = 0;
 				    $http.post('/api/contact/add', $ctrl.contact).then(function(res){
                 console.log($ctrl.category.contacts)
 			      		$ctrl.category.contacts.push(res.data)

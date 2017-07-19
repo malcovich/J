@@ -15,11 +15,12 @@ angular.module('MyApp').factory('ModalFactory', function($uibModal) {
         return $uibModal.open(options).result;
     };
 
-    service.openRequestModal = function(template, controller, contacts){
+    service.openRequestModal = function(template, controller, contacts, size ){
         var options = {
             templateUrl: template,
             controller: controller,
             controllerAs: 'vm',
+            size: size,
             backdrop: 'static',
             resolve: {
                 contacts : function(){

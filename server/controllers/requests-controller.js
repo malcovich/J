@@ -4,6 +4,7 @@ var Friend = require('../datasets/friend');
 var Answer = require('../datasets/answer');
 var User = require('../datasets/users');
 var Constact = require('../datasets/contact');
+
 module.exports.add = function(req, res){
 	var request = new Request(req.body);
 	request.deleted = false;
@@ -51,6 +52,12 @@ module.exports.deleteRequest = function(req, res){
 	  if (err) throw err;
 	});
 }
+module.exports.changeRequest = function(req, res){
+	Request.findByIdAndUpdate(req.body.requestId , { 'text': req.body.newText }, {new :true}).populate('userId').exec(function(err, request) {
+		res.json(request)
+	  if (err) throw err;
+	});
+}
 
 module.exports.saveAnswer = function(req, res){
 	var requestId = req.param('requestId')
@@ -64,8 +71,6 @@ module.exports.saveAnswer = function(req, res){
 			});
 		}
 		else{ 
-			console.log("REEEEEEEE",req.body.requestId, req.body.userId, req.body.contacts)
-
 			var newAnswer = new Answer(req.body);
 			newAnswer.save(function(err, ans){
 				res.json({data:ans});

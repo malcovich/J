@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('RequestController', ['$scope', '$log', 'user', '$uibModal', '$http', '$stateParams', 'ModalFactory', function($scope, $log, user, $uibModal, $http, $stateParams,ModalFactory){
+  .controller('RequestController', ['$scope', '$state', 'user', '$uibModal', '$http', '$stateParams', 'ModalFactory', function($scope, $state, user, $uibModal, $http, $stateParams,ModalFactory){
   	var $ctrl = this;
     $ctrl.requestsList = [];
   	$ctrl.allRequests = [];
@@ -60,8 +60,23 @@ angular.module('MyApp')
   	    });
     	}
 
+      $ctrl.change = function(request){
+        ModalFactory.editRequest('editRequest.html', 'ModalInstanceEditRequestCtrl', request).then(function(ctrl){
+          $http.post('/api/requests/changeRequest', {requestId : ctrl.request._id, newText : ctrl.request.text}).then(function(request){
+            $ctrl.request = request.data;
+          })
+        })
+      };
+
+      $ctrl.deleteRequest = function(id){
+        $http.post('/api/requests/deleteRequest', {'requestId': id}).then(function(res){
+          $state.go('main.requests')
+        });
+      };
+
+
     	$ctrl.openModalfromNet = function (size) {
-        ModalFactory.openRequestModal('myModalContent.html', 'ModalInstanceRequestCtrl', $ctrl.allContatcts).then(function(ctrl){
+        ModalFactory.openRequestModal('myModalContent.html', 'ModalInstanceRequestCtrl', $ctrl.allContatcts, 'lg').then(function(ctrl){
           $ctrl.selectedContacts = [];
           var contactsId = []
 
@@ -84,6 +99,8 @@ angular.module('MyApp')
       };
 	
 }]);
+
+
 
 angular.module('MyApp').controller('ModalInstanceCtrl',  function ($uibModalInstance,contacts) {
   var $ctrl = this;

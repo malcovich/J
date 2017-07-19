@@ -14,7 +14,6 @@ module.exports.addExist = function(req, res){
 	});
 }
 module.exports.deleteExist = function(req, res){
-	console.log(req)
 	Contact.findByIdAndUpdate(req.body.id , { $pull: { 'userId': req.body.userId }}, {new: true},function(err, u) {
 		res.json(u)
 	});
@@ -26,6 +25,11 @@ module.exports.changeHiddenStatus = function(req, res){
 	});
 }
 
+module.exports.changeRaiting = function(req, res){
+	Contact.findByIdAndUpdate(req.body.id , { raiting : req.body.raiting}, {new: true},function(err, u) {
+		res.json(u)
+	});
+}
 
 module.exports.list = function(req, res){
 	Contact.find({ userId : req.param('userId')}, function (err, result) {
@@ -41,7 +45,8 @@ module.exports.getItem = function(req, res){
 			if (result[0].phone){
 				var phone = result[0].phone.replace(/ /g,'');  
 				Contact.find({'phone' : phone}, function(err,result){
-					res.json({'contact' : contact, 'hypothesis' : result})
+					/*res.json({'contact' : contact, 'hypothesis' : result})*/
+					res.json(contact)
 				})
 			}
 		}else {
@@ -49,6 +54,7 @@ module.exports.getItem = function(req, res){
 		}
     });
 }
+
 module.exports.getFullItem = function(req, res){
 	var userId = req.body.userId;
 	Contact.find({_id : req.param('_id')}).populate('userId').exec(function (err, result) {

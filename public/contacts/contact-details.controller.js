@@ -6,15 +6,15 @@ angular.module('MyApp')
     	var originalId = $stateParams.id;
         $ctrl.showHideAddCommentBlock = false;
     	$http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res){
-            console.log(res.data)
-            if (res.data.contact.verifyContact){
-                $ctrl.contactVerifyed = true;
-            	$ctrl.contact = res.data.verifyContact
-            }
-            else {
-            	$ctrl.contact = res.data.contact;
-            }
-            $ctrl.verifyContacts = res.data.hypothesis;
+            // if (res.data.contact.verifyContact){
+            //     $ctrl.contactVerifyed = true;
+            // 	$ctrl.contact = res.data.verifyContact
+            // }
+            // else {
+            // 	$ctrl.contact = res.data.contact;
+            // }
+            // $ctrl.verifyContacts = res.data.hypothesis;
+            $ctrl.contact = res.data
             $http.post('/api/contact/commentsList', {id:$ctrl.contact._id}).then(function(res){
                 $ctrl.comments = res.data;
             })
@@ -56,8 +56,20 @@ angular.module('MyApp')
             $ctrl.newRaiting.userId = $ctrl.user._id;
             $ctrl.newRaiting.date = new Date();
             $http.post('/api/contact/addRaiting', $ctrl.newRaiting).then(function(res){
+                var totalRaiting = 0;
+                $ctrl.raitingList.push(res.data);
+                $ctrl.raitingList.forEach(function(raiting){
+                    totalRaiting += raiting.raiting;
+                    if (raiting.userId._id == $ctrl.user._id){
+                        $ctrl.yourRaiting = raiting.raiting;
+                    }
+                });
+                $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length;
+                $http.post('/api/contact/changeRaiting', {id : $ctrl.contact._id,  raiting : $ctrl.raiting}).then(function(res){
 
+                })
             })
+            
         }
 
         $ctrl.opentMessageModal = function(){
@@ -73,7 +85,7 @@ angular.module('MyApp')
                     }
                 }
                 $http.post('/api/messages/addMessage', message).then(function(res){
-
+                    
                 });
             }, function () {
                   console.info('Modal dismissed at: ' + new Date());

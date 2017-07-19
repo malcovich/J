@@ -7,11 +7,7 @@
   text-decoration: none;
   display: block;
   margin-bottom: 15px;
-  margin-left: 25px; 
-}
-.left-menu-item a:hover{
-  text-decoration: none;
-}
+  margin-left: 25px; }
 
 .logo {
   text-decoration: none;
@@ -402,6 +398,22 @@ ul {
 .no-answers {
   width: 100%;
   text-align: center; }
+
+.edit-block {
+  padding-top: 20px;
+  font-size: 12px;
+  color: #c0c7c7; }
+  .edit-block span {
+    cursor: pointer;
+    margin-right: 20px; }
+    .edit-block span:hover {
+      color: #337ab7; }
+
+.modal-body .list-contacts {
+  overflow-y: scroll;
+  max-height: calc(100vh - 280px);
+  display: block;
+  width: 100%; }
 
 .sub-header.category, .sub-header.request-page {
   background: #eff6f6;
@@ -1008,6 +1020,12 @@ body {
 
 .ml-15 {
   margin-left: 15px; }
+
+.modal {
+  max-height: calc(100vh - 80px); }
+
+.modal-body {
+  max-height: calc(100vh - 280px); }
 
 /* <input-star></input-star> directive */
 .angular-input-stars {

@@ -7,7 +7,7 @@ module.exports = mongoose.model('Contact', {
 	spec: {type:String, text: true},
 	phone: String,
 	place: String,
-	raiting: String,
+	raiting: Number,
 	description: String,
 	hidden: Boolean,
 	category :  {type: mongoose.Schema.Types.ObjectId, ref: 'Category'},

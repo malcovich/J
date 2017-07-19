@@ -29,7 +29,12 @@ body{
 .ml-15 {
 	margin-left: 15px;
 }
-
+.modal  {
+	max-height: calc(100vh - 80px);
+}
+.modal-body{
+	max-height: calc(100vh - 280px);
+}
 /* <input-star></input-star> directive */
 .angular-input-stars {
 	
