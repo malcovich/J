@@ -1,17 +1,35 @@
-<div class="contact-right-block" ng-hide="$ctrl.contactVerifyed">
-	<div ng-repeat="verifyContact in $ctrl.verifyContacts">
-		<p>{{verifyContact.name}}</p>
-		<span ng-click="$ctrl.replaceWithVerify(verifyContact._id)">Заменить</span>
-	</div>
-</div>
 <div class="contact-left-block">
 	<div class="inner-block">
 		<div class="contact-information">
 			<div class="other-info">
-				<span class="contact-raiting" style="color:{{$ctrl.rColor}}">{{$ctrl.raiting}}/5</span>
-				<p class="raiting-description">оценка <b>{{$ctrl.raitingList.length}}</b> пользователей</p>
-				<div class="raiting-description" >Ваша оценка: <b style="color:{{$ctrl.rColor}}" class="your-raiting" ng-show="$ctrl.yourRaiting">{{$ctrl.yourRaiting}}</b><p ng-hide="$ctrl.yourRaiting" style="display: inline-block;"><input type="number" class="raiting-input" ng-model="$ctrl.newRaiting.raiting"><span class="btn green-btn" ng-click="$ctrl.saveRaiting()">Ok</span></p></div>
-			</div>
+				<div class="contacts-raiting">
+					<p>Оценка <b>{{$ctrl.raitingList.length}}</b> пользователей</p>
+					<input-stars
+			            max="5"
+			            icon-base="fa fa-fw"
+			            icon-empty="fa-star-o"
+			            icon-full="fa-star" 
+			            icon-hover-full="fa-star" 
+			            ng-attr-readonly= true 
+			            ng-model="$ctrl.raiting"
+			            >
+			        </input-stars>
+			        <p>
+			        	Ваша оценка
+			        </p>
+			        	<input-stars
+			            max="5"
+			            icon-base="fa fa-fw"
+			            icon-empty="fa-star-o"
+			            icon-full="fa-star" 
+			            icon-hover-full="fa-star" 
+			            ng-attr-readonly= false
+			            ng-model="$ctrl.yourRaiting"
+			            >
+			        	</input-stars>
+				</div>
+				
+		</div>
 			<div class="contact-photo">
 				<img src="public/images/3.jpg">	
 			</div>
@@ -21,8 +39,15 @@
 				<div class="contact-phone">
 					<p >тел: {{$ctrl.contact.phone}}</p>
 				</div>
-				<div class="buttons-block">
+				<!-- <div class="buttons-block">
 					<span class="btn green-btn" ng-click="$ctrl.opentMessageModal()"> Написать сообщение</span>
+				</div> -->
+				<div class="buttons-block">
+					<span class="btn " ng-click="$ctrl.deleteContact()">Удалить</span>
+				</div>
+				<div class="buttons-block">
+					<span>Общий контакт с: </span>
+					<span ng-repeat="f in $ctrl.friendsHasContact" ui-sref="main.friend({id: f._id})">{{f.name}}</span>
 				</div>
 			</div>
 		</div>

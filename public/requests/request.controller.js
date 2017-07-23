@@ -39,7 +39,13 @@ angular.module('MyApp')
 
         $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
           $ctrl.myAnswer = res.data;
-
+          console.log(res.data)
+          $ctrl.myAnswer[0].contacts.forEach(function(contact){
+            contact.category = $ctrl.categories.filter(function(item){
+              if (item._id == contact.category) return item
+            })
+          })
+          console.log($ctrl.myAnswer)
           $ctrl.selectedContacts = res.data[0] ? res.data[0].contacts: [];
 
           $ctrl.selectedContacts.forEach(function(contact){
@@ -74,25 +80,46 @@ angular.module('MyApp')
         });
       };
 
+      $ctrl.deleteSelected = function(index) {
+        $ctrl.selectedContacts[index].selected = false;
+        $ctrl.selectedContacts.splice(index,1);
+
+        var contactsId = []
+
+        $ctrl.selectedContacts.forEach(function(contact){
+            contactsId.push(contact._id)
+        });
+          
+        var answer = {
+          'requestId': $stateParams.reqId,
+          'userId': $ctrl.user._id,
+          'contacts' :contactsId
+        }
+
+        $http.post('/api/requests/saveAnswer', answer).then(function(){
+          console.log('Save');
+        });
+      }
 
     	$ctrl.openModalfromNet = function (size) {
         ModalFactory.openRequestModal('myModalContent.html', 'ModalInstanceRequestCtrl', $ctrl.allContatcts, 'lg').then(function(ctrl){
           $ctrl.selectedContacts = [];
           var contactsId = []
 
-            ctrl.contacts.forEach(function(contact){
-              if(contact.selected){
-                $ctrl.selectedContacts.push(contact)
-                contactsId.push(contact._id)
-              };
-            });
+          ctrl.contacts.forEach(function(contact){
+            if(contact.selected){
+              $ctrl.selectedContacts.push(contact)
+              contactsId.push(contact._id)
+            };
+          });
+
           var answer = {
             'requestId': $stateParams.reqId,
             'userId': $ctrl.user._id,
             'contacts' :contactsId
           }
 
-             $http.post('/api/requests/saveAnswer', answer).then(function(){
+            $http.post('/api/requests/saveAnswer', answer).then(function(){
               console.log('Save');
             });
         })

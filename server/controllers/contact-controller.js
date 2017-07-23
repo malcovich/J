@@ -92,6 +92,15 @@ module.exports.addRaiting = function(req, res){
 	res.json(req.body);
 }
 
+module.exports.updateRaiting = function(req, res){
+	var b = req.body;
+	Raiting.findOneAndUpdate({$and: [{userId : b.userId}, {contactId: b.contactId}]}, {'raiting': b.raiting}, {new : true})
+		.exec(function(err,raitingUp){
+			console.log('werwrwer',raitingUp)
+			res.json(raitingUp)
+	})
+}
+
 module.exports.all = function(req, res){
 	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')} ]} , { accepted: true }]}).populate('useridaccept').populate('useridinvite').exec(function (err, result) {
         for (var i = 0; i < result.length; i++) {

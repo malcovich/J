@@ -10,7 +10,6 @@ module.exports.add = function(req, res){
     	if (result.length === 0) {
 			friend.save();
 			res.json(friend);
-			console.log("friendfriend", friend)
     	} else {
     		if (result.accepted === true) {
 	    		console.log("you alredy accepted friend");
@@ -33,7 +32,6 @@ module.exports.list = function(req,res) {
 module.exports.listFriendsRequests = function(req,res) {
 	console.log('req.',req.param("userId"))
 	Friend.find({$and: [{useridaccept : req.param('userId')} , { accepted: false }, { deleted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
-		console.log(result)
     	res.json(result);
 	});
 }
@@ -55,7 +53,6 @@ module.exports.item = function(req, res) {
 
 module.exports.deleteFriend = function(req, res){
 	Friend.findOneAndUpdate({$or: [ {$and:[{'useridinvite': req.body.friendId}, {'useridaccept': req.body.userId}]} , {$and:[{'useridinvite': req.body.userId}, {'useridaccept': req.body.friendId}]} ]}, {$set:{deleted: 'true'}}, {new: true},function(err, result) {
-		console.log("del res", result)
 		res.json(result)
 	  	if (err) throw err;
 	});

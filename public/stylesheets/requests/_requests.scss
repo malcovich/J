@@ -1,3 +1,10 @@
+.glyphicon.red {
+	cursor:pointer;
+	&:hover{
+		color: red;
+
+	}
+}
 .request{
 	width: 50%;
 	float:left;
@@ -320,7 +327,11 @@
 }
 .modal-body .list-contacts  {
 	overflow-y: scroll;
-	max-height: calc(100vh - 280px);
+	max-height: calc(100vh - 340px);
 	display: block;
 	width: 100%;
+	margin-top: 0px;
+}
+.filterInput {
+	margin-top: 15px;
 }

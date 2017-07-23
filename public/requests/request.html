@@ -24,7 +24,9 @@
 		<div class="request-body">
             <p class="request-text">"{{$ctrl.request.text}}"</p>
 		</div>
-    </div>
+  </div>
+    <div >
+      <h4  ng-show="$ctrl.request.userId._id == $ctrl.user._id">Вам рекомендуют:</h4>
     <div class="my-answer" ng-show="$ctrl.request.userId._id == $ctrl.user._id">
         <table class="list-contacts">
             <thead>
@@ -62,7 +64,7 @@
             </tbody>
           </table>
     </div>
-
+  </div>
     <div >
          <h4  ng-hide="$ctrl.request.userId._id == $ctrl.user._id">Вы рекомендуете:</h4>
         <div class="my-answer" ng-hide="$ctrl.request.userId._id == $ctrl.user._id">
@@ -74,15 +76,15 @@
                       <th class="category">Категория</th>
                       <th class="spec">Специализация</th>
                       <th class="raiting">Рейтинг</th>
-                      
+                      <th width="35"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="contact in $ctrl.selectedContacts" >
+                  <tr ng-repeat="(index, contact) in $ctrl.selectedContacts" >
                     <td class="type"><span class="contact-icon-type orange"></span></td>
                     <td class="name" ui-sref="main.contact({id:contact._id})">
                       <div class="contact-img"><img ng-src="{{contacts.img || '/public/images/vectorpaint1.png'}}"></div>{{contact.name}}</td>
-                    <td >{{$ctrl.category.category.title}}</td>
+                    <td >{{contact.category[0].title}}</td>
                     <td>{{contact.spec}}</td>
                     <td><input-stars
                         max="5"
@@ -93,6 +95,7 @@
                         ng-attr-readonly= true 
                         ng-model="contact.raiting"
                         ></input-stars></td>
+                    <td><i class="glyphicon glyphicon-remove red" ng-click="$ctrl.deleteSelected(index)"></i></td>
                   </tr>
                 </tbody>
               </table>
@@ -106,6 +109,7 @@
     <div class="add-contact-to-request">
         <div class="modal-header">
             <h3 class="modal-title" id="modal-title">Специалисты вашей сети:</h3>
+            <input type="text" ng-model="searchQ" class="filterInput" placeholder="Фильтр по сети">
         </div>
         <div class="modal-body" id="modal-body">        
         <div >
@@ -121,7 +125,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="contact in vm.contacts" >
+                  <tr ng-repeat="contact in vm.contacts | filter:searchQ "  >
                     <td class="type"><input type="checkbox" ng-model="contact.selected"></td>
                     <td class="name" ui-sref="main.contact({id:contact._id})">
                       <div class="contact-img"><img ng-src="{{contacts.img || '/public/images/vectorpaint1.png'}}"></div>{{contact.name}}</td>

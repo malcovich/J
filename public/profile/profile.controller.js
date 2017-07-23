@@ -9,6 +9,8 @@ angular.module('MyApp')
     $ctrl.bounds.left = 0;
     $ctrl.bounds.top = 0;
 
+    $ctrl.isShowedBlock = false;
+
       $ctrl.user = user.data;
       $ctrl.copyUser = angular.copy($ctrl.user);
 
@@ -20,12 +22,16 @@ angular.module('MyApp')
             $ctrl.bounds = $ctrl.user.bounds;
         }
 
-        $scope.$watch(function(){
+        $scope.$watchGroup([function(){
             return $ctrl.file;
-        }, function(){
-          console.log( $ctrl.bounds)
-            $ctrl.upload($ctrl.file)
-        })
+        }, function(){return $ctrl.bounds}], function(){
+          console.log($ctrl.file, $ctrl.cropper.sourceImage)
+            // $ctrl.upload($ctrl.file)
+        });
+
+        $ctrl.showBlock = function(){
+          $ctrl.isShowedBlock = true;
+        }
 
         $ctrl.updateUser  =  function(){
           $http.post('/api/user/updateProfile', $ctrl.user).then(function(res){

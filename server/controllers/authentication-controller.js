@@ -33,7 +33,6 @@ module.exports.signup = function(req, res){
                 userModel.save(function(err, user) {
                     user.token = jwt.sign(user, process.env.JWT_SECRET);
                     user.save(function(err, user1) {
-                        console.log(user1)
                         res.json({
                             type: true,
                             data: user1,
@@ -70,7 +69,6 @@ module.exports.login = function(req,res){
 	})*/
 
     User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
-        console.log(req.body, user, err)
         if (err) {
             res.json({
                 type: false,
@@ -165,6 +163,7 @@ module.exports.addPhoto = function(req, res){
     console.log(req.body.img)
     var file = req.files.file;
     var tempPath = file.path;
+    console.log(req.body.bounds)
     var RES = res;
     function guid() {
         function s4() {
