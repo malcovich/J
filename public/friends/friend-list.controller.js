@@ -36,6 +36,16 @@ angular.module('MyApp')
     });
   };
 
+  $http.post('/api/friend/listFriendsRequests',{userId: $ctrl.user._id}).then(function(res,err){
+    $ctrl.listRequest = res.data;
+  })
+
+  $ctrl.accept = function(id){
+    $http.post('/api/friend/accept',{'_id': id }).then(function(res){
+
+    });
+  }
+
 /*  function for add friend by button
 
 $ctrl.open = function(){

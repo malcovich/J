@@ -4,8 +4,8 @@
 			<div class="col-lg-3">
 				<div  class="user-img">
 				<img ng-src="{{$ctrl.cropper.croppedImage}}" alt="">
-				<
 				</div>
+				<div class="btn green-btn" ng-click="$ctrl.isShowedBlock = true">Изменить фото</div>
 			</div>
 			<div class="col-lg-9">
 				<div class="user-info-block">
@@ -28,11 +28,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="btn green-btn" ngf-select ng-model="$ctrl.file" name="file" ngf-pattern="'image/*'"
-        ngf-accept="'image/*'" >Select image</div>
+		
         </div>
-		<div >
-			<input type="file" img-cropper-fileread image="$ctrl.cropper.sourceImage" />
+		<div ng-show="$ctrl.isShowedBlock">
+			<div class="btn green-btn" ngf-select ng-model="$ctrl.file" name="file" ngf-pattern="'image/*'"
+	        ngf-accept="'image/*'" >Select image</div>
+	        <div class="fileContainer">
+				<input type="file" img-cropper-fileread image="$ctrl.cropper.sourceImage" />
+	        </div>
 			<div>
 	        <canvas width="500" height="300" id="canvas" image-cropper image="$ctrl.cropper.sourceImage" cropped-image="$ctrl.cropper.croppedImage" crop-width="200" crop-height="200" keep-aspect="true" min-width="100" min-width="100"  touch-radius="30" crop-area-bounds="$ctrl.bounds"></canvas>
 	        </div>

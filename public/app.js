@@ -22,16 +22,16 @@
 			        },
 					
 				})
-				.state('main.feed', {
-					url: "/feed",
-					templateUrl: "/public/views/feed.html",
-					resolve: {
-						checkAuth : function(user){
-							return user;
-						}
-					},
-					controller: "FeedCtrl"
-				})
+				// .state('main.feed', {
+				// 	url: "/feed",
+				// 	templateUrl: "/public/views/feed.html",
+				// 	resolve: {
+				// 		checkAuth : function(user){
+				// 			return user;
+				// 		}
+				// 	},
+				// 	controller: "FeedCtrl"
+				// })
 				.state('main.profile', {
 					url: "/profile",
 					templateUrl: "/public/profile/profile.html",
@@ -211,3 +211,21 @@
 	        }]);
 		})
 }());
+
+ window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '488406961536075',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.10'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));

@@ -21,6 +21,8 @@
 .fileContainer {
     overflow: hidden;
     position: relative;
+    width: 0;
+    height: 0;
 }
 
 .fileContainer [type=file] {
@@ -41,7 +43,6 @@
 
 .fileContainer {
     display: inline-block;
-    padding: 6px 12px;
     margin-bottom: 0;
     font-size: 14px;
     font-weight: 400;
@@ -53,10 +54,12 @@
     border-radius: 4px;
     background-color: #38B248;
     color: #fff;
-    padding-left: 22px;
-    padding-right: 22px;
+    padding: 0;
     line-height: 20px;
-   	width: 210px;
+   	width: 0;
+    height: 0;
+    position: absolute;
+    left: -2000px;
 }
 
 .fileContainer [type=file] {

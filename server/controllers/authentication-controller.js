@@ -5,6 +5,7 @@ var jwt = require("jsonwebtoken");
 var fs = require('fs');
 var path = require('path');
 var mv = require('mv');
+var easyimg = require('easyimage');
 process.env.JWT_SECRET = "olololo"
 module.exports.signup = function(req, res){
 	/*var user = new User(req.body);
@@ -181,10 +182,27 @@ module.exports.addPhoto = function(req, res){
     // move the file from the temporary location to the intended location
     mv(tempPath, target_path, function(err) {
         User.findByIdAndUpdate(req.body.id , {'img': target_path , 'bounds' : req.body.bounds}, {new: true},function(err, u) {
-            console.log('1',u)
             if (err) {throw err;}else {RES.json(u)}
-        });
+            var w = req.body.bounds.right - req.body.bounds.left;
+            var h = req.body.bounds.top - req.body.bounds.bottom;
+            console.log(w,h)
+            var newPas = 'public/uploads/crop' + newName;
+    
+            easyimg.crop({
+                 src: newName, dst:'./output/kitten-thumbnail.jpg',
+                 cropwidth:128, cropheight:128,
+                 x:0, y:0
+              }).then(
+              function(image) {
+                 console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
+              },
+              function (err) {
+                console.log(err);
+              }
+);
       });
+    });
+
     /*fs.rename(tempPath, target_path, function(err) {
         if (err) throw err;
         // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files

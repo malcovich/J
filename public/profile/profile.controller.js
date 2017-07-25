@@ -13,6 +13,7 @@ angular.module('MyApp')
 
       $ctrl.user = user.data;
       $ctrl.copyUser = angular.copy($ctrl.user);
+      user.croped = $ctrl.cropper.croppedImage;
 
       if (!$ctrl.user ){
         $state.go('main');
@@ -22,11 +23,12 @@ angular.module('MyApp')
             $ctrl.bounds = $ctrl.user.bounds;
         }
 
-        $scope.$watchGroup([function(){
+        $scope.$watch(function(){
             return $ctrl.file;
-        }, function(){return $ctrl.bounds}], function(){
-          console.log($ctrl.file, $ctrl.cropper.sourceImage)
-            // $ctrl.upload($ctrl.file)
+        }, function(){
+            $ctrl.upload($ctrl.file);
+
+
         });
 
         $ctrl.showBlock = function(){
@@ -53,6 +55,8 @@ angular.module('MyApp')
               $ctrl.user = data;
               $rootScope.$emit('changeProfile', {user: $ctrl.user })
               // $scope.newPredefined.img = data.img
+              $ctrl.cropper.sourceImage = data.img;
+              $ctrl.bounds = data.bounds;
             }).error(function(error){
               console.log(error)
             });

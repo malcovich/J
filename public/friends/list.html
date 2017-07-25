@@ -1,6 +1,13 @@
 <div class="sub-header">
     <p class="counts">{{$ctrl.friendsList.length}} friends</p>
 </div>
+<div>
+    <h3>Запросы в друзья</h3>
+    <div class="" ng-repeat="req in $ctrl.listRequest">
+        <span style="float: right" class="btn green-btn" ng-click="$ctrl.accept(req._id)">Подтвердить</span>
+        <p>{{req.useridinvite.name || req.useridinvite.email}}</p>
+    </div>
+</div>
 
 <div class="inner-block">
     <ul class="friends-list">
