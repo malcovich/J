@@ -873,6 +873,9 @@ input {
   .inner-profile .user-info-block {
     margin-left: 20px; }
 
+.left-block {
+  text-align: center; }
+
 .fileContainer {
   overflow: hidden;
   position: relative;
@@ -922,6 +925,12 @@ input {
 
 .canvasBlock {
   margin-top: 20px; }
+
+.user-info-block .row {
+  margin-bottom: 15px; }
+
+.change-image {
+  margin-top: 25px; }
 
 .user-results-list {
   list-style: none;

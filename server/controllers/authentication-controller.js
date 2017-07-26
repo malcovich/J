@@ -5,7 +5,8 @@ var jwt = require("jsonwebtoken");
 var fs = require('fs');
 var path = require('path');
 var mv = require('mv');
-var easyimg = require('easyimage');
+var Jimp = require("jimp");
+
 process.env.JWT_SECRET = "olololo"
 module.exports.signup = function(req, res){
 	/*var user = new User(req.body);
@@ -13,7 +14,6 @@ module.exports.signup = function(req, res){
 	res.json(req.body);*/
 
     User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
-        console.log(user, req.body)
         if (err) {
             res.json({
                 type: false,
@@ -94,13 +94,11 @@ module.exports.login = function(req,res){
 
 module.exports.updateProfile = function(req, res){
     User.findByIdAndUpdate(req.body._id , req.body, {new: true},function(err, u) {
-        console.log('u',u)
         if (err) {throw err;}else {res.json(u)}
     });
 }
 module.exports.findByContactsList = function(req, res){
     var contacts = req.body;
-    console.log(contacts)
     var phones = [];
     var names = [];
     var emails = [];
@@ -160,56 +158,51 @@ module.exports.findByContactsList = function(req, res){
 	});
 }
 
-module.exports.addPhoto = function(req, res){
-    console.log(req.body.img)
-    var file = req.files.file;
-    var tempPath = file.path;
-    console.log(req.body.bounds)
-    var RES = res;
-    function guid() {
-        function s4() {
-            return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
-    }
-
-    var newName =  guid() + file.name;
-    var target_path = 'public/uploads/' + newName;
-    
-    // move the file from the temporary location to the intended location
-    mv(tempPath, target_path, function(err) {
-        User.findByIdAndUpdate(req.body.id , {'img': target_path , 'bounds' : req.body.bounds}, {new: true},function(err, u) {
-            if (err) {throw err;}else {RES.json(u)}
-            var w = req.body.bounds.right - req.body.bounds.left;
-            var h = req.body.bounds.top - req.body.bounds.bottom;
-            console.log(w,h)
-            var newPas = 'public/uploads/crop' + newName;
-    
-            easyimg.crop({
-                 src: newName, dst:'./output/kitten-thumbnail.jpg',
-                 cropwidth:128, cropheight:128,
-                 x:0, y:0
-              }).then(
-              function(image) {
-                 console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
-              },
-              function (err) {
-                console.log(err);
-              }
-);
-      });
-    });
-
-    /*fs.rename(tempPath, target_path, function(err) {
-        if (err) throw err;
-        // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
-        fs.unlink(tempPath, function() {
+module.exports.uploadBounds = function(req, res){
+    var bounds = req.body.bounds;
+    var w = req.body.bounds.right - req.body.bounds.left;
+    var h = req.body.bounds.top - req.body.bounds.bottom;
+    var x = +req.body.bounds.left;
+    var y = +req.body.bounds.top;
+ 
+   /* mv(req.body.imgPath, req.body.imgPath, function(err) {
+        console.log(err)
+         Jimp.read(req.body.imgPath, function (err, lenna) {
             if (err) throw err;
-           
+            var a = lenna.crop(x, y,w,h)  
+                .write(newPas); // save
         });
-    });*/
+    })*/
+    Jimp.read(req.body.imgPath).then(function (image) {
+            image.crop(10, 10,240,240)  
+                .write('/public/uploads/crop/' + req.body.imgName); // save
+    }).catch(function(err){
+        console.log('!',err)
+    })
+
+
+    
+    // Jimp.read(req.body.imgPath, function (err, lenna) {
+    //     if (err) throw err;
+    //     var a = lenna.crop(x, y,w,h)  
+    //         .write(newPas); // save
+    // });
+    User.findByIdAndUpdate(req.body.id , {'bounds' : bounds}, {new: true},function(err, u) {
+        res.json(u);        
+    });
+}
+
+module.exports.addPhoto = function(req, res){
+    var file = req.files.file;
+    var RES = res;
+    User.findByIdAndUpdate(req.body.id , {'img': file.path , imgName : file.name}, {new: true},function(err, u) {
+        if (err) {throw err;}else {RES.json(u)}
+    });
+    // Jimp.read(file.path).then(function (lenna) {
+    //     lenna.crop(x, y,w,h)            // resize
+    //         .write(newPath); // save
+
+        
+    // });
 }
 

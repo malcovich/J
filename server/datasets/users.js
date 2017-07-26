@@ -8,6 +8,8 @@ module.exports = mongoose.model('User', {
 	token:String,
 	phone : String,
 	hardNumber: Boolean,
+	imgName : String,
+	smallImg : String,
 	bounds : {
 		top: String,
 		left: String,

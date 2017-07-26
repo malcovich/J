@@ -2,9 +2,9 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var multipart = require('connect-multiparty');
-var multipartMiddleware = multipart();
+var multipartMiddleware = multipart({ uploadDir: './public/uploads' });
+var multer = require('multer');
 var jwt = require("jsonwebtoken");
-
 
 var app = express();
 var authenticationController = require('./server/controllers/authentication-controller');
@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 });
 
 
-process.env.TMPDIR = '/public/uploads/';
+// process.env.TMPDIR = '/public/uploads/';
 /*var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };     
 mongoose.connect('mongodb://localhost:27017/profee',options);*/
@@ -53,8 +53,9 @@ app.post('/api/user/signup', authenticationController.signup)
 app.post('/api/contact/signup', authenticationController.signupContact)
 app.post('/api/user/login', authenticationController.login)
 app.post('/api/user/updateProfile', authenticationController.updateProfile);
-app.post('/api/user/addPhoto', multipartMiddleware, authenticationController.addPhoto);
+app.post('/api/user/addPhoto',  multipartMiddleware, authenticationController.addPhoto);
 app.post('/api/user/findByContactsList', authenticationController.findByContactsList);
+app.post('/api/user/uploadBounds', authenticationController.uploadBounds);
 
 app.post('/api/contact/add', conatactController.add);
 app.post('/api/contact/addExist', conatactController.addExist);

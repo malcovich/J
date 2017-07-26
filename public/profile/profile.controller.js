@@ -6,8 +6,8 @@ angular.module('MyApp')
     $ctrl.cropper.sourceImage = null;
     $ctrl.cropper.croppedImage   = null;
     $ctrl.bounds = {};
-    $ctrl.bounds.left = 0;
-    $ctrl.bounds.top = 0;
+    $ctrl.bounds.left = 1;
+    $ctrl.bounds.top = 1;
 
     $ctrl.isShowedBlock = false;
 
@@ -27,8 +27,18 @@ angular.module('MyApp')
             return $ctrl.file;
         }, function(){
             $ctrl.upload($ctrl.file);
+            $ctrl.bounds.left = 1;
+            $ctrl.bounds.top = 1;
+            $ctrl.bounds.right = 200;
+            $ctrl.bounds.bottom = 200;
 
+        });
 
+         $scope.$watch(function(){
+            return $ctrl.bounds;
+        }, function(){
+            // $ctrl.uploadBounds($ctrl.bounds);
+            console.log($ctrl.bounds)
         });
 
         $ctrl.showBlock = function(){
@@ -43,15 +53,21 @@ angular.module('MyApp')
           });
         };
 
+        $ctrl.uploadBounds = function() {
+          console.log($ctrl.bounds)
+          $http.post("/api/user/uploadBounds", {bounds: $ctrl.bounds, id: $ctrl.user._id, imgName : $ctrl.user.imgName, imgPath : $ctrl.user.img})
+        }
+
         $ctrl.upload = function(file){
+
           if($ctrl.file){
             Upload.upload({
               url: '/api/user/addPhoto',
               method :'POST',
-              data: {'id': $ctrl.user._id, 'bounds' : $ctrl.bounds},
-              file: $ctrl.file
+              data: {'id': $ctrl.user._id, 'bounds' : $ctrl.bounds , imgName: $ctrl.user.imgName},
+              file: $ctrl.file,
+              headers: {enctype:'multipart/form-data',  'Content-Type': $ctrl.file.type}
             }).success(function(data){
-              console.log(data)
               $ctrl.user = data;
               $rootScope.$emit('changeProfile', {user: $ctrl.user })
               // $scope.newPredefined.img = data.img
