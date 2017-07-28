@@ -5,6 +5,7 @@ angular.module('MyApp')
     var originalId = $stateParams.id;
     var userID = $ctrl.user._id;
     var $ctrl = this;
+    // var blockQ = 
     $ctrl.user = user.data;
     $ctrl.showHideAddCommentBlock = false;
         
