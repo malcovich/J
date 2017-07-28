@@ -3,20 +3,22 @@
 		<div class="col-sm-6 col-sm-offset-3">
 			<div class="row">
 				<h3>Create Account</h3>
+				<!-- <div ng-click="$ctrl.createFB()">Зарегестрироваться с помощью фейсбук</div> -->
 			</div>
 		</div>
 		<div class="col-sm-6 col-sm-offset-3" ng-show="$ctrl.showCustomer">
 			<div class="row">
 				<label for="email">Email Address:</label>
-				<input type="text" ng-model="$ctrl.newUser.email" class="form-control" id="email">
+				<input type="text" ng-model="$ctrl.newUser.email" class="form-control" id="email" requered name="email">
+				<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block error">Enter a valid email.</p>
 			</div>
 			<div class="row">
 				<label for="password">Password:</label>
-				<input type="password" ng-model="$ctrl.newUser.password" class="form-control" id="password">
+				<input type="password" name="password" ng-model="$ctrl.newUser.password" class="form-control" id="password" requered>
 			</div>
 			<div class="row">
 				<label for="name">Name:</label>
-				<input type="text" ng-model="$ctrl.newUser.name" class="form-control" id="name">
+				<input type="text" ng-model="$ctrl.newUser.name" name="name" class="form-control" id="name" requered>
 			</div>
 			<div class="buttons-block row">
 				<span ng-click="$ctrl.showCustomer = false" class="worker-link">Я worker</span>
@@ -24,7 +26,7 @@
 			</div>
 		</div>
 
-		<div class="col-sm-6 col-sm-offset-3" ng-hide="$ctrl.showCustomer">
+		<!-- <div class="col-sm-6 col-sm-offset-3" ng-hide="$ctrl.showCustomer">
 			<div class="row">
 				<label for="nameW">Name contact:</label>
 				<input type="text" ng-model="$ctrl.newContact.name" class="form-control" id="nameW">
@@ -42,6 +44,6 @@
 				<span ng-click="$ctrl.showCustomer = true" class="worker-link">Я customer</span>
 				<button ng-click="$ctrl.createContact()" class="btn green-btn">Create accaunt</button>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>

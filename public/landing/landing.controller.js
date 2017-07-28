@@ -21,15 +21,14 @@ angular.module('MyApp')
 		  };
 
       $ctrl.loginFB = function(){
-              FB.login(function(response) {
-            if (response.authResponse) {
-             console.log('Welcome!  Fetching your information.... ');
-             FB.api('/me', function(response) {
-               console.log( response);
-             });
-            } else {
-             console.log('User cancelled login or did not fully authorize.');
-            }
+        FB.login(function(response) {
+          if (response.authResponse) {
+            FB.api('/me', {fields: 'id,name,picture,about, birthday,cover, first_name, education,gender, hometown, interested_in,  last_name, location, relationship_status, work'}, function(response) {
+                console.log( response);
+            });
+          } else {
+           console.log('User cancelled login or did not fully authorize.');
+          }
         });
       }
   	}

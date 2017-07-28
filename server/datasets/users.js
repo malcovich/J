@@ -15,5 +15,6 @@ module.exports = mongoose.model('User', {
 		left: String,
 		right: String,
 		bottom: String
-	}
+	},
+	fbId: String
 }); 

@@ -32,14 +32,14 @@
         </div>
          <form 
 	      encType="multipart/form-data">
-		<div ng-show="$ctrl.isShowedBlock">
+		<div ng-show="$ctrl.isShowedBlock" class="cropBlock">
 			<div class="btn green-btn" ngf-select ng-model="$ctrl.file" name="file" ngf-pattern="'image/*'"
 	        ngf-accept="'image/*'" >Select image</div>
 	        <div class="btn" ng-click="$ctrl.uploadBounds()">Save</div>
 	        <div class="fileContainer">
 				<input type="file" img-cropper-fileread image="$ctrl.cropper.sourceImage" />
 	        </div>
-			<div>
+			<div class="canvasBlock">
 	        <canvas width="500" height="300" id="canvas" image-cropper image="$ctrl.cropper.sourceImage" cropped-image="$ctrl.cropper.croppedImage" crop-width="200" crop-height="200" keep-aspect="true" min-width="100" min-width="100"  touch-radius="30" crop-area-bounds="$ctrl.bounds"></canvas>
 	        </div>
 		</div>

@@ -424,6 +424,13 @@ ul {
 .filterInput {
   margin-top: 15px; }
 
+.userCreated .contact-right-block {
+  float: right;
+  width: 300px; }
+
+.userCreated .contact-left-block {
+  margin-right: 320px; }
+
 .sub-header.category, .sub-header.request-page {
   background: #eff6f6;
   height: auto; }
@@ -864,6 +871,7 @@ input {
   .inner-profile .user-img {
     height: 200px;
     width: 200px;
+    margin: 0 auto;
     border-radius: 50%;
     overflow: hidden;
     border: 8px solid #eff3f6; }
@@ -872,9 +880,8 @@ input {
       margin-left: -7px; }
   .inner-profile .user-info-block {
     margin-left: 20px; }
-
-.left-block {
-  text-align: center; }
+  .inner-profile .left-block {
+    text-align: center; }
 
 .fileContainer {
   overflow: hidden;
@@ -1080,6 +1087,9 @@ body {
 .inner-block {
   padding: 27px;
   background-color: #EFF3F6; }
+
+.help-block.error {
+  color: red; }
 
 /* */
 .fr {

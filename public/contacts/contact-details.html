@@ -1,94 +1,101 @@
-<div class="contact-left-block">
-	<div class="inner-block">
-		<div class="contact-information">
-			<div class="other-info">
-				<div class="contacts-raiting">
-					<p>Оценка <b>{{$ctrl.raitingList.length}}</b> пользователей</p>
-					<input-stars
-			            max="5"
-			            icon-base="fa fa-fw"
-			            icon-empty="fa-star-o"
-			            icon-full="fa-star" 
-			            icon-hover-full="fa-star" 
-			            ng-attr-readonly= true 
-			            ng-model="$ctrl.raiting"
-			            >
-			        </input-stars>
-			        <p>
-			        	Ваша оценка
-			        </p>
-			        	<input-stars
-			            max="5"
-			            icon-base="fa fa-fw"
-			            icon-empty="fa-star-o"
-			            icon-full="fa-star" 
-			            icon-hover-full="fa-star" 
-			            ng-attr-readonly= false
-			            ng-model="$ctrl.yourRaiting"
-			            >
-			        	</input-stars>
-				</div>
-				
-		</div>
-			<div class="contact-photo">
-				<img src="public/images/3.jpg">	
-			</div>
-			<div class="contact-text-info">
-				<h1>{{$ctrl.contact.name}}</h1>
-				<p class="contact-spesalition">{{$ctrl.contact.spec}}</p>
-				<div class="contact-phone">
-					<p >тел: {{$ctrl.contact.phone}}</p>
-				</div>
-				<!-- <div class="buttons-block">
-					<span class="btn green-btn" ng-click="$ctrl.opentMessageModal()"> Написать сообщение</span>
-				</div> -->
-				<div class="buttons-block">
-					<span class="btn " ng-click="$ctrl.deleteContact()">Удалить</span>
-				</div>
-				<div class="buttons-block">
-					<span>Общий контакт с: </span>
-					<span ng-repeat="f in $ctrl.friendsHasContact" ui-sref="main.friend({id: f._id})">{{f.name}}</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="tab-block">
-			<uib-tabset active="active" class="request-tabs">
-				<uib-tab index="0" heading="Описание">
-					<h4 class="sorry-text">К сожалению, данный контакт еще не зарегистривованный в нашем сервисе.<br> <span>Пригласите его</span>, что бы он смог заполнить этот раздел!</h4>
-				</uib-tab>
-				<uib-tab index="1" heading="Отзывы пользователей">
-					<div>
-						<div class="comments-header">
-							<span class="showHideAddCommentBlock" ng-click="$ctrl.showHideAddCommentBlock = !$ctrl.showHideAddCommentBlock">Добавить отзыв</span>
-							<h4>{{ $ctrl.comments.length}} отзыва</h4>							
-						</div>	
-						<div class="comment-block" ng-show="$ctrl.showHideAddCommentBlock">
-							<textarea class="text-area" ng-model="$ctrl.comment.text"></textarea>
-							<span class="btn green-btn" ng-click="$ctrl.addComment()">Add</span>
-						</div>
-
-						<div class="comment-item" ng-repeat="comment in $ctrl.comments">
-							<div class="comment-user">
-								<div class="image-user">
-									<img src="public/images/user.jpg" alt="">
-								</div>
-								<div class="comment-info">
-									<a class="comment-user-name">{{comment.userId.name}}</a>
-									<span class="comment-date">{{comment.date | date}}</span>
-								</div>
-							</div>
-							<div class="comment-text">
-								<p>{{comment.text}}</p>
-							</div>
-						</div>
-					</div>
-				</uib-tab>
-			</uib-tabset>
+<div ng-class="{'userCreated': $ctrl.contact.userCreated}">
+	<div class="contact-right-block" ng-show="$ctrl.contact.userCreated">
+		<div class="inner">
+			<h3>Знаете ли вы по которым дням работает {{$ctrl.contact.name}} ?</h3>
 		</div>
 	</div>
-</div>
+	<div class="contact-left-block">
+		<div class="inner-block">
+			<div class="contact-information">
+				<div class="other-info">
+					<div class="contacts-raiting">
+						<p>Оценка <b>{{$ctrl.raitingList.length}}</b> пользователей</p>
+						<input-stars
+				            max="5"
+				            icon-base="fa fa-fw"
+				            icon-empty="fa-star-o"
+				            icon-full="fa-star" 
+				            icon-hover-full="fa-star" 
+				            ng-attr-readonly= true 
+				            ng-model="$ctrl.raiting"
+				            >
+				        </input-stars>
+				        <p>
+				        	Ваша оценка
+				        </p>
+				        	<input-stars
+				            max="5"
+				            icon-base="fa fa-fw"
+				            icon-empty="fa-star-o"
+				            icon-full="fa-star" 
+				            icon-hover-full="fa-star" 
+				            ng-attr-readonly= false
+				            ng-model="$ctrl.yourRaiting"
+				            >
+				        	</input-stars>
+					</div>
+					
+			</div>
+				<div class="contact-photo">
+					<img src="public/images/3.jpg">	
+				</div>
+				<div class="contact-text-info">
+					<h1>{{$ctrl.contact.name}}</h1>
+					<p class="contact-spesalition">{{$ctrl.contact.spec}}</p>
+					<div class="contact-phone">
+						<p >тел: {{$ctrl.contact.phone}}</p>
+					</div>
+					<!-- <div class="buttons-block">
+						<span class="btn green-btn" ng-click="$ctrl.opentMessageModal()"> Написать сообщение</span>
+					</div> -->
+					<div class="buttons-block">
+						<span class="btn " ng-click="$ctrl.deleteContact()">Удалить</span>
+					</div>
+					<div class="buttons-block">
+						<span>Общий контакт с: </span>
+						<span ng-repeat="f in $ctrl.friendsHasContact" ui-sref="main.friend({id: f._id})">{{f.name}}</span>
+					</div>
+				</div>
+			</div>
 
+			<div class="tab-block">
+				<uib-tabset active="active" class="request-tabs">
+					<uib-tab index="0" heading="Описание">
+						<h4 class="sorry-text">К сожалению, данный контакт еще не зарегистривованный в нашем сервисе.<br> <span>Пригласите его</span>, что бы он смог заполнить этот раздел!</h4>
+					</uib-tab>
+					<uib-tab index="1" heading="Отзывы пользователей">
+						<div>
+							<div class="comments-header">
+								<span class="showHideAddCommentBlock" ng-click="$ctrl.showHideAddCommentBlock = !$ctrl.showHideAddCommentBlock">Добавить отзыв</span>
+								<h4>{{ $ctrl.comments.length}} отзыва</h4>							
+							</div>	
+							<div class="comment-block" ng-show="$ctrl.showHideAddCommentBlock">
+								<textarea class="text-area" ng-model="$ctrl.comment.text"></textarea>
+								<span class="btn green-btn" ng-click="$ctrl.addComment()">Add</span>
+							</div>
+
+							<div class="comment-item" ng-repeat="comment in $ctrl.comments">
+								<div class="comment-user">
+									<div class="image-user">
+										<img src="public/images/user.jpg" alt="">
+									</div>
+									<div class="comment-info">
+										<a class="comment-user-name">{{comment.userId.name}}</a>
+										<span class="comment-date">{{comment.date | date}}</span>
+									</div>
+								</div>
+								<div class="comment-text">
+									<p>{{comment.text}}</p>
+								</div>
+							</div>
+						</div>
+					</uib-tab>
+				</uib-tabset>
+			</div>
+		</div>
+	</div>
+	
+</div>
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-body" id="modal-body">
     	<p>Сообщение:</p>

@@ -20,7 +20,8 @@ angular.module('MyApp')
 			    ModalFactory.openAddContactModal('addContact.html', 'addContact', $ctrl.listCategories, $ctrl.category.category).then(function(ctrl){
             $ctrl.contact = ctrl.contact;
             $ctrl.contact.userId = [$ctrl.user._id];
-				    $ctrl.contact.raiting = 0;
+            $ctrl.contact.raiting = 0;
+				    $ctrl.contact.userCreated = true;
 				    $http.post('/api/contact/add', $ctrl.contact).then(function(res){
                 console.log($ctrl.category.contacts)
 			      		$ctrl.category.contacts.push(res.data)

@@ -4,6 +4,7 @@
 	.user-img {
 		height: 200px;
 		width: 200px;
+        margin: 0 auto;
 		border-radius: 50%;
 		overflow: hidden;
 		border: 8px solid #eff3f6;
@@ -15,11 +16,12 @@
 	.user-info-block{
 		margin-left: 20px;
 	}
+    .left-block {
+        text-align: center;
+    }
 }
 
-.left-block {
-    text-align: center;
-}
+
 .fileContainer {
     overflow: hidden;
     position: relative;

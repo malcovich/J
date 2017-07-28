@@ -21,7 +21,9 @@ body{
 	padding: 27px;
 	background-color: #EFF3F6;
 }
-
+.help-block.error{
+	color: red;
+}
 /* */
 .fr {
 	float: right;
@@ -106,3 +108,4 @@ body{
 .styled .active .switcher-label.true { opacity: 1; }
 .styled         .switcher-label.true,
 .styled .active .switcher-label.false { opacity: .4; }
+
