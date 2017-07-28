@@ -3,9 +3,7 @@ angular.module('MyApp')
 	  var yourRaiting = 0;
     var fullRaiting = 0;
     var originalId = $stateParams.id;
-    var userID = $ctrl.user._id;
     var $ctrl = this;
-    // var blockQ = 
     $ctrl.user = user.data;
     $ctrl.showHideAddCommentBlock = false;
         
@@ -15,99 +13,101 @@ angular.module('MyApp')
         }
     });
 
-    $http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res, err){
-      $ctrl.contact = res.data;
-      $ctrl.friendsHasContact = [];
+    	$http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res, err){
+            $ctrl.contact = res.data;
+            $ctrl.friendsHasContact = [];
 
-      $http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
-        var friendsList = [];
-        $ctrl.friendsList = res.data;
-        for (var i = 0; i < $ctrl.friendsList.length; i++) {
-          if ($ctrl.friendsList[i].useridaccept._id == userID) {
-            friendsList.splice(i, 1, $ctrl.friendsList[i].useridinvite);
-          } else {
-            friendsList.splice(i, 1, $ctrl.friendsList[i].useridaccept);
-          }
-        }
+            $http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
+              $ctrl.friendsList = res.data;
+              var userID = $ctrl.user._id;
 
-        $ctrl.friendsList = friendsList;
+              var friendsList = [];
 
-        $ctrl.friendsList.forEach(function(friend){
-          if ($ctrl.contact.userId.indexOf(friend._id) >= 0 ){
-              $ctrl.friendsHasContact.push(friend);
-          }
-        })
-      });
-
-      $http.post('/api/contact/commentsList', {id:$ctrl.contact._id}).then(function(res){
-          $ctrl.comments = res.data;
-      });
-
-      $http.post('/api/contact/raitingList', {id:$ctrl.contact._id}).then(function(res){
-          if (res.data) {
-              $ctrl.raitingList = res.data;
-          }else {
-              $ctrl.raitingList = [];
-          }
-          var totalRaiting = 0;
-          $ctrl.raitingList.forEach(function(raiting){
-              totalRaiting += raiting.raiting;
-              if (raiting.userId._id == $ctrl.user._id){
-                  $ctrl.yourRaiting = raiting.raiting;
-                  yourRaiting = raiting.raiting;
+              for (var i = 0; i < $ctrl.friendsList.length; i++) {
+                if ($ctrl.friendsList[i].useridaccept._id == userID) {
+                  friendsList.splice(i, 1, $ctrl.friendsList[i].useridinvite);
+                } else {
+                  friendsList.splice(i, 1, $ctrl.friendsList[i].useridaccept);
+                }
               }
-          });
-          fullRaiting = {
-              raiting : totalRaiting,
-              count : $ctrl.raitingList.length
-          }
-          $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length;
-          if ($ctrl.raiting >= 4){
-              $ctrl.rColor = '#38B248';
-          }else if($ctrl.raiting >= 3 && $ctrl.raiting < 4){
-              $ctrl.rColor = '#f7981c';
-          }
-      })
+              $ctrl.friendsList = friendsList;
 
-
-      $ctrl.saveRaiting = function(raiting){
-          $ctrl.newRaiting = {};
-          $ctrl.newRaiting.raiting = raiting;
-          $ctrl.newRaiting.contactId = $ctrl.contact._id;
-          $ctrl.newRaiting.userId = $ctrl.user._id;
-          $ctrl.newRaiting.date = new Date();
-              console.log(yourRaiting)
-
-          if (yourRaiting == 0){
-              $http.post('/api/contact/addRaiting', $ctrl.newRaiting).then(function(res){
-                  var totalRaiting = 0;
-                  $ctrl.raitingList.push(res.data);
-                  $ctrl.raitingList.forEach(function(raiting){
-                      totalRaiting += raiting.raiting;
-                      
-                  });
-                  $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length;
-                  $http.post('/api/contact/changeRaiting', {id : $ctrl.contact._id,  raiting : $ctrl.raiting}).then(function(res){
-
-                  })
+              $ctrl.friendsList.forEach(function(friend){
+                if ($ctrl.contact.userId.indexOf(friend._id) >= 0 ){
+                    $ctrl.friendsHasContact.push(friend);
+                }
               })
-          }else {
-              $http.post('/api/contact/updateRaiting', $ctrl.newRaiting).then(function(res){
-                  var totalRaiting = fullRaiting.raiting + res.data.raiting;
-                  $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length + 1;
-                  $http.post('/api/contact/changeRaiting', {id : $ctrl.contact._id,  raiting : $ctrl.raiting}).then(function(res){
+            });
 
-                  })
-              })
-          }
-      }
-    });
+            $http.post('/api/contact/commentsList', {id:$ctrl.contact._id}).then(function(res){
+                $ctrl.comments = res.data;
+            })
 
-    $ctrl.deleteContact = function(){
-        $http.post('/api/contact/deleteExist', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(){
-            $state.go('main.category', {id : $ctrl.contact.category })
-        })
-    }
+            $http.post('/api/contact/raitingList', {id:$ctrl.contact._id}).then(function(res){
+                if (res.data) {
+                    $ctrl.raitingList = res.data;
+                }else {
+                    $ctrl.raitingList = [];
+                }
+                var totalRaiting = 0;
+                $ctrl.raitingList.forEach(function(raiting){
+                    totalRaiting += raiting.raiting;
+                    if (raiting.userId._id == $ctrl.user._id){
+                        $ctrl.yourRaiting = raiting.raiting;
+                        yourRaiting = raiting.raiting;
+                    }
+                });
+                fullRaiting = {
+                    raiting : totalRaiting,
+                    count : $ctrl.raitingList.length
+                }
+                $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length;
+                if ($ctrl.raiting >= 4){
+                    $ctrl.rColor = '#38B248';
+                }else if($ctrl.raiting >= 3 && $ctrl.raiting < 4){
+                    $ctrl.rColor = '#f7981c';
+                }
+            })
+
+
+            $ctrl.saveRaiting = function(raiting){
+                $ctrl.newRaiting = {};
+                $ctrl.newRaiting.raiting = raiting;
+                $ctrl.newRaiting.contactId = $ctrl.contact._id;
+                $ctrl.newRaiting.userId = $ctrl.user._id;
+                $ctrl.newRaiting.date = new Date();
+                    console.log(yourRaiting)
+
+                if (yourRaiting == 0){
+                    $http.post('/api/contact/addRaiting', $ctrl.newRaiting).then(function(res){
+                        var totalRaiting = 0;
+                        $ctrl.raitingList.push(res.data);
+                        $ctrl.raitingList.forEach(function(raiting){
+                            totalRaiting += raiting.raiting;
+                            
+                        });
+                        $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length;
+                        $http.post('/api/contact/changeRaiting', {id : $ctrl.contact._id,  raiting : $ctrl.raiting}).then(function(res){
+
+                        })
+                    })
+                }else {
+                    $http.post('/api/contact/updateRaiting', $ctrl.newRaiting).then(function(res){
+                        var totalRaiting = fullRaiting.raiting + res.data.raiting;
+                        $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length + 1;
+                        $http.post('/api/contact/changeRaiting', {id : $ctrl.contact._id,  raiting : $ctrl.raiting}).then(function(res){
+
+                        })
+                    })
+                }
+            }
+        });
+
+        $ctrl.deleteContact = function(){
+            $http.post('/api/contact/deleteExist', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(){
+                $state.go('main.category', {id : $ctrl.contact.category })
+            })
+        }
 
 
         // $ctrl.replaceWithVerify = function(id){
@@ -116,32 +116,33 @@ angular.module('MyApp')
         // 	})
         // };
 
-    $ctrl.addComment = function() {
-        $ctrl.comment.contactId = $ctrl.contact._id;
-        $ctrl.comment.userId = $ctrl.user._id;
-        $ctrl.comment.date = new Date();
-        $http.post('/api/contact/addComment', $ctrl.comment).then(function(res){
+        $ctrl.addComment = function() {
+            $ctrl.comment.contactId = $ctrl.contact._id;
+            $ctrl.comment.userId = $ctrl.user._id;
+            $ctrl.comment.date = new Date();
+            $http.post('/api/contact/addComment', $ctrl.comment).then(function(res){
 
-        })
-    }
+            })
+        }
 
-    $ctrl.opentMessageModal = function(){
-        ModalFactory.open('myModalContent.html', 'ModalInstanceCtrl').then(function(ctrl){
-            console.log(ctrl)
-            var message = {
-                "userId" : $ctrl.user._id,
-                "contactId" : $ctrl.contact._id,
-                "message" :{
-                    "text" : ctrl.text,
-                    "date" : new Date(),
-                    "author" : $ctrl.user._id
+        $ctrl.opentMessageModal = function(){
+            ModalFactory.open('myModalContent.html', 'ModalInstanceCtrl').then(function(ctrl){
+                console.log(ctrl)
+                var message = {
+                    "userId" : $ctrl.user._id,
+                    "contactId" : $ctrl.contact._id,
+                    "message" :{
+                        "text" : ctrl.text,
+                        "date" : new Date(),
+                        "author" : $ctrl.user._id
+                    }
                 }
-            }
-            $http.post('/api/messages/addMessage', message).then(function(res){
-                
+                $http.post('/api/messages/addMessage', message).then(function(res){
+                    
+                });
+            }, function () {
+                  console.info('Modal dismissed at: ' + new Date());
             });
-        }, function () {
-              console.info('Modal dismissed at: ' + new Date());
-        });
-    }
+        }
+   
 }]);
