@@ -1,7 +1,7 @@
 <div ng-class="{'userCreated': $ctrl.contact.userCreated}">
 	<div class="contact-right-block" ng-show="$ctrl.contact.userCreated">
 		<div class="inner">
-			<h3>Знаете ли вы по которым дням работает {{$ctrl.contact.name}} ?</h3>
+			 <ng-include src="$ctrl.selectedQuestion[0].url"></ng-include>
 		</div>
 	</div>
 	<div class="contact-left-block">

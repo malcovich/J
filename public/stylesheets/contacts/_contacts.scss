@@ -8,6 +8,28 @@
 		margin-right: 320px
 	}
 }
+
+.QBlock {
+	.question {
+		font-size: 18px;
+		line-height: 26px;
+	}
+	.answer {
+		overflow: hidden;
+		padding: 5px 0;
+	}
+	input {
+		height: auto;
+		width: auto;
+		text-align: left;
+		float: left;
+	}
+	label {
+		margin-left: 5px;
+		float: left;
+		width: auto;
+	}
+}
 .sub-header.category, .sub-header.request-page{
 	background: #eff6f6;
 	height: auto;

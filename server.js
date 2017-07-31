@@ -71,6 +71,7 @@ app.post('/api/contact/addComment', conatactController.addComment);
 app.post('/api/contact/commentsList', conatactController.commentsList);
 app.post('/api/contact/addRaiting', conatactController.addRaiting);
 app.post('/api/contact/updateRaiting', conatactController.updateRaiting);
+app.post('/api/contact/updateInfo', conatactController.updateInfo);
 app.post('/api/contact/raitingList', conatactController.raitingList);
 
 app.post('/api/messages/addMessage', messagesController.addMessage);

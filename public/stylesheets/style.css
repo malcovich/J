@@ -35,11 +35,9 @@
     height: 40px;
     overflow: hidden;
     border-radius: 50%;
-    border: 1px solid #ccc;
     float: left; }
     .header-user .user-header-image img {
-      height: 100%;
-      margin-left: -2px; }
+      max-width: 40px; }
   .header-user .user-block {
     float: left;
     color: #2399f1;
@@ -430,6 +428,25 @@ ul {
 
 .userCreated .contact-left-block {
   margin-right: 320px; }
+
+.QBlock .question {
+  font-size: 18px;
+  line-height: 26px; }
+
+.QBlock .answer {
+  overflow: hidden;
+  padding: 5px 0; }
+
+.QBlock input {
+  height: auto;
+  width: auto;
+  text-align: left;
+  float: left; }
+
+.QBlock label {
+  margin-left: 5px;
+  float: left;
+  width: auto; }
 
 .sub-header.category, .sub-header.request-page {
   background: #eff6f6;

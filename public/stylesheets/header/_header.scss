@@ -37,11 +37,9 @@
 		height: 40px;
 		overflow: hidden;
 		border-radius: 50%;
-		border: 1px solid #ccc;
 		float:left;
 		img {
-			height: 100%;
-			margin-left: -2px;
+			max-width: 40px;;
 		}
 	}
 	.user-block {

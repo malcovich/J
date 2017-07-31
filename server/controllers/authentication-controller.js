@@ -216,7 +216,8 @@ module.exports.uploadBounds = function(req, res){
     }
     var cropImg = 'public/uploads/crop/' +guid()  +req.body.imgName;
     Jimp.read(req.body.imgPath).then(function (image) {
-            image.crop(x, y,w,h)  
+            image.crop(x, y,w,h)
+                .resize(250,250)  
                 .write(cropImg); // save
 
             User.findByIdAndUpdate(req.body.id , {'bounds' : bounds, smallImg:cropImg }, {new: true},function(err, u) {

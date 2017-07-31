@@ -19,6 +19,14 @@ module.exports.deleteExist = function(req, res){
 	});
 }
 
+module.exports.updateInfo = function(req, res){
+	var obj = {};
+	obj[req.body.fild] =  req.body.answer;
+	Contact.findByIdAndUpdate(req.body.contactId ,obj, {new: true},function(err, u) {
+		res.json(u)
+	});
+}
+
 module.exports.changeHiddenStatus = function(req, res){
 	Contact.findByIdAndUpdate(req.body.id , { hidden : req.body.hidden}, {new: true},function(err, u) {
 		res.json(u)

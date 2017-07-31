@@ -1,0 +1,10 @@
+<div class="QBlock"> 
+	<h3 class="question">{{$ctrl.selectedQuestion[0].q}}</h3>
+	<form>
+		<div ng-repeat="answer in $ctrl.selectedQuestion[0].a" class="answer">
+			<input type="radio" ng-model="$ctrl.userAnswer" value="{{answer.value}}" id="{{'a-'+$index}}" name="answers" > 
+			<label for="{{'a-' + $index}}" >{{answer.title}}</label>
+		</div>
+		<span class="btn green-btn" ng-click="$ctrl.saveAnswer()">Ответить</span>
+	</form>
+</div>

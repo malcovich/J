@@ -1,12 +1,41 @@
 angular.module('MyApp')
   .controller('ContactDetailsController', ['$scope', '$http', '$stateParams', '$log','ModalFactory','user', '$state', function($scope, $http, $stateParams, $log, ModalFactory,user, $state){
-	  var yourRaiting = 0;
+    var $ctrl = this;
+    var yourRaiting = 0;
     var fullRaiting = 0;
     var originalId = $stateParams.id;
-    var $ctrl = this;
+
     $ctrl.user = user.data;
     $ctrl.showHideAddCommentBlock = false;
-        
+
+    var userName = $ctrl.user.name;
+    var cotnactFilds = ['type_work_place', 'address']
+
+    $ctrl.QBlock = [
+      { 
+        'url' :'/public/contacts/addres-type.html',
+        't' : 'type_work_place',
+        'q' : "Данный специалист работает в офисе или совершает выезды на дом?",
+        'a' : [{title:"Только в офисе.",value:"Office"}, {title:"Только у клиента.", value : "client"},{title: "И в офисе и у клиента.", value:"both"}, {title: "К сожалению, я не знаю. ", value: "pass"}]
+      },
+      { 
+        'url' :'/public/contacts/addres.html',
+        't' : 'addres',
+        'q' : "Знаете ли вы адресс данного специалиста?",
+      }
+    ];
+    $ctrl.saveAnswer = function(){
+      var obj = {
+        'userId': $ctrl.user._id,
+        'contactId' : $stateParams.id,
+        'fild' : $ctrl.selectedQuestion[0].t,
+        'answer': $ctrl.userAnswer
+      }
+      $http.post('/api/contact/updateInfo', obj).then(function(res,err){
+        $ctrl.contact = res.data;
+        setQuestion()
+      })
+    }
     $scope.$watch('$ctrl.yourRaiting', function(newValue, oldValue, scope) {
         if((newValue !== undefined) && (oldValue != newValue) && (yourRaiting != newValue) ){
             $ctrl.saveRaiting(newValue);
@@ -16,7 +45,7 @@ angular.module('MyApp')
     	$http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res, err){
             $ctrl.contact = res.data;
             $ctrl.friendsHasContact = [];
-
+            setQuestion()
             $http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
               $ctrl.friendsList = res.data;
               var userID = $ctrl.user._id;
@@ -67,8 +96,21 @@ angular.module('MyApp')
                 }else if($ctrl.raiting >= 3 && $ctrl.raiting < 4){
                     $ctrl.rColor = '#f7981c';
                 }
-            })
+            });
 
+            function setQuestion(){
+              var fildsWithOutAnswer = cotnactFilds.filter(function(item){
+                if ($ctrl.contact[item] == undefined){
+                  return item;
+                }
+              });
+
+              $ctrl.selectedQuestion =  $ctrl.QBlock.filter(function(item){
+                if (item.t == fildsWithOutAnswer[0]){
+                  return item;
+                }
+              })
+            }
 
             $ctrl.saveRaiting = function(raiting){
                 $ctrl.newRaiting = {};
@@ -76,14 +118,13 @@ angular.module('MyApp')
                 $ctrl.newRaiting.contactId = $ctrl.contact._id;
                 $ctrl.newRaiting.userId = $ctrl.user._id;
                 $ctrl.newRaiting.date = new Date();
-                    console.log(yourRaiting)
 
                 if (yourRaiting == 0){
                     $http.post('/api/contact/addRaiting', $ctrl.newRaiting).then(function(res){
                         var totalRaiting = 0;
                         $ctrl.raitingList.push(res.data);
                         $ctrl.raitingList.forEach(function(raiting){
-                            totalRaiting += raiting.raiting;
+                        totalRaiting += raiting.raiting;
                             
                         });
                         $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length;
