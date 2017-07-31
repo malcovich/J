@@ -11,6 +11,19 @@ angular.module('MyApp')
     var userName = $ctrl.user.name;
     var cotnactFilds = ['type_work_place', 'address']
 
+     function setQuestion(){
+              $ctrl.fildsWithOutAnswer = cotnactFilds.filter(function(item){
+                if ($ctrl.contact[item] == undefined){
+                  return item;
+                }
+              });
+              $ctrl.selectedQuestion =  $ctrl.QBlock.filter(function(item){
+                if (item.t == $ctrl.fildsWithOutAnswer[0]){
+                  return item;
+                }
+              })
+            }
+
     $ctrl.QBlock = [
       { 
         'url' :'/public/contacts/addres-type.html',
@@ -19,8 +32,8 @@ angular.module('MyApp')
         'a' : [{title:"Только в офисе.",value:"Office"}, {title:"Только у клиента.", value : "client"},{title: "И в офисе и у клиента.", value:"both"}, {title: "К сожалению, я не знаю. ", value: "pass"}]
       },
       { 
-        'url' :'/public/contacts/addres.html',
-        't' : 'addres',
+        'url' :'/public/contacts/address.html',
+        't' : 'address',
         'q' : "Знаете ли вы адресс данного специалиста?",
       }
     ];
@@ -33,7 +46,8 @@ angular.module('MyApp')
       }
       $http.post('/api/contact/updateInfo', obj).then(function(res,err){
         $ctrl.contact = res.data;
-        setQuestion()
+        $ctrl.userAnswer = "";
+        setQuestion();
       })
     }
     $scope.$watch('$ctrl.yourRaiting', function(newValue, oldValue, scope) {
@@ -68,6 +82,13 @@ angular.module('MyApp')
               })
             });
 
+            $ctrl.isShowedRightBar = function(){
+                console.log( $ctrl.contact.userCreated && $ctrl.fildsWithOutAnswer.length>0)
+                return $ctrl.contact.userCreated && $ctrl.fildsWithOutAnswer.length>0
+            }
+
+
+
             $http.post('/api/contact/commentsList', {id:$ctrl.contact._id}).then(function(res){
                 $ctrl.comments = res.data;
             })
@@ -98,19 +119,7 @@ angular.module('MyApp')
                 }
             });
 
-            function setQuestion(){
-              var fildsWithOutAnswer = cotnactFilds.filter(function(item){
-                if ($ctrl.contact[item] == undefined){
-                  return item;
-                }
-              });
-
-              $ctrl.selectedQuestion =  $ctrl.QBlock.filter(function(item){
-                if (item.t == fildsWithOutAnswer[0]){
-                  return item;
-                }
-              })
-            }
+           
 
             $ctrl.saveRaiting = function(raiting){
                 $ctrl.newRaiting = {};

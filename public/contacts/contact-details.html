@@ -1,5 +1,5 @@
-<div ng-class="{'userCreated': $ctrl.contact.userCreated}">
-	<div class="contact-right-block" ng-show="$ctrl.contact.userCreated">
+<div ng-class="{'userCreated': $ctrl.isShowedRightBar()}">
+	<div class="contact-right-block" ng-show="$ctrl.isShowedRightBar()">
 		<div class="inner">
 			 <ng-include src="$ctrl.selectedQuestion[0].url"></ng-include>
 		</div>
@@ -61,7 +61,8 @@
 			<div class="tab-block">
 				<uib-tabset active="active" class="request-tabs">
 					<uib-tab index="0" heading="Описание">
-						<h4 class="sorry-text">К сожалению, данный контакт еще не зарегистривованный в нашем сервисе.<br> <span>Пригласите его</span>, что бы он смог заполнить этот раздел!</h4>
+					<!-- 	<h4 class="sorry-text">К сожалению, данный контакт еще не зарегистривованный в нашем сервисе.<br> <span>Пригласите его</span>, что бы он смог заполнить этот раздел!</h4> -->
+				
 					</uib-tab>
 					<uib-tab index="1" heading="Отзывы пользователей">
 						<div>

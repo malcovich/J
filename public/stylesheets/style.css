@@ -424,7 +424,8 @@ ul {
 
 .userCreated .contact-right-block {
   float: right;
-  width: 300px; }
+  width: 320px;
+  padding: 20px; }
 
 .userCreated .contact-left-block {
   margin-right: 320px; }
@@ -442,6 +443,8 @@ ul {
   width: auto;
   text-align: left;
   float: left; }
+  .QBlock input[type="text"] {
+    width: 100%; }
 
 .QBlock label {
   margin-left: 5px;

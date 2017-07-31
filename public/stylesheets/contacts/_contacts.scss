@@ -1,8 +1,8 @@
 .userCreated {
 	.contact-right-block{
 		float: right;
-		width: 300px
-
+		width: 320px;
+		padding: 20px;
 	}
 	.contact-left-block {
 		margin-right: 320px
@@ -23,6 +23,9 @@
 		width: auto;
 		text-align: left;
 		float: left;
+		&[type="text"]{
+			width: 100%;
+		}
 	}
 	label {
 		margin-left: 5px;
