@@ -86,6 +86,21 @@ ul {
   display: flex;
   flex: 1; }
 
+.friend-header {
+  padding: 20px;
+  overflow: hidden; }
+  .friend-header .friend-img {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px; }
+    .friend-header .friend-img img {
+      max-width: 100%; }
+  .friend-header .friend-name {
+    font-size: 25px; }
+
 .sub-header {
   height: 50px;
   border-bottom: 1px solid #dfe2e5;

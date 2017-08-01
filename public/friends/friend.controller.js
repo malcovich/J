@@ -7,7 +7,7 @@ angular.module('MyApp')
 	      	var userId =  $ctrl.user._id;
 	      	console.log("userId", userId)
 	      	var friendId = $ctrl.friendInfo.friend._id;
-
+		    $ctrl.showHideAddContact()
 	      	var friends = [];
 
 		      for (var i = 0; i < $ctrl.friendInfo.friends.length; i++) {
@@ -47,6 +47,23 @@ angular.module('MyApp')
 		  	console.log("res", res)
 		  	alert("request sended");
 		  })
+		}
+
+		$ctrl.addToContacts = function(contact){
+			var data = {'id':contact._id, 'userId' : $ctrl.user._id}
+			$http.post('/api/contact/addExist', data).then(function(res){
+				console.log(res)
+			})
+		}
+
+		$ctrl.showHideAddContact = function(){
+			$ctrl.friendInfo.contacts.forEach(function(contact){
+				if(contact.userId.indexOf($ctrl.user._id) == -1 ){
+					contact.isShowed = true;
+				}else{
+					contact.isShowed = false;
+				}
+			})
 		}
 }]);
 

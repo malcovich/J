@@ -1,20 +1,28 @@
-<div class="inner-block container-fliud">
+<div class="friend-header">
+	<div class="friend-img">
+		<img ng-src="{{$ctrl.friendInfo.friend.smallImg}}">
+	</div>
 	<h5 class="clearfix">
-		<span>{{$ctrl.friendInfo.friend.email}}</span>
+		<span class="friend-name">{{$ctrl.friendInfo.friend.name}}</span>
 		<span class="btn btn-danger pull-right" ng-click="$ctrl.deleteFriend($ctrl.friendInfo.friend._id)">delete from friends</span>
 	</h5>
+</div>
+<div class="inner-block container-fliud">
+	
 
 
 	<div class="row">
 		<div class="col-xs-6">
 			<p>{{$ctrl.friendInfo.contacts.length}} contacts</p>
 			<ul class="">
-				<li class="tile-list-items" ng-repeat="contacts in $ctrl.friendInfo.contacts">
+				<li class="tile-list-items" ng-repeat="contact in $ctrl.friendInfo.contacts">
 				  	<div class="image-block pull-left">
-				    	<img src="{{contacts.img || '/public/images/vectorpaint1.png'}}">
+				    	<img src="{{contact.img || '/public/images/vectorpaint1.png'}}">
 				  	</div>
-			    	<h5 class="contact-name">{{contacts.name}}</h5>
-			    	<p class="contact-spec">{{contacts.spec}}</p>
+			    	<h5 class="contact-name">{{contact.name}}</h5>
+			    	<p class="contact-spec">{{contact.spec}}</p>
+					<span class="btn green-btn" ng-show="{{contact.isShowed}}" ng-click="$ctrl.addToContacts(contact)">Add</span>
+					<span  ng-hide="{{contact.isShowed}}" ng-click="$ctrl.addToContacts(contact)">Специалист уже в вашем списке</span>
 
 				</li>
 			</ul>

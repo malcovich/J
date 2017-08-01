@@ -9,7 +9,7 @@ angular.module('MyApp')
     $ctrl.showHideAddCommentBlock = false;
 
     var userName = $ctrl.user.name;
-    var cotnactFilds = ['type_work_place', 'address']
+    var cotnactFilds = ['type_work_place', 'address', 'working_days']
 
      function setQuestion(){
               $ctrl.fildsWithOutAnswer = cotnactFilds.filter(function(item){
@@ -35,15 +35,25 @@ angular.module('MyApp')
         'url' :'/public/contacts/address.html',
         't' : 'address',
         'q' : "Знаете ли вы адресс данного специалиста?",
+      },
+      { 
+        'url' :'/public/contacts/working-days.html',
+        't' : 'working_days',
+        'q' : "Знаете ли вы рабочие дни данного специалиста?",
       }
     ];
     $ctrl.saveAnswer = function(){
+      if ( $ctrl.selectedQuestion[0].t == 'working_days'){
+        $ctrl.userAnswer = $ctrl.firstday+'-'+ $ctrl.lastday;
+      }
       var obj = {
         'userId': $ctrl.user._id,
         'contactId' : $stateParams.id,
         'fild' : $ctrl.selectedQuestion[0].t,
         'answer': $ctrl.userAnswer
       }
+
+      console.log($ctrl.firstday, $ctrl.lastday)
       $http.post('/api/contact/updateInfo', obj).then(function(res,err){
         $ctrl.contact = res.data;
         $ctrl.userAnswer = "";
@@ -59,7 +69,8 @@ angular.module('MyApp')
     	$http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res, err){
             $ctrl.contact = res.data;
             $ctrl.friendsHasContact = [];
-            setQuestion()
+            setQuestion();
+
             $http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
               $ctrl.friendsList = res.data;
               var userID = $ctrl.user._id;
@@ -79,15 +90,37 @@ angular.module('MyApp')
                 if ($ctrl.contact.userId.indexOf(friend._id) >= 0 ){
                     $ctrl.friendsHasContact.push(friend);
                 }
-              })
+              });
             });
 
-            $ctrl.isShowedRightBar = function(){
-                console.log( $ctrl.contact.userCreated && $ctrl.fildsWithOutAnswer.length>0)
-                return $ctrl.contact.userCreated && $ctrl.fildsWithOutAnswer.length>0
+            $ctrl.isWorkedInOfice = function (){
+              if (($ctrl.contact.type_work_place == 'ofice') || ( $ctrl.contact.type_work_place == 'both')){
+                return "Да"
+              }else{
+                if($ctrl.contact.type_work_place == 'client') {
+                  return "Нет"
+                }
+                if ($ctrl.contact.type_work_place == 'pass') {
+                  return "Не указано"
+                }
+              }
+            };
+            $ctrl.isWorkedInHome = function(){
+              if (($ctrl.contact.type_work_place == 'client') || ( $ctrl.contact.type_work_place == 'both')){
+                return "Да"
+              }else{
+                if($ctrl.contact.type_work_place == 'ofice') {
+                  return "Нет"
+                }
+                if ($ctrl.contact.type_work_place == 'pass') {
+                  return "Не указано"
+                }
+              }
             }
 
-
+            $ctrl.isShowedRightBar = function(){
+                return $ctrl.contact.userCreated && $ctrl.fildsWithOutAnswer.length>0
+            }
 
             $http.post('/api/contact/commentsList', {id:$ctrl.contact._id}).then(function(res){
                 $ctrl.comments = res.data;

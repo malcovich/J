@@ -1,7 +1,7 @@
 angular.module('MyApp')
   .controller('ProfileCtrl', ['$rootScope','$scope', '$log', 'user', '$uibModal', '$http','$state','ModalFactory','Upload', function($rootScope,$scope, $log, user, $uibModal, $http, $state, ModalFactory,Upload){
   	var $ctrl = this;
-
+  
     $ctrl.cropper = {};
     $ctrl.cropper.sourceImage = null;
     $ctrl.cropper.croppedImage   = null;
@@ -52,6 +52,21 @@ angular.module('MyApp')
 
         $ctrl.uploadBounds = function() {
           $http.post("/api/user/uploadBounds", {bounds: $ctrl.bounds, id: $ctrl.user._id, imgName : $ctrl.user.imgName, imgPath : $ctrl.user.img})
+        }
+
+        $ctrl.connectFB = function(){
+          FB.login(function(response) {
+            if (response.authResponse) {
+                FB.api('/me', {fields: 'id,name,picture,about, birthday,cover, first_name, education,gender, hometown, interested_in,  last_name, location, relationship_status, work'}, function(response) {
+                  $ctrl.user.fbId = response.id;
+                  $http.post('/api/user/updateProfile', $ctrl.user).then(function(res){
+
+                  })
+                });
+            } else {
+               console.log('User cancelled login or did not fully authorize.');
+            }
+          });
         }
 
         $ctrl.upload = function(file){

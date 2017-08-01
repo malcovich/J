@@ -23,7 +23,10 @@
 					</div>
 					<div class="row ">
 						<span class="btn green-btn" ng-click="$ctrl.updateUser()"> Save </span>
-						<span ng-click="$ctrl.change = false" class="btn">Cansel</span>
+					</div>
+					<div class="row" ng-hide="$ctrl.user.fbId">
+						Добавьть профиль соц. сети:
+						<span class="btn" ng-click=" $ctrl.connectFB()">Facebook</span>
 					</div>
 				</div>
 			</div>

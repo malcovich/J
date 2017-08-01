@@ -14,5 +14,6 @@ module.exports = mongoose.model('Contact', {
 	userId: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
 	userCreated : Boolean,
 	type_work_place :String,
-	address: String
+	address: String,
+	working_days : String
 }); 

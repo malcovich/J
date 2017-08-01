@@ -62,7 +62,12 @@
 				<uib-tabset active="active" class="request-tabs">
 					<uib-tab index="0" heading="Описание">
 					<!-- 	<h4 class="sorry-text">К сожалению, данный контакт еще не зарегистривованный в нашем сервисе.<br> <span>Пригласите его</span>, что бы он смог заполнить этот раздел!</h4> -->
-				
+					<div class="contact-info">
+						<p>Принимает в офисе : <span>{{$ctrl.isWorkedInOfice()}}</span></p>
+						<p>Принимает у клиента : <span>{{$ctrl.isWorkedInHome()}}</span></p>
+						<p>Адрес : <span>{{$ctrl.contact.address}}</span></p>
+						<p>Рабочие дни : <span>{{$ctrl.contact.working_days}}</span></p>
+					</div>
 					</uib-tab>
 					<uib-tab index="1" heading="Отзывы пользователей">
 						<div>
