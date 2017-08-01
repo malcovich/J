@@ -2,6 +2,9 @@
 .friend-header {
 	padding:20px;
 	overflow:hidden;
+	.friend-info {
+		overflow:hidden;
+	}
 	.friend-img {
 		width: 150px;
 		height: 150px;
@@ -16,6 +19,12 @@
 	.friend-name {
 		font-size: 25px;
 	}
+}
+
+.item_in_list{
+	float: right;
+	width: 100px;
+	line-height: 70px;
 }
 .sub-header {
 	height: 50px;

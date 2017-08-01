@@ -5,19 +5,19 @@ angular.module('MyApp')
 		$http.post('/api/friend/item', {'friendId': $stateParams.id}).then(function(res){
 	      	$ctrl.friendInfo = res.data;
 	      	var userId =  $ctrl.user._id;
-	      	console.log("userId", userId)
 	      	var friendId = $ctrl.friendInfo.friend._id;
-		    $ctrl.showHideAddContact()
 	      	var friends = [];
+		    $ctrl.showHideAddContact();
+		    $ctrl.listAlloverContact();
 
-		      for (var i = 0; i < $ctrl.friendInfo.friends.length; i++) {
+		    for (var i = 0; i < $ctrl.friendInfo.friends.length; i++) {
 		        if ($ctrl.friendInfo.friends[i].useridaccept._id == friendId ) {
 		          friends.splice(i, 1, $ctrl.friendInfo.friends[i].useridinvite);
 		        } else {
 		          friends.splice(i, 1, $ctrl.friendInfo.friends[i].useridaccept);
 		        }
-		      }
-		      $ctrl.friendInfo.friends = friends;
+		    }
+		    $ctrl.friendInfo.friends = friends;
 	    });
 
     	$ctrl.deleteFriend = function(id){
@@ -34,6 +34,12 @@ angular.module('MyApp')
 	        });
     	};
 
+    	$ctrl.listAlloverContact = function(){
+    		$http.post("/api/contact/getAlloverList",{userId: $ctrl.user._id, friendId : $stateParams.id}).then(function(res){
+    			$ctrl.listAlloverContact = res.data;
+    		})
+    	}
+
     	$ctrl.addToFrined = function(id){
 		  var data = {
 		    useridinvite: $ctrl.user._id,
@@ -43,9 +49,7 @@ angular.module('MyApp')
 		    sendreq: true
 		  }
 		  $http.post('/api/friend/add', data).then(function(res){
-
 		  	console.log("res", res)
-		  	alert("request sended");
 		  })
 		}
 

@@ -44,6 +44,11 @@ module.exports.list = function(req, res){
        res.json(result);
     });
 }
+module.exports.getAlloverList = function(req, res){
+	Contact.find({$and :[ {userId : req.param('userId')}, {userId: req.param('friendId')}]}, function (err, result) {
+       res.json(result);
+    });
+}
 
 module.exports.getItem = function(req, res){
 	var userId = req.body.userId;

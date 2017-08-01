@@ -2,27 +2,29 @@
 	<div class="friend-img">
 		<img ng-src="{{$ctrl.friendInfo.friend.smallImg}}">
 	</div>
-	<h5 class="clearfix">
-		<span class="friend-name">{{$ctrl.friendInfo.friend.name}}</span>
-		<span class="btn btn-danger pull-right" ng-click="$ctrl.deleteFriend($ctrl.friendInfo.friend._id)">delete from friends</span>
-	</h5>
+	<div class="friend-info">
+		<h5 class="clearfix">
+			<span class="friend-name">{{$ctrl.friendInfo.friend.name}}</span>
+			<span class="btn btn-danger pull-right" ng-click="$ctrl.deleteFriend($ctrl.friendInfo.friend._id)">delete from friends</span>
+		</h5>
+		<p class="clearfix">тел: {{$ctrl.friendInfo.friend.phone}}</p>
+		<p class="clearfix">Общих контактов: {{$ctrl.listAlloverContact.length}}</p>
+	</div>
 </div>
 <div class="inner-block container-fliud">
-	
-
-
 	<div class="row">
 		<div class="col-xs-6">
 			<p>{{$ctrl.friendInfo.contacts.length}} contacts</p>
 			<ul class="">
 				<li class="tile-list-items" ng-repeat="contact in $ctrl.friendInfo.contacts">
+					<span class="item_in_list" ng-hide="{{contact.isShowed}}" ng-click="$ctrl.addToContacts(contact)">Добавлен</span>
+
 				  	<div class="image-block pull-left">
 				    	<img src="{{contact.img || '/public/images/vectorpaint1.png'}}">
 				  	</div>
 			    	<h5 class="contact-name">{{contact.name}}</h5>
 			    	<p class="contact-spec">{{contact.spec}}</p>
 					<span class="btn green-btn" ng-show="{{contact.isShowed}}" ng-click="$ctrl.addToContacts(contact)">Add</span>
-					<span  ng-hide="{{contact.isShowed}}" ng-click="$ctrl.addToContacts(contact)">Специалист уже в вашем списке</span>
 
 				</li>
 			</ul>

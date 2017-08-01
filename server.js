@@ -73,6 +73,7 @@ app.post('/api/contact/addRaiting', conatactController.addRaiting);
 app.post('/api/contact/updateRaiting', conatactController.updateRaiting);
 app.post('/api/contact/updateInfo', conatactController.updateInfo);
 app.post('/api/contact/raitingList', conatactController.raitingList);
+app.post('/api/contact/getAlloverList', conatactController.getAlloverList);
 
 app.post('/api/messages/addMessage', messagesController.addMessage);
 app.post('/api/messages/list', messagesController.list);

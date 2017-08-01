@@ -89,6 +89,8 @@ ul {
 .friend-header {
   padding: 20px;
   overflow: hidden; }
+  .friend-header .friend-info {
+    overflow: hidden; }
   .friend-header .friend-img {
     width: 150px;
     height: 150px;
@@ -100,6 +102,11 @@ ul {
       max-width: 100%; }
   .friend-header .friend-name {
     font-size: 25px; }
+
+.item_in_list {
+  float: right;
+  width: 100px;
+  line-height: 70px; }
 
 .sub-header {
   height: 50px;
