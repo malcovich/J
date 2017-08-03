@@ -14,7 +14,7 @@
 	            AuthFactory.save(formData).then(function(res) {
 	            	if (res.data.type){
 	            		$localStorage.token = res.data.token;
-	                	$state.go('main')
+	                	$state.go('main.requests')
 	            	}
 	            })
 			}

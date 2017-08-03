@@ -9,10 +9,6 @@ angular.module('MyApp')
     $http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
       $ctrl.friendsList = res.data;
       var userID = $ctrl.user._id;
-
-      console.log("userid ", userID)
-      console.log("object ", $ctrl)
-
       var friendsList = [];
 
       for (var i = 0; i < $ctrl.friendsList.length; i++) {
@@ -42,7 +38,9 @@ angular.module('MyApp')
 
   $ctrl.accept = function(id){
     $http.post('/api/friend/accept',{'_id': id }).then(function(res){
-
+      $http.post('/api/friend/listFriendsRequests',{userId: $ctrl.user._id}).then(function(res,err){
+        $ctrl.listRequest = res.data;
+      })
     });
   }
 

@@ -5,7 +5,7 @@
 	<div class="friend-info">
 		<h5 class="clearfix">
 			<span class="friend-name">{{$ctrl.friendInfo.friend.name}}</span>
-			<span class="btn btn-danger pull-right" ng-click="$ctrl.deleteFriend($ctrl.friendInfo.friend._id)">delete from friends</span>
+			<span class="btn btn-danger pull-right" ng-click="$ctrl.deleteFriend($ctrl.friendInfo.friend._id)">Убрать из друзей</span>
 		</h5>
 		<p class="clearfix">тел: {{$ctrl.friendInfo.friend.phone}}</p>
 		<p class="clearfix">Общих контактов: {{$ctrl.listAlloverContact.length}}</p>
@@ -14,32 +14,33 @@
 <div class="inner-block container-fliud">
 	<div class="row">
 		<div class="col-xs-6">
-			<p>{{$ctrl.friendInfo.contacts.length}} contacts</p>
+			<p>{{$ctrl.friendInfo.contacts.length}} Специалистов</p>
 			<ul class="">
 				<li class="tile-list-items" ng-repeat="contact in $ctrl.friendInfo.contacts">
-					<span class="item_in_list" ng-hide="{{contact.isShowed}}" ng-click="$ctrl.addToContacts(contact)">Добавлен</span>
-
+					<span class="item_in_list" ng-hide="contact.isShowed" ng-click="$ctrl.addToContacts(contact)">Добавлен</span>
+					<span class="btn green-btn addBtn" ng-show="contact.isShowed" ng-click="$ctrl.addToContacts(contact)">Добавить</span>
 				  	<div class="image-block pull-left">
 				    	<img src="{{contact.img || '/public/images/vectorpaint1.png'}}">
 				  	</div>
 			    	<h5 class="contact-name">{{contact.name}}</h5>
 			    	<p class="contact-spec">{{contact.spec}}</p>
-					<span class="btn green-btn" ng-show="{{contact.isShowed}}" ng-click="$ctrl.addToContacts(contact)">Add</span>
 
 				</li>
 			</ul>
 		</div>
 		<div class="col-xs-6">
-			<p>{{$ctrl.friendInfo.friends.length}} friends</p>
+			<p>{{$ctrl.friendInfo.friends.length}} Друзей</p>
 
 			<ul class="">
-				<li class="tile-list-items" ng-repeat="friends in $ctrl.friendInfo.friends">
+				<li class="tile-list-items" ng-repeat="friend in $ctrl.friendInfo.friends">
+
+					<span class="btn btn-success pull-right addBtn" ng-show="friend.isShowed && !friend.isRequest && friend._id != $ctrl.user._id"  ng-click="$ctrl.addToFrined(friend)" >Добавить</span>
+					<span class="item_in_list" ng-show="friend.isRequest &&  friend._id != $ctrl.user._id">Отправлен</span>
 				  	<div class="image-block pull-left">
-				    	<img src="{{contacts.img || '/public/images/vectorpaint1.png'}}">
+				    	<img ng-src="{{friend.smallImg || '/public/images/vectorpaint1.png'}}">
 				  	</div>
-			    	<h5 class="contact-name">{{friends.name}}</h5>
-			    	<p class="contact-spec">{{friends.spec}}</p>
-					<span class="btn btn-success pull-right" ng-disabled="$ctrl.requestsend" ng-click="$ctrl.addToFrined(friends._id)" ng-show="">Add</span>
+			    	<h5 class="contact-name">{{friend.name}}</h5>
+			    	<p class="contact-spec">{{friend.spec}}</p>
 				</li>
 			</ul>
 		</div>

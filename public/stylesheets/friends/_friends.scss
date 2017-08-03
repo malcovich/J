@@ -1,6 +1,6 @@
 
 .friend-header {
-	padding:20px;
+	padding:30px;
 	overflow:hidden;
 	.friend-info {
 		overflow:hidden;
@@ -20,11 +20,58 @@
 		font-size: 25px;
 	}
 }
-
+.addBtn {
+	float: right;
+	margin-top: 17px;
+}
 .item_in_list{
 	float: right;
-	width: 100px;
+	width: 89px;
+	text-align: center;
 	line-height: 70px;
+}
+.deleteBtn{
+	margin-top: 18px;
+}
+.blockRequestToFriend {
+	padding: 0 30px 20px 30px;
+	background-color: #EFF3F6;
+	margin-bottom: 20px;
+	overflow :hidden;
+	h3 {
+		padding-top: 18px;
+	    padding-bottom: 7px;
+	    color: #588386;
+	    font-size: 21px;
+	    font-weight: normal;
+	    text-transform: initial;
+	}
+	.itemRequest {
+		width: 48%;
+		padding: 12px;
+	    border-bottom: 1px solid #F1F2F4;
+	    overflow: hidden;
+	    background-color: #fff;
+	    overflow: hidden;
+	}
+	img {
+		width: 70px;
+    	float: left;
+	}
+	.name {
+		color: #4B5262;
+    	font-weight: bold;
+   		margin-bottom: 3px
+	}
+	.info {
+		float: left;
+		padding-left: 30px;
+    	padding-top: 15px;
+	}
+	.acceptBtn{
+		float: right;
+		margin-top: 18px;
+	}
 }
 .sub-header {
 	height: 50px;
@@ -45,12 +92,15 @@
 .friends-list {
 	border: 1px solid #F1F2F4;
 	border-radius: 4px;
-	background-color: #fff;
 	padding: 0px;
 	margin: 0px;
 	list-style:none;
+	overflow :hidden;
 	li {
-		padding: 7px;
+		width: 48%;
+		float: left;
+		background-color: #fff;
+		padding: 12px;
 		border-bottom: 1px solid #F1F2F4;
 		overflow: hidden;
 		img {

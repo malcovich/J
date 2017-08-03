@@ -30,11 +30,17 @@ module.exports.list = function(req,res) {
 }
 
 module.exports.listFriendsRequests = function(req,res) {
-	console.log('req.',req.param("userId"))
 	Friend.find({$and: [{useridaccept : req.param('userId')} , { accepted: false }, { deleted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
     	res.json(result);
 	});
 }
+
+module.exports.listSendedRequests = function(req,res) {
+	Friend.find({$and: [{useridinvite : req.param('userId')} , { accepted: false }, { deleted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
+    	res.json(result);
+	});
+}
+
 module.exports.accept = function(req,res) {
 	Friend.findByIdAndUpdate(req.body._id,{"$set": {"accepted": true, "sendreq": false }}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
     	res.json(result);
