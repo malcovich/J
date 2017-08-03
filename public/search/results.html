@@ -1,13 +1,27 @@
 <div class="inner-block">
 	<div ng-show="$ctrl.searchResut.users.length > 0 || $ctrl.searchResut.contacts.length > 0">
 		<h3>Результаты поиска по запросу "{{$ctrl.q}}":</h3>
-		<ul class="user-results-list">
+	<!-- 	<ul class="user-results-list">
 			<li ng-repeat="user in $ctrl.searchResut.users">
-				<div class="btn green-btn" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить </div>
-				<div class="user-img"><img ng-src="{{user.img}}" alt=""></div>
+				<div class="btn green-btn addBtn" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить </div>
+				<div class="user-img"><img ng-src="{{user.smallImg}}" alt=""></div>
 				<p class="user-name">{{user.name}}</p>
 			</li>
-		</ul>
+		</ul> -->
+		<ul class="friends-list">
+	        <li ng-repeat="user in $ctrl.searchResut.users">
+	        	<div class="btn green-btn addBtn" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить </div>
+	            <img ng-src="{{user.smallImg}}">
+	            <div class="info">
+	                 <p class="name" ui-sref="main.friend({id : user._id})" style="cursor: pointer;">
+	                    {{user.name || user.email}}
+	                </p>
+	                <p class="phone">{{user.phone}}</p>
+	            </div>
+	            <!-- {{friend._id}}    -->
+	        </li>
+	    </ul>
+
 
 		<ul class="user-results-list">
 			<li ng-repeat="contact in $ctrl.searchResut.contacts" >

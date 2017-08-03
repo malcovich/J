@@ -196,6 +196,8 @@ ul {
     .friends-list li .phone {
       color: #ACB3BD;
       font-size: 12px; }
+  .friends-list li:nth-child(2n) {
+    margin-left: 4%; }
 
 .tile-list-items {
   background-color: #fff;

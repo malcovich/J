@@ -122,6 +122,10 @@
 			font-size: 12px;
 		}
 	}
+	li:nth-child(2n){
+		margin-left: 4%;
+	}
+
 }
 
 .tile-list-items {
