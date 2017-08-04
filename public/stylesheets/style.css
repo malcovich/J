@@ -178,6 +178,8 @@ ul {
   .friends-list li {
     width: 48%;
     float: left;
+    height: 90px;
+    margin-bottom: 20px;
     background-color: #fff;
     padding: 12px;
     border-bottom: 1px solid #F1F2F4;

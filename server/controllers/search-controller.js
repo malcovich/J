@@ -22,7 +22,7 @@ module.exports.search = function(req, res){
     }
     var search = {};
     search.users = users;
-    Contact.find({$or : [{email: query},{title : query},{spec : query}]}, function (err, contacts) {
+    Contact.find({$or : [{email: query},{name : query},{spec : query}]}, function (err, contacts) {
       search.contacts = contacts;
       res.json(search);
     })
