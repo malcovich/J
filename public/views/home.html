@@ -47,18 +47,24 @@
             <p><i class="fa fa-users" aria-hidden="true"></i> &#160; Друзья</p>
           </a>
         </div>
+       
        <!--   <div class="left-menu-item">
         <a ui-sref="main.messages">
           <p><i class="fa fa-envelope" aria-hidden="true"></i>  &#160; Messages</p>
         </a>
                </div> -->
       </div>
-      <div ng-show="user.type == 'Worker'">
+      <div ng-show="user.role == 'worker'">
           <div class="left-menu-item">
             <a ui-sref="main.worker">
               <p>Worker</p>
             </a>
           </div>
+           <div class="left-menu-item">
+          <a ui-sref="main.workerProfile">
+            <p><i class="fa" aria-hidden="true"></i> &#160; Профиль</p>
+          </a>
+        </div>
           <div class="left-menu-item">
             <a ui-sref="main.workerAdmin">
               <p>Admin</p>

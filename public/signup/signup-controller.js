@@ -20,15 +20,18 @@
 			}
 
 			$ctrl.createContact = function(){
-				$http({
-					method :'POST', 
-					url : 'api/contact/signup',
-					data :  $ctrl.newContact
-				}).then(function(res){
-					$state.go('main.worker')
-				},function(error){
-					console.log(error)
-				});
+				var formData = {
+	                email: this.newContact.email,
+	                password: this.newContact.password,
+	                name: this.newContact.name,
+	                role : 'worker'
+	            }
+	            AuthFactory.save(formData).then(function(res) {
+	            	if (res.data.type){
+	            		$localStorage.token = res.data.token;
+	                	$state.go('main.requests')
+	            	}
+	            })
 			}
 
 

@@ -66,15 +66,22 @@ module.exports.signup = function(req, res){
                     userModel.password = req.body.password;
                     userModel.role = req.body.role;
                     userModel.name = req.body.name;
+                    contact = new Contact();
+                    contact.name = req.body.name;
                     userModel.save(function(err, user) {
-                        user.token = jwt.sign(user, process.env.JWT_SECRET);
-                        user.save(function(err, user1) {
-                            res.json({
-                                type: true,
-                                data: user1,
-                                token: user1.token
+                        contact.save(function(err, contact){
+                            user.linked_contact = contact._id;
+                            user.token = jwt.sign(user, process.env.JWT_SECRET);
+                            user.save(function(err, user1) {
+                                console.log(user1)
+                                res.json({
+                                    type: true,
+                                    data: user1,
+                                    token: user1.token
+                                });
                             });
                         });
+                        
                     })
                 }
             }

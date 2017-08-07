@@ -1,6 +1,7 @@
 (function(){
 	angular.module('MyApp', ['ui.router', 'ui.bootstrap', 'ngFileUpload','ngStorage','angular-img-cropper','angular-input-stars','switcher'])
 		.config(function($stateProvider, $httpProvider){
+			console.log("2323232")
 			$stateProvider
 				.state('landing', {
 					url: "/",
@@ -14,11 +15,13 @@
 					abstract: true,
 					controller: "MainCtrl",
 					resolve: {
-			          	user: function (AuthFactory) {
-			                return AuthFactory.me().then(function(user){
+			          	user: ['AuthFactory', function (AuthFactory) {
+			          		console.log(211)
+			                return AuthFactory.me().then(function(user,err){
+			                	console.log('2',user)
 			               		return user.data;
 			               	});
-			          	}
+			          	}]
 			        },
 					
 				})
@@ -146,11 +149,28 @@
 					controllerAs: '$ctrl'
 				})
 				.state('main.worker', {
-					url: "/worker",
-					templateUrl: "/public/workers/worker.html",
-					controller: "WorkerController",
+					url: "",
+					templateUrl: "/public/workers_part/workers_main/main.html",
+					resolve: {
+						checkAuth : function(user){
+							console.log("ISRE", user)
+							return user.data.data
+						}
+					},
+					controller: "WorkersMainController",
 					controllerAs: '$ctrl'
 				})
+				// .state('main.workerProfile', {
+				// 	url: "/information",
+				// 	templateUrl: "/public/workers_part/profile/index.html",
+				// 	resolve: {
+				// 		checkAuth : function(user){
+				// 			return user.data.data
+				// 		}
+				// 	},
+				// 	controller: "WorkersProfileController",
+				// 	controllerAs: '$ctrl'
+				// })
 				.state('main.workerAdmin', {
 					url: "/admin",
 					templateUrl: "/public/workers/admin.html",
@@ -209,6 +229,10 @@
 	                }
 	            };
 	        }]);
+		}).run(function($rootScope) {
+			$rootScope.$on('$stateChangeError', function(e, a,b,c,d) {
+				console.log(e,a,b,c,d);
+			})
 		})
 }());
 

@@ -15,7 +15,11 @@ angular.module('MyApp')
               alert(res.data)    
           } else {
             $localStorage.token = res.data.token;
-            $state.go("main.requests");    
+            if (res.data.data.role == "customer"){
+              $state.go("main.requests");    
+            }else {
+              $state.go("main.worker")
+            }
           }
         })
 		  };

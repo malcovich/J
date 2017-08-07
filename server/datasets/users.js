@@ -16,5 +16,6 @@ module.exports = mongoose.model('User', {
 		right: String,
 		bottom: String
 	},
-	fbId: String
+	fbId: String,
+	linked_contact: {type: mongoose.Schema.Types.ObjectId, ref: 'Contact'}
 }); 
