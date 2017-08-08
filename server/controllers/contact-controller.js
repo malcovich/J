@@ -3,6 +3,7 @@ var Contact = require('../datasets/contact');
 var Friend = require('../datasets/friend');
 var Comment = require('../datasets/comment');
 var Raiting = require('../datasets/raiting');
+
 module.exports.add = function(req, res){
 	var contact = new Contact(req.body);
 	contact.save();
@@ -22,7 +23,13 @@ module.exports.deleteExist = function(req, res){
 module.exports.updateInfo = function(req, res){
 	var obj = {};
 	obj[req.body.fild] =  req.body.answer;
-	Contact.findByIdAndUpdate(req.body.contactId ,obj, {new: true},function(err, u) {
+	Contact.findByIdAndUpdate(req.body.contactId,obj, {new: true},function(err, u) {
+		res.json(u)
+	});
+}
+
+module.exports.updateInfoByContact = function(req, res){
+	Contact.findByIdAndUpdate(req.body.id ,req.body.obj, {new: true},function(err, u) {
 		res.json(u)
 	});
 }
@@ -71,7 +78,7 @@ module.exports.getItem = function(req, res){
 module.exports.getFullItem = function(req, res){
 	var userId = req.body.userId;
 	Contact.find({_id : req.param('_id')}).populate('userId').exec(function (err, result) {
-			res.json(result);
+		res.json(result);
     });
 }
 
@@ -132,13 +139,3 @@ module.exports.all = function(req, res){
     });
 }
 
-module.exports.login = function(req,res){
-	User.find(req.body,function(err,results){
-		if (err){
-			console.log(err);
-		}; 
-		if (results && results.length === 1) {
-			res.json(results[0])
-		}
-	})
-}

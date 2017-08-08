@@ -68,6 +68,7 @@ module.exports.signup = function(req, res){
                     userModel.name = req.body.name;
                     contact = new Contact();
                     contact.name = req.body.name;
+                    contact.userCreated = false;
                     userModel.save(function(err, user) {
                         contact.save(function(err, contact){
                             user.linked_contact = contact._id;

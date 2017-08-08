@@ -53,7 +53,6 @@ angular.module('MyApp')
         'answer': $ctrl.userAnswer
       }
 
-      console.log($ctrl.firstday, $ctrl.lastday)
       $http.post('/api/contact/updateInfo', obj).then(function(res,err){
         $ctrl.contact = res.data;
         $ctrl.userAnswer = "";
@@ -166,12 +165,10 @@ angular.module('MyApp')
                         var totalRaiting = 0;
                         $ctrl.raitingList.push(res.data);
                         $ctrl.raitingList.forEach(function(raiting){
-                        totalRaiting += raiting.raiting;
-                            
+                          totalRaiting += raiting.raiting;
                         });
                         $ctrl.raiting = totalRaiting/ $ctrl.raitingList.length;
                         $http.post('/api/contact/changeRaiting', {id : $ctrl.contact._id,  raiting : $ctrl.raiting}).then(function(res){
-
                         })
                     })
                 }else {
