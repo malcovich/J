@@ -940,13 +940,13 @@ h3 {
   color: #354052; }
 
 label {
-  /* width: 100%; */
+  width: 100%;
   font-size: 14px;
   color: #7f8fa4;
   font-weight: 600;
   margin-bottom: 10px; }
 
-input[type="text"] {
+input {
   width: 100%;
   border: 1px solid #dfe3e9;
   height: 34px;
