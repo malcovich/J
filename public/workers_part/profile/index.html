@@ -29,19 +29,52 @@
 		<div class="row">
 			<div class="form-group col-lg-12">
 		    	<label for="name">Адрес</label><br>
-		    	<label class="checkbox-inline">
+		    	<label class="checkbox-inline checkboxLabel">
 				  <input type="checkbox" id="inlineCheckbox1" value="option1" ng-model="$ctrl.office"> Принимаете в офисе
 				</label>
-				<label class="checkbox-inline">
-				  <input type="checkbox" id="inlineCheckbox2" value="option2"> Работаете на выезде
+				<label class="checkbox-inline checkboxLabel">
+				  <input type="checkbox" id="inlineCheckbox2" value="option2" ng-model="$ctrl.home"> Работаете на выезде
 				</label>
 			</div>
 		</div>
 		<div class="row" ng-show="$ctrl.office">
 			<div class="form-group col-lg-12">
-				<label for="name" >Имя или название</label>
-		    	<input type="text"  ng-model="$ctrl.contact.name" class="form-control" id="name" placeholder="Имя/Название">
+		    	<input type="text"  ng-model="$ctrl.contact.address" class="form-control" id="name" placeholder="Адрес">
 		    </div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-12">
+				<label for="name">График работы</label>
+			</div>
+			<div class="form-group col-lg-1">
+				<select class="form-control" name="startday1" id="category" ng-model="$ctrl.contact.startday1">
+			      <option value="1">ПН</option>
+			      <option value="2">ВТ</option>
+			      <option value="3">СР</option>
+			      <option value="4">ЧТ</option>
+			      <option value="5">ПТ</option>
+			      <option value="6">СБ</option>
+			      <option value="7">ВС</option>
+			    </select>
+			</div>
+			<div class="form-group col-lg-1">
+				<select class="form-control" name="endday1" id="category" ng-model="$ctrl.contact.endday1">
+			      <option value="1">ПН</option>
+			      <option value="2">ВТ</option>
+			      <option value="3">СР</option>
+			      <option value="4">ЧТ</option>
+			      <option value="5">ПТ</option>
+			      <option value="6">СБ</option>
+			      <option value="7">ВС</option>
+			    </select>
+			</div>
+			<div class="form-group col-lg-2">
+				<div uib-timepicker ng-model="$ctrl.startTime1" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false" show-spinners="false"></div>
+			</div>
+			<div class="form-group col-lg-2">
+				<div uib-timepicker ng-model="$ctrl.endTime1" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false" show-spinners="false"></div>
+			</div>
+
 		</div>
 		<span class="btn green-btn" ng-click="$ctrl.save()">Сохранить</span>
 	</form>

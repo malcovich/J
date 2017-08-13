@@ -2,7 +2,7 @@ angular.module('MyApp')
   .controller('LandingController', ['$scope', '$http', '$stateParams','$state','ModalFactory','$rootScope', '$location', '$localStorage', 'AuthFactory', function($scope, $http, $stateParams, $state,ModalFactory,$rootScope ,$location,$localStorage, AuthFactory){
   	var $ctrl = this;
 	  if ($localStorage.token){
-  		$state.go('main');
+  		$state.go('main.categories');
   	}else {
   		$ctrl.login = function(){
         var formData = {

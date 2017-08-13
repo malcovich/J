@@ -167,6 +167,17 @@
 					controller: "WorkersProfileController",
 					controllerAs: '$ctrl'
 				})
+				.state('main.workerCalendar', {
+					url: "/calendar",
+					templateUrl: "/public/workers_part/calendar/index.html",
+					resolve: {
+						checkAuth : function(user){
+							return user.data.data
+						}
+					},
+					controller: "CalendarController",
+					controllerAs: '$ctrl'
+				})
 				.state('main.workerAdmin', {
 					url: "/admin",
 					templateUrl: "/public/workers/admin.html",

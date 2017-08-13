@@ -1,0 +1,19 @@
+.calendar-table {
+	background: #fff;
+	.header-table{
+		overflow:hidden;
+		.day {
+			float: left;
+			width: 125px;
+			height: 34px;
+			line-height:34px;
+			text-align: center;
+		}
+		.time-title {
+			float: left;
+			width: 40px;
+			line-height: 34px;
+			text-align: center;
+		}
+	}
+}

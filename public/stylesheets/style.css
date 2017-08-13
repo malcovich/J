@@ -1035,6 +1035,11 @@ input {
 .change-image {
   margin-top: 25px; }
 
+.checkboxLabel {
+  width: auto; }
+  .checkboxLabel input {
+    height: auto; }
+
 .user-results-list {
   list-style: none;
   background-color: #fff;
@@ -1173,6 +1178,22 @@ input {
 
 .add-contact-to-request input[type="checkbox"] {
   float: left; }
+
+.calendar-table {
+  background: #fff; }
+  .calendar-table .header-table {
+    overflow: hidden; }
+    .calendar-table .header-table .day {
+      float: left;
+      width: 125px;
+      height: 34px;
+      line-height: 34px;
+      text-align: center; }
+    .calendar-table .header-table .time-title {
+      float: left;
+      width: 40px;
+      line-height: 34px;
+      text-align: center; }
 
 body {
   font-family: 'Open Sans', sans-serif; }
