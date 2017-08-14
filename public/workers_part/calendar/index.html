@@ -3,8 +3,15 @@
 	<div class="calendar-table">
 		<div class="header-table">
 			<div class="time-title">t</div>
-			<div class="day" ng-repeat="day in $ctrl.headerArray"> {{day}}</div>
-			
+			<div class="day" ng-repeat="day in $ctrl.headerArray"> {{day.title}}</div>
+		</div>
+		<div class="body-table">
+			<div class="row-table" ng-repeat="item in $ctrl.tableTime.arrayHours">
+				<div class="time-value"><span>{{item}}</span></div>
+				<div class="hour-value" ng-class="{current: day.current}" ng-repeat="day in $ctrl.headerArray">
+					<contact-hour start-time="{{item}}" duration="1" table-time="$ctrl.tableTime"></contact-hour>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

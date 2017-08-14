@@ -2,18 +2,59 @@
 	background: #fff;
 	.header-table{
 		overflow:hidden;
+		border-bottom: 1px solid #e2e2e2;
+		border-top: 1px solid #e2e2e2;
 		.day {
 			float: left;
-			width: 125px;
-			height: 34px;
-			line-height:34px;
+			width: 175px;
+			height: 60px;
+			line-height:60px;
 			text-align: center;
+			border-right: 1px solid #e2e2e2;
+			background: #f4f4f4;
 		}
 		.time-title {
 			float: left;
-			width: 40px;
-			line-height: 34px;
+			width: 55px;
+			line-height: 60px;
 			text-align: center;
+			border-right: 1px solid #e2e2e2;
+		}
+	}
+	.body-table{
+		.row-table{
+			height: 60px;
+			border-bottom: 1px solid #e2e2e2;
+			clear: both;
+			.time-value{
+				span {
+					font-weight: bold;
+					display: inline-block;
+					margin-top:35px;
+					width: 100%;
+					color: #9f9f9f;
+				}
+				float: left;
+				height: 60px;
+				text-align: center;
+				width: 55px;
+				border-right: 1px solid #e2e2e2;
+				
+			}
+			.hour-value{
+				width: 175px;
+				float: left;
+				height: 59px;
+				border-right: 1px solid #e2e2e2;
+				&.current{
+					background: #eff4ff;
+				}
+				.not-working-hours{
+					border: 1px solid #fc9c9c;
+					background:#fc9c9c;
+					opacity: 0.5;
+				}
+			}
 		}
 	}
 }
