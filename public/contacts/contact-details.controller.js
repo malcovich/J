@@ -42,6 +42,7 @@ angular.module('MyApp')
         'q' : "Знаете ли вы рабочие дни данного специалиста?",
       }
     ];
+
     $ctrl.saveAnswer = function(){
       if ( $ctrl.selectedQuestion[0].t == 'working_days'){
         $ctrl.userAnswer = $ctrl.firstday+'-'+ $ctrl.lastday;
@@ -59,6 +60,7 @@ angular.module('MyApp')
         setQuestion();
       })
     }
+
     $scope.$watch('$ctrl.yourRaiting', function(newValue, oldValue, scope) {
         if((newValue !== undefined) && (oldValue != newValue) && (yourRaiting != newValue) ){
             $ctrl.saveRaiting(newValue);

@@ -1,4 +1,4 @@
-angular.module('MyApp').directive('contactHour', function() {
+angular.module('MyApp').directive('userHour', function() {
   return {
     template: '',
     restrict: 'E',
@@ -14,7 +14,10 @@ angular.module('MyApp').directive('contactHour', function() {
     	calculateAreaBeforeStart();
     	calculateAreaAfterEnd();
     	calculateRestDays();
-    	
+
+        elem.find('.working-hours').on('click',function(){
+            console.log("cloickl")
+        })
 
     	function calculateAreaBeforeStart () {
     		if ((scope.tableTime.startTimeMinute !== 0) && (scope.tableTime.startTime == scope.startTime)){
@@ -40,12 +43,15 @@ angular.module('MyApp').directive('contactHour', function() {
 	    	}
     	};
     	function calculateRestDays () {
-    		console.log(new Date(scope.day.date).getDay(), scope.startDay);
     		var indexDay = new Date(scope.day.date).getDay() == 0 ? '7': new Date(scope.day.date).getDay();
     		if((indexDay<scope.startDay) || (scope.endDay < indexDay)){
     			elem.append("<div class='not-working-hours'></div>");
     			elem.find('.not-working-hours').css('height', '60px')
     		}
+            else {
+                elem.append("<div class='working-hours'></div>");
+                elem.find('.working-hours').css('height', '60px')
+            }
     	}
     }
   };

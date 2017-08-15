@@ -59,19 +59,8 @@ module.exports.getAlloverList = function(req, res){
 
 module.exports.getItem = function(req, res){
 	var userId = req.body.userId;
-	Contact.find({_id : req.param('_id')}).populate('verifyContact').exec(function (err, result) {
-		var contact = result[0]
-		if (result[0].userId.indexOf(userId) != -1) {
-			if (result[0].phone){
-				var phone = result[0].phone.replace(/ /g,'');  
-				Contact.find({'phone' : phone}, function(err,result){
-					/*res.json({'contact' : contact, 'hypothesis' : result})*/
-					res.json(contact)
-				})
-			}
-		}else {
-			res.json(result);
-		}
+	Contact.find({_id : req.body._id}).exec(function (err, result) {
+		res.json(result[0]);
     });
 }
 

@@ -1,17 +1,15 @@
 <div class="inner-block">
-	<h4>Calendar</h4>
-	<div class="calendar-table">
-		<div class="header-table">
-			<div class="time-title">t</div>
-			<div class="day" ng-repeat="day in $ctrl.headerArray"> {{day.title}}</div>
-		</div>
-		<div class="body-table">
-			<div class="row-table" ng-repeat="item in $ctrl.tableTime.arrayHours">
-				<div class="time-value"><span>{{item}}</span></div>
-				<div class="hour-value" ng-class="{current: day.current}" ng-repeat="day in $ctrl.headerArray">
-					<contact-hour start-time="{{item}}" duration="1" table-time="$ctrl.tableTime"></contact-hour>
-				</div>
-			</div>
-		</div>
+	<h4>Calendar <span class="glyphicon glyphicon-cog" ng-click="$ctrl.showSettings = !$ctrl.showSettings"></span></h4>
+	<div class="calendar-settings form-inline" ng-show="$ctrl.showSettings">
+		<label class="checkbox-inline">
+		  <input type="checkbox" id="inlineCheckbox1" value="option1" ng-model="$ctrl.contact.fixedWorkingPeriod"> 
+		  Фиксированое расписание
+		</label>
+		<label class="checkbox-inline">
+			Период: 
+			<input type="number" class="form-control period" placeholder="Период" ng-model="$ctrl.contact.periodForClient">
+		</label>
+		<span class="btn green-btn" ng-click="$ctrl.save()">Сохранить</span>
 	</div>
+	<calendar ng-if="$ctrl.contact" contact="$ctrl.contact"></calendar>
 </div>

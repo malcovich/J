@@ -58,3 +58,16 @@
 		}
 	}
 }
+.calendar-settings{
+	margin-bottom:20px;
+	.checkbox-inline{
+	    width: auto;
+	    input {
+	    	width: auto;
+	        height: auto;
+	    }
+	}
+	.period{
+		max-width: 75px;
+	}
+}

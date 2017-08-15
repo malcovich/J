@@ -16,5 +16,7 @@ module.exports = mongoose.model('Contact', {
 	type_work_place :String,
 	address: String,
 	working_days : String,
-	working_days_by_contacts: []
+	working_days_by_contacts: [],
+	periodForClient : Number,
+	fixedWorkingPeriod: Boolean
 }); 

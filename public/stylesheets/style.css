@@ -1227,6 +1227,16 @@ input {
         background: #fc9c9c;
         opacity: 0.5; }
 
+.calendar-settings {
+  margin-bottom: 20px; }
+  .calendar-settings .checkbox-inline {
+    width: auto; }
+    .calendar-settings .checkbox-inline input {
+      width: auto;
+      height: auto; }
+  .calendar-settings .period {
+    max-width: 75px; }
+
 body {
   font-family: 'Open Sans', sans-serif; }
 

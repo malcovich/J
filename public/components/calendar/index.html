@@ -1,0 +1,20 @@
+<div class="calendar-table">
+	<div class="header-table">
+		<div class="time-title">t</div>
+		<div class="day" ng-repeat="day in $ctrl.headerArray"> {{day.title}}</div>
+	</div>
+	<div class="body-table">
+		<div class="row-table" ng-repeat="item in $ctrl.tableTime.arrayHours">
+			<div class="time-value"><span>{{item | date :'h:mm'}}</span></div>
+			<div class="hour-value" ng-class="{current: day.current}" ng-repeat="day in $ctrl.headerArray">
+				<contact-hour ng-if="$ctrl.isOwner" start-time="{{item}}" duration="{{$ctrl.contact.periodForClient}}" table-time="$ctrl.tableTime" day="day"
+					start-day = "{{$ctrl.contact.working_days_by_contacts[0].startday}}" end-day="{{$ctrl.contact.working_days_by_contacts[0].endday}}"
+				></contact-hour>
+
+				<user-hour ng-if="!$ctrl.isOwner" start-time="{{item}}" duration="{{$ctrl.contact.periodForClient}}" table-time="$ctrl.tableTime" day="day"
+					start-day = "{{$ctrl.contact.working_days_by_contacts[0].startday}}" end-day="{{$ctrl.contact.working_days_by_contacts[0].endday}}"
+				></user-hour>
+			</div>
+		</div>
+	</div>
+</div>
