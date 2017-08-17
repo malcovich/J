@@ -4,13 +4,14 @@ angular.module('MyApp').component('calendar', {
     contact: '=',
     user: '='
   },
-  controller: function(){
+  controller: function(ModalFactory,EventFactory ){
   	$ctrl = this;
   	
   	$ctrl.$onInit = function() {
       createTableHeader();
       createTimeTable();
       checkOwner();
+      getEventsList();
     };
 
     checkOwner = function(){
@@ -19,6 +20,19 @@ angular.module('MyApp').component('calendar', {
     	}else {
     		$ctrl.isOwner = false;
     	}
+    }
+
+
+    getEventsList = function(){
+    	EventFactory.getList($ctrl.contact._id).then(function(list){
+    		$ctrl.eventsList = list.data;
+    	})
+    }
+
+    $ctrl.openModalBooking = function(item){
+	    ModalFactory.openBookingModal('/public/contacts/bookingModal/bookingModal.html', 'BookingModalController', $ctrl.contact, item,  $ctrl.user).then(function(){
+
+	    });
     }
 
   	createTableHeader = function () {
@@ -37,6 +51,7 @@ angular.module('MyApp').component('calendar', {
 			var numberDate = new Date(yesterday).getUTCDate();
 			var numberMounth = new Date(yesterday).getUTCMonth();
 			$ctrl.headerArray[yesterdayIndex-1] = {title : arrayDays[yesterdayIndex-1]+', '+ numberDate + ' '+ arrayMounth[numberMounth],date: new Date(yesterday)};
+			$ctrl.headerArray[yesterdayIndex-1].pased = true;
 		}
 
 		var numberCurrentMounth = new Date().getUTCMonth();

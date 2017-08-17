@@ -14,6 +14,7 @@ var requestController = require('./server/controllers/requests-controller');
 var messagesController = require('./server/controllers/messages-controller');
 var searchController = require('./server/controllers/search-controller');
 var categoriesController = require('./server/controllers/categories-controller');
+var eventController = require('./server/controllers/event-controller');
 
 /*app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
@@ -75,6 +76,9 @@ app.post('/api/contact/updateInfo', conatactController.updateInfo);
 app.post('/api/contact/updateInfoByContact', conatactController.updateInfoByContact);
 app.post('/api/contact/raitingList', conatactController.raitingList);
 app.post('/api/contact/getAlloverList', conatactController.getAlloverList);
+
+app.post('/api/event/save', eventController.add);
+app.post('/api/event/getList', eventController.getList);
 
 app.post('/api/messages/addMessage', messagesController.addMessage);
 app.post('/api/messages/list', messagesController.list);

@@ -11,18 +11,19 @@ angular.module('MyApp')
     var userName = $ctrl.user.name;
     var cotnactFilds = ['type_work_place', 'address', 'working_days']
 
-     function setQuestion(){
-              $ctrl.fildsWithOutAnswer = cotnactFilds.filter(function(item){
-                if ($ctrl.contact[item] == undefined){
-                  return item;
-                }
-              });
-              $ctrl.selectedQuestion =  $ctrl.QBlock.filter(function(item){
-                if (item.t == $ctrl.fildsWithOutAnswer[0]){
-                  return item;
-                }
-              })
-            }
+    function setQuestion(){
+      $ctrl.fildsWithOutAnswer = cotnactFilds.filter(function(item){
+        if ($ctrl.contact[item] == undefined){
+          return item;
+        }
+      });
+
+      $ctrl.selectedQuestion =  $ctrl.QBlock.filter(function(item){
+        if (item.t == $ctrl.fildsWithOutAnswer[0]){
+          return item;
+        }
+      })
+    }
 
     $ctrl.QBlock = [
       { 
@@ -226,5 +227,7 @@ angular.module('MyApp')
                   console.info('Modal dismissed at: ' + new Date());
             });
         }
+
+       
    
 }]);

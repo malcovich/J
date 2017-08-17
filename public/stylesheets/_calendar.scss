@@ -46,13 +46,18 @@
 				float: left;
 				height: 59px;
 				border-right: 1px solid #e2e2e2;
+				position:relative;
 				&.current{
 					background: #eff4ff;
 				}
 				.not-working-hours{
 					border: 1px solid #fc9c9c;
-					background:#fc9c9c;
+					background-color:#fc9c9c;
 					opacity: 0.5;
+					/* background-image:  url('../images/lock.png');
+					background-position: top center;
+					background-repeat: no-repeat;
+					background-size: auto 80%; */
 				}
 			}
 		}
@@ -69,5 +74,30 @@
 	}
 	.period{
 		max-width: 75px;
+	}
+}
+.blocked-cell {
+	background:  url('../images/lock.png') top center no-repeat;
+	height: 60px;
+	background-size: auto 80%;
+	position:absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+.event {
+	background-color: rgba(201,228,202, 0.7);
+	position:absolute;
+	top: 2px;
+	left: 0;
+	width: 171px;
+	height: 56px;
+	margin-left:2px;
+	margin-right: 2px;
+	border-radius: 3px;
+	p{
+		padding: 5px 10px;
+		font-weight: 600;
+		font-size: 13px;
 	}
 }

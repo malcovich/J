@@ -1,0 +1,6 @@
+<div class="modal-body" id="modal-body">
+    <h4>Запись к специалисту {{vm.contact.name}}</h4>
+    <p> {{vm.timeObj.day.date | date: "d MMMM"}} на {{vm.time | date: "H:mm"}}</p>
+    <textarea class="textarea" ng-model="vm.coments">  </textarea>
+	<span class="btn green-btn" ng-click="vm.save()">Записаться</span>
+</div>

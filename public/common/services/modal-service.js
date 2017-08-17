@@ -32,7 +32,6 @@ angular.module('MyApp').factory('ModalFactory', function($uibModal) {
     }
 
     service.openAddContactModal = function(template, controller, categories, selected){
-        console.log("service", categories)
         var options = {
             templateUrl: template,
             controller: controller,
@@ -44,6 +43,27 @@ angular.module('MyApp').factory('ModalFactory', function($uibModal) {
                 },
                 selected : function(){
                     return selected
+                }
+            }
+        }
+        return $uibModal.open(options).result;
+    }
+
+    service.openBookingModal = function(template, controller, contact, item, user){
+        var options = {
+            templateUrl: template,
+            controller: controller,
+            controllerAs: 'vm',
+            backdrop: 'static',
+            resolve: {
+                contact : function(){
+                    return contact
+                },
+                item : function(){
+                    return item
+                },
+                user : function(){
+                    return user
                 }
             }
         }
