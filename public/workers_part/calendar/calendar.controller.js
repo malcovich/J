@@ -8,7 +8,8 @@ angular.module('MyApp')
    	    $ctrl.user = user.data;
 
    	    $http.post('/api/contact/item', {'_id': $ctrl.user.linked_contact}).then(function(res, err){
-            $ctrl.contact = res.data[0];
+            $ctrl.contact = res.data;
+            console.log($ctrl.contact)
         });
 	};
 

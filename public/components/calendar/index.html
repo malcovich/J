@@ -7,9 +7,7 @@
 		<div class="row-table" ng-repeat="item in $ctrl.tableTime.arrayHours">
 			<div class="time-value"><span>{{item | date :'h:mm'}}</span></div>
 			<div class="hour-value" ng-class="{current: day.current}" ng-repeat="day in $ctrl.headerArray">
-				<contact-hour ng-if="$ctrl.isOwner" start-time="{{item}}" duration="{{$ctrl.contact.periodForClient}}" table-time="$ctrl.tableTime" day="day"
-					start-day = "{{$ctrl.contact.working_days_by_contacts[0].startday}}" end-day="{{$ctrl.contact.working_days_by_contacts[0].endday}}"
-				></contact-hour>
+			
 
 				<user-hour ng-if="!$ctrl.isOwner && $ctrl.eventsList"  
 					start-time="item" 
@@ -21,6 +19,17 @@
 					events-list="$ctrl.eventsList"
 					user="$ctrl.user"
 				></user-hour>
+				<contact-hour ng-if="$ctrl.isOwner && $ctrl.eventsList"  
+					start-time="item" 
+					duration="{{$ctrl.contact.periodForClient}}" 
+					table-time="$ctrl.tableTime" day="day"
+					start-day = "{{$ctrl.contact.working_days_by_contacts[0].startday}}" 
+					end-day="{{$ctrl.contact.working_days_by_contacts[0].endday}}"
+					open-modal="$ctrl.openModalBooking"
+					events-list="$ctrl.eventsList"
+					user="$ctrl.user"
+					contact="$ctrl.contact"
+					></contact-hour>
 			</div>
 		</div>
 	</div>

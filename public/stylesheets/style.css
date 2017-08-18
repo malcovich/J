@@ -1265,6 +1265,18 @@ input {
     padding: 5px 10px;
     font-weight: 600;
     font-size: 13px; }
+  .event:hover .hover-block {
+    display: block; }
+  .event .hover-block {
+    display: none;
+    position: absolute;
+    width: 250px;
+    height: 400px;
+    left: -250px;
+    top: 0;
+    background: #fff;
+    border: 2px solid #eee;
+    z-index: 10; }
 
 body {
   font-family: 'Open Sans', sans-serif; }

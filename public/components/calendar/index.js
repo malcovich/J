@@ -15,7 +15,7 @@ angular.module('MyApp').component('calendar', {
     };
 
     checkOwner = function(){
-    	if($ctrl.user.linked_contact == $ctrl.user._id){
+    	if($ctrl.user.linked_contact == $ctrl.contact._id){
     		$ctrl.isOwner = true;
     	}else {
     		$ctrl.isOwner = false;

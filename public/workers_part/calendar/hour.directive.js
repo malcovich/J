@@ -3,18 +3,65 @@ angular.module('MyApp').directive('contactHour', function() {
     template: '',
     restrict: 'E',
     scope: {
-        startTime: '@',
+        startTime: '=',
         duration: '@',
         day: '=',
         startDay: '@',
         endDay: '@',
-        tableTime: '='
+        openModal : '=',
+        tableTime: '=',
+        eventsList: '=',
+        contact: '=',
+        user: '='
     },
     link: function(scope, elem, attrs) {
+        var item = {
+            time: scope.startTime,
+            day : scope.day
+        };
+        var events;
     	calculateAreaBeforeStart();
     	calculateAreaAfterEnd();
     	calculateRestDays();
-    	
+        findEventByDate();
+        calculatePasedDays();
+
+        elem.find('.working-hours').on('click',function(){
+            scope.openModal(item)
+        });
+
+        elem.find('.event').on('mouseover',function(){
+            
+        });
+
+        function findEventByDate (){
+            events = scope.eventsList.filter(function(event){
+                if ((new Date(event.time).getTime() == new Date(item.time).getTime()) && ((new Date(event.date).getUTCDate()== new Date(item.day.date).getUTCDate()) && (new Date(event.date).getUTCMonth() == new Date(item.day.date).getUTCMonth()))){
+                    return event
+                }
+            })
+            if((events.length > 0) && (events[0].contactId == scope.contact._id)) {
+                elem.append("<div class='event'><p></p></div>");
+                elem.find('.event p').text(events[0].userId.name);
+            }
+            else if (events.length > 0) {elem.append("<div class='blocked-cell'></div>");}  
+        }
+    	 function calculatePasedDays () {
+           if (scope.day.pased == true) {
+                if (elem.find('.event').length == 0){
+                    elem.append("<div class='blocked-cell'></div>");  
+                }
+           }
+           var msPerDay = 86400 * 1000;
+           ms1 = new Date(scope.startTime).getTime()
+           var beginning =  (ms1 % msPerDay);
+           var currentMs = (new Date().getTime() % msPerDay);
+           if ((scope.day.current == true) && (beginning <= currentMs)){
+                if (elem.find('.event').length == 0){
+                    elem.append("<div class='blocked-cell'></div>");  
+                }
+           }
+        }
 
     	function calculateAreaBeforeStart () {
     		if ((scope.tableTime.startTimeMinute !== 0) && (scope.tableTime.startTime == scope.startTime)){
@@ -40,12 +87,14 @@ angular.module('MyApp').directive('contactHour', function() {
 	    	}
     	};
     	function calculateRestDays () {
-    		console.log(new Date(scope.day.date).getDay(), scope.startDay);
     		var indexDay = new Date(scope.day.date).getDay() == 0 ? '7': new Date(scope.day.date).getDay();
     		if((indexDay<scope.startDay) || (scope.endDay < indexDay)){
     			elem.append("<div class='not-working-hours'></div>");
     			elem.find('.not-working-hours').css('height', '60px')
-    		}
+    		} else if(!scope.day.pased) {
+                elem.append("<div class='working-hours'></div>");
+                elem.find('.working-hours').css('height', '60px')
+            }
     	}
     }
   };

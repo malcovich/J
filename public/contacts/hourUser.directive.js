@@ -24,8 +24,6 @@ angular.module('MyApp').directive('userHour', function() {
         calculatePasedDays();
         findEventByDate();
 
-        
-
         elem.find('.working-hours').on('click',function(){
             scope.openModal(item)
         });
@@ -36,12 +34,11 @@ angular.module('MyApp').directive('userHour', function() {
                     return event
                 }
             })
-            if((events.length > 0) && (events[0].userId._id == scope.user._id)) {
+            if((events.length > 0) && (events[0].userId._id == scope.user._id) && ((scope.day.pased == false) || (scope.day.pased == undefined) )) {
                 elem.append("<div class='event'><p></p></div>");
                 elem.find('.event p').text(events[0].userId.name)
             }
             else if (events.length > 0) {elem.append("<div class='blocked-cell'></div>");}  
-
         }
 
         function calculatePasedDays () {

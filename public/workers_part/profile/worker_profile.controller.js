@@ -8,7 +8,7 @@ angular.module('MyApp')
    	    $ctrl.user = user.data;
 
    	    $http.post('/api/contact/item', {'_id': $ctrl.user.linked_contact}).then(function(res, err){
-            $ctrl.contact = res.data[0];
+            $ctrl.contact = res.data;
             $ctrl.copyContact = angular.copy($ctrl.contact);
 
             if ($ctrl.contact.type_work_place == "both"){
