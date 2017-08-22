@@ -9,8 +9,11 @@
   margin-bottom: 15px;
   margin-left: 25px; }
   .left-menu-item a:hover, .left-menu-item a:focus {
-    text-decoration: none; }
-
+    text-decoration: none; 
+   color: #727679;}
+.left-menu-item a.active {
+  font-weight: bold
+}
 .logo {
   text-decoration: none;
   font-size: 16px;
@@ -305,6 +308,9 @@ ul {
   .request-form h2 {
     margin: 0 0 10px 0;
     font-size: 21px; }
+
+.alert.margin {
+  margin: 0 30px; }
 
 .request-tabs ul.nav-tabs {
   background-color: #eff6f6;
@@ -896,7 +902,7 @@ table.list-contacts {
   margin-right: 0; }
 
 .category-contacts-list {
-  padding: 0 30px 0 30px; }
+  padding: 20px 30px 0 30px; }
 
 .login_btn {
   position: absolute;

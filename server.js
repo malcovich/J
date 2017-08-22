@@ -99,11 +99,13 @@ app.post('/api/requests/add', requestController.add);
 app.post('/api/requests/list', requestController.list);
 app.post('/api/requests/item', requestController.getItem);
 app.post('/api/requests/listFriendsRequests', requestController.listFriendsRequests);
+app.post('/api/requests/listFriendsRequestsNew', requestController.listFriendsRequestsNew);
 app.post('/api/requests/deleteRequest', requestController.deleteRequest);
 app.post('/api/requests/changeRequest', requestController.changeRequest);
 app.post('/api/requests/saveAnswer', requestController.saveAnswer);
 app.post('/api/requests/getAnswer', requestController.getAnswer);
 app.post('/api/requests/getAllAnswers', requestController.getAllAnswers);
+app.post('/api/requests/getAllAnswersNew', requestController.getAllAnswersNew);
 
 app.set('port', (process.env.PORT || 5000));
      

@@ -65,8 +65,8 @@
           </table>
     </div>
   </div>
-    <div >
-         <h4  ng-hide="$ctrl.request.userId._id == $ctrl.user._id">Вы рекомендуете:</h4>
+    <div>
+        <h4  ng-hide="$ctrl.request.userId._id == $ctrl.user._id || $ctrl.selectedContacts == 0">Вы рекомендуете:</h4>
         <div class="my-answer" ng-hide="$ctrl.request.userId._id == $ctrl.user._id">
             <table class="list-contacts">
                 <thead>

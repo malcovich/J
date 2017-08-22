@@ -4,69 +4,56 @@
   <h4 class="small-title">Рекомендации</h4>
 </div>
 	
-		<uib-tabset active="active" class="request-tabs">
-			<uib-tab index="0" heading="Для меня" ng-click="$ctrl.showAdd = true">
-			<div class="request-form" ng-show="$ctrl.showForm">
-				<h2>Спросите друзей о нужном специалисте:</h2>
-				<form>
-					<textarea ng-model="$ctrl.request.text" class="text-area"></textarea>
-					<button ng-click="$ctrl.save()" class="btn green-btn fr  ml-15">Сохранить</button>
-					<button  class="btn fr" ng-click="$ctrl.showForm = false">Отменить</button>
+<uib-tabset active="active" class="request-tabs">
+	<uib-tab index="0" heading="Для меня" ng-click="$ctrl.showAdd = true">
+	<div class="alert alert-info margin" ng-show="$ctrl.requestsList.length == 0">Вы еще не создали запросов на рекомендацию</div>
+	<div class="request-form" ng-show="$ctrl.showForm">
+		<h2>Спросите друзей о нужном специалисте:</h2>
+		<form>
+			<textarea ng-model="$ctrl.request.text" class="text-area"></textarea>
+			<button ng-click="$ctrl.save()" class="btn green-btn fr  ml-15">Сохранить</button>
+			<button  class="btn fr" ng-click="$ctrl.showForm = false">Отменить</button>
 
-				</form>
-			</div>
+		</form>
+	</div>
 
-				<div class="request-list">
-					<div class="request" ng-repeat="req in $ctrl.requestsList">
-						<div class="request-inner">
-							<div class="request-header">
-								<div class="request-date">{{req.requestDate | date}}</div>
-								<div class="request-autor-img">
-									<img ng-src="{{req.userId.smallImg}}" alt="">
-								</div>
-								<div class="request-autor-name" ui-sref="main.friend({id:req.userId._id })">{{req.userId.name}}</div>
-							</div>
-							<div class="request-body"  ui-sref="main.request({reqId: req._id})">{{req.text}}</div>
-							<div class="request-footer">
-								<span ng-click="$ctrl.deleteRequest(req._id)" class=" delete">Удалить</span>
-							</div>
+		<div class="request-list">
+			<div class="request" ng-repeat="req in $ctrl.requestsList">
+				<div class="request-inner">
+					<div class="request-header">
+						<div class="request-date">{{req.requestDate | date}}</div>
+						<div class="request-autor-img">
+							<img ng-src="{{req.userId.smallImg}}" alt="">
 						</div>
+						<div class="request-autor-name" ui-sref="main.friend({id:req.userId._id })">{{req.userId.name}}</div>
+					</div>
+					<div class="request-body"  ui-sref="main.request({reqId: req._id})">{{req.text}}</div>
+					<div class="request-footer">
+						<span ng-click="$ctrl.deleteRequest(req._id)" class=" delete">Удалить</span>
 					</div>
 				</div>
-				
-			</uib-tab>
-			<uib-tab index="1" heading="Для друзей" ng-click="$ctrl.showAdd = false">
-
-				<div class="request" ng-repeat="req in  $ctrl.friendsRequestsList">
-						<div class="request-inner">
-							<div class="request-header">
-								<div class="request-date">{{req.requestDate | date}}</div>
-								<div class="request-autor-img">
-									<img ng-src="{{req.userId.smallImg}}" alt="">
-								</div>
-								<div class="request-autor-name" ui-sref="main.friend({id:req.userId._id })">{{req.userId.name}}</div>
-							</div>
-							<div class="request-body"  ui-sref="main.request({reqId: req._id})">{{req.text}}</div>
-							<!-- <div class="request-footer">
-								<span ng-click="$ctrl.deleteRequest(req._id)" class=" delete">Удалить</span>s
-							</div> -->
+			</div>
+		</div>
+		
+	</uib-tab>
+	<uib-tab index="1" heading="Для друзей" ng-click="$ctrl.showAdd = false">
+		<div class="alert alert-info margin" ng-show="$ctrl.friendsRequestsList.length == 0">Ваши друзья еще не создали запросов на рекомендацию</div>
+		<div class="request-list">
+		<div class="request" ng-repeat="req in  $ctrl.friendsRequestsList">
+				<div class="request-inner">
+					<div class="request-header">
+						<div class="request-date">{{req.requestDate | date}}</div>
+						<div class="request-autor-img">
+							<img ng-src="{{req.userId.smallImg}}" alt="">
 						</div>
+						<div class="request-autor-name" ui-sref="main.friend({id:req.userId._id })">{{req.userId.name}}</div>
 					</div>
-				
-			</uib-tab>
-		</uib-tabset>
-
-<!-- 
-<script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Отредактируйте ваш запрос</h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-      <textarea class="text-area" ng-model="vm.request.text">{{vm.request.text}}</textarea>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
-    </div>
-</script>
- -->
+					<div class="request-body"  ui-sref="main.request({reqId: req._id})">{{req.text}}</div>
+					<!-- <div class="request-footer">
+						<span ng-click="$ctrl.deleteRequest(req._id)" class=" delete">Удалить</span>s
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</uib-tab>
+</uib-tabset>

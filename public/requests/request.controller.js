@@ -39,12 +39,13 @@ angular.module('MyApp')
 
         $http.post('/api/requests/getAnswer',  {'userId': $ctrl.user._id, 'reqId': $stateParams.reqId}).then(function(res){
           $ctrl.myAnswer = res.data;
-          console.log(res.data)
-          $ctrl.myAnswer[0].contacts.forEach(function(contact){
-            contact.category = $ctrl.categories.filter(function(item){
-              if (item._id == contact.category) return item
+          if ($ctrl.myAnswer.length > 0){
+            $ctrl.myAnswer[0].contacts.forEach(function(contact){
+              contact.category = $ctrl.categories.filter(function(item){
+                if (item._id == contact.category) return item
+              })
             })
-          })
+          }
           console.log($ctrl.myAnswer)
           $ctrl.selectedContacts = res.data[0] ? res.data[0].contacts: [];
 

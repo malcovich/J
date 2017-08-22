@@ -46,6 +46,24 @@ module.exports.listFriendsRequests = function(req, res){
 	})
 }
 
+module.exports.listFriendsRequestsNew = function(req, res){
+	//need add new params DELETED: FALSE
+	Friend.find({$and: [ {$or: [ {useridinvite : req.param('userId')} , {useridaccept : req.param('userId')}]} , { accepted: true }]}).populate('useridaccept').populate('useridinvite').exec(function (err, result) {
+		for (var i = 0; i < result.length; i++) {
+	        if (result[i].useridaccept._id ==  req.param('userId')) {
+	          result.splice(i, 1, result[i].useridinvite);
+	        } else {
+	          result.splice(i, 1, result[i].useridaccept);
+	        }
+      	}
+		var ids = result;
+		Request.find({$and :[{ userId :  {$in: ids}}, {'deleted': false}, {'viewed': {'$ne': req.param('userId') }}]}).populate('userId').exec(function (err, requests) {
+	       res.json(requests);
+	    });
+
+	})
+}
+
 module.exports.deleteRequest = function(req, res){
 	Request.findByIdAndUpdate(req.body.requestId , { 'deleted': true }, {new :true}, function(err, request) {
 		res.json(request)
@@ -92,4 +110,21 @@ module.exports.getAllAnswers = function(req, res){
 		.exec(function(err, result) {
 		    res.json(result);
 		}); 
+}
+
+module.exports.list = function(req, res){
+	Request.find({$and :[{userId : req.param('userId')}, {deleted: false}]}).populate("userId").exec(function (err, result) {
+       res.json(result);
+    });
+}
+module.exports.getAllAnswersNew = function(req, res){
+	Request.find({$and :[{userId : req.param('userId')}, {deleted: false}]}).exec(function (err, result) {
+		var reqId = result.map(function(item){
+			return item._id;
+		})
+		Answer.find($and :[{requestId: req.param('reqId'),{'viewed': {'$ne': req.param('userId') }}]}).populate('contacts').populate('userId')
+			.exec(function(err, result) {
+			    res.json(result);
+		}); 
+	});
 }

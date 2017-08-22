@@ -11,7 +11,7 @@
 		<h4>Пользователи:</h4>
 		<ul class="friends-list">
 	        <li ng-repeat="user in $ctrl.searchResut.users">
-	        	<div class="btn green-btn addBtn"  ng-show="user.isShowed" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить </div>
+	        	<div class="btn green-btn addBtn"  ng-show="user.isShowed" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить</div>
 	        	<span class="item_in_list" ng-show="user.isRequest &&  user._id != $ctrl.user._id">Отправлен</span>
 	            <img ng-src="{{user.smallImg || '/public/images/vectorpaint1.png'}}">
 	            <div class="info">
@@ -26,13 +26,15 @@
 
 		
 		<h4>Специалисты:</h4>
-		<ul class="user-results-list">
+		<ul class="friends-list">
 			<li ng-repeat="contact in $ctrl.searchResut.contacts" >
 				<div class="btn green-btn" style="float: right" ng-click="$ctrl.addToContacts(contact)" ng-hide="contact.userId.indexOf($ctrl.user._id) != -1">Добавить</div>
 				<div class="btn" style="float: right" ng-show="contact.userId.indexOf($ctrl.user._id) != -1">У вас в контактах</div>
 				<div class="user-img"><img src="{{contacts.img || '/public/images/vectorpaint1.png'}}"></div>
-				<p class="user-name">{{contact.name}}</p>
-				<p class="user-name">{{contact.spec}}</p>
+				<div class="info">
+					<p  class="name" ui-sref="main.contact({id : user._id})" style="cursor: pointer;">{{contact.name}}</p>
+					<p class="phone">{{contact.spec}}</p>
+				 </div>
 			</li>
 		</ul>
 	</div>

@@ -105,13 +105,18 @@
 		font-size:21px;
 	}
 }
+.alert.margin {
+	margin: 0 30px;
+}
 .request-tabs  ul{
+
 	&.nav-tabs{
 		background-color: #eff6f6;
 		padding-left: 30px;
 		padding-right: 10px;
 		padding-top: 5px;
 		margin-bottom: 15px;
+		
 	}
 	li {
 		margin-bottom: -2px !important;

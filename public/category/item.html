@@ -7,24 +7,9 @@
     <div class="counter users">Добавленых пользователем специалистов: <span>{{$ctrl.category.contacts.length}}</span></div>
   </div>
 </div>
-
-<!-- <ul class="breadcrumbs">
-  <li><i class="fa fa-home" aria-hidden="true"></i></li>
-  <li>-</li>
-  <li><span ui-sref="main.categories">Категории</span></li>
-</ul> -->
 <div class="category-contacts-list">
- <!--  <div ng-repeat="contact in $ctrl.category.contacts" class="contact-item" ui-sref="main.contact({id:contact._id})"> 
-    <div class="contact-item-img">
-      <img ng-src="{{contacts.img || '/public/images/vectorpaint1.png'}}">
-    </div>
-    <div class="contact-item-info">
-      <h4>{{contact.name}}</h4>
-      <p>{{contact.spec}}</p>
-    </div>
-  </div> -->
-
-  <table class="list-contacts">
+<div class="alert alert-info" ng-show="$ctrl.category.contacts.length == 0">В даной категории еще нет специалистов </div>
+  <table class="list-contacts" ng-hide="$ctrl.category.contacts.length == 0">
     <thead>
       <tr>
           <th class="type">Тип</th>
@@ -39,7 +24,7 @@
       <tr ng-repeat="contact in $ctrl.category.contacts" >
         <td class="type"><span class="contact-icon-type orange"></span></td>
         <td class="name" ui-sref="main.contact({id:contact._id})">
-          <div class="contact-img"><img ng-src="{{contacts.img || '/public/images/vectorpaint1.png'}}"></div>{{contact.name}}</td>
+        <div class="contact-img"><img ng-src="{{contact.img || '/public/images/vectorpaint1.png'}}"></div>{{contact.name}}</td>
         <td >{{$ctrl.category.category.title}}</td>
         <td>{{contact.spec}}</td>
         <td><input-stars

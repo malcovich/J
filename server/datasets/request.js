@@ -4,5 +4,6 @@ module.exports = mongoose.model('Request', {
 	answerId: [String],
 	requestDate: String,
 	userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-	deleted: Boolean
+	deleted: Boolean,
+	viewed : [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 }); 
