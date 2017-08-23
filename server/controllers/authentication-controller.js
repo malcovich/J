@@ -74,7 +74,6 @@ module.exports.signup = function(req, res){
                             user.linked_contact = contact._id;
                             user.token = jwt.sign(user, process.env.JWT_SECRET);
                             user.save(function(err, user1) {
-                                console.log(user1)
                                 res.json({
                                     type: true,
                                     data: user1,
@@ -205,7 +204,6 @@ module.exports.findByContactsList = function(req, res){
 
 module.exports.uploadBounds = function(req, res){
     var bounds = req.body.bounds;
-    console.log(bounds)
     var w = req.body.bounds.right - req.body.bounds.left;
     var h = req.body.bounds.top - req.body.bounds.bottom;
     var x = req.body.bounds.left;
@@ -240,7 +238,6 @@ module.exports.uploadBounds = function(req, res){
 
 module.exports.addPhoto = function(req, res){
     var file = req.files.file;
-    console.log(file)
     var RES = res;
     User.findByIdAndUpdate(req.body.id , {'img': file.path , imgName : file.name, bounds : req.body.bounds}, {new: true},function(err, u) {
         if (err) {throw err;}else {RES.json(u)}

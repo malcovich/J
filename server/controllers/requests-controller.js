@@ -79,9 +79,7 @@ module.exports.changeRequest = function(req, res){
 
 module.exports.saveAnswer = function(req, res){
 	var requestId = req.param('requestId')
-	console.log('sdfsf',requestId )
 	Answer.find({ $and: [ {userId : req.param('userId')}, {requestId: requestId}]}).exec(function(err, answer){
-		console.log('ansver',answer)
 		if (answer.length > 0){
 			answer[0].contacts = req.param('contacts')
 			answer[0].save(function(err,ans){
@@ -121,8 +119,9 @@ module.exports.getAllAnswersNew = function(req, res){
 	Request.find({$and :[{userId : req.param('userId')}, {deleted: false}]}).exec(function (err, result) {
 		var reqId = result.map(function(item){
 			return item._id;
-		})
-		Answer.find($and :[{requestId: req.param('reqId'),{'viewed': {'$ne': req.param('userId') }}]}).populate('contacts').populate('userId')
+		});
+		console.log(reqId)
+		Answer.find({$and :[{'requestId': {$in :reqId}},{'viewed': {'$ne': req.param('userId')}}]}).populate('contacts').populate('userId')
 			.exec(function(err, result) {
 			    res.json(result);
 		}); 

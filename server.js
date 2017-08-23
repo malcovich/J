@@ -112,9 +112,7 @@ app.set('port', (process.env.PORT || 5000));
 app.post('/api/search', searchController.search);
 var User = require('./server/datasets/users');
 app.get('/api/me', ensureAuthorized, function(req, res) {
-    console.log(req.token)
     User.findOne({token: req.token}, function(err, user) {
-        console.log(user)
         if (err) {
             res.json({
                 type: false,
