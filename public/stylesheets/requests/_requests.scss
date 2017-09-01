@@ -6,48 +6,58 @@
 	}
 }
 .request{
-	width: 50%;
-	float:left;
-	padding: 15px 30px 15px 30px;
-	.request-inner{
-		border: 1px solid #dfe2e5;
+	transition-property: all;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    transition-duration: .3s;
+	flex: 0 0 calc(33% - 20px);
+	background-color: #fff;
+	border-bottom: 3px solid #eee;
+	margin: 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	&:hover{
+		border-color: #72c02c ;
 	}
-	.request-header{
-		padding: 25px 25px 0 25px;
-		overflow: hidden;
+	.request-inner{
+		padding: 20px;
+		display: flex;
+	}
 		.request-autor-img{
-			width: 50px;
-			height: 50px;
+			width: 70px;
+			height: 70px;
 			border-radius: 50%;
 			overflow: hidden;
-			float: left;
-			margin-right: 10px;
+			display: flex;
+			margin-right: 20px;
 			img {
 				max-width: 100%;
 			}
 		}
 		.request-autor-name{
-			float: left;
-			line-height: 45px;
-			color: #b4b7c6;
+			font-weight: 700;
+			color: rgb(85,85,85);
+			line-height: 19.6px;
+			font-size: 14px;
+			margin:0;
 		}
 		.request-date{
-			float: right;
-			text-transform: uppercase;
-			background-color: #f8f9fe;
-			padding: 6px 12px;
-			border-radius:12px;
-			font-size: 12px;
-			font-weight: bold;
-			color: #aeb2c1;
+			font-size: 13px;
+			color: rgb(119,119,119);
+			line-height: 20.8px;
 		}
-	}
 	.request-body{
-		padding:  18px 25px;
-		color: #6b6f81;
-		font-size: 18px;
-		font-weight: 500;
-		letter-spacing: 0.9px;
+		font-size: 17.5px;
+		    line-height: 1.6;
+		font-weight: 300;
+		color: #555;
+		font-family: "Open Sans", Helvetica, Arial, sans-serif;
+		flex: 1 1 0%;
+		-webkit-box-flex: 1;
+		p{
+			margin-bottom: 15px;
+			min-height: 82px;
+		}
 	}
 	.request-footer{
 		background-color: #fbfcfe;
@@ -66,11 +76,30 @@
 }
 .request-list {
 	overflow: hidden;
+	background-color: #f7f7f7 !important;
+	 display: flex;
+    flex-flow: row wrap;
+    padding: 10px;
 }
 
 .sub-header.request-page {
 	border: none;
-	min-height: 80px;
+	min-height: 130px;
+	background-image: url("../images/pattern5.png");
+	background-color: #72c02c;
+	.small-title{
+		padding-top: 30px!important;
+		color: #fff !important;
+		font-weight: 500!important;
+		font-size: 19px!important;
+		line-height: 30.2px!important;
+		text-transform: uppercase!important;
+	}
+	.white-btn {
+		background: transparent;
+		border-color: #fff;
+		color: #fff;
+	}
 }
 .form-block {
 	padding: 27px;
@@ -92,7 +121,7 @@
 	border: 2px solid #F1F2F4;
 }
 .request-tabs  {
-	
+	margin-top: -45px;
 }
 .request-form{
 	overflow: hidden;
@@ -111,7 +140,6 @@
 .request-tabs  ul{
 
 	&.nav-tabs{
-		background-color: #eff6f6;
 		padding-left: 30px;
 		padding-right: 10px;
 		padding-top: 5px;
@@ -124,13 +152,16 @@
 			margin-right: 40px;
 			a {
 				border: 0px;
-				background-color: #eff6f6;
 				font-size: 14px;
 				padding: 10px 0;
-				color: #588386;
+				color: #fff;
+				font-weight: 600;
+				background-color: transparent;
 				&:hover, &:focus {
 					border: 0 !important;
-					background-color: #eff6f6;
+					background-color: transparent;
+					color:#fff;
+					font-weight: 600;
 				}
 			}
 			margin-bottom: 0px;
@@ -143,12 +174,12 @@
 		
 		a { 
 			border: 0;
-			color: #B9BFCA;
+			color: #fff;
 			font-size: 14px;
 				padding: 10px 0;
 			&:hover {
-				color: #588386;
-				background-color: #eff6f6;
+				color: #fff;
+				background-color: transparent;
 				border-bottom: 2px solid #1F97EE !important;
 			}
 			

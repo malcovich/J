@@ -20,7 +20,9 @@ angular.module('MyApp')
         	 console.log('2',CountFactory.getCounterRequests(), $scope.listAnswersNew.length > 0 ? 1 : 0)
          	CountFactory.setCounterRequests(CountFactory.getCounterRequests() + $scope.listAnswersNew.length > 0 ? 1 : 0 );
 	        $scope.friendsRequestsCount = CountFactory.getCounterRequests();
-        })
+        });
+
+        
 
 		$scope.$on("setTitle",function (event, data) {
 			$scope.title = data.title;
