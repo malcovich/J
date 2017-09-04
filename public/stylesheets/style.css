@@ -23,18 +23,16 @@
   color:#72c02c;
 }
 .bage-menu {
-    min-width: 26px;
-    min-height: 18px;
-    padding: 3px;
     position: absolute;
-    display: inline-block;
-    text-align: center;
-    font-size: 13px;
-    z-index: 3;
-    line-height: 15px;
-    color:#fff;
-    background: #f00;
+    color: var(--yt-swatch-important-text, hsl(0, 0%, 100%));
+    background-color: hsl(3, 81.8%, 49.6%);
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
+    line-height: 18px;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
     border: 3px solid #fff;
     top: 0;
     right: 0;
