@@ -33,7 +33,6 @@
     font-size: 10px;
     text-align: center;
     cursor: pointer;
-    border: 3px solid #fff;
     top: 0;
     right: 0;
     transform: translate(100%, 0);
@@ -1168,16 +1167,42 @@ input {
   text-align: center; }
 
 .sign-in-modal {
-  width: 820px;
-  overflow: hidden; }
+  margin: 100px auto;
+  width: 1100px;
+  position: relative;
+  ; }
+  .sign-in-modal ul {
+    list-style: none;
+  }
+  .sign-in-modal ul{
+    margin-top: 40px;
+  }
+  .sign-in-modal ul li span {
+    width: 63px;
+    height: 63px;
+    display: inline-block;
+    color:#72c02c;
+    font-size: 45px;
+  }
   .sign-in-modal .left-block {
     float: left;
     padding: 55px 30px 30px 30px;
-    width: 340px; }
-    .sign-in-modal .left-block h3 {
-      font-size: 24px;
+    width: 540px; }
+    .sign-in-modal .left-block h2 {
+      font-size: 35px;
       margin: 0 0 30px 0;
-      color: #354052; }
+      color: rgb(85,85,85);
+      font-family: "Open Sans", Helvetica, Arial, sans-serif;
+      font-weight: 300; 
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+    .sign-in-modal .left-block p {
+      color:#999 ;
+      font-size: 14px;
+      line-height: 22px;
+      font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    }
     .sign-in-modal .left-block label {
       width: 100%;
       font-size: 14px;
@@ -1197,9 +1222,94 @@ input {
     .sign-in-modal .left-block .line {
       border-top: 1px solid #e6eaee;
       margin: 20px 0; }
+  .border-block{
+    width: 443px;
+    padding: 50px 30px;
+    border-radius: 3px ;
+    border: 1px solid #ddd;
+    margin-left: 95px;
+    margin-bottom: 50px;
+  }
+  .border-block h1 {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: 24.5px;
+    line-height: 34.3px;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+  .border-block .input-group {
+    width: 100%;
+    margin-bottom: 21px;
+  }
+  .border-block input[type="text"] {
+    height: 49px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  }
+  .border-block input[type="password"] {
+    height: 49px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  }
+  .border-block input:focus {
+    outline: none;
+  }
+  .sign-in-btn{
+    background: #72c02c;
+    color: #fff;
+    width:100%;
+    position: relative;
+    transition: .2s ease;
+    cursor: pointer;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    padding: 13px 14px;
+    font-size: 16px;
+    height: 45px;
+    border-radius: 3px;
+  }
+  .border-block inputz:placeholder {
+     color: #999;
+  }
+  .border-block .input-group-addon{
+    width: 45px;
+    color: #999;
+    border-color:#ddd !important;
+    font-size: 14px;
+    background: #fff!important;
+    font-weight: 400;
+    line-height: 1.25;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 3px;
+    height: 49px;
+    padding:7px 10.5px;
+  }
+  .sign-in-modal .right-block .help-block {
+     margin-left: 95px;
+  }
+  .sign-in-modal .right-block .help-block p{
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    line-height: 22px;
+  }
+  .sign-in-modal .right-block .help-block a {
+    color: #66ab27;
+    font-weight: bold;
+  }
   .sign-in-modal .right-block {
     float: left;
-    width: 480px;
+    width: 550px;
     overflow: hidden;
     position: relative; }
     .sign-in-modal .right-block img {

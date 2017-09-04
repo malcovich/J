@@ -1,49 +1,85 @@
 <div class="container">
-	<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
-			<div class="row">
-				<h3>Create Account</h3>
+<!-- 	<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<div class="row">
+			<h3>Create Account</h3> -->
 				<!-- <div ng-click="$ctrl.createFB()">Зарегестрироваться с помощью фейсбук</div> -->
-			</div>
+		<!-- 	</div>
+				</div>
+				<div class="col-sm-6 col-sm-offset-3" ng-show="$ctrl.showCustomer">
+		<div class="row">
+			<label for="email">Email Address:</label>
+			<input type="text" ng-model="$ctrl.newUser.email" class="form-control" id="email" requered name="email">
+			<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block error">Enter a valid email.</p>
 		</div>
-		<div class="col-sm-6 col-sm-offset-3" ng-show="$ctrl.showCustomer">
-			<div class="row">
-				<label for="email">Email Address:</label>
-				<input type="text" ng-model="$ctrl.newUser.email" class="form-control" id="email" requered name="email">
-				<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block error">Enter a valid email.</p>
-			</div>
-			<div class="row">
-				<label for="password">Password:</label>
-				<input type="password" name="password" ng-model="$ctrl.newUser.password" class="form-control" id="password" requered>
-			</div>
-			<div class="row">
-				<label for="name">Name:</label>
-				<input type="text" ng-model="$ctrl.newUser.name" name="name" class="form-control" id="name" requered>
-			</div>
-			<div class="buttons-block row">
-				<span ng-click="$ctrl.showCustomer = false" class="worker-link">Я worker</span>
-				<button ng-click="$ctrl.createUser()" class="btn green-btn">Create accaunt</button>
-			</div>
+		<div class="row">
+			<label for="password">Password:</label>
+			<input type="password" name="password" ng-model="$ctrl.newUser.password" class="form-control" id="password" requered>
 		</div>
-
-		<div class="col-sm-6 col-sm-offset-3" ng-hide="$ctrl.showCustomer">
-			<div class="row">
-				<label for="nameW">Name contact:</label>
-				<input type="text" ng-model="$ctrl.newContact.name" class="form-control" id="nameW">
-			</div>
-
-			<div class="row">
-				<label for="emailW">Email Address:</label>
-				<input type="text" ng-model="$ctrl.newContact.email" class="form-control" id="emailW">
-			</div>
-			<div class="row">
-				<label for="emailW">Password:</label>
-				<input type="password" ng-model="$ctrl.newContact.password" class="form-control" id="passwordW">
-			</div>
-			<div class="buttons-block row">
-				<span ng-click="$ctrl.showCustomer = true" class="worker-link">Я customer</span>
-				<button ng-click="$ctrl.createContact()" class="btn green-btn">Create accaunt</button>
-			</div>
+		<div class="row">
+			<label for="name">Name:</label>
+			<input type="text" ng-model="$ctrl.newUser.name" name="name" class="form-control" id="name" requered>
 		</div>
+		<div class="buttons-block row">
+			<span ng-click="$ctrl.showCustomer = false" class="worker-link">Я worker</span>
+			<button ng-click="$ctrl.createUser()" class="btn green-btn">Create accaunt</button>
+		</div>
+				</div>
+		
+				<div class="col-sm-6 col-sm-offset-3" ng-hide="$ctrl.showCustomer">
+		<div class="row">
+			<label for="nameW">Name contact:</label>
+			<input type="text" ng-model="$ctrl.newContact.name" class="form-control" id="nameW">
+		</div>
+		
+		<div class="row">
+			<label for="emailW">Email Address:</label>
+			<input type="text" ng-model="$ctrl.newContact.email" class="form-control" id="emailW">
+		</div>
+		<div class="row">
+			<label for="emailW">Password:</label>
+			<input type="password" ng-model="$ctrl.newContact.password" class="form-control" id="passwordW">
+		</div>
+		<div class="buttons-block row">
+			<span ng-click="$ctrl.showCustomer = true" class="worker-link">Я customer</span>
+			<button ng-click="$ctrl.createContact()" class="btn green-btn">Create accaunt</button>
+		</div>
+				</div>
+			</div> -->
+</div>
+<div class="sign-in-modal"> 
+	<div class="left-block">
+		<h2>Ласкаво просимо до Profee</h2>
+		<p>Швидкий пошук потрібних спеціалістів, по рекомендаціям ваших друзів та знайомих.</p>
+		<ul>
+			<li>
+				<span>
+					<i class="icon-communication-026 u-line-icon-pro"></i>
+				</span>
+			</li>
+		</ul>
 	</div>
+	<div class="right-block">
+		<div class="border-block">
+			<h1>Реєстрація</h1>
+			<form name="loginForm" novalidate>
+				<div class="input-group">
+					<input type="text" placeholder="Емейл адреса" ng-model="$ctrl.login.email" required>
+				</div>
+				<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block error">Enter a valid email.</p>
+				<div class="input-group">
+					<input type="password" placeholder="Пароль" ng-model="$ctrl.login.password" required>
+				</div>
+				<button class="sign-in-btn " ng-click="$ctrl.login(loginForm.$invalid, loginForm.$pristine )" ng-disabled="(loginForm.$invalid == true) || (loginForm.$pristine == true)">Зареєструватися</button>
+			
+
+			
+
+			<!-- <button class="green-btn btn" ng-click="$ctrl.loginFB() " >Login with Facebook</button> -->
+
+		</form>
+		</div>
+		<div class="help-block">
+			<p>Не маєте акаунту? <a href="/#!/signup">Зареєструйтеся</a></p>
+		</div>
 </div>

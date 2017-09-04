@@ -1,26 +1,38 @@
 <div class="sign-in-modal"> 
-    	<div class="logo-modal">
-    		<img src="public/images/1.png" alt="">
-    	</div>
-		<div class="left-block">
-			<h3>Sign In</h3>
+	<div class="left-block">
+		<h2>Ласкаво просимо до Profee</h2>
+		<p>Швидкий пошук потрібних спеціалістів, по рекомендаціям ваших друзів та знайомих.</p>
+		<ul>
+			<li>
+				<span>
+					<i class="icon-communication-026 u-line-icon-pro"></i>
+				</span>
+			</li>
+		</ul>
+	</div>
+	<div class="right-block">
+		<div class="border-block">
+			<h1>Вхід до аккаунту</h1>
 			<form name="loginForm" novalidate>
-				<label for="email" >Email Address</label>
-				<input type="email" id="email" name="email" placeholder="Email" ng-model="$ctrl.login.email" required>
+				<div class="input-group">
+					<span class="input-group-addon"></span>
+					<input type="text" placeholder="Емейл адреса" ng-model="$ctrl.login.email" required>
+				</div>
 				<p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block error">Enter a valid email.</p>
-				<label for="password">Password</label>
-				<input type="pasword" id="password" placeholder="Password" ng-model="$ctrl.login.password" required>
-				<button class="green-btn btn" ng-click="$ctrl.login(loginForm.$invalid, loginForm.$pristine )" ng-disabled="(loginForm.$invalid == true) || (loginForm.$pristine == true)">Sign in</button>
+				<div class="input-group">
+					<span class="input-group-addon"></span>
+					<input type="password" placeholder="Пароль" ng-model="$ctrl.login.password" required>
+				</div>
+				<button class="sign-in-btn " ng-click="$ctrl.login(loginForm.$invalid, loginForm.$pristine )" ng-disabled="(loginForm.$invalid == true) || (loginForm.$pristine == true)">Увійти</button>
+			
 
-				<!-- <button class="green-btn btn" ng-click="$ctrl.loginFB() " >Login with Facebook</button> -->
+			
 
-				<div class="line"></div>
-				<button class="btn" ui-sref="signUp">Create Account</button>
-			</form>
+			<!-- <button class="green-btn btn" ng-click="$ctrl.loginFB() " >Login with Facebook</button> -->
+
+		</form>
 		</div>
-		<div class="right-block">
-			<img src="public/images/2.jpg" alt="">
-			<div class="overlay"></div>
-			<h4>Welcome to Profee!</h4>
+		<div class="help-block">
+			<p>Не маєте акаунту? <a href="/#!/signup">Зареєструйтеся</a></p>
 		</div>
-    </div>
+</div>
