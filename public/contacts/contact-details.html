@@ -5,9 +5,9 @@
 		</div>
 	</div>
 	<div class="contact-left-block">
-		<div class="inner-block">
-			<div class="contact-information">
-				<div class="other-info">
+		<div class=" u-shadow-v11 rounded g-pa-30">
+			<div class="contact-information ">
+				<div class="other-info row" >
 					<div class="contacts-raiting">
 						<p>Оценка <b>{{$ctrl.raitingList.length}}</b> пользователей</p>
 						<input-stars
@@ -36,38 +36,45 @@
 					</div>
 					
 			</div>
-				<div class="contact-photo">
+			<div class="col-md-10 g-mb-30 g-mb-0--md">
+				<div class="contact-photo ">
 					<img src="public/images/3.jpg">	
 				</div>
-				<div class="contact-text-info">
-					<h1>{{$ctrl.contact.name}}</h1>
-					<p class="contact-spesalition">{{$ctrl.contact.spec}}</p>
-					<div class="contact-phone">
-						<p >тел: {{$ctrl.contact.phone}}</p>
-					</div>
+				<div class="contact-text-info col-md-10 ">
+					<h1 class="d-block g-mb-15 u-link-v5 g-font-size-24 g-color-gray-dark-v1">{{$ctrl.contact.name}}</h1>
+					<h4 class="h5 g-font-weight-300 g-mb-15 g-color-primary">
+                      <i class="icon-badge g-pos-rel g-top-1 g-mr-5 g-color-gray-dark-v5"></i> {{$ctrl.contact.spec}}
+                    </h4>
+                    <h4 class="h6 g-font-weight-300 g-mb-10">
+                      <i class="icon-phone g-pos-rel g-top-1 g-mr-5 g-color-gray-dark-v5"></i> {{$ctrl.contact.phone}}
+                    </h4>
+					
 					<!-- <div class="buttons-block">
 						<span class="btn green-btn" ng-click="$ctrl.opentMessageModal()"> Написать сообщение</span>
 					</div> -->
-					<div class="buttons-block">
-						<span class="btn " ng-click="$ctrl.deleteContact()">Удалить</span>
-					</div>
-					<div class="buttons-block">
-						<span>Общий контакт с: </span>
-						<span ng-repeat="f in $ctrl.friendsHasContact" ui-sref="main.friend({id: f._id})">{{f.name}}</span>
+					<div class="row">
+						<div class="buttons-block col-md-10">
+							<span ng-if="$ctrl.friendsHasContact.length > 0">Общий контакт с: </span>
+							<span ng-if="$ctrl.friendsHasContact.length > 0" ng-repeat="f in $ctrl.friendsHasContact" ui-sref="main.friend({id: f._id})">{{f.name}}</span>
+						</div>
+						<div class="buttons-block col-md-2">
+							<span class="btn btn-md u-btn-outline-bluegray g-mr-10 g-mb-15 " ng-click="$ctrl.deleteContact()">Удалить</span>
+						</div>
 					</div>
 				</div>
 			</div>
-
+			</div>
+			
 			<div class="tab-block">
-				<uib-tabset active="active" class="request-tabs">
+				<uib-tabset active="active" >
 					<uib-tab index="0" heading="Описание">
-					<!-- 	<h4 class="sorry-text">К сожалению, данный контакт еще не зарегистривованный в нашем сервисе.<br> <span>Пригласите его</span>, что бы он смог заполнить этот раздел!</h4> -->
-					<div class="contact-info">
-						<p>Принимает в офисе : <span>{{$ctrl.isWorkedInOfice()}}</span></p>
-						<p>Принимает у клиента : <span>{{$ctrl.isWorkedInHome()}}</span></p>
-						<p>Адрес : <span>{{$ctrl.contact.address}}</span></p>
-						<p>Рабочие дни : <span>{{$ctrl.contact.working_days}}</span></p>
-					</div>
+						<!-- 	<h4 class="sorry-text">К сожалению, данный контакт еще не зарегистривованный в нашем сервисе.<br> <span>Пригласите его</span>, что бы он смог заполнить этот раздел!</h4> -->
+						<div class="contact-info">
+							<p>Принимает в офисе : <span>{{$ctrl.isWorkedInOfice()}}</span></p>
+							<p>Принимает у клиента : <span>{{$ctrl.isWorkedInHome()}}</span></p>
+							<p>Адрес : <span>{{$ctrl.contact.address}}</span></p>
+							<p>Рабочие дни : <span>{{$ctrl.contact.working_days}}</span></p>
+						</div>
 					</uib-tab>
 					<uib-tab index="1" heading="Отзывы пользователей">
 						<div>
@@ -97,7 +104,6 @@
 						</div>
 					</uib-tab>
 					<uib-tab index="2" heading="Календарь">
-					<!-- 	<h4 class="sorry-text">К сожалению, данный контакт еще не зарегистривованный в нашем сервисе.<br> <span>Пригласите его</span>, что бы он смог заполнить этот раздел!</h4> -->
 						<calendar ng-if="$ctrl.contact" 
 							contact ="$ctrl.contact" 
 							user="$ctrl.user"></calendar>

@@ -249,7 +249,7 @@ table.list-contacts {
 }
 .contact-information {
 	background: #fff;
-	padding: 30px;
+	// padding: 30px;
 	overflow: hidden;
 	.contact-photo {
 		float: left;
@@ -258,7 +258,7 @@ table.list-contacts {
 		img {
 			width: 100%;
 			border-radius: 50%;
-			border: 8px solid #eff3f6
+			border: 2px solid #eff3f6
 		}
 	}
 	.contact-text-info {
@@ -266,8 +266,8 @@ table.list-contacts {
 		float: left;
 		h1 {
 			margin:0 0 12px 0;
-			font-size: 30px;
-			font-weight: 600;
+			// font-size: 30px;
+			// font-weight: 600;
 		}
 		.contact-spesalition {
 			color:#2a9ef6;

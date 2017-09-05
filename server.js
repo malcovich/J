@@ -43,6 +43,7 @@ app.use('/public', express.static( __dirname + "/public"));
 app.use('/node_modules', express.static( __dirname + "/node_modules"));
 app.use('/uploads', express.static( __dirname + "/uploads"));
 app.use('/scripts', express.static( __dirname + "/scripts"));
+app.use('/assets', express.static( __dirname + "/assets"));
 
 app.get('/', function(req, res){
 	res.sendfile('index.html');
