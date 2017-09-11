@@ -67,16 +67,21 @@
 			
 			<div class="tab-block">
 				<uib-tabset active="active" >
-					<uib-tab index="0" heading="Описание">
+					<uib-tab index="0" heading="Детальна інформація">
 						<!-- 	<h4 class="sorry-text">К сожалению, данный контакт еще не зарегистривованный в нашем сервисе.<br> <span>Пригласите его</span>, что бы он смог заполнить этот раздел!</h4> -->
+						<p>
+							Nullam elementum tincidunt massa, a pulvinar leo ultricies ut. Ut fringilla lectus tellusimp imperdiet molestie est volutpat at, sed viverra cursus nibh. Ut fringilla lectus tellusimp imperdiet molestie. Nullam elementum tincidunt massa, a pulvinar leo ultricies ut. Elementum tincidunt massa, a pulvinar leo ultricies ut. Ut fringilla lectus tellusimp imperdiet molestie est volutpat at. Sed viverra cursus nibh.
+						</p>
+						<hr class="g-brd-gray-light-v4">
 						<div class="contact-info">
-							<p>Принимает в офисе : <span>{{$ctrl.isWorkedInOfice()}}</span></p>
-							<p>Принимает у клиента : <span>{{$ctrl.isWorkedInHome()}}</span></p>
-							<p>Адрес : <span>{{$ctrl.contact.address}}</span></p>
-							<p>Рабочие дни : <span>{{$ctrl.contact.working_days}}</span></p>
+							<h4 class="h5 g-color-gray-dark-v1 g-mb-10">Контактні дані</h4>
+							<p class="d-block g-color-gray-dark-v5 "><span class="g-width-200 d-inline-block">Адреса : </span><span class="g-color-gray-dark-v1">{{$ctrl.contact.address}}</span></p>
+							<p class="d-block g-color-gray-dark-v5"><span class="g-width-200  d-inline-block">Приймае в офісі: </span><span class="g-color-gray-dark-v1">{{$ctrl.isWorkedInOfice()}}</span></p>
+							<p class="d-block g-color-gray-dark-v5"><span class="g-width-200 d-inline-block">Виїзджажє до клієнта: </span><span class="g-color-gray-dark-v1">{{$ctrl.isWorkedInHome()}}</span></p>
+							<p class="d-block g-color-gray-dark-v5"><span class="g-width-200  d-inline-block">Рабочі дні : </span><span class="g-color-gray-dark-v1">{{$ctrl.contact.working_days}}</span></p>
 						</div>
 					</uib-tab>
-					<uib-tab index="1" heading="Отзывы пользователей">
+					<uib-tab index="1" heading="Відгуки користувачів">
 						<div>
 							<div class="comments-header">
 								<span class="showHideAddCommentBlock" ng-click="$ctrl.showHideAddCommentBlock = !$ctrl.showHideAddCommentBlock">Добавить отзыв</span>
@@ -103,7 +108,7 @@
 							</div>
 						</div>
 					</uib-tab>
-					<uib-tab index="2" heading="Календарь">
+					<uib-tab index="2" heading="Календар" disable="true">
 						<calendar ng-if="$ctrl.contact" 
 							contact ="$ctrl.contact" 
 							user="$ctrl.user"></calendar>

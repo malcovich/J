@@ -60,13 +60,11 @@
 	}
 	.name {
 		color: #4B5262;
-    	font-weight: bold;
    		margin-bottom: 3px
 	}
 	.info {
 		float: left;
 		padding-left: 30px;
-    	padding-top: 15px;
 	}
 	.acceptBtn{
 		float: right;
@@ -97,9 +95,10 @@
 	list-style:none;
 	overflow :hidden;
 	li {
-		width: 48%;
+		width: 31%;
 		float: left;
 		height: 90px;
+		margin-right: 3.5%;
 		margin-bottom: 20px;
 		background-color: #fff;
 		padding: 12px;
@@ -112,11 +111,9 @@
 		.info {
 			float: left;
 			padding-left: 30px;
-			padding-top: 15px;
 		}
 		.name {
 			color: #4B5262;
-			font-weight: bold;
 			margin-bottom: 3px;
 		}
 		.phone {
@@ -124,8 +121,8 @@
 			font-size: 12px;
 		}
 	}
-	li:nth-child(2n){
-		margin-left: 4%;
+	li:nth-child(3n){
+		margin-right: 0;
 	}
 
 }

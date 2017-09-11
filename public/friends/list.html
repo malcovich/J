@@ -17,19 +17,17 @@
         <li ng-repeat="friend in $ctrl.friendsList">
             <img ng-src="{{friend.smallImg}}">
             <div class="info">
-                 <p class="name" ui-sref="main.friend({id : friend._id})" style="cursor: pointer;">
+                 <p class="name h5 g-color-black mb-20" ui-sref="main.friend({id : friend._id})" style="cursor: pointer;">
                     {{friend.name || friend.email}}
                 </p>
                 <p class="phone">{{friend.phone}}</p>
                 
             </div>
-            <span class="btn btn-danger pull-right deleteBtn" ng-click="$ctrl.deleteFriend(friend._id)">Убрать из друзей</span>
+            <span class="btn btn-sm u-btn-outline-lightred g-mr-10 g-mb-15 pull-right g-mt-20 " ng-click="$ctrl.deleteFriend(friend._id)">Видалити з друзів</span>
             <!-- {{friend._id}}    -->
         </li>
     </ul>
 </div>
-
-
 
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">

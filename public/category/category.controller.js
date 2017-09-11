@@ -9,6 +9,10 @@ angular.module('MyApp')
   		$ctrl.category = [];
 		$http.post('/api/categories/item', {'userId': $ctrl.user._id, 'id': $stateParams.id}).then(function(res){
 	    $ctrl.category = res.data;
+      console.log($ctrl.category)
+      $ctrl.category.contacts.forEach(function(item){
+        item.booleanHidden = $ctrl.isHidden(item);
+      })
 	  });
 
 	    $ctrl.addContact = function(){
@@ -33,8 +37,17 @@ angular.module('MyApp')
 		  }
 		}
 
+    $ctrl.isHidden = function(contact){
+      if (contact.hidden.indexOf($ctrl.user._id) > -1){
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
     $ctrl.changeHiddenStatus = function(contact){
-      $http.post("/api/contact/changeHiddenStatus", {id: contact._id, hidden: !contact.hidden })
+      $http.post("/api/contact/changeHiddenStatus", {id: contact._id, hidden: contact.booleanHidden, userId : $ctrl.user._id })
     }
 }]);
 

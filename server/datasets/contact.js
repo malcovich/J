@@ -8,7 +8,7 @@ module.exports = mongoose.model('Contact', {
 	phone: String,
 	raiting: Number,
 	description: String,
-	hidden: Boolean,
+	hidden: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
 	category :  {type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
 	verifyContact : {type: mongoose.Schema.Types.ObjectId, ref: 'Contact'},
 	userId: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],

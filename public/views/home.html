@@ -5,7 +5,7 @@
     </div>
     <span uib-dropdown on-toggle="toggled(open)" class="user-block">
       <a href id="simple-dropdown" uib-dropdown-toggle >
-       {{user.name || user.email}}<i class="caret"></i>
+       {{user.name || user.email}}
       </a>
       <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
         <li>
@@ -17,7 +17,7 @@
     </span>
   </div>
   <form ng-submit="goToSearch()" class="header-search" >
-    <input type="text"  placeholder="Search" ng-model="query">
+    <input type="text"  placeholder="Пошук" ng-model="query">
     <button type="submit"></button>
   </form>
   <a href="#" class="logo"></a>
@@ -25,26 +25,26 @@
 <!-- main Block -->
 <div class="main-block">
   <div class="columns">
-    <div class="left-menu">
+    <div class="left-menu navbar-nav ml-auto text-uppercase g-font-weight-600 u-sub-menu-v1">
       <div ng-show="user.role == 'customer'">
        <!--  <div class="left-menu-item">
          <a ui-sref="main.feed">
            <p><i class="fa fa-certificate" aria-hidden="true"></i> &#160; Обновления</p>
          </a>
        </div> -->
-        <div class="left-menu-item">
+        <div class="left-menu-item nav-item g-my-5">
           <a ui-sref="main.requests" ng-class="{ active: isActive('/main/requests')}">
-            <p><!-- <i class="fa fa-share-square" aria-hidden="true"></i>  &#160;  -->Рекомендации <span class="bage-menu">{{friendsRequestsCount}}</span></p>
+            <p class="nav-link"><!-- <i class="fa fa-share-square" aria-hidden="true"></i>  &#160;  -->Рекомендації <!-- <span class="bage-menu">{{friendsRequestsCount}}</span> --></p>
           </a>
         </div>
         <div class="left-menu-item">
           <a ui-sref="main.categories"  ng-class="{ active: isActive('/main/categories')}">
-            <p><!-- <i class="fa fa-address-card" aria-hidden="true"></i>  &#160; --> Специалисты</p>
+            <p><!-- <i class="fa fa-address-card" aria-hidden="true"></i>  &#160; --> Спеціалісти</p>
           </a>
         </div>
         <div class="left-menu-item">
           <a ui-sref="main.friends"  ng-class="{ active: isActive('/main/friends')}">
-            <p><!-- <i class="fa fa-users" aria-hidden="true"></i> &#160;  -->Друзья</p>
+            <p><!-- <i class="fa fa-users" aria-hidden="true"></i> &#160;  -->Друзі</p>
           </a>
         </div>
        

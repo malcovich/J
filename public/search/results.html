@@ -1,6 +1,6 @@
 <div class="inner-block">
 	<div ng-show="$ctrl.searchResut.users.length > 0 || $ctrl.searchResut.contacts.length > 0">
-		<h3>Результаты поиска по запросу "{{$ctrl.q}}":</h3>
+		<h3>Результати пошуку "{{$ctrl.q}}":</h3>
 	<!-- 	<ul class="user-results-list">
 			<li ng-repeat="user in $ctrl.searchResut.users">
 				<div class="btn green-btn addBtn" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить </div>
@@ -8,11 +8,11 @@
 				<p class="user-name">{{user.name}}</p>
 			</li>
 		</ul> -->
-		<h4>Пользователи:</h4>
+		<h4>Користувачі:</h4>
 		<ul class="friends-list">
 	        <li ng-repeat="user in $ctrl.searchResut.users">
-	        	<div class="btn green-btn addBtn"  ng-show="user.isShowed" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить</div>
-	        	<span class="item_in_list" ng-show="user.isRequest &&  user._id != $ctrl.user._id">Отправлен</span>
+	        	<div class="btn green-btn addBtn"  ng-show="user.isShowed" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Додати</div>
+	        	<span class="item_in_list" ng-show="user.isRequest &&  user._id != $ctrl.user._id">Відправлений</span>
 	            <img ng-src="{{user.smallImg || '/public/images/vectorpaint1.png'}}">
 	            <div class="info">
 	                 <p class="name" ui-sref="main.friend({id : user._id})" style="cursor: pointer;">
@@ -25,10 +25,10 @@
 	    </ul>
 
 		
-		<h4>Специалисты:</h4>
+		<h4>Спеціалисти:</h4>
 		<ul class="friends-list">
 			<li ng-repeat="contact in $ctrl.searchResut.contacts" >
-				<div class="btn green-btn" style="float: right" ng-click="$ctrl.addToContacts(contact)" ng-hide="contact.userId.indexOf($ctrl.user._id) != -1">Добавить</div>
+				<div class="btn green-btn" style="float: right" ng-click="$ctrl.addToContacts(contact)" ng-hide="contact.userId.indexOf($ctrl.user._id) != -1">Додати</div>
 				<div class="btn" style="float: right" ng-show="contact.userId.indexOf($ctrl.user._id) != -1">У вас в контактах</div>
 				<div class="user-img"><img src="{{contacts.img || '/public/images/vectorpaint1.png'}}"></div>
 				<div class="info">
@@ -39,6 +39,6 @@
 		</ul>
 	</div>
 	<div ng-show="($ctrl.searchResut.users.length == 0) && ($ctrl.searchResut.contacts.length == 0)">
-		<h3>К сожалению, по ваше запросу ничего не найдено</h3>
+		<h3>Нажаль, по  запиту нічого не знайдено</h3>
 	</div>
 </div>

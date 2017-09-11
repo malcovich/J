@@ -91,6 +91,36 @@ ul {
   display: flex;
   flex: 1; }
 
+.left-menu-item a p {
+  position: relative;
+  display: inline; }
+
+.bage-menu {
+  position: absolute;
+  top: -9px;
+  right: -20px;
+  color: var(--yt-swatch-important-text, white);
+  background-color: #e62117;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  line-height: 18px;
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer; }
+
+.left-menu-item {
+  height: 33px;
+  line-height: 32px;
+  margin: 5px 0; }
+  .left-menu-item a {
+    margin-left: 40px; }
+  .left-menu-item .active p {
+    color: #72c02c; }
+
+#simple-dropdown {
+  text-decoration: none; }
+
 .friend-header {
   padding: 30px;
   overflow: hidden; }
@@ -145,12 +175,10 @@ ul {
     float: left; }
   .blockRequestToFriend .name {
     color: #4B5262;
-    font-weight: bold;
     margin-bottom: 3px; }
   .blockRequestToFriend .info {
     float: left;
-    padding-left: 30px;
-    padding-top: 15px; }
+    padding-left: 30px; }
   .blockRequestToFriend .acceptBtn {
     float: right;
     margin-top: 18px; }
@@ -176,9 +204,10 @@ ul {
   list-style: none;
   overflow: hidden; }
   .friends-list li {
-    width: 48%;
+    width: 31%;
     float: left;
     height: 90px;
+    margin-right: 3.5%;
     margin-bottom: 20px;
     background-color: #fff;
     padding: 12px;
@@ -189,17 +218,15 @@ ul {
       float: left; }
     .friends-list li .info {
       float: left;
-      padding-left: 30px;
-      padding-top: 15px; }
+      padding-left: 30px; }
     .friends-list li .name {
       color: #4B5262;
-      font-weight: bold;
       margin-bottom: 3px; }
     .friends-list li .phone {
       color: #ACB3BD;
       font-size: 12px; }
-  .friends-list li:nth-child(2n) {
-    margin-left: 4%; }
+  .friends-list li:nth-child(3n) {
+    margin-right: 0; }
 
 .tile-list-items {
   background-color: #fff;
@@ -768,6 +795,9 @@ table.list-contacts {
     .contact-information .other-info .raiting-input {
       width: 60px; }
 
+.hidden-type {
+  min-width: 120px; }
+
 .tab-block {
   margin-top: 30px; }
   .tab-block .nav.nav-tabs {
@@ -778,6 +808,10 @@ table.list-contacts {
   .tab-block .tab-pane {
     background: #fff;
     padding: 30px; }
+    .tab-block .tab-pane.active {
+      border-radius: 3.5px;
+      border: 1px solid #ddd;
+      border-top: 0px; }
     .tab-block .tab-pane .sorry-text {
       text-align: center;
       padding: 40px 0;

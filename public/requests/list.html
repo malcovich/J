@@ -1,18 +1,18 @@
 <div class="sub-header request-page">
 {{tabset.active}}
-  <span class="btn white-btn add-new" ng-click="$ctrl.showForm = true" ng-show="$ctrl.showAdd">Добавить</span>
-  <h4 class="small-title">Рекомендации</h4>
+  <span class="btn white-btn add-new" ng-click="$ctrl.showForm = true" ng-show="$ctrl.showAdd">Додати</span>
+  <h4 class="small-title">Рекомендації</h4>
 </div>
 	
 <uib-tabset active="active" class="request-tabs">
-	<uib-tab index="0" heading="Для меня" ng-click="$ctrl.showAdd = true">
-	<div class="alert alert-info margin" ng-show="$ctrl.requestsList.length == 0">Вы еще не создали запросов на рекомендацию</div>
+	<uib-tab index="0" heading="Для мене" ng-click="$ctrl.showAdd = true">
+	<div class="alert alert-info margin" ng-show="$ctrl.requestsList.length == 0">Вы ще не створили запросів на рекомендації</div>
 	<div class="request-form" ng-show="$ctrl.showForm">
-		<h2>Спросите друзей о нужном специалисте:</h2>
+		<h2>Запитайте друзів про потрібного спеціаліста</h2>
 		<form>
 			<textarea ng-model="$ctrl.request.text" class="text-area"></textarea>
-			<button ng-click="$ctrl.save()" class="btn green-btn fr  ml-15">Сохранить</button>
-			<button  class="btn fr" ng-click="$ctrl.showForm = false">Отменить</button>
+			<button ng-click="$ctrl.save()" class="btn green-btn fr  ml-15">Зберегти</button>
+			<button  class="btn fr" ng-click="$ctrl.showForm = false">Відмінити</button>
 
 		</form>
 	</div>
@@ -35,8 +35,8 @@
 		</div>
 		
 	</uib-tab>
-	<uib-tab index="1" heading="Для друзей" ng-click="$ctrl.showAdd = false">
-		<div class="alert alert-info margin" ng-show="$ctrl.friendsRequestsList.length == 0">Ваши друзья еще не создали запросов на рекомендацию</div>
+	<uib-tab index="1" heading="Для друзів" ng-click="$ctrl.showAdd = false">
+		<div class="alert alert-info margin" ng-show="$ctrl.friendsRequestsList.length == 0">Ваші друзі ще не створили запросів на рекомендації</div>
 		<div class="request-list">
 			<div class="request" ng-repeat="req in  $ctrl.friendsRequestsList">
 				<div class="request-inner">

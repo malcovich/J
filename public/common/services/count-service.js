@@ -1,11 +1,11 @@
 angular.module('MyApp').factory('CountFactory', function($http) {
 	var service = {};
-	service.counterRequests  = 0;
+	var counterRequests  = 0;
 	service.setCounterRequests = function(counter){
-		service.counterRequests = counter;
+		counterRequests = counter;
 	}
 	service.getCounterRequests = function(){
-		return service.counterRequests
+		return counterRequests
 	}
 
 	return service;

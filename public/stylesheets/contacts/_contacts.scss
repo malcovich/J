@@ -249,6 +249,7 @@ table.list-contacts {
 }
 .contact-information {
 	background: #fff;
+	
 	// padding: 30px;
 	overflow: hidden;
 	.contact-photo {
@@ -304,6 +305,9 @@ table.list-contacts {
 		}
 	}
 }
+.hidden-type {
+	min-width: 120px;
+}
 .tab-block {
 	margin-top: 30px;
 	.nav.nav-tabs {
@@ -316,6 +320,11 @@ table.list-contacts {
 	.tab-pane {
 		background: #fff;
 		padding: 30px;
+		&.active{
+			border-radius:3.5px;
+			border: 1px solid #ddd;
+			border-top: 0px;
+		}
 		.sorry-text {
 			text-align: center;
 			padding: 40px 0;

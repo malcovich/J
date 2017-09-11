@@ -12,3 +12,35 @@ ul {
 	display: flex;
 	flex:1;
 }
+.left-menu-item a p {
+	position: relative;
+	display:inline;
+}
+.bage-menu {
+	position: absolute;
+    top: -9px;
+    right: -20px;
+    color: var(--yt-swatch-important-text, hsl(0, 0%, 100%));
+    background-color: hsl(3, 81.8%, 49.6%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    line-height: 18px;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+.left-menu-item{
+	height:33px;
+	line-height:32px;
+	margin: 5px 0;
+	a{
+		margin-left: 40px;
+	}
+	.active p{
+		color: #72c02c;
+	}
+}
+#simple-dropdown {
+	text-decoration: none;
+}

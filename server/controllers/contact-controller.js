@@ -35,9 +35,16 @@ module.exports.updateInfoByContact = function(req, res){
 }
 
 module.exports.changeHiddenStatus = function(req, res){
-	Contact.findByIdAndUpdate(req.body.id , { hidden : req.body.hidden}, {new: true},function(err, u) {
-		res.json(u)
-	});
+	if (req.body.hidden == false){
+		Contact.findByIdAndUpdate(req.body.id ,  { $push: { hidden: req.body.userId } } , {new: true},function(err, u) {
+			res.json(u)
+		});
+	}else {
+		Contact.findByIdAndUpdate(req.body.id ,  { $pull: { hidden: req.body.userId } } , {new: true},function(err, u) {
+			res.json(u)
+		});
+	}
+	
 }
 
 module.exports.changeRaiting = function(req, res){
