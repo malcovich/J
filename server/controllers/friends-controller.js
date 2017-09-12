@@ -48,7 +48,8 @@ module.exports.accept = function(req,res) {
 }
 
 module.exports.item = function(req, res) {
-	User.find({_id: req.body.friendId}).exec(function (err, result) {
+	User.find({'_id' : req.body.friendId}).exec(function (err, result) {
+		console.log(result[0])
 		Contact.find({ userId: result[0]._id}).exec(function (err, contacts) {
 			Friend.find({$and: [ {$or: [ {useridinvite : req.body.friendId} , {useridaccept : req.body.friendId} ]} , { accepted: true } , { deleted: false } ]}).populate('useridinvite').populate('useridaccept').exec(function (err, friends) { 
 	    		res.json({'friend': result[0], 'contacts': contacts, 'friends': friends });
