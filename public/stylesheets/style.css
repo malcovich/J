@@ -559,6 +559,9 @@ ul {
 .filterInput {
   margin-top: 15px; }
 
+.commonContactUserList img {
+  width: 30px; }
+
 .userCreated .contact-right-block {
   float: right;
   width: 320px;
@@ -1127,6 +1130,12 @@ input {
       line-height: 70px;
       color: #354052; }
 
+.friends-list li .userFriends img {
+  width: 20px; }
+
+.friends-list li .phone {
+  margin-bottom: 4px; }
+
 .modal-title {
   color: #354052;
   font-weight: 600;
@@ -1161,6 +1170,7 @@ input {
   width: 820px; }
 
 .modal-dialog {
+  top: 220px;
   width: 305px; }
 
 .modal-footer {

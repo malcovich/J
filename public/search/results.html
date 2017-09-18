@@ -19,6 +19,11 @@
 	                    {{user.name || user.email}}
 	                </p>
 	                <p class="phone">{{user.phone}}</p>
+	                <p class="userFriends">
+						<span ng-repeat="friend in user.bothFriends">
+							<img ng-src="{{friend.smallImg}}" alt="" uib-tooltip="{{friend.name}}" tooltip-placement="bottom">
+						</span>
+					</p>
 	            </div>
 	            <!-- {{friend._id}}    -->
 	        </li>
@@ -34,6 +39,11 @@
 				<div class="info">
 					<p  class="name" ui-sref="main.contact({id : user._id})" style="cursor: pointer;">{{contact.name}}</p>
 					<p class="phone">{{contact.spec}}</p>
+					<p class="userFriends">
+						<span ng-repeat="friend in contact.userFriends">
+							<img ng-src="{{friend.smallImg}}" alt="" uib-tooltip="{{friend.name}}" tooltip-placement="bottom">
+						</span>
+					</p>
 				 </div>
 			</li>
 		</ul>

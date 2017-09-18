@@ -5,6 +5,7 @@
 			<input type="radio" ng-model="$ctrl.userAnswer" value="{{answer.value}}" id="{{'a-'+$index}}" name="answers" > 
 			<label for="{{'a-' + $index}}" >{{answer.title}}</label>
 		</div>
-		<span class="btn green-btn" ng-click="$ctrl.saveAnswer()">Ответить</span>
+		<span class="btn green-btn" ng-click="$ctrl.saveAnswer($ctrl.selectedQuestion[0].t)">Ответить</span>
 	</form>
+	
 </div>

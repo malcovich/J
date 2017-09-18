@@ -1,23 +1,23 @@
 <div class="sub-header category">
-  <span class="btn green-btn add-new" ng-click="$ctrl.addContact()">Добавить</span>
+  <span class="btn green-btn add-new" ng-click="$ctrl.addContact()">Додати</span>
   <h4 class="small-title">{{$ctrl.category.category.title}}</h4>
   <div class="counters-contacts">
-    <div class="counter all">Специалистов: <span>{{$ctrl.category.contacts.length}}</span></div>
-    <div class="counter verificated">Зарегистрированых специалистов: <span>0</span></div>
-    <div class="counter users">Добавленых пользователем специалистов: <span>{{$ctrl.category.contacts.length}}</span></div>
+    <div class="counter all">Специалістів: <span>{{$ctrl.category.contacts.length}}</span></div>
+    <div class="counter verificated">Зареєстрованих спеціалістів: <span>0</span></div>
+    <div class="counter users">Додано користувачами спеціалістів: <span>{{$ctrl.category.contacts.length}}</span></div>
   </div>
 </div>
 <div class="category-contacts-list">
-<div class="alert alert-info" ng-show="$ctrl.category.contacts.length == 0">В даной категории еще нет специалистов </div>
+<div class="alert alert-info" ng-show="$ctrl.category.contacts.length == 0">В даній категорії ще немає спеціалістів </div>
   <table class="list-contacts" ng-hide="$ctrl.category.contacts.length == 0">
     <thead>
       <tr>
           <th class="type">Тип</th>
-          <th class="name">Имя</th>
-          <th class="category">Категория</th>
-          <th class="spec">Специализация</th>
+          <th class="name">Ім'я</th>
+          <th class="category">Категорія</th>
+          <th class="spec">Спеціалізація</th>
           <th class="raiting">Рейтинг</th>
-          <th class="hidden-type">Публичный</th>
+          <th class="hidden-type">Загальній</th>
       </tr>
     </thead>
     <tbody>

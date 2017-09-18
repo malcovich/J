@@ -6,7 +6,7 @@
 
 				if($stateParams.q != undefined){
 					$ctrl.q = $stateParams.q;
-					$http.post('/api/search',{'q': $stateParams.q}).then(function(res){
+					$http.post('/api/search',{'q': $stateParams.q,'userId': $ctrl.user._id}).then(function(res){
 						$ctrl.searchResut = res.data;
 
 						$http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
@@ -53,7 +53,7 @@
 						console.log(2, $ctrl.listRequest)
 						$ctrl.listRequest.forEach(function(request){
 							console.log(1,request)
-							if((request.useridinvite._id == friend._id)|| (request.useridaccept._id == friend._id)){
+							if((request.useridinvite && (request.useridinvite._id == friend._id))|| (request.useridaccept && (request.useridaccept._id == friend._id))){
 								friend.isRequest = true;
 							}
 							else {

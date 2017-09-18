@@ -1,15 +1,16 @@
-<div class="sub-header">
-    <p class="counts">{{$ctrl.friendsList.length}} friends</p>
-</div>
 <div ng-show="$ctrl.listRequest.length > 0" class="blockRequestToFriend ">
-    <h3>Запросы в друзья</h3>
-    <div ng-repeat="req in $ctrl.listRequest" class="itemRequest">
-        <img ng-src="{{req.useridinvite.smallImg}}">
-        <span  class="btn green-btn acceptBtn" ng-click="$ctrl.accept(req._id)">Подтвердить</span>
-        <div class="info">
-            <p class="name">{{req.useridinvite.name || req.useridinvite.email}}</p>
-        </div>
-    </div>
+    <h3>Запрошення в друзі</h3>
+   
+    <ul class="friends-list">
+        <li ng-repeat="req in $ctrl.listRequest">
+            <img ng-src="{{req.useridinvite.smallImg}}">
+            <span  class="btn green-btn acceptBtn" ng-click="$ctrl.accept(req._id)">Додати</span>
+            <div class="info">
+                <p class="name">{{req.useridinvite.name || req.useridinvite.email}}</p>
+            </div>
+            <!-- {{friend._id}}    -->
+        </li>
+    </ul>
 </div>
 
 <div class="inner-block">

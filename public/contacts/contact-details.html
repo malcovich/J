@@ -1,15 +1,14 @@
 <div ng-class="{'userCreated': $ctrl.isShowedRightBar()}">
 	<div class="contact-right-block" ng-show="$ctrl.isShowedRightBar()">
-		<div class="inner">
-			 <ng-include src="$ctrl.selectedQuestion[0].url"></ng-include>
-		</div>
+		<qblock  ng-if="$ctrl.contact" contact ="$ctrl.contact" 
+				user="$ctrl.user"></qblock>
 	</div>
 	<div class="contact-left-block">
 		<div class=" u-shadow-v11 rounded g-pa-30">
 			<div class="contact-information ">
 				<div class="other-info row" >
 					<div class="contacts-raiting">
-						<p>Оценка <b>{{$ctrl.raitingList.length}}</b> пользователей</p>
+						<p><b>{{$ctrl.raitingList.length}}</b> оцінка користувачів</p>
 						<input-stars
 				            max="5"
 				            icon-base="fa fa-fw"
@@ -21,7 +20,7 @@
 				            >
 				        </input-stars>
 				        <p>
-				        	Ваша оценка
+				        	Ваша оцінка
 				        </p>
 				        	<input-stars
 				            max="5"
@@ -36,7 +35,7 @@
 					</div>
 					
 			</div>
-			<div class="col-md-10 g-mb-30 g-mb-0--md">
+			<div class="col-md-9 g-mb-30 g-mb-0--md">
 				<div class="contact-photo ">
 					<img src="public/images/3.jpg">	
 				</div>
@@ -55,7 +54,9 @@
 					<div class="row">
 						<div class="buttons-block col-md-10">
 							<span ng-if="$ctrl.friendsHasContact.length > 0">Общий контакт с: </span>
-							<span ng-if="$ctrl.friendsHasContact.length > 0" ng-repeat="f in $ctrl.friendsHasContact" ui-sref="main.friend({id: f._id})">{{f.name}}</span>
+							<span class="commonContactUserList" ng-if="$ctrl.friendsHasContact.length > 0" ng-repeat="f in $ctrl.friendsHasContact" ui-sref="main.friend({id: f._id})">
+								<img ng-src="{{f.smallImg}}" alt="">
+							</span>
 						</div>
 						<div class="buttons-block col-md-2">
 							<span class="btn btn-md u-btn-outline-bluegray g-mr-10 g-mb-15 " ng-click="$ctrl.deleteContact()">Удалить</span>

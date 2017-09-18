@@ -9,59 +9,7 @@ angular.module('MyApp')
     $ctrl.showHideAddCommentBlock = false;
 
     var userName = $ctrl.user.name;
-    var cotnactFilds = ['type_work_place', 'address', 'working_days']
-
-    function setQuestion(){
-      $ctrl.fildsWithOutAnswer = cotnactFilds.filter(function(item){
-        if ($ctrl.contact[item] == undefined){
-          return item;
-        }
-      });
-
-      $ctrl.selectedQuestion =  $ctrl.QBlock.filter(function(item){
-        if (item.t == $ctrl.fildsWithOutAnswer[0]){
-          return item;
-        }
-      })
-    }
-
-    $ctrl.QBlock = [
-      { 
-        'url' :'/public/contacts/addres-type.html',
-        't' : 'type_work_place',
-        'q' : "Данный специалист работает в офисе или совершает выезды на дом?",
-        'a' : [{title:"Только в офисе.",value:"Office"}, {title:"Только у клиента.", value : "client"},{title: "И в офисе и у клиента.", value:"both"}, {title: "К сожалению, я не знаю. ", value: "pass"}]
-      },
-      { 
-        'url' :'/public/contacts/address.html',
-        't' : 'address',
-        'q' : "Знаете ли вы адресс данного специалиста?",
-      },
-      { 
-        'url' :'/public/contacts/working-days.html',
-        't' : 'working_days',
-        'q' : "Знаете ли вы рабочие дни данного специалиста?",
-      }
-    ];
-
-    $ctrl.saveAnswer = function(){
-      if ( $ctrl.selectedQuestion[0].t == 'working_days'){
-        $ctrl.userAnswer = $ctrl.firstday+'-'+ $ctrl.lastday;
-      }
-      var obj = {
-        'userId': $ctrl.user._id,
-        'contactId' : $stateParams.id,
-        'fild' : $ctrl.selectedQuestion[0].t,
-        'answer': $ctrl.userAnswer
-      }
-
-      $http.post('/api/contact/updateInfo', obj).then(function(res,err){
-        $ctrl.contact = res.data;
-        $ctrl.userAnswer = "";
-        setQuestion();
-      })
-    }
-
+    
     $scope.$watch('$ctrl.yourRaiting', function(newValue, oldValue, scope) {
         if((newValue !== undefined) && (oldValue != newValue) && (yourRaiting != newValue) ){
             $ctrl.saveRaiting(newValue);
@@ -71,7 +19,6 @@ angular.module('MyApp')
     	$http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res, err){
             $ctrl.contact = res.data;
             $ctrl.friendsHasContact = [];
-            setQuestion();
 
             $http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
               $ctrl.friendsList = res.data;
@@ -121,7 +68,9 @@ angular.module('MyApp')
             }
 
             $ctrl.isShowedRightBar = function(){
-                return $ctrl.contact.userCreated && $ctrl.fildsWithOutAnswer.length>0
+              var cotnactFilds = ['type_work_place', 'address', 'working_days'];
+              var fildsWithOutAnswer = ($ctrl.contact['type_work_place'] == undefined) || ($ctrl.contact['address'] == undefined) || ($ctrl.contact['working_days'] == undefined)
+              return $ctrl.contact.userCreated && fildsWithOutAnswer
             }
 
             $http.post('/api/contact/commentsList', {id:$ctrl.contact._id}).then(function(res){

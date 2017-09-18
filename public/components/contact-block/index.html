@@ -1,0 +1,39 @@
+<div class="inner">
+	 <!-- <ng-include src="$ctrl.selectedQuestion[0].url"></ng-include> -->
+	<div class="QBlock"> 
+		<h3 class="question">{{$ctrl.selectedQuestion[0].q}}</h3>
+		<form ng-if="$ctrl.selectedQuestion[0].t == 'type_work_place'">
+			<div ng-repeat="answer in $ctrl.selectedQuestion[0].a" class="answer">
+				<input type="radio" ng-model="$ctrl.userAnswer" value="{{answer.value}}" id="{{'a-'+$index}}" name="answers" > 
+				<label for="{{'a-' + $index}}" >{{answer.title}}</label>
+			</div>
+			<span class="btn green-btn" ng-click="$ctrl.saveAnswer($ctrl.selectedQuestion[0].t, $ctrl.userAnswer)">Ответить</span>
+		</form>
+		<form ng-if="$ctrl.selectedQuestion[0].t =='address'"> 
+			<input type="text" ng-model="$ctrl.userAnswer">
+			<span class="btn green-btn" ng-click="$ctrl.saveAnswer($ctrl.selectedQuestion[0].t, $ctrl.userAnswer)">Ответить</span>
+		</form>
+		<form ng-if="$ctrl.selectedQuestion[0].t =='working_days'">
+	  	<select name="multipleSelect" id="multipleSelect" ng-model="$ctrl.firstday" >
+	      <option value="ПН">ПН</option>
+	      <option value="ВТ">ВТ</option>
+	      <option value="СР">СР</option>
+	      <option value="ЧТ">ЧТ</option>
+	      <option value="ПТ">ПТ</option>
+	      <option value="СБ">СБ</option>
+	      <option value="ВС">ВС</option>
+	    </select>
+
+	    <select name="multipleSelect" id="multipleSelect" ng-model="$ctrl.lastday" >
+	      <option value="ПН">ПН</option>
+	      <option value="ВТ">ВТ</option>
+	      <option value="СР">СР</option>
+	      <option value="ЧТ">ЧТ</option>
+	      <option value="ПТ">ПТ</option>
+	      <option value="СБ">СБ</option>
+	      <option value="ВС">ВС</option>
+	    </select>
+		<span class="btn green-btn" ng-click="$ctrl.saveAnswer()">Ответить</span>
+	</form>
+	</div>
+</div>
