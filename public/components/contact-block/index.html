@@ -7,11 +7,11 @@
 				<input type="radio" ng-model="$ctrl.userAnswer" value="{{answer.value}}" id="{{'a-'+$index}}" name="answers" > 
 				<label for="{{'a-' + $index}}" >{{answer.title}}</label>
 			</div>
-			<span class="btn green-btn" ng-click="$ctrl.saveAnswer($ctrl.selectedQuestion[0].t, $ctrl.userAnswer)">Ответить</span>
+			<span class="btn green-btn" ng-click="$ctrl.saveAnswer($ctrl.selectedQuestion[0].t, $ctrl.userAnswer)">Відповісти</span>
 		</form>
 		<form ng-if="$ctrl.selectedQuestion[0].t =='address'"> 
-			<input type="text" ng-model="$ctrl.userAnswer">
-			<span class="btn green-btn" ng-click="$ctrl.saveAnswer($ctrl.selectedQuestion[0].t, $ctrl.userAnswer)">Ответить</span>
+			<input type="text" ng-model="$ctrl.userAnswer" placeholder="Адреса спеціаліста">
+			<span class="btn green-btn" ng-click="$ctrl.saveAnswer($ctrl.selectedQuestion[0].t, $ctrl.userAnswer)">Відповісти</span>
 		</form>
 		<form ng-if="$ctrl.selectedQuestion[0].t =='working_days'">
 	  	<select name="multipleSelect" id="multipleSelect" ng-model="$ctrl.firstday" >
@@ -21,7 +21,7 @@
 	      <option value="ЧТ">ЧТ</option>
 	      <option value="ПТ">ПТ</option>
 	      <option value="СБ">СБ</option>
-	      <option value="ВС">ВС</option>
+	      <option value="ВС">НД</option>
 	    </select>
 
 	    <select name="multipleSelect" id="multipleSelect" ng-model="$ctrl.lastday" >
@@ -31,9 +31,9 @@
 	      <option value="ЧТ">ЧТ</option>
 	      <option value="ПТ">ПТ</option>
 	      <option value="СБ">СБ</option>
-	      <option value="ВС">ВС</option>
+	      <option value="ВС">НД</option>
 	    </select>
-		<span class="btn green-btn" ng-click="$ctrl.saveAnswer()">Ответить</span>
+		<span class="btn green-btn" ng-click="$ctrl.saveAnswer()">Відповісти</span>
 	</form>
 	</div>
 </div>

@@ -19,7 +19,7 @@ angular.module('MyApp')
     	$http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res, err){
             $ctrl.contact = res.data;
             $ctrl.friendsHasContact = [];
-
+            console.log("@@@@", res.data,  $stateParams.id, $ctrl.user._id)
             $http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
               $ctrl.friendsList = res.data;
               var userID = $ctrl.user._id;
@@ -43,11 +43,11 @@ angular.module('MyApp')
             });
 
             $ctrl.isWorkedInOfice = function (){
-              if (($ctrl.contact.type_work_place == 'ofice') || ( $ctrl.contact.type_work_place == 'both')){
-                return "Да"
+              if (($ctrl.contact.type_work_place == 'Office') || ( $ctrl.contact.type_work_place == 'both')){
+                return "Так"
               }else{
                 if($ctrl.contact.type_work_place == 'client') {
-                  return "Нет"
+                  return "Ні"
                 }
                 if ($ctrl.contact.type_work_place == 'pass') {
                   return "Не указано"
@@ -56,10 +56,10 @@ angular.module('MyApp')
             };
             $ctrl.isWorkedInHome = function(){
               if (($ctrl.contact.type_work_place == 'client') || ( $ctrl.contact.type_work_place == 'both')){
-                return "Да"
+                return "Так"
               }else{
-                if($ctrl.contact.type_work_place == 'ofice') {
-                  return "Нет"
+                if($ctrl.contact.type_work_place == 'Office') {
+                  return "Ні"
                 }
                 if ($ctrl.contact.type_work_place == 'pass') {
                   return "Не указано"

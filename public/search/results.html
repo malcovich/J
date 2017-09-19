@@ -37,7 +37,7 @@
 				<div class="btn" style="float: right" ng-show="contact.userId.indexOf($ctrl.user._id) != -1">У вас в контактах</div>
 				<div class="user-img"><img src="{{contacts.img || '/public/images/vectorpaint1.png'}}"></div>
 				<div class="info">
-					<p  class="name" ui-sref="main.contact({id : user._id})" style="cursor: pointer;">{{contact.name}}</p>
+					<p  class="name" ui-sref="main.contact({id : contact._id})" style="cursor: pointer;">{{contact.name}}</p>
 					<p class="phone">{{contact.spec}}</p>
 					<p class="userFriends">
 						<span ng-repeat="friend in contact.userFriends">

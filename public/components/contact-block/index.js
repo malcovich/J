@@ -7,50 +7,49 @@ angular.module('MyApp').component('qblock', {
   controller: function($http, $stateParams){
   	$ctrl = this;
     var cotnactFilds = ['type_work_place', 'address', 'working_days'];
+
     var QBlock = [
       { 
         'url' :'/public/contacts/addres-type.html',
         't' : 'type_work_place',
-        'q' : "Данный специалист работает в офисе или совершает выезды на дом?",
-        'a' : [{title:"Только в офисе.",value:"Office"}, {title:"Только у клиента.", value : "client"},{title: "И в офисе и у клиента.", value:"both"}, {title: "К сожалению, я не знаю. ", value: "pass"}]
+        'q' : "Спеціаліст працює в офісе чи здійснює виїзди до клієнта?",
+        'a' : [{title:"Тільки в офісі.",value:"Office"}, {title:"Тільки у клієнта.", value : "client"},{title: "І в офісі і у кліента.", value:"both"}, {title: "Я не знаю ", value: "pass"}]
       },
       { 
         'url' :'/public/contacts/address.html',
         't' : 'address',
-        'q' : "Знаете ли вы адресс данного специалиста?",
+        'q' : "Чи знаєте ви адресу спеціаліста?",
       },
       { 
         'url' :'/public/contacts/working-days.html',
         't' : 'working_days',
-        'q' : "Знаете ли вы рабочие дни данного специалиста?",
+        'q' : "Чи знаєте ви рабочі дні даного спеціаліста?",
       }
     ];
-
   	
   	$ctrl.$onInit = function() {
-     setQuestion();
+      setQuestion();
     };
 
-
     function setQuestion(){
-      $ctrl.fildsWithOutAnswer = cotnactFilds.filter(function(item){
-        if ($ctrl.contact[item] == undefined){
-          return item;
-        }
-      });
+      findFildsWithOutAnswer();
+
       $ctrl.selectedQuestion =  QBlock.filter(function(item){
         if (item.t == $ctrl.fildsWithOutAnswer[0]){
           return item;
         }
       });
-    
-
     }
 
-    
+    function findFildsWithOutAnswer(){
+      $ctrl.fildsWithOutAnswer = cotnactFilds.filter(function(item){
+        if ($ctrl.contact[item] == undefined){
+          return item;
+        }
+      });
+    }
 
     $ctrl.saveAnswer = function(type, userAnswer){
-    	  console.log(userAnswer)
       if ( type == 'working_days'){
         $ctrl.userAnswer = $ctrl.firstday+'-'+ $ctrl.lastday;
       }
