@@ -1,0 +1,7 @@
+  <span class="btn btn-success pull-right addBtn" ng-show="$ctrl.friend.isShowed && !$ctrl.friend.isRequest && $ctrl.friend._id != $ctrl.user._id"  ng-click="$ctrl.addToFriend()" >Додати</span>
+  <span class="item_in_list" ng-show="$ctrl.friend.isRequest &&  $ctrl.friend._id != $ctrl.user._id">Відправлений</span>
+  <div class="image-block pull-left">
+    <img ng-src="{{$ctrl.friend.smallImg || '../../public/images/vectorpaint1.png'}}">
+  </div>
+  <h5 class="contact-name">{{$ctrl.friend.name}}</h5>
+  <p class="contact-spec">{{$ctrl.friend.phone}}</p>

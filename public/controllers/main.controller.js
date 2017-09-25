@@ -1,6 +1,7 @@
 angular.module('MyApp')
   .controller('MainCtrl', ['$scope', '$log', '$http','user','$location','CountFactory', function($scope, $log, $http, user, $location, CountFactory ) {
 		$scope.user = user.data;
+		console.log($scope.user)
 		$scope.friendsRequestsCount = 0
 
 		$scope.isActive = function (viewLocation) { 

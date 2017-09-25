@@ -1,34 +1,16 @@
 <div class="inner-block">
 	<div ng-show="$ctrl.searchResut.users.length > 0 || $ctrl.searchResut.contacts.length > 0">
 		<h3>Результати пошуку "{{$ctrl.q}}":</h3>
-	<!-- 	<ul class="user-results-list">
-			<li ng-repeat="user in $ctrl.searchResut.users">
-				<div class="btn green-btn addBtn" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Добавить </div>
-				<div class="user-img"><img ng-src="{{user.smallImg}}" alt=""></div>
-				<p class="user-name">{{user.name}}</p>
-			</li>
-		</ul> -->
+
 		<h4>Користувачі:</h4>
 		<ul class="friends-list">
-	        <li ng-repeat="user in $ctrl.searchResut.users">
-	        	<div class="btn green-btn addBtn"  ng-show="user.isShowed" style="float: right" ng-click="$ctrl.addToFrined(user._id)">Додати</div>
-	        	<span class="item_in_list" ng-show="user.isRequest &&  user._id != $ctrl.user._id">Відправлений</span>
-	            <img ng-src="{{user.smallImg || '/public/images/vectorpaint1.png'}}">
-	            <div class="info">
-	                 <p class="name" ui-sref="main.friend({id : user._id})" style="cursor: pointer;">
-	                    {{user.name || user.email}}
-	                </p>
-	                <p class="phone">{{user.phone}}</p>
-	                <p class="userFriends">
-						<span ng-repeat="friend in user.bothFriends">
-							<img ng-src="{{friend.smallImg}}" alt="" uib-tooltip="{{friend.name}}" tooltip-placement="bottom">
-						</span>
-					</p>
-	            </div>
-	            <!-- {{friend._id}}    -->
-	        </li>
+			<li ng-repeat="friend in $ctrl.searchResut.users"  class="tile-list-items">
+				<friend-item user = "$ctrl.user" ng-if="$ctrl.listRequestSended && $ctrl.friendsList && friend"
+						user-friends = "$ctrl.friendsList"
+						list-request = "$ctrl.listRequestSended"
+						friend = "friend"></friend-item>
+			</li>
 	    </ul>
-
 		
 		<h4>Спеціалисти:</h4>
 		<ul class="friends-list">
@@ -48,6 +30,7 @@
 			</li>
 		</ul>
 	</div>
+
 	<div ng-show="($ctrl.searchResut.users.length == 0) && ($ctrl.searchResut.contacts.length == 0)">
 		<h3>Нажаль, по  запиту нічого не знайдено</h3>
 	</div>

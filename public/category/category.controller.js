@@ -9,7 +9,6 @@ angular.module('MyApp')
   		$ctrl.category = [];
 		$http.post('/api/categories/item', {'userId': $ctrl.user._id, 'id': $stateParams.id}).then(function(res){
 	    $ctrl.category = res.data;
-      console.log($ctrl.category)
       $ctrl.category.contacts.forEach(function(item){
         item.booleanHidden = $ctrl.isHidden(item);
       })
@@ -26,11 +25,12 @@ angular.module('MyApp')
             $ctrl.contact.userId = [$ctrl.user._id];
             $ctrl.contact.raiting = 0;
 				    $ctrl.contact.userCreated = true;
+
 				    $http.post('/api/contact/add', $ctrl.contact).then(function(res){
-                console.log($ctrl.category.contacts)
-			      		$ctrl.category.contacts.push(res.data)
-			      	});
-				    }, function () {
+              console.log(res)
+			      	$ctrl.category.contacts.push(res.data)
+			      });
+				  }, function () {
 				    console.info('Modal dismissed at: ' + new Date());
 				  });
 			  });

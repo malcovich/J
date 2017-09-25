@@ -39,6 +39,8 @@ angular.module('MyApp').component('qblock', {
           return item;
         }
       });
+
+      console.log($ctrl.selectedQuestion)
     }
 
     function findFildsWithOutAnswer(){
@@ -61,6 +63,7 @@ angular.module('MyApp').component('qblock', {
       }
 
       $http.post('/api/contact/updateInfo', obj).then(function(res,err){
+        console.log(res)
         $ctrl.contact = res.data;
         $ctrl.userAnswer = "";
         setQuestion();

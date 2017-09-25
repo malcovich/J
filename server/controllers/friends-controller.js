@@ -12,11 +12,9 @@ module.exports.add = function(req, res){
 			res.json(friend);
     	} else {
     		if (result.accepted === true) {
-	    		console.log("you alredy accepted friend");
 	    		result.sendreq == false;
 	    		res.json(result[0]);
 	    	} else {
-	    		console.log("you alredy requested friend");
 	    		res.json(result[0]);
 	    	}
     	}

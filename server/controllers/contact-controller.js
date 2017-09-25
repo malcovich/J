@@ -7,7 +7,7 @@ var Raiting = require('../datasets/raiting');
 module.exports.add = function(req, res){
 	var contact = new Contact(req.body);
 	contact.save();
-	res.json(req.body);
+	res.json(contact);
 }
 module.exports.addExist = function(req, res){
 	Contact.findByIdAndUpdate(req.body.id , { $push: { 'userId': req.body.userId }}, {new: true},function(err, u) {

@@ -14,6 +14,7 @@
 </div>
 
 <div class="inner-block">
+    <div class="alert alert-info margin" ng-show="$ctrl.friendsList.length == 0">У вас, наразі, не додано друзів, скористайтеся пошуком! </div>
     <ul class="friends-list">
         <li ng-repeat="friend in $ctrl.friendsList">
             <img ng-src="{{friend.smallImg}}">

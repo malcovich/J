@@ -5,10 +5,11 @@ var Friend = require('../datasets/friend');
 
 module.exports.search = function(req, res){
 	var query = {},
-	search = {},
+	search = {
+		users: [],
+		contacts: []
+	},
 	userId = req.body.userId;
-
-
 
   	query =  new RegExp(req.body.q, 'i');
 
@@ -16,25 +17,23 @@ module.exports.search = function(req, res){
 	    if(error) {
 	    	return res.status(400).send({msg:"error occurred"});
 	    }
-	  
 	 
 	    Friend.find({$and: [ {$or: [ {useridinvite : userId} , {useridaccept : userId} ]} , { accepted: true } , { deleted: false }]}).populate('useridinvite').populate('useridaccept').exec(function (err, result) { 
 	      	var listFriends = filterFriendsList(result, userId);
 	      	var copyUsers = JSON.parse(JSON.stringify(users));
+			console.log(copyUsers)
 			var promises = [];
-			search.users = [];
 			
 			for( var user in users){
 				promises.push(getFriendsListPromise(users[0]._id))
 			};
 
 			Promise.all(promises).then(function(data){ 
-				search.contacts = [];
 				data.forEach(function(usersList, index){
 					copyUsers[index].listFriends = filterFriendsList(usersList, users[index]._id);
-					copyUsers.forEach(function(cUser){
-						  search.users.push(findFriendsInFriendsUsers(listFriends,cUser))
-					});
+				});
+				copyUsers.forEach(function(cUser, index1){
+					search.users.push(findFriendsInFriendsUsers(listFriends,cUser))
 				});
 		 	
 		    	Contact.find({$or : [{email: query},{name : query},{spec : query}]}, function (err, contacts) {
@@ -57,7 +56,7 @@ module.exports.search = function(req, res){
 	});
 
 	function getFriendsListPromise (userId){
-		return Friend.find({$and: [ {$or: [ {useridinvite :userId} , {useridaccept : userId} ]} , { accepted: true } , { deleted: false }]})
+		return Friend.find({$and: [ {$or: [ {useridinvite :userId} , {useridaccept : userId} ]} , { accepted: true } , { deleted: false }]});
 	};
 
 	function filterFriendsList (arr, id){

@@ -19,7 +19,6 @@ angular.module('MyApp')
     	$http.post('/api/contact/item', {'_id': $stateParams.id, 'userId': $ctrl.user._id }).then(function(res, err){
             $ctrl.contact = res.data;
             $ctrl.friendsHasContact = [];
-            console.log("@@@@", res.data,  $stateParams.id, $ctrl.user._id)
             $http.post('/api/friend/list', {'userId': $ctrl.user._id}).then(function(res){
               $ctrl.friendsList = res.data;
               var userID = $ctrl.user._id;
